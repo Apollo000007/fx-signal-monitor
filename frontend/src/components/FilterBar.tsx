@@ -25,7 +25,7 @@ export function FilterBar() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="ペアを検索 ( / キーでフォーカス)"
-          className="w-full pl-9 pr-3 py-2 rounded-lg bg-bg-soft border border-border/60 focus:border-accent-cyan/60 outline-none text-sm font-mono placeholder:text-text-faint"
+          className="w-full pl-9 pr-3 py-2 rounded-lg bg-bg-soft border border-border/60 focus:border-accent-gold/60 outline-none text-sm font-mono placeholder:text-text-faint"
         />
       </div>
 
@@ -69,7 +69,7 @@ export function FilterBar() {
       <select
         value={sortKey}
         onChange={(e) => setSortKey(e.target.value as SortKey)}
-        className="px-3 py-2 rounded-lg bg-bg-soft border border-border/60 text-sm outline-none focus:border-accent-cyan/60"
+        className="px-3 py-2 rounded-lg bg-bg-soft border border-border/60 text-sm outline-none focus:border-accent-gold/60"
       >
         <option value="score">スコア順</option>
         <option value="pair">ペア名順</option>

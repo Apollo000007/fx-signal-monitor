@@ -1,6 +1,6 @@
 "use client";
 
-import { Activity, Zap, Volume2, VolumeX, Keyboard } from "lucide-react";
+import { Sun, Zap, Volume2, VolumeX, Keyboard } from "lucide-react";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useSignalsStore } from "@/store/signals";
@@ -24,54 +24,69 @@ export function Header() {
   const [showShortcuts, setShowShortcuts] = useState(false);
 
   return (
-    <header className="mb-6">
-      <div className="flex items-center justify-between gap-3 flex-wrap">
-        <div className="flex items-center gap-3">
+    <header className="mb-8 relative">
+      {/* Mandala / halo decoration behind title */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute left-0 top-0 -translate-y-1/4 w-72 h-72 rounded-full bg-aura-gradient opacity-25 blur-3xl animate-aura-breathe"
+      />
+
+      <div className="relative flex items-center justify-between gap-3 flex-wrap">
+        <div className="flex items-center gap-4">
           <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ type: "spring", stiffness: 260, damping: 20 }}
-            className="h-10 w-10 rounded-xl bg-accent-gradient flex items-center justify-center shadow-glow"
+            initial={{ scale: 0.8, opacity: 0, rotate: -20 }}
+            animate={{ scale: 1, opacity: 1, rotate: 0 }}
+            transition={{ type: "spring", stiffness: 220, damping: 18 }}
+            className="relative h-14 w-14 rounded-full flex items-center justify-center"
           >
-            <Activity className="h-5 w-5 text-white" />
+            {/* spinning outer halo */}
+            <div className="absolute inset-0 rounded-full bg-accent-gradient opacity-90 blur-[1px] animate-halo-spin" />
+            <div className="absolute inset-[3px] rounded-full bg-bg-soft" />
+            <Sun className="relative h-6 w-6 text-accent-gold drop-shadow-[0_0_10px_rgba(233,196,106,0.8)]" />
           </motion.div>
           <div>
-            <h1 className="text-2xl font-bold tracking-tight">
-              <span className="accent-text">FX Signal</span> Monitor
+            <h1
+              className="text-3xl font-semibold tracking-[0.08em]"
+              style={{ fontFamily: "'Cinzel', 'Cormorant Garamond', serif" }}
+            >
+              <span className="accent-text">ORACLE</span>
+              <span className="text-text ml-2 font-serif italic text-[22px]">of Olympus</span>
             </h1>
-            <p className="text-[11px] text-text-dim font-mono tracking-wider">
-              DAILY · 4H · 15M / DOW THEORY × ICHIMOKU × SMA × CLAUDE CONFLUENCE
+            <div className="laurel-rule mt-1.5 w-[420px] max-w-full" />
+            <p className="mt-1.5 text-[10px] text-text-dim font-mono tracking-[0.2em] uppercase">
+              Daily · 4H · 15M &nbsp;·&nbsp; Dow × Ichimoku × SMA × Claude Confluence
             </p>
           </div>
         </div>
 
         <div className="flex items-center gap-2 text-[11px]">
-          <Stat label="監視ペア" value={`${signals.length}`} />
+          <Stat label="Pantheon" sublabel="監視ペア" value={`${signals.length}`} />
           <Stat
-            label="アラート中"
+            label="Oracle"
+            sublabel="託宣中"
             value={`${alertCount}`}
             highlight={alertCount > 0}
             icon={<Zap className="h-3 w-3" />}
           />
-          <Stat label="閾値" value={config?.alert_threshold ?? "—"} />
+          <Stat label="Threshold" sublabel="閾値" value={config?.alert_threshold ?? "—"} />
           <div
             className={cn(
               "flex flex-col items-end px-3 py-1.5 rounded-lg border",
               freshnessTone === "fresh" && "border-accent-green/40 bg-accent-green/10",
-              freshnessTone === "ok" && "border-accent-amber/40 bg-accent-amber/10",
+              freshnessTone === "ok" && "border-accent-gold/40 bg-accent-gold/10",
               freshnessTone === "stale" && "border-accent-red/40 bg-accent-red/10",
             )}
           >
-            <span className="flex items-center gap-1 text-[9px] uppercase tracking-widest text-text-faint">
+            <span className="flex items-center gap-1 text-[9px] uppercase tracking-[0.18em] text-accent-gold/80 font-serif">
               <span
                 className={cn(
                   "h-1.5 w-1.5 rounded-full",
                   freshnessTone === "fresh" && "bg-accent-green animate-pulse",
-                  freshnessTone === "ok" && "bg-accent-amber",
+                  freshnessTone === "ok" && "bg-accent-gold",
                   freshnessTone === "stale" && "bg-accent-red animate-pulse",
                 )}
               />
-              更新
+              Auspicium
             </span>
             <span className="font-mono text-sm font-semibold">
               {loading ? "取得中…" : formatTime(updatedAt)}
@@ -85,8 +100,8 @@ export function Header() {
             className={cn(
               "h-9 w-9 flex items-center justify-center rounded-lg border transition",
               soundEnabled
-                ? "border-accent-cyan/50 bg-accent-cyan/10 text-accent-cyan"
-                : "border-border/60 bg-bg-soft/50 text-text-faint hover:text-text",
+                ? "border-accent-gold/50 bg-accent-gold/10 text-accent-gold"
+                : "border-border/60 bg-bg-soft/50 text-text-faint hover:text-accent-gold",
             )}
           >
             {soundEnabled ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
@@ -132,11 +147,13 @@ function ShortcutRow({ k, v }: { k: string; v: string }) {
 
 function Stat({
   label,
+  sublabel,
   value,
   highlight,
   icon,
 }: {
   label: string;
+  sublabel?: string;
   value: React.ReactNode;
   highlight?: boolean;
   icon?: React.ReactNode;
@@ -146,15 +163,18 @@ function Stat({
       className={
         "flex flex-col items-end px-3 py-1.5 rounded-lg border " +
         (highlight
-          ? "border-accent-amber/40 bg-accent-amber/10"
+          ? "border-accent-gold/50 bg-accent-gold/10 shadow-[0_0_20px_-8px_rgba(233,196,106,0.6)]"
           : "border-border/50 bg-bg-soft/50")
       }
     >
-      <span className="flex items-center gap-1 text-[9px] uppercase tracking-widest text-text-faint">
+      <span className="flex items-center gap-1 text-[9px] uppercase tracking-[0.18em] text-accent-gold/80 font-serif">
         {icon}
         {label}
       </span>
-      <span className="font-mono text-sm font-semibold">{value}</span>
+      {sublabel && (
+        <span className="text-[8px] text-text-faint tracking-widest">{sublabel}</span>
+      )}
+      <span className="font-mono text-sm font-semibold text-accent-ivory">{value}</span>
     </div>
   );
 }

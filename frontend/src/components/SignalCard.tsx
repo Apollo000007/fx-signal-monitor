@@ -44,25 +44,33 @@ export function SignalCard({ signal, pinned, onSelect, onTogglePin, threshold }:
       className={cn(
         "group relative cursor-pointer rounded-2xl glass glass-hover p-4 shadow-card",
         "flex flex-col gap-3",
-        isAlert && "ring-1 ring-accent-amber/50",
+        isAlert && "ring-1 ring-accent-gold/60 shadow-halo",
       )}
     >
-      {/* Glow border on alert */}
+      {/* Halo border on alert — 悟りの光輪 */}
       {isAlert && (
-        <div className="pointer-events-none absolute -inset-px rounded-2xl bg-accent-gradient opacity-20 blur-sm" />
+        <>
+          <div className="pointer-events-none absolute -inset-px rounded-2xl bg-accent-gradient opacity-30 blur-sm" />
+          <div className="pointer-events-none absolute -inset-6 rounded-[32px] bg-aura-gradient opacity-20 blur-2xl animate-aura-breathe" />
+        </>
       )}
 
       <div className="relative flex items-start justify-between gap-2">
-        <div className="flex flex-col">
+        <div className="flex flex-col min-w-0">
           <div className="flex items-center gap-2">
-            <span className="font-mono text-[17px] font-semibold tracking-tight">
+            <span
+              className="font-serif text-[18px] font-semibold tracking-[0.08em] text-accent-ivory"
+              style={{ fontFamily: "'Cinzel', 'Cormorant Garamond', serif" }}
+            >
               {signal.pair}
             </span>
             {hasTrigger && (
-              <Sparkles className="h-3.5 w-3.5 text-accent-amber animate-pulse-soft" />
+              <Sparkles className="h-3.5 w-3.5 text-accent-gold animate-pulse-soft" />
             )}
           </div>
-          <span className="text-[11px] text-text-faint font-mono">{signal.symbol}</span>
+          <span className="text-[10px] text-text-faint font-mono uppercase tracking-[0.15em]">
+            {signal.symbol}
+          </span>
         </div>
         <div className="flex items-center gap-2">
           <DirectionBadge direction={signal.direction} isAlert={isAlert} hasTrigger={hasTrigger} />
@@ -71,11 +79,33 @@ export function SignalCard({ signal, pinned, onSelect, onTogglePin, threshold }:
               e.stopPropagation();
               onTogglePin();
             }}
-            className="rounded-md p-1 text-text-faint hover:text-text hover:bg-bg-hover transition"
+            className="rounded-md p-1 text-text-faint hover:text-accent-gold hover:bg-bg-hover transition"
             aria-label="pin"
           >
-            {pinned ? <Pin className="h-3.5 w-3.5 text-accent-cyan" /> : <PinOff className="h-3.5 w-3.5" />}
+            {pinned ? <Pin className="h-3.5 w-3.5 text-accent-gold" /> : <PinOff className="h-3.5 w-3.5" />}
           </button>
+        </div>
+      </div>
+
+      {/* ─── 現在値 (神託の価格) ─── 常時 prominent に表示 */}
+      <div className="relative">
+        <div
+          className={cn(
+            "relative rounded-xl border overflow-hidden",
+            "border-accent-gold/35 bg-gradient-to-br from-accent-gold/10 via-bg-soft/40 to-accent-violet/10",
+            "px-3 py-2.5",
+          )}
+        >
+          {/* subtle aura */}
+          <div className="pointer-events-none absolute inset-0 bg-aura-gradient opacity-20 animate-aura-breathe" />
+          <div className="relative flex items-baseline justify-between gap-2">
+            <span className="text-[9px] uppercase tracking-[0.25em] text-accent-gold/80 font-serif">
+              現在値 · Oracle
+            </span>
+            <span className="font-mono text-[20px] font-bold text-accent-ivory tabular-nums drop-shadow-[0_0_12px_rgba(233,196,106,0.35)]">
+              {formatPrice(signal.price)}
+            </span>
+          </div>
         </div>
       </div>
 
@@ -113,7 +143,7 @@ export function SignalCard({ signal, pinned, onSelect, onTogglePin, threshold }:
         <EntryRow
           label="指値目安"
           value={signal.price}
-          sub="(成行 = 現在値)"
+          sub="(成行=現在値)"
           accent="neutral"
         />
         <EntryRow
@@ -129,19 +159,22 @@ export function SignalCard({ signal, pinned, onSelect, onTogglePin, threshold }:
         />
       </div>
 
-      {/* PDH / PDL mini row (全通貨共通) */}
-      <div className="relative grid grid-cols-2 gap-2 text-[10px] border-t border-border/40 pt-2">
-        <div className="flex flex-col">
-          <span className="text-text-faint">前日高値</span>
-          <span className="font-mono text-accent-green">
-            {formatPrice(signal.pdh ?? null)}
-          </span>
-        </div>
-        <div className="flex flex-col items-end">
-          <span className="text-text-faint">前日安値</span>
-          <span className="font-mono text-accent-red">
-            {formatPrice(signal.pdl ?? null)}
-          </span>
+      {/* PDH / PDL mini row (全通貨共通) — laurel 装飾付 */}
+      <div className="relative pt-2">
+        <div className="laurel-rule mb-2" />
+        <div className="grid grid-cols-2 gap-2 text-[10px]">
+          <div className="flex flex-col">
+            <span className="text-text-faint uppercase tracking-wider text-[9px]">前日高値</span>
+            <span className="font-mono text-accent-green">
+              {formatPrice(signal.pdh ?? null)}
+            </span>
+          </div>
+          <div className="flex flex-col items-end">
+            <span className="text-text-faint uppercase tracking-wider text-[9px]">前日安値</span>
+            <span className="font-mono text-accent-red">
+              {formatPrice(signal.pdl ?? null)}
+            </span>
+          </div>
         </div>
       </div>
     </motion.article>

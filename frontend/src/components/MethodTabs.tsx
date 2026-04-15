@@ -1,6 +1,6 @@
 "use client";
 
-import { Brain, Layers, LineChart, Sparkles, Trophy } from "lucide-react";
+import { Flame, Gem, Infinity as InfinityIcon, Eye, Sun } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useSignalsStore } from "@/store/signals";
 import type { Method } from "@/lib/types";
@@ -19,40 +19,40 @@ interface TabDef {
 const TABS: TabDef[] = [
   {
     key: "orz",
-    title: "ORZ 手法",
-    subtitle: "Dow + SMA + 一目雲",
-    icon: <LineChart className="h-4 w-4" />,
+    title: "Athena · ORZ",
+    subtitle: "Dow + SMA + 一目雲 — 智慧",
+    icon: <Eye className="h-4 w-4" />,
     accent: "from-accent-cyan/60 to-accent-cyan/10 border-accent-cyan/40 text-accent-cyan",
   },
   {
     key: "pdhl",
-    title: "PDH/PDL 手法",
-    subtitle: "ブレイク→リテスト→フラッグ",
-    icon: <Sparkles className="h-4 w-4" />,
-    accent: "from-accent-amber/60 to-accent-amber/10 border-accent-amber/40 text-accent-amber",
+    title: "Hermes · PDH/PDL",
+    subtitle: "ブレイク → リテスト — 伝令",
+    icon: <Flame className="h-4 w-4" />,
+    accent: "from-accent-gold/60 to-accent-gold/10 border-accent-gold/40 text-accent-gold",
   },
   {
     key: "both",
-    title: "ORZ + PDHL 合意",
-    subtitle: "既存 2 手法が同方向",
-    icon: <Layers className="h-4 w-4" />,
-    accent: "from-accent-purple/60 to-accent-purple/10 border-accent-purple/40 text-accent-purple",
+    title: "Apollon · 合流",
+    subtitle: "ORZ + PDHL 同方向 — 光",
+    icon: <Gem className="h-4 w-4" />,
+    accent: "from-accent-violet/60 to-accent-violet/10 border-accent-violet/40 text-accent-violet",
     rank: "combo",
   },
   {
     key: "claude",
-    title: "Claude Confluence",
-    subtitle: "MTF + ATR収縮 + Donchian",
-    icon: <Brain className="h-4 w-4" />,
+    title: "Delphi · Claude",
+    subtitle: "MTF + ATR + Donchian — 神託",
+    icon: <InfinityIcon className="h-4 w-4" />,
     accent: "from-accent-green/60 to-accent-green/10 border-accent-green/40 text-accent-green",
   },
   {
     key: "triple",
-    title: "3 手法合意 🏆",
-    subtitle: "ORZ + PDHL + Claude 全一致",
-    icon: <Trophy className="h-4 w-4" />,
+    title: "Zeus · 三位合一 ☀",
+    subtitle: "ORZ + PDHL + Claude 全合意",
+    icon: <Sun className="h-4 w-4" />,
     accent:
-      "from-accent-amber/70 via-accent-red/40 to-accent-purple/40 border-accent-amber/60 text-accent-amber",
+      "from-accent-gold/80 via-accent-amber/50 to-accent-violet/60 border-accent-gold/70 text-accent-gold",
     rank: "ultimate",
   },
 ];
@@ -90,8 +90,8 @@ export function MethodTabs() {
               "flex items-start gap-2.5 min-h-[76px]",
               active
                 ? cn("bg-gradient-to-br", t.accent, "shadow-glow")
-                : "border-border/60 bg-bg-soft/40 text-text-dim hover:text-text hover:border-border",
-              t.rank === "ultimate" && !active && "border-accent-amber/25",
+                : "border-border/60 bg-bg-soft/40 text-text-dim hover:text-accent-ivory hover:border-accent-gold/40",
+              t.rank === "ultimate" && !active && "border-accent-gold/30",
             )}
           >
             <div
@@ -104,7 +104,10 @@ export function MethodTabs() {
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-1.5 flex-wrap">
-                <span className="text-[13px] font-semibold tracking-tight leading-tight">
+                <span
+                  className="text-[13px] font-semibold tracking-[0.06em] leading-tight"
+                  style={{ fontFamily: "'Cinzel', 'Cormorant Garamond', serif" }}
+                >
                   {t.title}
                 </span>
                 {count > 0 && (
@@ -114,15 +117,15 @@ export function MethodTabs() {
                       active
                         ? "bg-bg-card/80"
                         : t.rank === "ultimate"
-                          ? "bg-accent-amber/25 text-accent-amber"
-                          : "bg-accent-amber/20 text-accent-amber",
+                          ? "bg-accent-gold/25 text-accent-gold"
+                          : "bg-accent-gold/20 text-accent-gold",
                     )}
                   >
                     {count}
                   </span>
                 )}
               </div>
-              <div className="text-[10px] opacity-70 mt-0.5 truncate">{t.subtitle}</div>
+              <div className="text-[10px] opacity-75 mt-0.5 truncate">{t.subtitle}</div>
             </div>
             {active && <div className="absolute inset-x-0 bottom-0 h-0.5 bg-accent-gradient" />}
           </button>

@@ -117,9 +117,16 @@ export default function DashboardPage() {
 
       {loading && signals.length === 0 && (
         <div className="rounded-2xl glass p-10 flex flex-col items-center gap-3 text-text-dim">
-          <div className="h-10 w-10 rounded-full border-2 border-accent-cyan/30 border-t-accent-cyan animate-spin" />
-          <p className="text-sm">マーケットデータを取得中…</p>
-          <p className="text-[11px] text-text-faint">初回は15秒ほどかかります</p>
+          <div className="relative h-14 w-14">
+            <div className="absolute inset-0 rounded-full border-2 border-accent-gold/30 border-t-accent-gold animate-spin" />
+            <div className="absolute inset-2 rounded-full border border-accent-violet/30 border-b-accent-violet animate-spin [animation-duration:3s]" />
+          </div>
+          <p className="text-sm font-serif tracking-widest text-accent-gold">
+            神託を伺っています…
+          </p>
+          <p className="text-[11px] text-text-faint">
+            Consulting the Oracle · 初回は15秒ほどかかります
+          </p>
         </div>
       )}
 
@@ -152,11 +159,16 @@ export default function DashboardPage() {
 
       <ToastStack />
 
-      <footer className="mt-10 pt-6 border-t border-border/40 flex flex-wrap items-center justify-between gap-3 text-[10px] text-text-faint">
-        <span>
-          Data: Yahoo Finance (delayed) · Strategy: Dow + SMA20/50/100 + Ichimoku + MACD
-        </span>
-        <span>★ = 15M トリガー発火中 (実エントリー候補)</span>
+      <footer className="mt-10 pt-6 relative">
+        <div className="divider-golden mb-4" />
+        <div className="flex flex-wrap items-center justify-between gap-3 text-[10px] text-text-faint">
+          <span className="font-serif italic tracking-wider">
+            ΓΝΩΘΙ ΣΑΥΤΟΝ · 汝自身を知れ &nbsp;·&nbsp; Data: Yahoo Finance (delayed)
+          </span>
+          <span className="font-serif tracking-wider">
+            ☀ = 15M トリガー発火中 (神託が降りた瞬間)
+          </span>
+        </div>
       </footer>
     </main>
   );

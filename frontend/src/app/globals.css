@@ -2,30 +2,62 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ─────────────────────────────────────────────────────────
+   Olympus × Enlightenment — fonts
+   Cormorant / Cinzel for mythological serif headings.
+   ───────────────────────────────────────────────────────── */
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&display=swap");
+
 @layer base {
   html,
   body {
     @apply bg-bg text-text;
     font-feature-settings: "cv11", "ss01", "ss03";
     -webkit-font-smoothing: antialiased;
+    background-color: #0b0a1f;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(168, 85, 247, 0.22), transparent 60%),
+      radial-gradient(ellipse 70% 60% at 50% 110%, rgba(233, 196, 106, 0.14), transparent 60%),
+      radial-gradient(circle at 15% 30%, rgba(94, 203, 214, 0.08), transparent 40%),
+      radial-gradient(circle at 85% 70%, rgba(109, 93, 252, 0.12), transparent 45%);
+    background-attachment: fixed;
+  }
+
+  /* Classical serif for headings */
+  h1, h2, h3 {
+    font-family: "Cinzel", "Cormorant Garamond", "Noto Serif JP", Georgia, serif;
+    letter-spacing: 0.02em;
   }
 
   ::selection {
-    background-color: rgba(168, 85, 247, 0.35);
-    color: #fff;
+    background-color: rgba(233, 196, 106, 0.4);
+    color: #0b0a1f;
   }
 }
 
 @layer components {
+  /* 大理石ガラス — marble-glass */
   .glass {
-    @apply bg-bg-card/70 backdrop-blur-xl border border-border/60;
+    @apply bg-bg-card/65 backdrop-blur-xl border border-border/60;
+    background-image:
+      radial-gradient(ellipse at 20% 10%, rgba(248, 238, 209, 0.05), transparent 55%),
+      radial-gradient(ellipse at 80% 95%, rgba(168, 85, 247, 0.07), transparent 55%);
   }
   .glass-hover {
-    @apply hover:bg-bg-hover/80 hover:border-border transition-colors;
+    @apply hover:bg-bg-hover/80 hover:border-accent-gold/40 transition-colors;
   }
+
+  /* 神託の文字 — oracle text (金→紫 gradient) */
   .accent-text {
     @apply bg-accent-gradient bg-clip-text text-transparent;
   }
+  .oracle-text {
+    font-family: "Cinzel", "Cormorant Garamond", "Noto Serif JP", Georgia, serif;
+    @apply bg-accent-gradient bg-clip-text text-transparent;
+    letter-spacing: 0.08em;
+  }
+
+  /* Chip family */
   .chip {
     @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold uppercase tracking-wider border;
   }
@@ -39,11 +71,87 @@
     @apply text-text-faint border-border bg-bg-soft;
   }
   .chip-alert {
-    @apply text-accent-amber border-accent-amber/50 bg-accent-amber/15;
+    @apply text-accent-gold border-accent-gold/50 bg-accent-gold/15;
+  }
+
+  /* Laurel / column ornament — thin gold rule with dot
+     神殿の柱を想起させる金の細線 */
+  .laurel-rule {
+    position: relative;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(233, 196, 106, 0.35) 20%,
+      rgba(233, 196, 106, 0.7) 50%,
+      rgba(233, 196, 106, 0.35) 80%,
+      transparent 100%
+    );
+  }
+  .laurel-rule::before,
+  .laurel-rule::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 4px;
+    height: 4px;
+    border-radius: 9999px;
+    background: #e9c46a;
+    transform: translateY(-50%);
+    box-shadow: 0 0 8px rgba(233, 196, 106, 0.7);
+  }
+  .laurel-rule::before { left: 8%; }
+  .laurel-rule::after { right: 8%; }
+
+  /* Halo — 悟りの光輪 */
+  .halo {
+    position: relative;
+  }
+  .halo::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      rgba(233, 196, 106, 0.55),
+      rgba(168, 85, 247, 0.35),
+      rgba(94, 203, 214, 0.3)
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  /* Mandala/Enlightenment radial glyph for background decoration */
+  .mandala-bg {
+    background-image:
+      radial-gradient(circle at 50% 50%, rgba(233, 196, 106, 0.08) 0%, transparent 2%),
+      repeating-conic-gradient(
+        from 0deg,
+        rgba(233, 196, 106, 0.05) 0deg 1deg,
+        transparent 1deg 15deg
+      );
+  }
+
+  /* Delphi/golden divider used under section headers */
+  .divider-golden {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(233, 196, 106, 0.6),
+      rgba(168, 85, 247, 0.4),
+      transparent
+    );
   }
 }
 
-/* Scrollbar */
+/* Scrollbar — 紫水晶 */
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
@@ -52,17 +160,17 @@
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(138, 149, 179, 0.15);
+  background: linear-gradient(180deg, rgba(233, 196, 106, 0.25), rgba(168, 85, 247, 0.25));
   border-radius: 999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(138, 149, 179, 0.3);
+  background: linear-gradient(180deg, rgba(233, 196, 106, 0.45), rgba(168, 85, 247, 0.45));
 }
 
-/* Grid background */
+/* Grid background — 神託のグリッド */
 .bg-grid {
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    linear-gradient(rgba(233, 196, 106, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(168, 85, 247, 0.035) 1px, transparent 1px);
   background-size: 48px 48px;
 }
