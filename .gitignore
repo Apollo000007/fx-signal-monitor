@@ -1,0 +1,35 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+
+# --- Node / Next.js ---
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/tsconfig.tsbuildinfo
+frontend/.env.local
+frontend/.env.*.local
+
+# --- Build artifacts (PyInstaller etc) ---
+dist/
+build/
+*.spec
+
+# --- OS / editors ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# --- Sensitive / local ---
+secrets.json
+*.local.py
+
+# NOTE:
+# frontend/public/api/*.json と state/seen_alerts.json は GitHub Actions が
+# コミットする対象なのであえて ignore しない (デプロイ用データ)。

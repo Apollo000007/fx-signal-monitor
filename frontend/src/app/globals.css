@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body {
+    @apply bg-bg text-text;
+    font-feature-settings: "cv11", "ss01", "ss03";
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: rgba(168, 85, 247, 0.35);
+    color: #fff;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-bg-card/70 backdrop-blur-xl border border-border/60;
+  }
+  .glass-hover {
+    @apply hover:bg-bg-hover/80 hover:border-border transition-colors;
+  }
+  .accent-text {
+    @apply bg-accent-gradient bg-clip-text text-transparent;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold uppercase tracking-wider border;
+  }
+  .chip-long {
+    @apply text-accent-green border-accent-green/40 bg-accent-green/10;
+  }
+  .chip-short {
+    @apply text-accent-red border-accent-red/40 bg-accent-red/10;
+  }
+  .chip-none {
+    @apply text-text-faint border-border bg-bg-soft;
+  }
+  .chip-alert {
+    @apply text-accent-amber border-accent-amber/50 bg-accent-amber/15;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(138, 149, 179, 0.15);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(138, 149, 179, 0.3);
+}
+
+/* Grid background */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
