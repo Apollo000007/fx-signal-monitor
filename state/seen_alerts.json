@@ -21,5 +21,7 @@
   "NZD/JPY:orz:long": 1776376033.919134,
   "NZD/USD:orz:long": 1776382060.249297,
   "CAD/JPY:both:long": 1776360356.747635,
-  "EUR/GBP:orz:short": 1776376033.919134
+  "EUR/GBP:orz:short": 1776376033.919134,
+  "AUD/USD:pdhl:short": 1776384492.464983,
+  "EUR/GBP:claude:long": 1776384492.464983
 }
