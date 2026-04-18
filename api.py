@@ -502,8 +502,28 @@ def _series_to_line(df: pd.DataFrame, series: pd.Series, max_bars: int = 300):
     return out
 
 
+# ---- チャート用の TF 定義 ----
+# 既存 3TF (long/mid/short) に加え、新規 3TF (week / m5 / m1) を追加。
+# 新 TF は _compute_signals の cache に載らないので、リクエスト時に個別フェッチする。
+#
+# yfinance の制約:
+#   - 1m: period は最大 7d
+#   - 5m: period は最大 60d
+#   - 1wk/1d: 長期間 OK
+CHART_TF_MAP: dict[str, tuple[str, str, str | None]] = {
+    # (interval, period, resample)
+    "week":  ("1wk", "5y",  None),  # 週足
+    "long":  (config.LONG_INTERVAL, config.LONG_PERIOD, config.LONG_RESAMPLE),  # 日足
+    "mid":   (config.MID_INTERVAL,  config.MID_PERIOD,  config.MID_RESAMPLE),   # 4H
+    "short": (config.SHORT_INTERVAL, config.SHORT_PERIOD, config.SHORT_RESAMPLE),  # 15M
+    "m5":    ("5m", "30d", None),   # 5分
+    "m1":    ("1m", "7d",  None),   # 1分
+}
+CHART_TF_PATTERN = "^(week|long|mid|short|m5|m1)$"
+
+
 @app.get("/api/chart/{symbol}")
-async def get_chart(symbol: str, tf: str = Query("mid", pattern="^(long|mid|short)$")):
+async def get_chart(symbol: str, tf: str = Query("mid", pattern=CHART_TF_PATTERN)):
     key = (symbol, tf)
     now = datetime.now(timezone.utc)
     cached = _cache["tf_data"].get(key)
@@ -514,13 +534,8 @@ async def get_chart(symbol: str, tf: str = Query("mid", pattern="^(long|mid|shor
             df = None
 
     if df is None:
-        # まだキャッシュが無ければ個別フェッチ
-        tf_map = {
-            "long": (config.LONG_INTERVAL, config.LONG_PERIOD, config.LONG_RESAMPLE),
-            "mid": (config.MID_INTERVAL, config.MID_PERIOD, config.MID_RESAMPLE),
-            "short": (config.SHORT_INTERVAL, config.SHORT_PERIOD, config.SHORT_RESAMPLE),
-        }
-        iv, pr, rs = tf_map[tf]
+        # まだキャッシュが無ければ個別フェッチ (新 TF はここで毎回取りに行く)
+        iv, pr, rs = CHART_TF_MAP[tf]
         loop = asyncio.get_running_loop()
         result = await loop.run_in_executor(None, fetch_multi, [symbol], iv, pr, rs)
         df = result.get(symbol)

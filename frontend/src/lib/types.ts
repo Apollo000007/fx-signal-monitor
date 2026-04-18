@@ -120,9 +120,19 @@ export interface ChartPoint {
   value?: number;
 }
 
+/** チャートタイムフレーム。6 段階:
+ *   m1    = 1分足
+ *   m5    = 5分足
+ *   short = 15分足
+ *   mid   = 4時間足
+ *   long  = 日足
+ *   week  = 週足
+ */
+export type ChartTf = "m1" | "m5" | "short" | "mid" | "long" | "week";
+
 export interface ChartResponse {
   symbol: string;
-  tf: "long" | "mid" | "short";
+  tf: ChartTf;
   candles: { time: number; open: number; high: number; low: number; close: number }[];
   sma20: { time: number; value: number }[];
   sma50: { time: number; value: number }[];

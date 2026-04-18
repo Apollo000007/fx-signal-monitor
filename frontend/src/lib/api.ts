@@ -1,4 +1,4 @@
-import type { AppConfig, ChartResponse, SignalsResponse } from "./types";
+import type { AppConfig, ChartResponse, ChartTf, SignalsResponse } from "./types";
 
 /**
  * 静的モード: GitHub Actions で事前ビルドされた JSON をそのまま読みに行く。
@@ -43,7 +43,7 @@ export async function getSignals(refresh = false): Promise<SignalsResponse> {
 
 export async function getChart(
   symbol: string,
-  tf: "long" | "mid" | "short" = "mid",
+  tf: ChartTf = "mid",
 ): Promise<ChartResponse> {
   if (STATIC_MODE) {
     const fname = `${sanitizeSymbol(symbol)}_${tf}.json`;

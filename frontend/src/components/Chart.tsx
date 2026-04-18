@@ -10,7 +10,7 @@ import {
   type ISeriesApi,
 } from "lightweight-charts";
 import { getChart } from "@/lib/api";
-import type { ChartResponse } from "@/lib/types";
+import type { ChartResponse, ChartTf } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
 export interface ChartLevels {
