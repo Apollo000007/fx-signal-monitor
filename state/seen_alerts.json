@@ -2,7 +2,7 @@
   "CAD/JPY:orz:long": 1777030544.672547,
   "CHF/JPY:orz:long": 1776895144.224699,
   "USD/CHF:orz:short": 1776852109.908036,
-  "AUD/JPY:pdhl:long": 1776780563.861183,
+  "AUD/JPY:pdhl:long": 1777306445.130509,
   "AUD/JPY:orz:long": 1776971704.017065,
   "AUD/USD:orz:long": 1776704820.407734,
   "NZD/JPY:pdhl:long": 1776780563.861183,
@@ -29,7 +29,7 @@
   "AUD/JPY:pdhl:short": 1776975275.596096,
   "EUR/GBP:both:short": 1776978636.05348,
   "CAD/JPY:pdhl:short": 1776978636.05348,
-  "NZD/JPY:orz:short": 1777292482.672785,
+  "NZD/JPY:orz:short": 1777306445.130509,
   "GBP/USD:orz:short": 1777260158.126362,
   "GBP/USD:claude:long": 1777286982.505984,
   "GBP/JPY:orz:long": 1777260158.126362,
@@ -37,6 +37,7 @@
   "AUD/USD:pdhl:long": 1777260158.126362,
   "USD/CHF:claude:short": 1777279373.458242,
   "EUR/USD:orz:short": 1777292482.672785,
-  "NZD/USD:orz:short": 1777292482.672785,
-  "GBP/USD:pdhl:long": 1777292482.672785
+  "NZD/USD:orz:short": 1777306445.130509,
+  "GBP/USD:pdhl:long": 1777292482.672785,
+  "GBP/JPY:both:long": 1777306445.130509
 }
