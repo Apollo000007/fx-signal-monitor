@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Radio, AlertCircle, Settings } from "lucide-react";
+import { Radio, AlertCircle, Clock } from "lucide-react";
 import type { LiveProvider } from "@/lib/oanda";
 import { cn } from "@/lib/utils";
 import { isEvaTheme } from "@/lib/visualTheme";
@@ -24,7 +24,7 @@ const PROVIDER_LABEL: Record<LiveProvider, string> = {
 
 /**
  * ヘッダー下に表示する「ライブ価格」のステータスバー。
- *   - 未設定 : 設定方法ガイドへ誘導
+ *   - 未設定 : 静的データ (5分 cron) で動いていることを案内
  *   - 接続中 : 緑のラジオ波アイコン + 経過秒数 + ペア数 + プロバイダ名
  *   - エラー : 赤バナー
  */
@@ -44,30 +44,20 @@ export function LiveStatus({
   }, []);
 
   if (notConfigured) {
+    // OANDA 未設定: 静的 JSON (cron 5 分) で運用していることを淡く案内するのみ
     return (
-      <div className={cn("rounded-xl border border-accent-amber/40 bg-accent-amber/10 px-4 py-2.5 text-[12px] flex items-start gap-2.5", isEvaTheme && "eva-frame")}>
-        <Settings className="h-4 w-4 text-accent-amber shrink-0 mt-0.5" />
-        <div className="flex-1 leading-relaxed">
-          <span className="font-semibold text-accent-amber">
-            ライブ価格プロバイダ未設定
-          </span>
-          <span className="text-text-dim ml-2">
-            yfinance の遅延データのみ表示中 (15〜20 分遅延)。リアルタイム値動きを取るには
-            Vercel の Environment Variables に{" "}
-            <code className="px-1 rounded bg-bg-soft/60 font-mono">FINNHUB_API_KEY</code>{" "}
-            (推奨・本人確認不要・60req/min) または{" "}
-            <code className="px-1 rounded bg-bg-soft/60 font-mono">OANDA_API_TOKEN</code> +{" "}
-            <code className="px-1 rounded bg-bg-soft/60 font-mono">OANDA_ACCOUNT_ID</code> を設定してください。
-          </span>
-          <a
-            href="https://finnhub.io/register"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="ml-2 text-accent-cyan underline"
-          >
-            Finnhub 無料登録
-          </a>
-        </div>
+      <div
+        className={cn(
+          "rounded-xl border border-border/60 bg-bg-soft/40 px-4 py-2 text-[11px] flex items-center gap-2",
+          isEvaTheme && "eva-frame",
+        )}
+      >
+        <Clock className="h-4 w-4 text-text-dim" />
+        <span className="text-text-dim font-semibold">SCHEDULED</span>
+        <span className="text-text-faint">
+          GitHub Actions が 5 分ごとに自動更新 (yfinance) · ペア数 {count} ·
+          リアルタイム化したい場合は OANDA Practice トークンを Vercel env に追加
+        </span>
       </div>
     );
   }

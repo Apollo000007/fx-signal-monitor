@@ -2,8 +2,9 @@ name: Refresh FX Signals
 
 on:
   schedule:
-    # 15 分間隔 (GitHub Actions 最短)。UTC ベース。
-    - cron: "*/15 * * * *"
+    # 5 分間隔 (GitHub Actions cron の最短指定)。
+    # 実測のジッタにより 5〜15 分の幅で発火するが、ベストエフォートで頻度を上げる。
+    - cron: "*/5 * * * *"
   workflow_dispatch: {}  # 手動実行可
   push:
     branches: [main]

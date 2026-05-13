@@ -79,7 +79,8 @@ export interface LivePrice {
 interface LivePricesResponse {
   ok: boolean;
   error?: string;
-  provider?: LiveProvider;
+  provider?: LiveProvider | null;
+  not_configured?: boolean;
   interval_hint_ms?: number;
   prices?: {
     symbol: string;          // yfinance 形式 (=X 付き)
@@ -91,25 +92,26 @@ interface LivePricesResponse {
     status: string;
   }[];
   fetched_at?: string;
+  hint?: string;
 }
 
 export interface LivePricesPayload {
   prices: LivePrice[];
-  provider: LiveProvider;
+  provider: LiveProvider | null;
   intervalHintMs: number;
+  notConfigured: boolean;
 }
 
 // ============== フェッチ ==============
 
 /**
  * 任意の symbols (yfinance 形式) のライブ価格を 1 回だけ取得。
- * サーバ側が Finnhub / OANDA から自動選択。
+ * OANDA が設定されていればそちらから、未設定なら静的データ前提で空配列を返す。
  */
 export async function fetchLivePrices(symbols: string[]): Promise<LivePricesPayload> {
-  // ペアのマッピングはサーバ側で行うが、未マッピング symbol をクエリから除外しておく
   const supported = symbols.filter((s) => YF_TO_OANDA[s]);
   if (supported.length === 0) {
-    return { prices: [], provider: "finnhub", intervalHintMs: 15000 };
+    return { prices: [], provider: null, intervalHintMs: 300_000, notConfigured: true };
   }
 
   const url = `/api/live-prices?symbols=${supported.join(",")}`;
@@ -124,14 +126,15 @@ export async function fetchLivePrices(symbols: string[]): Promise<LivePricesPayl
     throw new Error(body?.error ?? `live-prices proxy HTTP ${res.status}`);
   }
   const data = (await res.json()) as LivePricesResponse;
-  if (!data.ok || !data.prices) {
+  if (!data.ok) {
     throw new Error(data.error ?? "live-prices proxy returned not-ok");
   }
 
   return {
-    provider: data.provider ?? "oanda",
-    intervalHintMs: data.interval_hint_ms ?? 3000,
-    prices: data.prices.map((p) => ({
+    provider: data.provider ?? null,
+    intervalHintMs: data.interval_hint_ms ?? 300_000,
+    notConfigured: data.not_configured === true,
+    prices: (data.prices ?? []).map((p) => ({
       symbol: p.symbol,
       instrument: yfToOanda(p.symbol) ?? p.symbol,
       bid: p.bid,
@@ -222,18 +225,16 @@ export function useLivePrices(
         }
         setPrices(next);
         setProvider(payload.provider);
+        setNotConfigured(payload.notConfigured);
         // ユーザー指定があれば優先、なければサーバ推奨値を反映
         const next_interval = intervalMs ?? payload.intervalHintMs;
         setEffectiveIntervalMs(next_interval);
         setError(null);
-        setNotConfigured(false);
         setLastFetched(Date.now());
       } catch (e: any) {
         if (aborted) return;
         const msg = String(e?.message ?? e);
         setError(msg);
-        // 503 = プロバイダ未設定とみなす
-        if (/未設定|503/.test(msg)) setNotConfigured(true);
       } finally {
         if (!aborted) setLoading(false);
       }
