@@ -2,10 +2,14 @@
  * 統一ライブ価格プロキシ。
  *
  * 環境変数で複数プロバイダから自動選択 (優先度順):
- *   1. FINNHUB_API_KEY      → Finnhub /quote (60 req/min・無料・本人確認不要)
- *   2. OANDA_API_TOKEN      → OANDA v20 pricing
+ *   1. OANDA_API_TOKEN + OANDA_ACCOUNT_ID → OANDA v20 pricing (3 秒間隔可)
+ *   2. (fallback)                         → Yahoo Finance public API (認証不要)
  *
- * いずれも未設定なら 503。
+ * Yahoo は環境変数不要で誰でも使える。本家 yfinance と同じデータソース。
+ * 遅延は 1〜3 分程度だが、yfinance バックエンド (15 分 cron) より大幅高速。
+ *
+ * 注意: FINNHUB_API_KEY を設定しても無料枠では forex の /quote が 403 を返すため
+ * 現在は Finnhub 対応コードを保持するのみで実際には Yahoo にフォールバックする。
  *
  * 使い方: GET /api/live-prices?symbols=USDJPY=X,EURUSD=X
  *   - symbols は yfinance 形式 (=X 付き) でカンマ区切り
@@ -13,8 +17,8 @@
  * レスポンス:
  *   {
  *     ok: true,
- *     provider: "finnhub" | "oanda",
- *     interval_hint_ms: number,           // 推奨ポーリング間隔 (レート制限ベース)
+ *     provider: "oanda" | "yahoo",
+ *     interval_hint_ms: number,           // 推奨ポーリング間隔
  *     prices: [{ symbol, bid, ask, mid, time, tradeable, status }, ...],
  *     fetched_at: string,
  *   }
@@ -27,7 +31,6 @@ export const runtime = "nodejs";
 
 // ---------------- 環境変数 ----------------
 
-const FINNHUB_API_KEY = process.env.FINNHUB_API_KEY;
 const OANDA_API_TOKEN = process.env.OANDA_API_TOKEN;
 const OANDA_ACCOUNT_ID = process.env.OANDA_ACCOUNT_ID;
 const OANDA_ENV = (process.env.OANDA_ENV ?? "practice").toLowerCase();
@@ -74,62 +77,66 @@ interface NormalizedPrice {
   status: string;
 }
 
-// ---------------- Finnhub プロバイダ ----------------
+// ---------------- Yahoo Finance プロバイダ (デフォルト・認証不要) ----------------
+//
+// Yahoo Finance の public chart API は API key 無しで叩け、yfinance Python
+// ライブラリと同じデータソース。日中のメジャー FX ペアは数秒〜数十秒遅延で
+// 取得可能 (公式の保証は無いが安定して動作している。)
+//
+// エンドポイント:
+//   GET https://query1.finance.yahoo.com/v8/finance/chart/USDJPY=X?interval=1m&range=1d
+//
+// レスポンス meta.regularMarketPrice / regularMarketTime が最新値。
 
-interface FinnhubDiag {
-  sym: string;
-  status: number;
-  body: string;
+interface YahooChart {
+  chart?: {
+    result?: {
+      meta?: {
+        regularMarketPrice?: number;
+        regularMarketTime?: number;
+        symbol?: string;
+      };
+    }[];
+    error?: { code: string; description: string } | null;
+  };
 }
 
-async function fetchFinnhub(
-  symbols: string[],
-  diag: FinnhubDiag[],
-): Promise<NormalizedPrice[]> {
-  // 各シンボルを並列でクエリ (Finnhub /quote は単一シンボルのみ対応)
-  const tasks = symbols.map(async (sym): Promise<NormalizedPrice | null> => {
-    const base = YF_TO_BASE[sym];
-    if (!base) return null;
-    const fh = `OANDA:${base}`;
-    const url = `https://finnhub.io/api/v1/quote?symbol=${encodeURIComponent(fh)}&token=${FINNHUB_API_KEY}`;
-    try {
-      const res = await fetch(url, { cache: "no-store" });
-      if (!res.ok) {
-        const body = await res.text().catch(() => "");
-        diag.push({ sym: fh, status: res.status, body: body.slice(0, 250) });
-        return null;
-      }
-      const j = (await res.json()) as {
-        c?: number; // current price
-        pc?: number; // previous close
-        t?: number; // unix ts
-      };
-      const mid = typeof j.c === "number" && j.c > 0 ? j.c : null;
-      if (mid == null) {
-        diag.push({
-          sym: fh,
-          status: 200,
-          body: `empty quote: ${JSON.stringify(j).slice(0, 200)}`,
-        });
-        return null;
-      }
-      // Finnhub /quote は bid/ask 分離を返さない → mid のみ、スプレッドは pip 単位で擬似
-      const half = isJpyCross(sym) ? 0.005 : 0.00005;
-      return {
-        symbol: sym,
-        bid: mid - half,
-        ask: mid + half,
-        mid,
-        time: j.t ? new Date(j.t * 1000).toISOString() : new Date().toISOString(),
-        tradeable: true,
-        status: "tradeable",
-      };
-    } catch (e: any) {
-      diag.push({ sym: fh, status: 0, body: String(e?.message ?? e).slice(0, 250) });
-      return null;
-    }
-  });
-  const results = await Promise.all(tasks);
+async function fetchYahooOne(symbol: string): Promise<NormalizedPrice | null> {
+  const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?interval=1m&range=1d&includePrePost=false`;
+  try {
+    const res = await fetch(url, {
+      cache: "no-store",
+      headers: {
+        // Yahoo は UA 無しだと 401 を返すことがある
+        "User-Agent":
+          "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36",
+      },
+    });
+    if (!res.ok) return null;
+    const j = (await res.json()) as YahooChart;
+    const meta = j.chart?.result?.[0]?.meta;
+    const mid = meta?.regularMarketPrice;
+    const t = meta?.regularMarketTime;
+    if (typeof mid !== "number" || mid <= 0) return null;
+    // Yahoo は bid/ask 別を chart API では返さないので mid から擬似スプレッド
+    const half = isJpyCross(symbol) ? 0.005 : 0.00005;
+    return {
+      symbol,
+      bid: mid - half,
+      ask: mid + half,
+      mid,
+      time: t ? new Date(t * 1000).toISOString() : new Date().toISOString(),
+      tradeable: true,
+      status: "tradeable",
+    };
+  } catch {
+    return null;
+  }
+}
+
+async function fetchYahoo(symbols: string[]): Promise<NormalizedPrice[]> {
+  const valid = symbols.filter((s) => YF_TO_BASE[s]);
+  const results = await Promise.all(valid.map((s) => fetchYahooOne(s)));
   return results.filter((x): x is NormalizedPrice => x != null);
 }
 
@@ -196,36 +203,22 @@ export async function GET(req: NextRequest) {
     .map((s) => s.trim())
     .filter(Boolean);
 
-  // プロバイダ自動選択
-  let provider: "finnhub" | "oanda" | null = null;
-  if (FINNHUB_API_KEY) provider = "finnhub";
-  else if (OANDA_API_TOKEN && OANDA_ACCOUNT_ID) provider = "oanda";
-
-  if (!provider) {
-    return NextResponse.json(
-      {
-        ok: false,
-        error:
-          "プロバイダ未設定。Vercel Environment Variables に FINNHUB_API_KEY (推奨) または OANDA_API_TOKEN + OANDA_ACCOUNT_ID を設定してください。",
-      },
-      { status: 503 },
-    );
-  }
+  // プロバイダ自動選択:
+  //   OANDA が設定済みなら 3 秒間隔で OANDA、なければ Yahoo Finance (認証不要)
+  //   ※ Finnhub 無料枠は forex の /quote が 403 なので使わない
+  const provider: "oanda" | "yahoo" =
+    OANDA_API_TOKEN && OANDA_ACCOUNT_ID ? "oanda" : "yahoo";
 
   try {
-    const finnhubDiag: FinnhubDiag[] = [];
     const prices =
-      provider === "finnhub"
-        ? await fetchFinnhub(symbols, finnhubDiag)
-        : await fetchOanda(symbols);
+      provider === "oanda"
+        ? await fetchOanda(symbols)
+        : await fetchYahoo(symbols);
 
-    // デバッグ: Finnhub 側でエラーがあったらレスポンスに同梱 (?debug=1 のとき)
-    const debug = req.nextUrl.searchParams.get("debug") === "1";
-
-    // 推奨ポーリング間隔: プロバイダのレート制限を考慮
-    //   Finnhub free = 60 req/min・15 並列 → 15s 安全マージン
-    //   OANDA       = 30 req/sec・1 まとめ → 3s
-    const intervalHintMs = provider === "finnhub" ? 15000 : 3000;
+    // 推奨ポーリング間隔:
+    //   OANDA = 30 req/sec・1 まとめ → 3s
+    //   Yahoo = 15 並列を毎分 → 60s が無難 (Yahoo は厳しいレート制限なし)
+    const intervalHintMs = provider === "oanda" ? 3000 : 60000;
 
     return NextResponse.json(
       {
@@ -234,7 +227,6 @@ export async function GET(req: NextRequest) {
         interval_hint_ms: intervalHintMs,
         prices,
         fetched_at: new Date().toISOString(),
-        ...(debug && provider === "finnhub" ? { diag: finnhubDiag.slice(0, 5) } : {}),
       },
       {
         status: 200,

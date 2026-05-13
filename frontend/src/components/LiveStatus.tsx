@@ -19,6 +19,7 @@ interface Props {
 const PROVIDER_LABEL: Record<LiveProvider, string> = {
   finnhub: "Finnhub tick (OANDA 経由)",
   oanda: "OANDA tick",
+  yahoo: "Yahoo Finance (near real-time)",
 };
 
 /**
