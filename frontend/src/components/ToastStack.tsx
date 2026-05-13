@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Bell, X } from "lucide-react";
 import { useSignalsStore } from "@/store/signals";
 import { cn } from "@/lib/utils";
+import { isEvaTheme } from "@/lib/visualTheme";
 
 export function ToastStack() {
   const { toasts, dismissToast, setSelected } = useSignalsStore();
@@ -22,6 +23,7 @@ export function ToastStack() {
             className={cn(
               "pointer-events-auto w-80 rounded-2xl glass p-4 shadow-glow cursor-pointer",
               "border-l-4",
+              isEvaTheme && "eva-frame",
               t.direction === "long" ? "border-accent-green" : "border-accent-red",
             )}
             onClick={() => {

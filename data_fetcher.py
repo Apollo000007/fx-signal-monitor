@@ -94,9 +94,18 @@ def fetch_all(
     long_iv, long_p, long_rs,
     mid_iv, mid_p, mid_rs,
     short_iv, short_p, short_rs,
+    h1_iv: str | None = None, h1_p: str | None = None, h1_rs: str | None = None,
 ):
-    """長期・中期・短期の 3 時間軸を一括取得して返す。各タプル (interval, period, resample)。"""
+    """長期・中期・(1H)・短期の時間軸を一括取得して返す。
+
+    h1_iv が指定されていれば 1H データも併せて取得し、
+    `(long, mid, h1, short)` の 4-tuple を返す。
+    後方互換のため、h1_iv が None の場合は従来どおり 3-tuple を返す。
+    """
     long_data = fetch_multi(symbols, long_iv, long_p, long_rs)
     mid_data = fetch_multi(symbols, mid_iv, mid_p, mid_rs)
     short_data = fetch_multi(symbols, short_iv, short_p, short_rs)
-    return long_data, mid_data, short_data
+    if h1_iv is None:
+        return long_data, mid_data, short_data
+    h1_data = fetch_multi(symbols, h1_iv, h1_p or "60d", h1_rs)
+    return long_data, mid_data, h1_data, short_data

@@ -30,8 +30,7 @@ export function ScoreGauge({ score, threshold = 75, size = "md", showValue }: Pr
       <div
         className={cn(
           "relative w-full rounded-full overflow-hidden",
-          // 濃いネイビー + 内側シャドウで凹んだ感じ
-          "bg-[#0b1220] ring-1 ring-white/10",
+          "score-track ring-1",
           "shadow-[inset_0_1px_2px_rgba(0,0,0,0.6)]",
           height,
         )}
@@ -64,10 +63,12 @@ export function ScoreGauge({ score, threshold = 75, size = "md", showValue }: Pr
 
         {/* threshold marker — 白 + 下にラベル */}
         <div
-          className="absolute top-0 bottom-0 w-[2px] bg-white/90 shadow-[0_0_6px_rgba(255,255,255,0.8)]"
+          className="absolute top-0 bottom-0 w-[2px] shadow-[0_0_6px_rgba(255,255,255,0.8)]"
           style={{ left: `${threshold}%` }}
           title={`閾値 ${threshold}`}
-        />
+        >
+          <div className="h-full w-full" style={{ backgroundColor: "var(--score-threshold)" }} />
+        </div>
 
         {/* 中央の数値 (lg のみ) */}
         {showValue && size === "lg" && (

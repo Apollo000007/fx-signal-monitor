@@ -1,9 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Pin, PinOff, Sparkles, ArrowDownCircle, ArrowUpCircle, MinusCircle } from "lucide-react";
+import { Pin, PinOff, Sparkles, ArrowDownCircle, ArrowUpCircle, MinusCircle, TrendingUp, TrendingDown } from "lucide-react";
+import { useEffect, useState } from "react";
+import type { LivePrice } from "@/lib/oanda";
 import type { Signal } from "@/lib/types";
 import { cn, formatPrice } from "@/lib/utils";
+import { isEvaTheme } from "@/lib/visualTheme";
 import { DirectionBadge } from "./DirectionBadge";
 import { ScoreGauge } from "./ScoreGauge";
 
@@ -13,6 +16,8 @@ interface Props {
   onSelect: () => void;
   onTogglePin: () => void;
   threshold: number;
+  /** OANDA 経由のライブ価格 (null = 未設定 or 未取得) */
+  live?: LivePrice | null;
 }
 
 function computeRR(signal: Signal): number | null {
@@ -27,10 +32,22 @@ function computeRR(signal: Signal): number | null {
   return reward / risk;
 }
 
-export function SignalCard({ signal, pinned, onSelect, onTogglePin, threshold }: Props) {
+export function SignalCard({ signal, pinned, onSelect, onTogglePin, threshold, live }: Props) {
   const isAlert = signal.is_alert;
   const hasTrigger = signal.has_trigger;
   const rr = computeRR(signal);
+
+  // ライブ価格の tick フラッシュ。価格更新のたびに 600ms だけ色を変える。
+  const [flash, setFlash] = useState<"up" | "down" | null>(null);
+  useEffect(() => {
+    if (!live || live.tick === "init" || live.tick === "flat") return;
+    setFlash(live.tick === "up" ? "up" : "down");
+    const t = window.setTimeout(() => setFlash(null), 600);
+    return () => window.clearTimeout(t);
+  }, [live?.mid, live?.tick]);
+
+  const livePrice = live?.mid ?? null;
+  const liveDelta = live?.changePips ?? null;
 
   return (
     <motion.article
@@ -44,6 +61,7 @@ export function SignalCard({ signal, pinned, onSelect, onTogglePin, threshold }:
       className={cn(
         "group relative cursor-pointer rounded-2xl glass glass-hover p-4 shadow-card",
         "flex flex-col gap-3",
+        isEvaTheme && "eva-frame",
         isAlert && "ring-1 ring-accent-gold/60 shadow-halo",
       )}
     >
@@ -59,8 +77,10 @@ export function SignalCard({ signal, pinned, onSelect, onTogglePin, threshold }:
         <div className="flex flex-col min-w-0">
           <div className="flex items-center gap-2">
             <span
-              className="font-serif text-[18px] font-semibold tracking-[0.08em] text-accent-ivory"
-              style={{ fontFamily: "'Cinzel', 'Cormorant Garamond', serif" }}
+              className={cn(
+                "font-serif text-[18px] font-semibold text-accent-ivory",
+                isEvaTheme && "eva-display text-[20px] font-black",
+              )}
             >
               {signal.pair}
             </span>
@@ -87,25 +107,62 @@ export function SignalCard({ signal, pinned, onSelect, onTogglePin, threshold }:
         </div>
       </div>
 
-      {/* ─── 現在値 (神託の価格) ─── 常時 prominent に表示 */}
+      {/* ─── 現在値 ─── ライブ値が来ていればそちらを大きく、遅延値を小さく併記 */}
       <div className="relative">
         <div
           className={cn(
-            "relative rounded-xl border overflow-hidden",
+            "relative rounded-xl border overflow-hidden transition-colors duration-300",
             "border-accent-gold/35 bg-gradient-to-br from-accent-gold/10 via-bg-soft/40 to-accent-violet/10",
             "px-3 py-2.5",
+            flash === "up" && "ring-2 ring-accent-green/60",
+            flash === "down" && "ring-2 ring-accent-red/60",
           )}
         >
           {/* subtle aura */}
           <div className="pointer-events-none absolute inset-0 bg-aura-gradient opacity-20 animate-aura-breathe" />
           <div className="relative flex items-baseline justify-between gap-2">
-            <span className="text-[9px] uppercase tracking-[0.25em] text-accent-gold/80 font-serif">
-              現在値 · Oracle
+            <span className="text-[9px] uppercase text-accent-gold/80 font-serif">
+              {livePrice != null
+                ? "LIVE · OANDA"
+                : isEvaTheme
+                  ? "VALUE · DELAYED"
+                  : "現在値 · 遅延"}
             </span>
-            <span className="font-mono text-[20px] font-bold text-accent-ivory tabular-nums drop-shadow-[0_0_12px_rgba(233,196,106,0.35)]">
-              {formatPrice(signal.price)}
+            <span
+              className={cn(
+                "font-mono text-[20px] font-bold tabular-nums transition-colors",
+                !isEvaTheme && "drop-shadow-[0_0_12px_rgba(233,196,106,0.35)]",
+                flash === "up" && "text-accent-green",
+                flash === "down" && "text-accent-red",
+                !flash && "text-accent-ivory",
+              )}
+            >
+              {formatPrice(livePrice ?? signal.price)}
             </span>
           </div>
+          {livePrice != null && (
+            <div className="relative mt-1 flex items-center justify-between text-[10px]">
+              <span className="text-text-faint font-mono">
+                遅延値: {formatPrice(signal.price)}
+              </span>
+              {liveDelta != null && Math.abs(liveDelta) >= 0.1 && (
+                <span
+                  className={cn(
+                    "flex items-center gap-0.5 font-mono",
+                    liveDelta > 0 ? "text-accent-green" : "text-accent-red",
+                  )}
+                >
+                  {liveDelta > 0 ? (
+                    <TrendingUp className="h-3 w-3" />
+                  ) : (
+                    <TrendingDown className="h-3 w-3" />
+                  )}
+                  {liveDelta > 0 ? "+" : ""}
+                  {liveDelta.toFixed(1)} pips
+                </span>
+              )}
+            </div>
+          )}
         </div>
       </div>
 
@@ -203,7 +260,11 @@ function DirectionRecommend({
         <div className="flex flex-col leading-tight">
           <span className="text-[13px] font-bold">買い推奨 (LONG)</span>
           <span className="text-[9px] opacity-80">
-            {isAlert ? "★ エントリーサイン点灯中" : hasTrigger ? "トリガー検出中" : "セットアップ形成中"}
+            {isAlert
+              ? isEvaTheme ? "! エントリーサイン点灯中" : "★ エントリーサイン点灯中"
+              : hasTrigger
+                ? "トリガー検出中"
+                : "セットアップ形成中"}
           </span>
         </div>
       </div>
@@ -222,7 +283,11 @@ function DirectionRecommend({
         <div className="flex flex-col leading-tight">
           <span className="text-[13px] font-bold">売り推奨 (SHORT)</span>
           <span className="text-[9px] opacity-80">
-            {isAlert ? "★ エントリーサイン点灯中" : hasTrigger ? "トリガー検出中" : "セットアップ形成中"}
+            {isAlert
+              ? isEvaTheme ? "! エントリーサイン点灯中" : "★ エントリーサイン点灯中"
+              : hasTrigger
+                ? "トリガー検出中"
+                : "セットアップ形成中"}
           </span>
         </div>
       </div>
@@ -278,7 +343,7 @@ function EntryTypeBadge({ type }: { type?: string }) {
     both_confluence: { label: "ORZ+PDHL 合意", cls: "text-accent-purple border-accent-purple/40 bg-accent-purple/10" },
     claude_confluence_long: { label: "Claude 合流 (Long)", cls: "text-accent-green border-accent-green/40 bg-accent-green/10" },
     claude_confluence_short: { label: "Claude 合流 (Short)", cls: "text-accent-green border-accent-green/40 bg-accent-green/10" },
-    triple_confluence: { label: "3 手法合意 🏆", cls: "text-accent-amber border-accent-amber/50 bg-accent-amber/10" },
+    triple_confluence: { label: isEvaTheme ? "3 手法合意" : "3 手法合意 🏆", cls: "text-accent-amber border-accent-amber/50 bg-accent-amber/10" },
     wait: { label: "待機", cls: "text-text-dim border-border/60 bg-bg-soft/40" },
   };
   const meta = map[type] ?? { label: type, cls: "text-text-dim border-border/60 bg-bg-soft" };

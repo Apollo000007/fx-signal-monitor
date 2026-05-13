@@ -1,5 +1,6 @@
 import { TrendingUp, TrendingDown, Minus } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { isEvaTheme } from "@/lib/visualTheme";
 
 interface Props {
   direction: "long" | "short" | "none" | string;
@@ -18,7 +19,7 @@ export function DirectionBadge({ direction, isAlert, hasTrigger }: Props) {
       >
         <TrendingUp className="h-3 w-3" />
         LONG
-        {hasTrigger && <span className="ml-0.5">★</span>}
+        {hasTrigger && <span className="ml-0.5">{isEvaTheme ? "!" : "★"}</span>}
       </span>
     );
   }
@@ -32,7 +33,7 @@ export function DirectionBadge({ direction, isAlert, hasTrigger }: Props) {
       >
         <TrendingDown className="h-3 w-3" />
         SHORT
-        {hasTrigger && <span className="ml-0.5">★</span>}
+        {hasTrigger && <span className="ml-0.5">{isEvaTheme ? "!" : "★"}</span>}
       </span>
     );
   }

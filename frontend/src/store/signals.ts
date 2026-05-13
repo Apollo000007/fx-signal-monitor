@@ -30,34 +30,52 @@ function lsArr(key: string): string[] {
   }
 }
 
-// --- Alert beep (Web Audio API) -------------------------------------------
+// --- Alert impact sound (Web Audio API) -----------------------------------
 let audioCtx: AudioContext | null = null;
-function beep(direction: "long" | "short") {
+
+function tone(
+  ctx: AudioContext,
+  start: number,
+  duration: number,
+  from: number,
+  to: number,
+  gainValue: number,
+  type: OscillatorType = "sawtooth",
+) {
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+  osc.type = type;
+  osc.frequency.setValueAtTime(from, start);
+  osc.frequency.exponentialRampToValueAtTime(to, start + duration);
+  gain.gain.setValueAtTime(0.0001, start);
+  gain.gain.exponentialRampToValueAtTime(gainValue, start + 0.018);
+  gain.gain.exponentialRampToValueAtTime(0.0001, start + duration);
+  osc.connect(gain);
+  gain.connect(ctx.destination);
+  osc.start(start);
+  osc.stop(start + duration + 0.03);
+}
+
+function impactAlertSound(direction: "long" | "short") {
   if (typeof window === "undefined") return;
   try {
     audioCtx ??= new (window.AudioContext ||
       (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext)();
     const ctx = audioCtx;
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-    osc.type = "sine";
-    // long は高音 (880→1320 Hz 上昇)、short は低音 (660→440 Hz 下降)
-    const [f1, f2] = direction === "long" ? [880, 1320] : [660, 440];
-    osc.frequency.setValueAtTime(f1, ctx.currentTime);
-    osc.frequency.linearRampToValueAtTime(f2, ctx.currentTime + 0.18);
-    gain.gain.setValueAtTime(0.0001, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.25, ctx.currentTime + 0.02);
-    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.35);
-    osc.connect(gain);
-    gain.connect(ctx.destination);
-    osc.start();
-    osc.stop(ctx.currentTime + 0.4);
+    const t = ctx.currentTime;
+    const up = direction === "long";
+
+    // Three quick warning chirps, then a low impact hit.
+    tone(ctx, t, 0.14, up ? 760 : 520, up ? 1320 : 330, 0.18, "square");
+    tone(ctx, t + 0.18, 0.14, up ? 820 : 480, up ? 1420 : 300, 0.18, "square");
+    tone(ctx, t + 0.36, 0.18, up ? 980 : 430, up ? 1660 : 260, 0.22, "sawtooth");
+    tone(ctx, t + 0.58, 0.34, 92, 48, 0.28, "triangle");
   } catch (e) {
-    console.warn("beep failed", e);
+    console.warn("alert sound failed", e);
   }
 }
 
-interface Toast {
+export interface Toast {
   id: string;
   pair: string;
   direction: "long" | "short";
@@ -178,7 +196,7 @@ export const useSignalsStore = create<SignalsState>((set, get) => ({
       if (get().soundEnabled && newToasts.length > 0) {
         // 複数同時アラートは 200ms 間隔で順番に鳴らす
         newToasts.forEach((t, i) => {
-          setTimeout(() => beep(t.direction), i * 220);
+          setTimeout(() => impactAlertSound(t.direction), i * 260);
         });
       }
 

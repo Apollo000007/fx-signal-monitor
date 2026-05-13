@@ -2,12 +2,18 @@
 
 import { AnimatePresence } from "framer-motion";
 import { useEffect, useMemo } from "react";
+import { AlertImpactOverlay } from "@/components/AlertImpactOverlay";
 import { DetailDrawer } from "@/components/DetailDrawer";
 import { FilterBar } from "@/components/FilterBar";
 import { Header } from "@/components/Header";
+import { LiveStatus } from "@/components/LiveStatus";
 import { MethodTabs } from "@/components/MethodTabs";
 import { SignalCard } from "@/components/SignalCard";
+import { TestAlertButton } from "@/components/TestAlertButton";
 import { ToastStack } from "@/components/ToastStack";
+import { useLivePrices } from "@/lib/oanda";
+import { useLiveLevelAlerts } from "@/lib/liveAlerts";
+import { isEvaTheme } from "@/lib/visualTheme";
 import { selectFilteredSignals, useSignalsStore } from "@/store/signals";
 
 export default function DashboardPage() {
@@ -97,12 +103,33 @@ export default function DashboardPage() {
   );
   const threshold = config?.alert_threshold ?? 75;
 
+  // --- Live prices (Finnhub / OANDA 自動選択) ---
+  // 1 分間隔で価格更新。プロバイダ未設定なら notConfigured=true でガイドバナーが出るだけ。
+  // (スキャルピング向けに 1 秒〜にする場合は intervalMs を変える)
+  const liveSymbols = useMemo(() => signals.map((s) => s.symbol), [signals]);
+  const live = useLivePrices(liveSymbols, { intervalMs: 60_000 });
+
+  // ライブ価格がキーレベル (PDH/PDL/Entry/SL/TP) を抜けた瞬間にブラウザ通知 + 音
+  useLiveLevelAlerts(signals, live.prices);
+
   return (
     <main className="max-w-[1400px] mx-auto px-6 py-8">
       <Header />
 
       <div className="mb-4">
         <MethodTabs />
+      </div>
+
+      <div className="mb-3">
+        <LiveStatus
+          loading={live.loading}
+          error={live.error}
+          notConfigured={live.notConfigured}
+          lastFetched={live.lastFetched}
+          intervalMs={live.effectiveIntervalMs}
+          count={live.prices.size}
+          provider={live.provider}
+        />
       </div>
 
       <div className="mb-5">
@@ -116,16 +143,16 @@ export default function DashboardPage() {
       )}
 
       {loading && signals.length === 0 && (
-        <div className="rounded-2xl glass p-10 flex flex-col items-center gap-3 text-text-dim">
+        <div className="rounded-2xl glass eva-frame p-10 flex flex-col items-center gap-3 text-text-dim">
           <div className="relative h-14 w-14">
             <div className="absolute inset-0 rounded-full border-2 border-accent-gold/30 border-t-accent-gold animate-spin" />
             <div className="absolute inset-2 rounded-full border border-accent-violet/30 border-b-accent-violet animate-spin [animation-duration:3s]" />
           </div>
-          <p className="text-sm font-serif tracking-widest text-accent-gold">
-            神託を伺っています…
+          <p className="text-sm font-serif text-accent-gold">
+            {isEvaTheme ? "SIGNAL ARRAY SYNCHRONIZING..." : "神託を伺っています…"}
           </p>
           <p className="text-[11px] text-text-faint">
-            Consulting the Oracle · 初回は15秒ほどかかります
+            {isEvaTheme ? "初回は15秒ほどかかります" : "Consulting the Oracle · 初回は15秒ほどかかります"}
           </p>
         </div>
       )}
@@ -138,6 +165,7 @@ export default function DashboardPage() {
               signal={s}
               pinned={pinned.includes(s.pair)}
               threshold={threshold}
+              live={live.prices.get(s.symbol) ?? null}
               onSelect={() => setSelected(s.pair)}
               onTogglePin={() => togglePin(s.pair)}
             />
@@ -146,7 +174,7 @@ export default function DashboardPage() {
       </div>
 
       {filtered.length === 0 && !loading && signals.length > 0 && (
-        <div className="rounded-2xl glass p-10 text-center text-text-dim text-sm">
+        <div className="rounded-2xl glass eva-frame p-10 text-center text-text-dim text-sm">
           該当する銘柄がありません。フィルタ条件を変えてみてください。
         </div>
       )}
@@ -154,19 +182,26 @@ export default function DashboardPage() {
       <DetailDrawer
         signal={selectedSignal}
         threshold={threshold}
+        live={selectedSignal ? live.prices.get(selectedSignal.symbol) ?? null : null}
         onClose={() => setSelected(null)}
       />
 
       <ToastStack />
+      <TestAlertButton />
+      <AlertImpactOverlay />
 
       <footer className="mt-10 pt-6 relative">
         <div className="divider-golden mb-4" />
         <div className="flex flex-wrap items-center justify-between gap-3 text-[10px] text-text-faint">
-          <span className="font-serif italic tracking-wider">
-            ΓΝΩΘΙ ΣΑΥΤΟΝ · 汝自身を知れ &nbsp;·&nbsp; Data: Yahoo Finance (delayed)
+          <span className="font-serif">
+            {isEvaTheme
+              ? "OPERATION TERMINAL · Data: Yahoo Finance (delayed)"
+              : "ΓΝΩΘΙ ΣΑΥΤΟΝ · 汝自身を知れ · Data: Yahoo Finance (delayed)"}
           </span>
-          <span className="font-serif tracking-wider">
-            ☀ = 15M トリガー発火中 (神託が降りた瞬間)
+          <span className="font-serif">
+            {isEvaTheme
+              ? "! = 15M トリガー発火中"
+              : "☀ = 15M トリガー発火中 (神託が降りた瞬間)"}
           </span>
         </div>
       </footer>

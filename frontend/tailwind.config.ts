@@ -1,5 +1,7 @@
 import type { Config } from "tailwindcss";
 
+const colorVar = (name: string) => `rgb(var(${name}) / <alpha-value>)`;
+
 const config: Config = {
   darkMode: "class",
   content: [
@@ -14,75 +16,57 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // --- Olympus × Enlightenment palette ---
-        // Base = 夜のオリンポス (deep indigo / obsidian) + 紫 aura
         bg: {
-          DEFAULT: "#0b0a1f",       // 夜空・冥界の黒紫
-          soft: "#14122e",          // 月光に染まる神殿の影
-          card: "#1a1636",          // 大理石の奥行き
-          hover: "#241d4a",         // 瞑想のヴェール
+          DEFAULT: colorVar("--color-bg"),
+          soft: colorVar("--color-bg-soft"),
+          card: colorVar("--color-bg-card"),
+          hover: colorVar("--color-bg-hover"),
         },
         border: {
-          DEFAULT: "#3a2e5e",       // 紫水晶
-          soft: "#2a2247",
+          DEFAULT: colorVar("--color-border"),
+          soft: colorVar("--color-border-soft"),
         },
         text: {
-          DEFAULT: "#f5ecd7",       // 神託の象牙 (ivory)
-          dim: "#c9b88a",           // 古代金のエコー
-          faint: "#7a6b9a",         // 紫霞
+          DEFAULT: colorVar("--color-text"),
+          dim: colorVar("--color-text-dim"),
+          faint: colorVar("--color-text-faint"),
         },
         accent: {
-          // --- 神々の輝き ---
-          gold: "#e9c46a",          // Apollon / 黄金律
-          amber: "#f0a93b",         // 聖火
-          ivory: "#f8eed1",         // 神殿の大理石
-          violet: "#a855f7",        // 第七チャクラ / 悟り
-          indigo: "#6d5dfc",        // 第六チャクラ / 直観
-          cyan: "#5ecbd6",          // エーテル
-          green: "#4ade80",         // Gaia / 生命
-          red: "#e25c73",           // Ares / 警告
-          purple: "#a855f7",        // 後方互換
+          gold: colorVar("--color-accent-gold"),
+          amber: colorVar("--color-accent-amber"),
+          ivory: colorVar("--color-accent-ivory"),
+          violet: colorVar("--color-accent-violet"),
+          indigo: colorVar("--color-accent-indigo"),
+          cyan: colorVar("--color-accent-cyan"),
+          green: colorVar("--color-accent-green"),
+          red: colorVar("--color-accent-red"),
+          purple: colorVar("--color-accent-purple"),
         },
       },
       fontFamily: {
-        // 見出し = 古代のセリフ、本文 = 可読性重視のサンセリフ、数値 = モノ
         serif: [
-          "'Cormorant Garamond'",
-          "'EB Garamond'",
-          "'Cinzel'",
+          "var(--font-display)",
           "'Noto Serif JP'",
           "Georgia",
           "serif",
         ],
         sans: [
-          "ui-sans-serif",
-          "system-ui",
-          "-apple-system",
-          "'Segoe UI'",
-          "'Hiragino Sans'",
-          "'Noto Sans JP'",
-          "'Yu Gothic UI'",
-          "Meiryo",
+          "var(--font-sans)",
           "sans-serif",
         ],
-        mono: ["ui-monospace", "SFMono-Regular", "'JetBrains Mono'", "Menlo", "monospace"],
+        mono: ["var(--font-mono)", "ui-monospace", "SFMono-Regular", "'JetBrains Mono'", "Menlo", "monospace"],
       },
       boxShadow: {
-        glow: "0 0 0 1px rgba(233,196,106,0.28), 0 10px 40px -10px rgba(233,196,106,0.35)",
-        card: "0 4px 28px -10px rgba(0,0,0,0.6), inset 0 0 0 1px rgba(245,236,215,0.04)",
-        halo: "0 0 40px -8px rgba(168,85,247,0.45), 0 0 80px -20px rgba(233,196,106,0.25)",
-        oracle: "inset 0 1px 0 0 rgba(248,238,209,0.08), 0 8px 32px -12px rgba(109,93,252,0.35)",
+        glow: "var(--shadow-glow)",
+        card: "var(--shadow-card)",
+        halo: "var(--shadow-halo)",
+        oracle: "var(--shadow-oracle)",
       },
       backgroundImage: {
-        "grid-fade":
-          "radial-gradient(ellipse at top, rgba(168,85,247,0.12), transparent 60%), radial-gradient(ellipse at bottom, rgba(233,196,106,0.08), transparent 60%)",
-        // 金 → 紫 のオリンポスグラデーション
-        "accent-gradient":
-          "linear-gradient(135deg, #e9c46a 0%, #f0a93b 35%, #a855f7 100%)",
-        "aura-gradient":
-          "conic-gradient(from 180deg at 50% 50%, rgba(233,196,106,0.18), rgba(168,85,247,0.18), rgba(94,203,214,0.15), rgba(233,196,106,0.18))",
-        "marble":
-          "radial-gradient(ellipse at 20% 10%, rgba(248,238,209,0.06), transparent 55%), radial-gradient(ellipse at 80% 90%, rgba(168,85,247,0.08), transparent 55%)",
+        "grid-fade": "var(--bg-grid-fade)",
+        "accent-gradient": "var(--bg-accent-gradient)",
+        "aura-gradient": "var(--bg-aura-gradient)",
+        "marble": "var(--bg-marble)",
       },
       animation: {
         "fade-in": "fadeIn 0.4s ease-out",

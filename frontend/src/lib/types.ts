@@ -73,6 +73,8 @@ export interface PairRecord {
   pdl: number | null;
   lt: TimeframeAnalysis | null;
   mt: TimeframeAnalysis | null;
+  /** 1H 分析。合意判定の補助 (オプション) */
+  ht: TimeframeAnalysis | null;
   st: TimeframeAnalysis | null;
   orz: MethodSignal;
   pdhl: MethodSignal;
@@ -95,6 +97,8 @@ export interface Signal {
   warnings: string[];
   lt: TimeframeAnalysis | null;
   mt: TimeframeAnalysis | null;
+  /** 1H 分析。合意判定の補助 */
+  ht: TimeframeAnalysis | null;
   st: TimeframeAnalysis | null;
   has_trigger: boolean;
   is_alert: boolean;
@@ -120,15 +124,16 @@ export interface ChartPoint {
   value?: number;
 }
 
-/** チャートタイムフレーム。6 段階:
+/** チャートタイムフレーム。7 段階:
  *   m1    = 1分足
  *   m5    = 5分足
  *   short = 15分足
+ *   h1    = 1時間足
  *   mid   = 4時間足
  *   long  = 日足
  *   week  = 週足
  */
-export type ChartTf = "m1" | "m5" | "short" | "mid" | "long" | "week";
+export type ChartTf = "m1" | "m5" | "short" | "h1" | "mid" | "long" | "week";
 
 export interface ChartResponse {
   symbol: string;
@@ -167,6 +172,7 @@ export function projectSignal(rec: PairRecord, method: Method): Signal {
     warnings: m.warnings,
     lt: rec.lt,
     mt: rec.mt,
+    ht: rec.ht ?? null,
     st: rec.st,
     has_trigger: m.has_trigger,
     is_alert: m.is_alert,

@@ -4,6 +4,7 @@ import { Flame, Gem, Infinity as InfinityIcon, Eye, Sun } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useSignalsStore } from "@/store/signals";
 import type { Method } from "@/lib/types";
+import { isEvaTheme } from "@/lib/visualTheme";
 
 interface TabDef {
   key: Method;
@@ -16,7 +17,7 @@ interface TabDef {
   rank?: "base" | "combo" | "ultimate";
 }
 
-const TABS: TabDef[] = [
+const OLYMPUS_TABS: TabDef[] = [
   {
     key: "orz",
     title: "Athena · ORZ",
@@ -57,8 +58,50 @@ const TABS: TabDef[] = [
   },
 ];
 
+const EVA_TABS: TabDef[] = [
+  {
+    key: "orz",
+    title: "OPS-01 · ORZ",
+    subtitle: "DOW / SMA / ICHIMOKU",
+    icon: <Eye className="h-4 w-4" />,
+    accent: "from-accent-cyan/35 to-bg-card border-accent-cyan/60 text-accent-cyan",
+  },
+  {
+    key: "pdhl",
+    title: "OPS-02 · PDH/PDL",
+    subtitle: "BREAK / RETEST",
+    icon: <Flame className="h-4 w-4" />,
+    accent: "from-accent-red/40 to-bg-card border-accent-red/70 text-accent-red",
+  },
+  {
+    key: "both",
+    title: "SYNC-03 · 合流",
+    subtitle: "ORZ + PDHL",
+    icon: <Gem className="h-4 w-4" />,
+    accent: "from-text/25 to-bg-card border-border text-text",
+    rank: "combo",
+  },
+  {
+    key: "claude",
+    title: "AI-04 · Claude",
+    subtitle: "MTF / ATR / DONCHIAN",
+    icon: <InfinityIcon className="h-4 w-4" />,
+    accent: "from-accent-green/30 to-bg-card border-accent-green/55 text-accent-green",
+  },
+  {
+    key: "triple",
+    title: "FINAL-05 · 三手法",
+    subtitle: "FULL CONFLUENCE",
+    icon: <Sun className="h-4 w-4" />,
+    accent:
+      "from-accent-red/55 via-bg-card to-text/20 border-accent-red/80 text-accent-red",
+    rank: "ultimate",
+  },
+];
+
 export function MethodTabs() {
   const { method, setMethod, records } = useSignalsStore();
+  const tabs = isEvaTheme ? EVA_TABS : OLYMPUS_TABS;
 
   // タブごとのアラート件数バッジ
   const alertCounts: Record<Method, number> = {
@@ -78,7 +121,7 @@ export function MethodTabs() {
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-2.5">
-      {TABS.map((t) => {
+      {tabs.map((t) => {
         const active = method === t.key;
         const count = alertCounts[t.key];
         return (
@@ -88,6 +131,7 @@ export function MethodTabs() {
             className={cn(
               "relative overflow-hidden rounded-2xl border p-3 text-left transition",
               "flex items-start gap-2.5 min-h-[76px]",
+              isEvaTheme && "eva-frame",
               active
                 ? cn("bg-gradient-to-br", t.accent, "shadow-glow")
                 : "border-border/60 bg-bg-soft/40 text-text-dim hover:text-accent-ivory hover:border-accent-gold/40",
@@ -105,8 +149,10 @@ export function MethodTabs() {
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-1.5 flex-wrap">
                 <span
-                  className="text-[13px] font-semibold tracking-[0.06em] leading-tight"
-                  style={{ fontFamily: "'Cinzel', 'Cormorant Garamond', serif" }}
+                  className={cn(
+                    "text-[13px] font-semibold leading-tight",
+                    isEvaTheme && "eva-display font-black text-[14px]",
+                  )}
                 >
                   {t.title}
                 </span>

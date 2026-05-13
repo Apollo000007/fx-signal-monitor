@@ -1,81 +1,205 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* ─────────────────────────────────────────────────────────
-   Olympus × Enlightenment — fonts
-   Cormorant / Cinzel for mythological serif headings.
-   ───────────────────────────────────────────────────────── */
-@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&display=swap");
+/* Theme tokens.
+   Default is the white/black/red operation-terminal theme.
+   Restore the previous Olympus design with NEXT_PUBLIC_FX_VISUAL_THEME=olympus. */
+:root,
+html[data-theme="olympus"] {
+  --font-display: "Cinzel", "Cormorant Garamond", "Noto Serif JP", Georgia, serif;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", "Hiragino Sans", "Noto Sans JP", "Yu Gothic UI", Meiryo;
+  --font-mono: ui-monospace, SFMono-Regular, "JetBrains Mono", Menlo;
+
+  --color-bg: 11 10 31;
+  --color-bg-soft: 20 18 46;
+  --color-bg-card: 26 22 54;
+  --color-bg-hover: 36 29 74;
+  --color-border: 58 46 94;
+  --color-border-soft: 42 34 71;
+  --color-text: 245 236 215;
+  --color-text-dim: 201 184 138;
+  --color-text-faint: 122 107 154;
+  --color-accent-gold: 233 196 106;
+  --color-accent-amber: 240 169 59;
+  --color-accent-ivory: 248 238 209;
+  --color-accent-violet: 168 85 247;
+  --color-accent-indigo: 109 93 252;
+  --color-accent-cyan: 94 203 214;
+  --color-accent-green: 74 222 128;
+  --color-accent-red: 226 92 115;
+  --color-accent-purple: 168 85 247;
+
+  --body-background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(168, 85, 247, 0.22), transparent 60%),
+    radial-gradient(ellipse 70% 60% at 50% 110%, rgba(233, 196, 106, 0.14), transparent 60%),
+    radial-gradient(circle at 15% 30%, rgba(94, 203, 214, 0.08), transparent 40%),
+    radial-gradient(circle at 85% 70%, rgba(109, 93, 252, 0.12), transparent 45%);
+  --glass-background:
+    radial-gradient(ellipse at 20% 10%, rgba(248, 238, 209, 0.05), transparent 55%),
+    radial-gradient(ellipse at 80% 95%, rgba(168, 85, 247, 0.07), transparent 55%);
+  --bg-grid-fade:
+    radial-gradient(ellipse at top, rgba(168,85,247,0.12), transparent 60%),
+    radial-gradient(ellipse at bottom, rgba(233,196,106,0.08), transparent 60%);
+  --bg-accent-gradient: linear-gradient(135deg, #e9c46a 0%, #f0a93b 35%, #a855f7 100%);
+  --bg-aura-gradient:
+    conic-gradient(from 180deg at 50% 50%, rgba(233,196,106,0.18), rgba(168,85,247,0.18), rgba(94,203,214,0.15), rgba(233,196,106,0.18));
+  --bg-marble:
+    radial-gradient(ellipse at 20% 10%, rgba(248,238,209,0.06), transparent 55%),
+    radial-gradient(ellipse at 80% 90%, rgba(168,85,247,0.08), transparent 55%);
+  --shadow-glow: 0 0 0 1px rgba(233,196,106,0.28), 0 10px 40px -10px rgba(233,196,106,0.35);
+  --shadow-card: 0 4px 28px -10px rgba(0,0,0,0.6), inset 0 0 0 1px rgba(245,236,215,0.04);
+  --shadow-halo: 0 0 40px -8px rgba(168,85,247,0.45), 0 0 80px -20px rgba(233,196,106,0.25);
+  --shadow-oracle: inset 0 1px 0 0 rgba(248,238,209,0.08), 0 8px 32px -12px rgba(109,93,252,0.35);
+  --selection-bg: rgba(233, 196, 106, 0.4);
+  --selection-text: #0b0a1f;
+  --chart-text: #c9b88a;
+  --chart-grid: rgba(168,85,247,0.06);
+  --chart-axis: rgba(168,85,247,0.18);
+  --chart-crosshair: rgba(233,196,106,0.4);
+  --chart-label-bg: #1a1636;
+  --chart-up: #10b981;
+  --chart-down: #f43f5e;
+  --chart-sma20: #22d3ee;
+  --chart-sma50: #a855f7;
+  --chart-sma100: #f59e0b;
+  --chart-cloud-a: rgba(168,85,247,0.20);
+  --chart-cloud-b: rgba(34,211,238,0.15);
+  --score-track-bg: #0b1220;
+  --score-track-ring: rgba(255,255,255,0.10);
+  --score-threshold: rgba(255,255,255,0.90);
+}
+
+html[data-theme="eva"] {
+  --font-display: Impact, "Arial Black", "Hiragino Kaku Gothic StdN", "Yu Gothic", sans-serif;
+  --font-sans: "Arial Narrow", "Roboto Condensed", "Hiragino Sans", "Noto Sans JP", "Yu Gothic UI", Meiryo;
+  --font-mono: "SFMono-Regular", "Roboto Mono", "Menlo";
+
+  --color-bg: 250 249 244;
+  --color-bg-soft: 239 237 229;
+  --color-bg-card: 255 255 255;
+  --color-bg-hover: 232 229 218;
+  --color-border: 17 17 17;
+  --color-border-soft: 110 105 94;
+  --color-text: 13 13 13;
+  --color-text-dim: 54 50 45;
+  --color-text-faint: 120 113 104;
+  --color-accent-gold: 208 0 0;
+  --color-accent-amber: 238 42 29;
+  --color-accent-ivory: 13 13 13;
+  --color-accent-violet: 31 31 31;
+  --color-accent-indigo: 208 0 0;
+  --color-accent-cyan: 0 86 140;
+  --color-accent-green: 0 132 74;
+  --color-accent-red: 208 0 0;
+  --color-accent-purple: 31 31 31;
+
+  --body-background:
+    linear-gradient(90deg, rgba(208,0,0,0.10) 0 1px, transparent 1px),
+    linear-gradient(rgba(13,13,13,0.055) 0 1px, transparent 1px),
+    linear-gradient(180deg, rgba(208,0,0,0.05), transparent 34%);
+  --glass-background:
+    linear-gradient(90deg, rgba(208,0,0,0.08) 0 6px, transparent 6px),
+    linear-gradient(180deg, rgba(13,13,13,0.025), transparent 55%);
+  --bg-grid-fade:
+    linear-gradient(90deg, rgba(208,0,0,0.08) 0 1px, transparent 1px),
+    linear-gradient(rgba(13,13,13,0.05) 0 1px, transparent 1px);
+  --bg-accent-gradient: linear-gradient(135deg, #d00000 0%, #111111 55%, #d00000 100%);
+  --bg-aura-gradient:
+    conic-gradient(from 180deg at 50% 50%, rgba(208,0,0,0.18), rgba(13,13,13,0.10), rgba(208,0,0,0.18));
+  --bg-marble:
+    linear-gradient(135deg, rgba(208,0,0,0.08), transparent 28%),
+    linear-gradient(45deg, rgba(13,13,13,0.04), transparent 42%);
+  --shadow-glow: 6px 6px 0 rgba(208,0,0,0.12), 0 0 0 1px rgba(13,13,13,0.95);
+  --shadow-card: 7px 7px 0 rgba(13,13,13,0.10), inset 0 0 0 1px rgba(13,13,13,0.08);
+  --shadow-halo: 0 0 0 2px rgba(208,0,0,0.85), 9px 9px 0 rgba(208,0,0,0.13);
+  --shadow-oracle: inset 8px 0 0 rgba(208,0,0,0.88), 6px 6px 0 rgba(13,13,13,0.09);
+  --selection-bg: rgba(208, 0, 0, 0.22);
+  --selection-text: #0d0d0d;
+  --chart-text: #171717;
+  --chart-grid: rgba(13,13,13,0.08);
+  --chart-axis: rgba(13,13,13,0.28);
+  --chart-crosshair: rgba(208,0,0,0.55);
+  --chart-label-bg: #ffffff;
+  --chart-up: #00844a;
+  --chart-down: #d00000;
+  --chart-sma20: #111111;
+  --chart-sma50: #d00000;
+  --chart-sma100: #00568c;
+  --chart-cloud-a: rgba(208,0,0,0.15);
+  --chart-cloud-b: rgba(13,13,13,0.10);
+  --score-track-bg: #f3f1e9;
+  --score-track-ring: rgba(13,13,13,0.18);
+  --score-threshold: #d00000;
+}
 
 @layer base {
   html,
   body {
     @apply bg-bg text-text;
+    font-family: var(--font-sans), sans-serif;
     font-feature-settings: "cv11", "ss01", "ss03";
     -webkit-font-smoothing: antialiased;
-    background-color: #0b0a1f;
-    background-image:
-      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(168, 85, 247, 0.22), transparent 60%),
-      radial-gradient(ellipse 70% 60% at 50% 110%, rgba(233, 196, 106, 0.14), transparent 60%),
-      radial-gradient(circle at 15% 30%, rgba(94, 203, 214, 0.08), transparent 40%),
-      radial-gradient(circle at 85% 70%, rgba(109, 93, 252, 0.12), transparent 45%);
+    background-color: rgb(var(--color-bg));
+    background-image: var(--body-background);
     background-attachment: fixed;
   }
 
-  /* Classical serif for headings */
-  h1, h2, h3 {
-    font-family: "Cinzel", "Cormorant Garamond", "Noto Serif JP", Georgia, serif;
-    letter-spacing: 0.02em;
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: 0;
   }
 
   ::selection {
-    background-color: rgba(233, 196, 106, 0.4);
-    color: #0b0a1f;
+    background-color: var(--selection-bg);
+    color: var(--selection-text);
   }
 }
 
 @layer components {
-  /* 大理石ガラス — marble-glass */
   .glass {
     @apply bg-bg-card/65 backdrop-blur-xl border border-border/60;
-    background-image:
-      radial-gradient(ellipse at 20% 10%, rgba(248, 238, 209, 0.05), transparent 55%),
-      radial-gradient(ellipse at 80% 95%, rgba(168, 85, 247, 0.07), transparent 55%);
+    background-image: var(--glass-background);
   }
+
   .glass-hover {
     @apply hover:bg-bg-hover/80 hover:border-accent-gold/40 transition-colors;
   }
 
-  /* 神託の文字 — oracle text (金→紫 gradient) */
-  .accent-text {
-    @apply bg-accent-gradient bg-clip-text text-transparent;
-  }
+  .accent-text,
   .oracle-text {
-    font-family: "Cinzel", "Cormorant Garamond", "Noto Serif JP", Georgia, serif;
     @apply bg-accent-gradient bg-clip-text text-transparent;
-    letter-spacing: 0.08em;
   }
 
-  /* Chip family */
+  .oracle-text {
+    font-family: var(--font-display);
+    letter-spacing: 0;
+  }
+
   .chip {
     @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold uppercase tracking-wider border;
   }
+
   .chip-long {
     @apply text-accent-green border-accent-green/40 bg-accent-green/10;
   }
+
   .chip-short {
     @apply text-accent-red border-accent-red/40 bg-accent-red/10;
   }
+
   .chip-none {
     @apply text-text-faint border-border bg-bg-soft;
   }
+
   .chip-alert {
     @apply text-accent-gold border-accent-gold/50 bg-accent-gold/15;
   }
 
-  /* Laurel / column ornament — thin gold rule with dot
-     神殿の柱を想起させる金の細線 */
   .laurel-rule {
     position: relative;
     height: 1px;
@@ -88,6 +212,7 @@
       transparent 100%
     );
   }
+
   .laurel-rule::before,
   .laurel-rule::after {
     content: "";
@@ -100,13 +225,19 @@
     transform: translateY(-50%);
     box-shadow: 0 0 8px rgba(233, 196, 106, 0.7);
   }
-  .laurel-rule::before { left: 8%; }
-  .laurel-rule::after { right: 8%; }
 
-  /* Halo — 悟りの光輪 */
+  .laurel-rule::before {
+    left: 8%;
+  }
+
+  .laurel-rule::after {
+    right: 8%;
+  }
+
   .halo {
     position: relative;
   }
+
   .halo::before {
     content: "";
     position: absolute;
@@ -127,7 +258,6 @@
     pointer-events: none;
   }
 
-  /* Mandala/Enlightenment radial glyph for background decoration */
   .mandala-bg {
     background-image:
       radial-gradient(circle at 50% 50%, rgba(233, 196, 106, 0.08) 0%, transparent 2%),
@@ -138,7 +268,6 @@
       );
   }
 
-  /* Delphi/golden divider used under section headers */
   .divider-golden {
     height: 1px;
     background: linear-gradient(
@@ -149,28 +278,150 @@
       transparent
     );
   }
+
+  .eva-display {
+    font-family: var(--font-display);
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .eva-command-bg {
+    background-image: url("/eva/command-poster.png");
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: min(1800px, 135vw) auto;
+    opacity: 0.18;
+    mix-blend-mode: multiply;
+  }
+
+  .eva-frame {
+    position: relative;
+  }
+
+  .eva-frame::after {
+    content: "";
+    position: absolute;
+    inset: 6px;
+    border: 1px solid rgba(208, 0, 0, 0.16);
+    pointer-events: none;
+  }
+
+  .eva-stripe {
+    background:
+      repeating-linear-gradient(
+        -45deg,
+        rgb(var(--color-accent-red)) 0 10px,
+        transparent 10px 18px
+      );
+  }
+
+  .alert-impact-bg {
+    background-image: url("/eva/apostle-impact.png");
+  }
+
+  .alert-scanline {
+    background-image:
+      repeating-linear-gradient(
+        0deg,
+        rgba(255,255,255,0.12) 0 1px,
+        transparent 1px 5px
+      );
+  }
+
+  .alert-impact-panel {
+    animation: alert-panel-shake 0.16s linear 4;
+  }
+
+  .alert-kanji {
+    text-shadow:
+      5px 5px 0 rgb(var(--color-accent-red)),
+      -3px -3px 0 #000,
+      0 0 22px rgba(208, 0, 0, 0.8);
+  }
+
+  .score-track {
+    background-color: var(--score-track-bg);
+    --tw-ring-color: var(--score-track-ring);
+  }
+
+  html[data-theme="eva"] .glass {
+    @apply backdrop-blur-none border-border;
+    background-color: rgb(var(--color-bg-card) / 0.86);
+    box-shadow: var(--shadow-card);
+  }
+
+  html[data-theme="eva"] .accent-text,
+  html[data-theme="eva"] .oracle-text {
+    background: none;
+    color: rgb(var(--color-accent-red));
+    -webkit-text-fill-color: currentColor;
+  }
+
+  html[data-theme="eva"] .rounded-2xl,
+  html[data-theme="eva"] .rounded-xl,
+  html[data-theme="eva"] .rounded-lg {
+    border-radius: 4px;
+  }
+
+  html[data-theme="eva"] .rounded-md {
+    border-radius: 2px;
+  }
+
+  html[data-theme="eva"] .laurel-rule {
+    height: 3px;
+    background:
+      linear-gradient(90deg, rgb(var(--color-accent-red)) 0 18%, rgb(var(--color-text)) 18% 100%);
+  }
+
+  html[data-theme="eva"] .laurel-rule::before,
+  html[data-theme="eva"] .laurel-rule::after {
+    width: 7px;
+    height: 7px;
+    border-radius: 0;
+    background: rgb(var(--color-accent-red));
+    box-shadow: none;
+  }
+
+  html[data-theme="eva"] .divider-golden {
+    height: 5px;
+    background:
+      linear-gradient(90deg, rgb(var(--color-accent-red)) 0 22%, rgb(var(--color-text)) 22% 74%, transparent 74% 100%);
+  }
 }
 
-/* Scrollbar — 紫水晶 */
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
 }
+
 ::-webkit-scrollbar-track {
   background: transparent;
 }
+
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, rgba(233, 196, 106, 0.25), rgba(168, 85, 247, 0.25));
+  background: linear-gradient(180deg, rgb(var(--color-accent-gold) / 0.45), rgb(var(--color-accent-violet) / 0.28));
   border-radius: 999px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, rgba(233, 196, 106, 0.45), rgba(168, 85, 247, 0.45));
+  background: linear-gradient(180deg, rgb(var(--color-accent-gold) / 0.65), rgb(var(--color-accent-violet) / 0.45));
 }
 
-/* Grid background — 神託のグリッド */
 .bg-grid {
   background-image:
-    linear-gradient(rgba(233, 196, 106, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(168, 85, 247, 0.035) 1px, transparent 1px);
+    linear-gradient(rgb(var(--color-accent-gold) / 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--color-text) / 0.045) 1px, transparent 1px);
   background-size: 48px 48px;
+}
+
+html[data-theme="eva"] .bg-grid {
+  background-size: 32px 32px;
+}
+
+@keyframes alert-panel-shake {
+  0% { transform: translate(0, 0) skewX(0deg); }
+  25% { transform: translate(5px, -2px) skewX(-1deg); }
+  50% { transform: translate(-4px, 3px) skewX(1deg); }
+  75% { transform: translate(3px, 2px) skewX(-0.5deg); }
+  100% { transform: translate(0, 0) skewX(0deg); }
 }

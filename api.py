@@ -25,7 +25,7 @@ from pydantic import BaseModel
 import config
 from data_fetcher import fetch_all, fetch_multi
 from indicators import ichimoku, sma
-from strategy import analyze_pair
+from strategy import analyze_pair, analyze_timeframe
 from strategy_claude import analyze_pair_claude
 from strategy_pdhl import analyze_pair_pdhl
 
@@ -143,7 +143,35 @@ def _claude_to_method_dict(c: dict) -> dict:
     }
 
 
-def _build_both_method(orz: dict, pdhl: dict) -> dict:
+def _h1_alignment(direction: str, ht_dict: dict | None) -> tuple[int, list, list]:
+    """1H 分析の方向と main direction の整合性を評価。
+
+    Returns: (score_delta, reasons, warnings)
+      - 同方向トレンド    → +5, "1H 同方向で勢い継続"
+      - 同方向レンジ      → +0, "1H レンジ (1H で押し戻し有り)"
+      - 逆方向トレンド    → -5, warning "1H が逆トレンド - 短期戻し警戒"
+      - その他            → 0
+    """
+    if direction not in ("long", "short") or ht_dict is None:
+        return 0, [], []
+    h1_dir = ht_dict.get("direction") or ""
+    h1_regime = ht_dict.get("regime") or ""
+    if direction == "long":
+        if h1_regime == "trend_up":
+            return 5, ["1H 同方向 (上昇トレンド継続)"], []
+        if h1_regime == "trend_down":
+            return -5, [], ["1H が逆トレンド - 短期戻し警戒"]
+    else:  # short
+        if h1_regime == "trend_down":
+            return 5, ["1H 同方向 (下降トレンド継続)"], []
+        if h1_regime == "trend_up":
+            return -5, [], ["1H が逆トレンド - 短期戻し警戒"]
+    if h1_regime == "range":
+        return 0, ["1H はレンジ (押し戻し許容)"], []
+    return 0, [], []
+
+
+def _build_both_method(orz: dict, pdhl: dict, ht_dict: dict | None = None) -> dict:
     """両手法が合意した場合だけアラートになるメソッド。
 
     合意条件:
@@ -178,11 +206,16 @@ def _build_both_method(orz: dict, pdhl: dict) -> dict:
         # 両方揃ったら少しボーナス
         avg_score = min(100, avg_score + 5)
 
+    # 1H 整合チェック
+    h1_delta, h1_reasons, h1_warnings = _h1_alignment(orz["direction"], ht_dict)
+    avg_score = max(0, min(100, avg_score + h1_delta))
+
     reasons = [
         f"両手法合意: {orz['direction'].upper()}",
         f"ORZ手法スコア: {orz['score']}/100 ({orz.get('entry_type','-')})",
         f"PDHL手法スコア: {pdhl['score']}/100 ({pdhl.get('entry_type','-')})",
     ]
+    reasons.extend(h1_reasons)
     if both_trigger:
         reasons.append("★両手法とも15Mトリガー点灯")
     elif orz["has_trigger"]:
@@ -213,13 +246,15 @@ def _build_both_method(orz: dict, pdhl: dict) -> dict:
         "stop_loss": _tighter_sl(orz["stop_loss"], pdhl["stop_loss"], orz["direction"]),
         "take_profit": _tighter_tp(orz["take_profit"], pdhl["take_profit"], orz["direction"]),
         "reasons": reasons,
-        "warnings": list(set((orz.get("warnings") or []) + (pdhl.get("warnings") or []))),
+        "warnings": list(set(
+            (orz.get("warnings") or []) + (pdhl.get("warnings") or []) + h1_warnings
+        )),
         "has_trigger": both_trigger,
         "is_alert": both_alert,
     }
 
 
-def _build_triple_method(orz: dict, pdhl: dict, claude: dict) -> dict:
+def _build_triple_method(orz: dict, pdhl: dict, claude: dict, ht_dict: dict | None = None) -> dict:
     """3 手法 (ORZ + PDHL + Claude) が全て合意した場合のみアラートになる最上位メソッド。
 
     合意条件:
@@ -254,12 +289,18 @@ def _build_triple_method(orz: dict, pdhl: dict, claude: dict) -> dict:
     if all_alert:
         avg_score = min(100, avg_score + 10)  # 3 手法合意は大きなボーナス
 
+    # 1H 整合チェック: triple では同方向で +5 / 逆方向で -8 とやや厳しめ
+    h1_delta_raw, h1_reasons, h1_warnings = _h1_alignment(direction, ht_dict)
+    h1_delta = h1_delta_raw if h1_delta_raw >= 0 else int(h1_delta_raw * 1.5)
+    avg_score = max(0, min(100, avg_score + h1_delta))
+
     reasons = [
         f"3 手法合意: {direction.upper()}",
         f"ORZ: {orz['score']}/100 ({orz.get('entry_type','-')})",
         f"PDHL: {pdhl['score']}/100 ({pdhl.get('entry_type','-')})",
         f"Claude: {claude['score']}/100 ({claude.get('entry_type','-')})",
     ]
+    reasons.extend(h1_reasons)
     triggered_methods = [
         name for name, m in [("ORZ", orz), ("PDHL", pdhl), ("Claude", claude)]
         if m["has_trigger"]
@@ -291,6 +332,7 @@ def _build_triple_method(orz: dict, pdhl: dict, claude: dict) -> dict:
         (orz.get("warnings") or [])
         + (pdhl.get("warnings") or [])
         + (claude.get("warnings") or [])
+        + h1_warnings
     ))
 
     return {
@@ -311,13 +353,14 @@ def _build_triple_method(orz: dict, pdhl: dict, claude: dict) -> dict:
     }
 
 
-def _signal_to_dict(sig, pdhl_dict: dict, claude_dict: dict) -> dict:
+def _signal_to_dict(sig, pdhl_dict: dict, claude_dict: dict, ht_analysis=None) -> dict:
     """Pair 全体のレコードを組み立て。5 メソッド分の sub-dict を持つ。"""
     orz = _orz_to_method_dict(sig)
     pdhl = _pdhl_to_method_dict(pdhl_dict)
     claude = _claude_to_method_dict(claude_dict)
-    both = _build_both_method(orz, pdhl)
-    triple = _build_triple_method(orz, pdhl, claude)
+    ht_dict = _tf_to_dict(ht_analysis)
+    both = _build_both_method(orz, pdhl, ht_dict)
+    triple = _build_triple_method(orz, pdhl, claude, ht_dict)
     return {
         "pair": sig.pair,
         "symbol": sig.symbol,
@@ -327,6 +370,7 @@ def _signal_to_dict(sig, pdhl_dict: dict, claude_dict: dict) -> dict:
         "pdl": _clean_float(pdhl_dict.get("pdl")),
         "lt": _tf_to_dict(sig.lt),
         "mt": _tf_to_dict(sig.mt),
+        "ht": ht_dict,
         "st": _tf_to_dict(sig.st),
         "orz": orz,
         "pdhl": pdhl,
@@ -339,11 +383,12 @@ def _signal_to_dict(sig, pdhl_dict: dict, claude_dict: dict) -> dict:
 def _compute_signals():
     pairs_items = list(config.PAIRS.items())
     symbols = [s for _, s in pairs_items]
-    long_d, mid_d, short_d = fetch_all(
+    long_d, mid_d, h1_d, short_d = fetch_all(
         symbols,
         config.LONG_INTERVAL, config.LONG_PERIOD, config.LONG_RESAMPLE,
         config.MID_INTERVAL, config.MID_PERIOD, config.MID_RESAMPLE,
         config.SHORT_INTERVAL, config.SHORT_PERIOD, config.SHORT_RESAMPLE,
+        config.H1_INTERVAL, config.H1_PERIOD, config.H1_RESAMPLE,
     )
 
     # SMT 用の短期リターンコンテキスト (全ペア)
@@ -412,12 +457,22 @@ def _compute_signals():
                 "reasons": [f"Claude分析エラー: {e}"],
                 "warnings": [], "has_trigger": False, "is_alert": False,
             }
-        results.append(_signal_to_dict(sig, pdhl, claude))
+        # 1H 分析 (合意判定の補助)
+        ht_analysis = None
+        df_h1 = h1_d.get(symbol)
+        if df_h1 is not None and len(df_h1) >= 30:
+            try:
+                ht_analysis = analyze_timeframe(df_h1)
+            except Exception as e:
+                print(f"[api] analyze_timeframe(h1, {label}) error: {e}")
+        results.append(_signal_to_dict(sig, pdhl, claude, ht_analysis))
     # キャッシュにTF生データも保存しておく（チャート用）
+    now_ts = datetime.now(timezone.utc)
     for _, symbol in pairs_items:
-        _cache["tf_data"][(symbol, "long")] = (long_d.get(symbol), datetime.now(timezone.utc))
-        _cache["tf_data"][(symbol, "mid")] = (mid_d.get(symbol), datetime.now(timezone.utc))
-        _cache["tf_data"][(symbol, "short")] = (short_d.get(symbol), datetime.now(timezone.utc))
+        _cache["tf_data"][(symbol, "long")] = (long_d.get(symbol), now_ts)
+        _cache["tf_data"][(symbol, "mid")] = (mid_d.get(symbol), now_ts)
+        _cache["tf_data"][(symbol, "h1")] = (h1_d.get(symbol), now_ts)
+        _cache["tf_data"][(symbol, "short")] = (short_d.get(symbol), now_ts)
     # 先頭のソートはフロント側でメソッドごとに行うため、ここでは ORZ スコアで仮ソート。
     results.sort(key=lambda s: s["orz"]["score"], reverse=True)
     return results
@@ -512,14 +567,15 @@ def _series_to_line(df: pd.DataFrame, series: pd.Series, max_bars: int = 300):
 #   - 1wk/1d: 長期間 OK
 CHART_TF_MAP: dict[str, tuple[str, str, str | None]] = {
     # (interval, period, resample)
-    "week":  ("1wk", "5y",  None),  # 週足
+    "week":  ("1wk", "5y",  None),   # 週足
     "long":  (config.LONG_INTERVAL, config.LONG_PERIOD, config.LONG_RESAMPLE),  # 日足
     "mid":   (config.MID_INTERVAL,  config.MID_PERIOD,  config.MID_RESAMPLE),   # 4H
+    "h1":    ("1h", "60d", None),    # 1時間
     "short": (config.SHORT_INTERVAL, config.SHORT_PERIOD, config.SHORT_RESAMPLE),  # 15M
-    "m5":    ("5m", "30d", None),   # 5分
-    "m1":    ("1m", "7d",  None),   # 1分
+    "m5":    ("5m", "30d", None),    # 5分
+    "m1":    ("1m", "7d",  None),    # 1分
 }
-CHART_TF_PATTERN = "^(week|long|mid|short|m5|m1)$"
+CHART_TF_PATTERN = "^(week|long|mid|h1|short|m5|m1)$"
 
 
 @app.get("/api/chart/{symbol}")

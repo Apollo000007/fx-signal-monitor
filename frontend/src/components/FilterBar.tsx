@@ -2,6 +2,7 @@
 
 import { Search, RefreshCw, Zap, TrendingUp, TrendingDown, List, Pin } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { isEvaTheme } from "@/lib/visualTheme";
 import { useSignalsStore, type Filter, type SortKey } from "@/store/signals";
 
 export function FilterBar() {
@@ -17,14 +18,14 @@ export function FilterBar() {
   } = useSignalsStore();
 
   return (
-    <div className="flex flex-wrap items-center gap-3 p-3 glass rounded-2xl">
+    <div className={cn("flex flex-wrap items-center gap-3 p-3 glass rounded-2xl", isEvaTheme && "eva-frame")}>
       <div className="relative flex-1 min-w-[180px]">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-text-faint" />
         <input
           data-search
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          placeholder="ペアを検索 ( / キーでフォーカス)"
+          placeholder={isEvaTheme ? "SEARCH PAIR ( / )" : "ペアを検索 ( / キーでフォーカス)"}
           className="w-full pl-9 pr-3 py-2 rounded-lg bg-bg-soft border border-border/60 focus:border-accent-gold/60 outline-none text-sm font-mono placeholder:text-text-faint"
         />
       </div>

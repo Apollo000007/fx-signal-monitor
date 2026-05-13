@@ -4,6 +4,7 @@ import { Calculator, Copy, Check } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { cn, formatPrice } from "@/lib/utils";
 import type { Signal } from "@/lib/types";
+import { isEvaTheme } from "@/lib/visualTheme";
 
 interface Props {
   signal: Signal;
@@ -53,7 +54,7 @@ export function RiskCalculator({ signal }: Props) {
   }, [riskPct]);
 
   const calc = useMemo(() => {
-    const { price, stop_loss, take_profit, symbol, pair } = signal;
+    const { price, stop_loss, take_profit, symbol, pair, direction } = signal;
     if (price == null || stop_loss == null) return null;
     const jpy = isJpyCross(symbol) || /JPY/i.test(pair);
     const pipSize = jpy ? 0.01 : 0.0001;
@@ -70,6 +71,15 @@ export function RiskCalculator({ signal }: Props) {
     const tpPips = take_profit != null ? Math.abs(take_profit - price) / pipSize : null;
     const rr = tpPips != null ? tpPips / slPips : null;
     const expectedProfitJpy = tpPips != null ? tpPips * pipValuePerLot * lots : null;
+    // --- 資産管理 (Money-Management) 2R / 3R 利確ライン ---
+    // 1R = SL までの距離。RR=N でプラス期待値となるブレークイーブン勝率 = 1/(1+N)
+    //   RR=2 → 33.3% / RR=3 → 25%
+    const isLong = direction === "long";
+    const r = Math.abs(price - stop_loss);
+    const mmTp2R = direction === "none" ? null : isLong ? price + 2 * r : price - 2 * r;
+    const mmTp3R = direction === "none" ? null : isLong ? price + 3 * r : price - 3 * r;
+    const profit2R = riskJpy * 2;
+    const profit3R = riskJpy * 3;
     return {
       slPips,
       tpPips,
@@ -79,6 +89,10 @@ export function RiskCalculator({ signal }: Props) {
       rr,
       expectedProfitJpy,
       jpy,
+      mmTp2R,
+      mmTp3R,
+      profit2R,
+      profit3R,
     };
   }, [account, riskPct, signal]);
 
@@ -103,7 +117,7 @@ export function RiskCalculator({ signal }: Props) {
   };
 
   return (
-    <section className="rounded-xl border border-border/60 bg-bg-soft/40 p-4">
+    <section className={cn("rounded-xl border border-border/60 bg-bg-soft/40 p-4", isEvaTheme && "eva-frame")}>
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-text-dim">
           <Calculator className="h-4 w-4 text-accent-cyan" />
@@ -147,16 +161,49 @@ export function RiskCalculator({ signal }: Props) {
       </div>
 
       {calc ? (
-        <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 text-[12px] font-mono">
-          <Row k="SL 距離" v={`${calc.slPips.toFixed(1)} pips`} />
-          <Row k="TP 距離" v={calc.tpPips != null ? `${calc.tpPips.toFixed(1)} pips` : "—"} />
-          <Row k="リスク額" v={`${Math.round(calc.riskJpy).toLocaleString()} 円`} tone="red" />
-          <Row k="想定利益" v={calc.expectedProfitJpy != null ? `${Math.round(calc.expectedProfitJpy).toLocaleString()} 円` : "—"} tone="green" />
-          <Row k="推奨ロット" v={`${calc.lots.toFixed(2)} lot`} tone="accent" />
-          <Row k="通貨数" v={`${Math.round(calc.units).toLocaleString()} 通貨`} />
-          <Row k="RR 比率" v={calc.rr != null ? `1:${calc.rr.toFixed(2)}` : "—"} tone={calc.rr != null && calc.rr >= 2 ? "green" : "neutral"} />
-          <Row k="基準 pip" v={calc.jpy ? "0.01 (JPY cross)" : "0.0001"} />
-        </div>
+        <>
+          <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 text-[12px] font-mono">
+            <Row k="SL 距離" v={`${calc.slPips.toFixed(1)} pips`} />
+            <Row k="TP 距離" v={calc.tpPips != null ? `${calc.tpPips.toFixed(1)} pips` : "—"} />
+            <Row k="リスク額" v={`${Math.round(calc.riskJpy).toLocaleString()} 円`} tone="red" />
+            <Row k="想定利益" v={calc.expectedProfitJpy != null ? `${Math.round(calc.expectedProfitJpy).toLocaleString()} 円` : "—"} tone="green" />
+            <Row k="推奨ロット" v={`${calc.lots.toFixed(2)} lot`} tone="accent" />
+            <Row k="通貨数" v={`${Math.round(calc.units).toLocaleString()} 通貨`} />
+            <Row k="RR 比率" v={calc.rr != null ? `1:${calc.rr.toFixed(2)}` : "—"} tone={calc.rr != null && calc.rr >= 2 ? "green" : "neutral"} />
+            <Row k="基準 pip" v={calc.jpy ? "0.01 (JPY cross)" : "0.0001"} />
+          </div>
+
+          {/* --- 資産管理プロ推奨ライン --- */}
+          {calc.mmTp2R != null && calc.mmTp3R != null && (
+            <div className="mt-4 rounded-lg border border-accent-gold/30 bg-accent-gold/5 p-3">
+              <div className="flex items-center gap-2 text-[11px] uppercase tracking-widest text-accent-gold mb-2">
+                <span>{isEvaTheme ? "資産管理プロ推奨" : "★ 資産管理プロ推奨"}</span>
+                <span className="text-text-faint normal-case tracking-normal">
+                  勝率が悪くても資産が増えるライン
+                </span>
+              </div>
+              <div className="grid grid-cols-[1fr_auto_auto] gap-x-3 gap-y-1.5 text-[12px] font-mono items-baseline">
+                <span className="text-text-faint">利確@2R 最低基準</span>
+                <span className="text-accent-cyan">{formatPrice(calc.mmTp2R)}</span>
+                <span className="text-accent-green">
+                  +{Math.round(calc.profit2R).toLocaleString()} 円
+                </span>
+                <span className="text-text-faint">利確@3R 推奨</span>
+                <span className="text-accent-gold font-bold">{formatPrice(calc.mmTp3R)}</span>
+                <span className="text-accent-green font-bold">
+                  +{Math.round(calc.profit3R).toLocaleString()} 円
+                </span>
+              </div>
+              <div className="mt-2 text-[10px] text-text-faint leading-relaxed">
+                1R = 損切りまでの距離。<br />
+                <span className="text-accent-cyan">2R</span> なら勝率
+                <span className="font-mono"> 33% </span>でブレークイーブン、
+                <span className="text-accent-gold"> 3R </span>なら勝率
+                <span className="font-mono"> 25% </span>でも資産は増えていく ({calc.jpy ? "JPYクロス" : "メジャー"} ベース概算)。
+              </div>
+            </div>
+          )}
+        </>
       ) : (
         <div className="text-xs text-text-faint">SL/TP 未設定のため計算不可</div>
       )}

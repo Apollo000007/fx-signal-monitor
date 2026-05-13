@@ -75,6 +75,12 @@ MID_PERIOD = "730d"     # 1h の最大期間 (~2年)
 MID_RESAMPLE = "4h"     # ← 4時間足に集約
 MID_LABEL = "4H"
 
+# 1時間足: 4H と 15M の中間確認用 (合意判定の補助)
+H1_INTERVAL = "1h"
+H1_PERIOD = "60d"
+H1_RESAMPLE = None
+H1_LABEL = "1H"
+
 # 短期足: エントリートリガー専用
 SHORT_INTERVAL = "15m"
 SHORT_PERIOD = "60d"
