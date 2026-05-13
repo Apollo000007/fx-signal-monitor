@@ -59,3 +59,29 @@ jobs:
             git commit -m "chore(data): refresh signals $(date -u +'%Y-%m-%dT%H:%MZ')"
             git push
           fi
+
+      # --- 自己再起動 (Self-trigger) ---
+      # GitHub Actions の schedule cron は free tier で大幅に deprioritize される
+      # (実測: */15 でも 1.5-4h 間隔)。回避策として、各実行の終わりに 4.5 分
+      # スリープしてから workflow_dispatch で自分自身を再起動する。
+      # これで実効 5 分間隔の循環が成立する。
+      #
+      # 必要な GitHub Secret: WORKFLOW_DISPATCH_TOKEN
+      #   workflow + repo スコープを持つ Personal Access Token
+      #   未設定の場合はチェーンしない (schedule cron だけが動く)
+      #
+      # 重要: developer の push 時はチェーンを開始しない (無限ループ回避)
+      - name: Schedule next run (~5 min later)
+        if: github.event_name != 'push'
+        env:
+          GH_TOKEN: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
+        run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "WORKFLOW_DISPATCH_TOKEN 未設定。schedule cron のみで運用 (1.5-4h 間隔)。"
+            echo "5 分間隔にするには PAT を発行して Secrets に追加してください。"
+            exit 0
+          fi
+          echo "Sleeping ~4m 30s before re-dispatching..."
+          sleep 270
+          gh workflow run refresh-signals.yml --ref main
+          echo "Re-dispatched. Next run starts now."
