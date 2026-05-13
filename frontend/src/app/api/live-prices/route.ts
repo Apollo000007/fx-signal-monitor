@@ -76,7 +76,16 @@ interface NormalizedPrice {
 
 // ---------------- Finnhub プロバイダ ----------------
 
-async function fetchFinnhub(symbols: string[]): Promise<NormalizedPrice[]> {
+interface FinnhubDiag {
+  sym: string;
+  status: number;
+  body: string;
+}
+
+async function fetchFinnhub(
+  symbols: string[],
+  diag: FinnhubDiag[],
+): Promise<NormalizedPrice[]> {
   // 各シンボルを並列でクエリ (Finnhub /quote は単一シンボルのみ対応)
   const tasks = symbols.map(async (sym): Promise<NormalizedPrice | null> => {
     const base = YF_TO_BASE[sym];
@@ -85,25 +94,38 @@ async function fetchFinnhub(symbols: string[]): Promise<NormalizedPrice[]> {
     const url = `https://finnhub.io/api/v1/quote?symbol=${encodeURIComponent(fh)}&token=${FINNHUB_API_KEY}`;
     try {
       const res = await fetch(url, { cache: "no-store" });
-      if (!res.ok) return null;
+      if (!res.ok) {
+        const body = await res.text().catch(() => "");
+        diag.push({ sym: fh, status: res.status, body: body.slice(0, 250) });
+        return null;
+      }
       const j = (await res.json()) as {
         c?: number; // current price
         pc?: number; // previous close
         t?: number; // unix ts
       };
       const mid = typeof j.c === "number" && j.c > 0 ? j.c : null;
+      if (mid == null) {
+        diag.push({
+          sym: fh,
+          status: 200,
+          body: `empty quote: ${JSON.stringify(j).slice(0, 200)}`,
+        });
+        return null;
+      }
       // Finnhub /quote は bid/ask 分離を返さない → mid のみ、スプレッドは pip 単位で擬似
-      const half = mid != null ? (isJpyCross(sym) ? 0.005 : 0.00005) : 0;
+      const half = isJpyCross(sym) ? 0.005 : 0.00005;
       return {
         symbol: sym,
-        bid: mid != null ? mid - half : null,
-        ask: mid != null ? mid + half : null,
+        bid: mid - half,
+        ask: mid + half,
         mid,
         time: j.t ? new Date(j.t * 1000).toISOString() : new Date().toISOString(),
-        tradeable: mid != null,
-        status: mid != null ? "tradeable" : "no_data",
+        tradeable: true,
+        status: "tradeable",
       };
-    } catch {
+    } catch (e: any) {
+      diag.push({ sym: fh, status: 0, body: String(e?.message ?? e).slice(0, 250) });
       return null;
     }
   });
@@ -191,10 +213,14 @@ export async function GET(req: NextRequest) {
   }
 
   try {
+    const finnhubDiag: FinnhubDiag[] = [];
     const prices =
       provider === "finnhub"
-        ? await fetchFinnhub(symbols)
+        ? await fetchFinnhub(symbols, finnhubDiag)
         : await fetchOanda(symbols);
+
+    // デバッグ: Finnhub 側でエラーがあったらレスポンスに同梱 (?debug=1 のとき)
+    const debug = req.nextUrl.searchParams.get("debug") === "1";
 
     // 推奨ポーリング間隔: プロバイダのレート制限を考慮
     //   Finnhub free = 60 req/min・15 並列 → 15s 安全マージン
@@ -208,6 +234,7 @@ export async function GET(req: NextRequest) {
         interval_hint_ms: intervalHintMs,
         prices,
         fetched_at: new Date().toISOString(),
+        ...(debug && provider === "finnhub" ? { diag: finnhubDiag.slice(0, 5) } : {}),
       },
       {
         status: 200,
