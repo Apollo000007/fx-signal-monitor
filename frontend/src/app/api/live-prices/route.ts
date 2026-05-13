@@ -1,14 +1,14 @@
 /**
  * ライブ価格プロキシ。
  *
- * 動作モード:
- *   - OANDA_API_TOKEN + OANDA_ACCOUNT_ID 設定済み
- *       → OANDA v20 pricing API を 3 秒間隔で叩ける真のリアルタイム
- *   - 未設定 (デフォルト)
- *       → notConfigured=true。フロントは静的 signals.json (cron 5分更新) のみ使う
+ * プロバイダ優先順位 (環境変数で自動選択):
+ *   1. OANDA_API_TOKEN + OANDA_ACCOUNT_ID → OANDA v20 pricing (3 秒)
+ *   2. SAXO_API_TOKEN                     → Saxo Bank OpenAPI infoprices (3 秒)
+ *   3. 未設定                              → not_configured=true で空配列 + ヒント返却
  *
- * Finnhub と Yahoo Finance は datacenter IP 経由で実用にならない (403 / rate limit)
- * ことが本番テストで判明したため削除。
+ * 既知の不採用プロバイダ (実本番でダメだったもの):
+ *   - Finnhub free tier: forex /quote が HTTP 403
+ *   - Yahoo Finance direct: Vercel datacenter IP がレート制限される
  *
  * 使い方: GET /api/live-prices?symbols=USDJPY=X,EURUSD=X
  */
@@ -29,8 +29,14 @@ const OANDA_BASE =
     ? "https://api-fxtrade.oanda.com"
     : "https://api-fxpractice.oanda.com";
 
+const SAXO_API_TOKEN = process.env.SAXO_API_TOKEN;
+const SAXO_ENV = (process.env.SAXO_ENV ?? "sim").toLowerCase();
+const SAXO_BASE =
+  SAXO_ENV === "live"
+    ? "https://gateway.saxobank.com/openapi"
+    : "https://gateway.saxobank.com/sim/openapi";
+
 // ---------------- シンボル変換 ----------------
-// yfinance 形式 "USDJPY=X" ↔ OANDA "USD_JPY"
 
 const YF_TO_BASE: Record<string, string> = {
   "USDJPY=X": "USD_JPY",
@@ -48,6 +54,26 @@ const YF_TO_BASE: Record<string, string> = {
   "CHFJPY=X": "CHF_JPY",
   "ZARJPY=X": "ZAR_JPY",
   "EURGBP=X": "EUR_GBP",
+};
+
+// Saxo Bank の Universal Instrument Code (UIC)。FxSpot 系の主要 15 ペアをハードコード。
+// (動的に /ref/v1/instruments で取得することも可能だが、cold start を抑えるため固定値)
+const YF_TO_SAXO_UIC: Record<string, number> = {
+  "EURUSD=X": 21,
+  "USDJPY=X": 42,
+  "GBPUSD=X": 31,
+  "AUDUSD=X": 5,
+  "NZDUSD=X": 37,
+  "USDCAD=X": 38,
+  "USDCHF=X": 39,
+  "EURJPY=X": 18,
+  "GBPJPY=X": 26,
+  "AUDJPY=X": 2,
+  "NZDJPY=X": 36,
+  "CADJPY=X": 13,
+  "CHFJPY=X": 14,
+  "ZARJPY=X": 65,
+  "EURGBP=X": 17,
 };
 
 interface NormalizedPrice {
@@ -90,7 +116,6 @@ async function fetchOanda(symbols: string[]): Promise<NormalizedPrice[]> {
       tradeable?: boolean;
     }[];
   };
-  // OANDA は base 形式 (USD_JPY) を返してくる → yfinance 形式に逆変換
   const baseToYf = new Map(Object.entries(YF_TO_BASE).map(([yf, base]) => [base, yf]));
   return (data.prices ?? []).map((p) => {
     const bid = p.bids?.[0]?.price ? Number(p.bids[0].price) : null;
@@ -108,7 +133,70 @@ async function fetchOanda(symbols: string[]): Promise<NormalizedPrice[]> {
   });
 }
 
+// ---------------- Saxo Bank プロバイダ ----------------
+
+async function fetchSaxo(symbols: string[]): Promise<NormalizedPrice[]> {
+  // yfinance シンボル → UIC へ。マップに無いものは無視。
+  const pairs = symbols
+    .map((sym) => ({ sym, uic: YF_TO_SAXO_UIC[sym] }))
+    .filter((p): p is { sym: string; uic: number } => p.uic != null);
+  if (pairs.length === 0) return [];
+
+  // /trade/v1/infoprices は複数 UIC を 1 リクエストで取れる
+  // ※ FieldGroups=Quote を指定しないと bid/ask が返ってこない
+  const uicList = pairs.map((p) => p.uic).join(",");
+  const url =
+    `${SAXO_BASE}/trade/v1/infoprices?Uics=${uicList}&AssetType=FxSpot&FieldGroups=Quote`;
+  const res = await fetch(url, {
+    headers: {
+      Authorization: `Bearer ${SAXO_API_TOKEN}`,
+      Accept: "application/json",
+    },
+    cache: "no-store",
+  });
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(`Saxo HTTP ${res.status}: ${text.slice(0, 200)}`);
+  }
+  const data = (await res.json()) as {
+    Data?: {
+      Uic: number;
+      Quote?: {
+        Bid?: number;
+        Ask?: number;
+        Mid?: number;
+      };
+      LastUpdated?: string;
+      PriceInfoDetails?: { LastTraded?: number };
+    }[];
+  };
+  const uicToYf = new Map(pairs.map((p) => [p.uic, p.sym]));
+  return (data.Data ?? [])
+    .map((entry): NormalizedPrice | null => {
+      const sym = uicToYf.get(entry.Uic);
+      if (!sym) return null;
+      const bid = entry.Quote?.Bid ?? null;
+      const ask = entry.Quote?.Ask ?? null;
+      let mid: number | null = entry.Quote?.Mid ?? null;
+      if (mid == null && bid != null && ask != null) mid = (bid + ask) / 2;
+      if (mid == null) mid = bid ?? ask;
+      if (mid == null) return null;
+      return {
+        symbol: sym,
+        bid,
+        ask,
+        mid,
+        time: entry.LastUpdated ?? new Date().toISOString(),
+        tradeable: true,
+        status: "tradeable",
+      };
+    })
+    .filter((x): x is NormalizedPrice => x != null);
+}
+
 // ---------------- ルートハンドラ ----------------
+
+type Provider = "oanda" | "saxo";
 
 export async function GET(req: NextRequest) {
   const symbolsParam = req.nextUrl.searchParams.get("symbols");
@@ -123,31 +211,37 @@ export async function GET(req: NextRequest) {
     .map((s) => s.trim())
     .filter(Boolean);
 
-  // OANDA 未設定なら、エラーにせず prices=[] を返す (UI 側で「静的データのみ」表示)
-  if (!(OANDA_API_TOKEN && OANDA_ACCOUNT_ID)) {
+  // プロバイダ自動選択
+  let provider: Provider | null = null;
+  if (OANDA_API_TOKEN && OANDA_ACCOUNT_ID) provider = "oanda";
+  else if (SAXO_API_TOKEN) provider = "saxo";
+
+  if (!provider) {
     return NextResponse.json(
       {
         ok: true,
         provider: null,
         not_configured: true,
-        // 静的 signals.json が 5 分 cron で更新されるので、UI のポーリングも 5 分相当
         interval_hint_ms: 300_000,
         prices: [],
         fetched_at: new Date().toISOString(),
         hint:
-          "OANDA 未設定。GitHub Actions が 5 分ごとに更新する静的 signals.json を使用してください。" +
-          "リアルタイム化したい場合は OANDA Practice (oanda.com) の API トークンを Vercel env に設定してください。",
+          "リアルタイムプロバイダ未設定。OANDA Practice または Saxo SIM のトークンを Vercel env に設定してください。" +
+          "未設定でも 5 分 cron の静的 signals.json は配信されます。",
       },
       { status: 200, headers: { "Cache-Control": "no-store, max-age=0" } },
     );
   }
 
   try {
-    const prices = await fetchOanda(symbols);
+    const prices =
+      provider === "oanda"
+        ? await fetchOanda(symbols)
+        : await fetchSaxo(symbols);
     return NextResponse.json(
       {
         ok: true,
-        provider: "oanda" as const,
+        provider,
         interval_hint_ms: 3000,
         prices,
         fetched_at: new Date().toISOString(),
@@ -158,8 +252,8 @@ export async function GET(req: NextRequest) {
     return NextResponse.json(
       {
         ok: false,
-        provider: "oanda" as const,
-        error: "oanda fetch failed",
+        provider,
+        error: `${provider} fetch failed`,
         detail: String(e?.message ?? e).slice(0, 250),
       },
       { status: 502 },

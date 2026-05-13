@@ -123,17 +123,38 @@ on:
     - cron: "*/5 * * * *"   # 5 分間隔。GitHub Actions の最短値。
 ```
 
-#### リアルタイム化したい場合 (任意・OANDA Practice)
+#### リアルタイム化したい場合 (任意・Saxo SIM または OANDA Practice)
 
-**OANDA グローバル版 (`oanda.com`、`.jp` ではない)** に登録すれば、ブラウザが 3 秒間隔で
-ティックを取得できます。日本居住者は Practice (Demo) なら通常登録可能。
+3 秒間隔で真のティックを取りたい場合、ブローカーの Demo 口座 API を使う。
+**Saxo Japan SIM** が日本居住者には最も登録しやすい (本人確認なし)。
 
-##### セットアップ
-1. <https://www.oanda.com/sign-up/> で **Demo (Practice)** を選択
-   - 日本居住者で `.jp` にリダイレクトされる場合は VPN で米国/英国経由で登録 (Practice は実取引なしのため法的にも問題なし)
-2. ログイン → **Manage API Access** → **Generate** で Personal Access Token を発行
-3. 同ページ上部の **Account ID** (例: `101-001-12345678-001`) をコピー
-4. Vercel Project → **Settings → Environment Variables** に追加:
+##### A) Saxo Japan SIM (推奨・日本居住者向け)
+
+1. <https://www.home.saxo/en-jp/learn/get-started> で **「Try Demo」/「無料デモ」** を開く
+   - 通常 メアド + 名前 + 電話番号 + 日本の住所 のみで開設可能 (本人確認書類なし)
+2. メール認証 → ログイン
+3. <https://www.developer.saxo/openapi/appmanagement> で **「Create New App」**
+   - App Name: 任意
+   - Permissions: **「Read trade and account information」**
+   - Environment: **SIM** を選択
+4. アプリ詳細ページの **「24-hour token」** をコピー
+5. Vercel に追加:
+
+| Key | Value | Environments |
+|---|---|---|
+| `SAXO_API_TOKEN` | コピーした 24h トークン | Production, Preview, Development |
+| `SAXO_ENV` | `sim` (本番なら `live`) | 同上 |
+
+> ⚠️ **トークンは 24 時間で失効**します。継続利用には 24h ごとに Developer Portal で
+> 再発行 → Vercel env を更新するか、OAuth2 Refresh フローを実装する必要があります。
+
+##### B) OANDA Practice (日本 IP から登録困難な場合あり)
+
+1. <https://www.oanda.com/us-en/trading/demo-account/> で **Demo (Practice)** を選択
+   - 日本 IP だと欧州版にリダイレクトされ KYC 求められる場合あり → VPN 経由で米国から登録
+2. ログイン → **Manage API Access** → **Generate** で Personal Access Token
+3. 同ページの **Account ID** (例: `101-001-12345678-001`) もコピー
+4. Vercel に追加:
 
 | Key | Value | Environments |
 |---|---|---|
@@ -141,15 +162,17 @@ on:
 | `OANDA_ACCOUNT_ID` | Account ID | Production, Preview |
 | `OANDA_ENV` | `practice` (本番口座なら `live`) | Production, Preview |
 
-5. **Deployments → 最新 deploy → ⋯ → Redeploy** で反映
+両方設定した場合の優先順位: **OANDA > Saxo** (OANDA の方がトークン寿命が長いため)。
 
 `NEXT_PUBLIC_` を **付けない** こと (サーバ側のみ参照、ブラウザバンドルに含まれない)。
 
-##### 動作確認 (OANDA 設定後)
-- フィルタバーの上に「**LIVE · OANDA tick · 15 ペア · 3 秒間隔**」と緑のインジケータ
-- 各通貨カードの現在値が **「LIVE · OANDA」** 表示になり、3 秒ごとに緑/赤フラッシュ
-- 通貨をクリック → サイドバーに「ライブ価格 (OANDA tick)」セクション + 各レベルへの距離 (pips)
+##### 設定後の動作
+- フィルタバーの上に「**LIVE · OANDA tick (または Saxo Bank SIM tick) · 15 ペア · 3 秒間隔**」と緑のインジケータ
+- 各通貨カードの現在値が **「LIVE」** 表示になり、3 秒ごとに緑/赤フラッシュ
+- 通貨をクリック → サイドバーに「ライブ価格」セクション + 各レベルへの距離 (pips)
 - 価格がレベルを跨ぐと **ブラウザ通知 + ビープ音**
+
+Vercel **Deployments → 最新 deploy → ⋯ → Redeploy** で env を反映してください。
 
 ##### 過去に検討して採用しなかったプロバイダ
 - **Finnhub**: 無料枠は forex の `/quote` が HTTP 403 を返すため不可 (実本番テスト済)

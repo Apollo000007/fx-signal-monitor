@@ -59,7 +59,7 @@ export function pipSize(instrument: string): number {
 
 // ============== 型 ==============
 
-export type LiveProvider = "finnhub" | "oanda" | "yahoo";
+export type LiveProvider = "finnhub" | "oanda" | "yahoo" | "saxo";
 
 export interface LivePrice {
   instrument: string;        // "USD_JPY"
