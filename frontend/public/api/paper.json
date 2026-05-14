@@ -1,19 +1,19 @@
 {
-  "updated_at": "2026-05-14T17:29:15.864623+00:00",
+  "updated_at": "2026-05-14T17:34:32.863293+00:00",
   "open_count": 1,
   "open_positions": [
     {
-      "id": "EUR/GBP-pdhl-1778779755",
+      "id": "EUR/GBP-pdhl-1778780072",
       "pair": "EUR/GBP",
       "method": "pdhl",
       "direction": "long",
       "entry_type": "pdhl_long_retest",
-      "entry_time": "2026-05-14T17:29:15.864623",
-      "entry_price": 0.8697199821472168,
+      "entry_time": "2026-05-14T17:34:32.863293",
+      "entry_price": 0.8699899911880493,
       "stop_loss": 0.8662986237108707,
-      "take_profit": 0.8731413405835629,
+      "take_profit": 0.8736813586652279,
       "score": 80,
-      "last_check_time": "2026-05-14T17:29:15.864623"
+      "last_check_time": "2026-05-14T17:34:32.863293"
     }
   ],
   "history_count": 0,
