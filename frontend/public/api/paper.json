@@ -1,7 +1,21 @@
 {
-  "updated_at": "2026-05-14T10:09:46.708498+00:00",
-  "open_count": 0,
-  "open_positions": [],
+  "updated_at": "2026-05-14T10:15:00.252532+00:00",
+  "open_count": 1,
+  "open_positions": [
+    {
+      "id": "USD/CAD-pdhl-1778753700",
+      "pair": "USD/CAD",
+      "method": "pdhl",
+      "direction": "long",
+      "entry_type": "pdhl_long_retest",
+      "entry_time": "2026-05-14T10:15:00.252532",
+      "entry_price": 1.3711199760437012,
+      "stop_loss": 1.3678451381921768,
+      "take_profit": 1.3743948138952256,
+      "score": 83,
+      "last_check_time": "2026-05-14T10:15:00.252532"
+    }
+  ],
   "history_count": 0,
   "recent_trades": [],
   "stats": {
