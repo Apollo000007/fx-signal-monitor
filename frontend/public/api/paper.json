@@ -1,21 +1,7 @@
 {
-  "updated_at": "2026-05-14T06:53:03.515488+00:00",
-  "open_count": 1,
-  "open_positions": [
-    {
-      "id": "CHF/JPY-claude-1778741583",
-      "pair": "CHF/JPY",
-      "method": "claude",
-      "direction": "long",
-      "entry_type": "claude_confluence_long",
-      "entry_time": "2026-05-14T06:53:03.515488",
-      "entry_price": 202.11700439453125,
-      "stop_loss": 201.9569017032857,
-      "take_profit": 202.43720977702233,
-      "score": 76,
-      "last_check_time": "2026-05-14T06:53:03.515488"
-    }
-  ],
+  "updated_at": "2026-05-14T06:58:14.416062+00:00",
+  "open_count": 0,
+  "open_positions": [],
   "history_count": 0,
   "recent_trades": [],
   "stats": {
