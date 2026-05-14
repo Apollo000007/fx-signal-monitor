@@ -1,21 +1,7 @@
 {
-  "updated_at": "2026-05-14T21:25:42.935199+00:00",
-  "open_count": 1,
-  "open_positions": [
-    {
-      "id": "NZD/JPY-pdhl-1778793942",
-      "pair": "NZD/JPY",
-      "method": "pdhl",
-      "direction": "short",
-      "entry_type": "pdhl_short_retest",
-      "entry_time": "2026-05-14T21:25:42.935199",
-      "entry_price": 93.5199966430664,
-      "stop_loss": 93.79848412704469,
-      "take_profit": 93.20999908447266,
-      "score": 85,
-      "last_check_time": "2026-05-14T21:25:42.935199"
-    }
-  ],
+  "updated_at": "2026-05-14T21:31:00.344613+00:00",
+  "open_count": 0,
+  "open_positions": [],
   "history_count": 0,
   "recent_trades": [],
   "stats": {
