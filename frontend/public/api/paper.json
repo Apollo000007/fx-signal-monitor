@@ -1,34 +1,7 @@
 {
-  "updated_at": "2026-05-14T20:28:29.986564+00:00",
-  "open_count": 2,
-  "open_positions": [
-    {
-      "id": "EUR/USD-pdhl-1778790509",
-      "pair": "EUR/USD",
-      "method": "pdhl",
-      "direction": "short",
-      "entry_type": "pdhl_short_retest",
-      "entry_time": "2026-05-14T20:28:29.986564",
-      "entry_price": 1.1669973134994507,
-      "stop_loss": 1.1713861671686172,
-      "take_profit": 1.1626084598302842,
-      "score": 85,
-      "last_check_time": "2026-05-14T20:28:29.986564"
-    },
-    {
-      "id": "NZD/USD-pdhl-1778790509",
-      "pair": "NZD/USD",
-      "method": "pdhl",
-      "direction": "short",
-      "entry_type": "pdhl_short_retest",
-      "entry_time": "2026-05-14T20:28:29.986564",
-      "entry_price": 0.5911563038825989,
-      "stop_loss": 0.5930281692743302,
-      "take_profit": 0.5892844384908675,
-      "score": 85,
-      "last_check_time": "2026-05-14T20:28:29.986564"
-    }
-  ],
+  "updated_at": "2026-05-14T20:33:38.531137+00:00",
+  "open_count": 0,
+  "open_positions": [],
   "history_count": 0,
   "recent_trades": [],
   "stats": {
