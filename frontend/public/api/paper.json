@@ -1,7 +1,34 @@
 {
-  "updated_at": "2026-05-14T15:58:43.664369+00:00",
-  "open_count": 0,
-  "open_positions": [],
+  "updated_at": "2026-05-14T16:04:03.888276+00:00",
+  "open_count": 2,
+  "open_positions": [
+    {
+      "id": "GBP/USD-pdhl-1778774643",
+      "pair": "GBP/USD",
+      "method": "pdhl",
+      "direction": "short",
+      "entry_type": "pdhl_short_retest",
+      "entry_time": "2026-05-14T16:04:03.888276",
+      "entry_price": 1.347400188446045,
+      "stop_loss": 1.3508045192956926,
+      "take_profit": 1.3439958575963973,
+      "score": 80,
+      "last_check_time": "2026-05-14T16:04:03.888276"
+    },
+    {
+      "id": "AUD/USD-pdhl-1778774643",
+      "pair": "AUD/USD",
+      "method": "pdhl",
+      "direction": "short",
+      "entry_type": "pdhl_short_retest",
+      "entry_time": "2026-05-14T16:04:03.888276",
+      "entry_price": 0.7224911451339722,
+      "stop_loss": 0.7243599183261394,
+      "take_profit": 0.7206223719418049,
+      "score": 80,
+      "last_check_time": "2026-05-14T16:04:03.888276"
+    }
+  ],
   "history_count": 0,
   "recent_trades": [],
   "stats": {
