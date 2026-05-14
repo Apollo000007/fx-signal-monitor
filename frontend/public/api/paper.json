@@ -1,7 +1,21 @@
 {
-  "updated_at": "2026-05-14T05:45:22.093957+00:00",
-  "open_count": 0,
-  "open_positions": [],
+  "updated_at": "2026-05-14T05:50:33.618187+00:00",
+  "open_count": 1,
+  "open_positions": [
+    {
+      "id": "AUD/USD-claude-1778737833",
+      "pair": "AUD/USD",
+      "method": "claude",
+      "direction": "long",
+      "entry_type": "claude_confluence_long",
+      "entry_time": "2026-05-14T05:50:33.618187",
+      "entry_price": 0.7263219356536865,
+      "stop_loss": 0.72586113336022,
+      "take_profit": 0.7272435402406195,
+      "score": 78,
+      "last_check_time": "2026-05-14T05:50:33.618187"
+    }
+  ],
   "history_count": 0,
   "recent_trades": [],
   "stats": {
