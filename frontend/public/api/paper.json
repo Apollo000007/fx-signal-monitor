@@ -1,0 +1,17 @@
+{
+  "updated_at": "2026-05-14T04:33:13.168879+00:00",
+  "open_count": 0,
+  "open_positions": [],
+  "history_count": 0,
+  "recent_trades": [],
+  "stats": {
+    "trades": 0,
+    "wins": 0,
+    "losses": 0,
+    "win_rate": 0.0,
+    "total_r": 0.0,
+    "expectancy_r": 0.0,
+    "profit_factor": 0.0,
+    "by_method": {}
+  }
+}

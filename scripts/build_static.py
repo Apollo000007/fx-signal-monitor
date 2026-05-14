@@ -241,6 +241,15 @@ def main() -> int:
         print(msg)
         send_notifications(msg)
 
+    # --- Paper Trade (Phase B): 仮想ポジションの open/close + UI 用統計出力 ---
+    try:
+        from paper_trade.runner import tick as paper_tick
+        paper_tick(records, now, send_telegram=send_notifications)
+        print("[build_static] paper trade tick done")
+    except Exception as e:
+        traceback.print_exc()
+        print(f"[build_static] paper trade error (continuing): {e}")
+
     return 0
 
 

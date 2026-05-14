@@ -8,6 +8,7 @@ import { FilterBar } from "@/components/FilterBar";
 import { Header } from "@/components/Header";
 import { LiveStatus } from "@/components/LiveStatus";
 import { MethodTabs } from "@/components/MethodTabs";
+import { PaperStats } from "@/components/PaperStats";
 import { SignalCard } from "@/components/SignalCard";
 import { TestAlertButton } from "@/components/TestAlertButton";
 import { ToastStack } from "@/components/ToastStack";
@@ -130,6 +131,10 @@ export default function DashboardPage() {
           count={live.prices.size}
           provider={live.provider}
         />
+      </div>
+
+      <div className="mb-5">
+        <PaperStats />
       </div>
 
       <div className="mb-5">
