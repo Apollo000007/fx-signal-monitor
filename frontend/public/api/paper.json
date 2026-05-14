@@ -1,7 +1,21 @@
 {
-  "updated_at": "2026-05-14T07:13:44.733171+00:00",
-  "open_count": 0,
-  "open_positions": [],
+  "updated_at": "2026-05-14T07:18:54.450040+00:00",
+  "open_count": 1,
+  "open_positions": [
+    {
+      "id": "USD/JPY-pdhl-1778743134",
+      "pair": "USD/JPY",
+      "method": "pdhl",
+      "direction": "long",
+      "entry_type": "pdhl_long_retest",
+      "entry_time": "2026-05-14T07:18:54.450040",
+      "entry_price": 157.91799926757812,
+      "stop_loss": 157.53933697509765,
+      "take_profit": 158.2966615600586,
+      "score": 80,
+      "last_check_time": "2026-05-14T07:18:54.450040"
+    }
+  ],
   "history_count": 0,
   "recent_trades": [],
   "stats": {
