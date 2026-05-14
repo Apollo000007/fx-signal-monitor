@@ -232,12 +232,16 @@ def run_backtest(
     sample_step: int = 4,
     min_bars: int = 200,
     verbose: bool = False,
+    tp_rr: Optional[float] = None,
 ) -> BacktestResult:
     """1 ペア × 1 手法のバックテスト。
 
     sample_step: 15M バーの何本ごとに評価するか (4 = 1 時間に 1 回)。
                  1 にすれば全 15M バーで評価 (最も精密だが遅い)。
     min_bars   : これより前の 15M バーはウォームアップ扱いで評価しない。
+    tp_rr      : None なら strategy 由来の構造的 TP を使う (デフォルト)。
+                 数値 (例 3.0) なら、TP を entry ± rr * (entry - SL) で上書きする
+                 (1R = |entry - SL|)。資産管理プロ推奨は 2R 〜 3R。
     """
     started = time.monotonic()
     result = BacktestResult(pair=pair, method=method, period=f"{df_short.index[0]}~{df_short.index[-1]}")
@@ -306,6 +310,16 @@ def run_backtest(
                 entry = float(next_bar["Open"])
                 sl = float(sig["stop_loss"])
                 tp = float(sig["take_profit"])
+
+                # ★ tp_rr が指定されていれば TP を R-multiple 由来で上書き
+                #   (entry ± rr × |entry - SL|)
+                if tp_rr is not None and tp_rr > 0:
+                    r = abs(entry - sl)
+                    if r > 0:
+                        if sig["direction"] == "long":
+                            tp = entry + tp_rr * r
+                        elif sig["direction"] == "short":
+                            tp = entry - tp_rr * r
 
                 # sanity check: direction と SL/TP が整合
                 if sig["direction"] == "long" and not (sl < entry < tp):

@@ -52,6 +52,8 @@ def parse_args():
                    help="15M バーの何本ごとに評価するか (既定: 4 = 1時間ごと)")
     p.add_argument("--min-bars", type=int, default=200,
                    help="ウォームアップバー数 (これより前は評価しない)")
+    p.add_argument("--tp-rr", type=float, default=None,
+                   help="TP を R-multiple で上書き (例: 3.0)。未指定なら strategy 由来の構造的 TP を使う")
     p.add_argument("--verbose", "-v", action="store_true")
     return p.parse_args()
 
@@ -95,6 +97,10 @@ def main():
     print(f"[backtest] {len(pairs)} ペア × {len(methods)} 手法 × {args.period}")
     print(f"[backtest] sample_step={args.sample_step} (15M バーの {args.sample_step} 本ごとに評価)")
     print(f"[backtest] threshold={args.threshold}")
+    if args.tp_rr is not None:
+        print(f"[backtest] TP override: {args.tp_rr}R (entry ± {args.tp_rr} × |entry - SL|)")
+    else:
+        print(f"[backtest] TP: 構造的 (strategy 由来)")
     print()
 
     symbols = [s for _, s in pairs]
@@ -152,6 +158,7 @@ def main():
                 sample_step=args.sample_step,
                 min_bars=args.min_bars,
                 verbose=args.verbose,
+                tp_rr=args.tp_rr,
             )
             results.append(res)
             stats = compute_stats(res.trades)

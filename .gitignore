@@ -32,6 +32,7 @@ secrets.json
 
 # --- Backtest output (大きい・再生成可能なので git に入れない) ---
 backtest/results/
+backtest/results_*/
 
 # NOTE:
 # frontend/public/api/*.json と state/seen_alerts.json は GitHub Actions が
