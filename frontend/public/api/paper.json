@@ -1,19 +1,19 @@
 {
-  "updated_at": "2026-05-14T23:50:40.094102+00:00",
+  "updated_at": "2026-05-14T23:55:52.018463+00:00",
   "open_count": 1,
   "open_positions": [
     {
-      "id": "ZAR/JPY-pdhl-1778802640",
-      "pair": "ZAR/JPY",
+      "id": "NZD/USD-pdhl-1778802952",
+      "pair": "NZD/USD",
       "method": "pdhl",
       "direction": "short",
       "entry_type": "pdhl_short_retest",
-      "entry_time": "2026-05-14T23:50:40.094102",
-      "entry_price": 9.579000473022461,
-      "stop_loss": 9.624414656162262,
-      "take_profit": 9.53358628988266,
-      "score": 88,
-      "last_check_time": "2026-05-14T23:50:40.094102"
+      "entry_time": "2026-05-14T23:55:52.018463",
+      "entry_price": 0.5905976891517639,
+      "stop_loss": 0.5927894527614117,
+      "take_profit": 0.5884059255421161,
+      "score": 85,
+      "last_check_time": "2026-05-14T23:55:52.018463"
     }
   ],
   "history_count": 0,
