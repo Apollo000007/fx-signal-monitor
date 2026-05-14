@@ -30,6 +30,9 @@ Thumbs.db
 secrets.json
 *.local.py
 
+# --- Backtest output (大きい・再生成可能なので git に入れない) ---
+backtest/results/
+
 # NOTE:
 # frontend/public/api/*.json と state/seen_alerts.json は GitHub Actions が
 # コミットする対象なのであえて ignore しない (デプロイ用データ)。
