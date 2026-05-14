@@ -1,19 +1,19 @@
 {
-  "updated_at": "2026-05-14T06:47:51.848955+00:00",
+  "updated_at": "2026-05-14T06:53:03.515488+00:00",
   "open_count": 1,
   "open_positions": [
     {
-      "id": "AUD/USD-claude-1778741271",
-      "pair": "AUD/USD",
+      "id": "CHF/JPY-claude-1778741583",
+      "pair": "CHF/JPY",
       "method": "claude",
       "direction": "long",
       "entry_type": "claude_confluence_long",
-      "entry_time": "2026-05-14T06:47:51.848955",
-      "entry_price": 0.7265858054161072,
-      "stop_loss": 0.7261197616499296,
-      "take_profit": 0.7275178929484621,
-      "score": 78,
-      "last_check_time": "2026-05-14T06:47:51.848955"
+      "entry_time": "2026-05-14T06:53:03.515488",
+      "entry_price": 202.11700439453125,
+      "stop_loss": 201.9569017032857,
+      "take_profit": 202.43720977702233,
+      "score": 76,
+      "last_check_time": "2026-05-14T06:53:03.515488"
     }
   ],
   "history_count": 0,
