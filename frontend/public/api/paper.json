@@ -1,32 +1,19 @@
 {
-  "updated_at": "2026-05-15T06:08:28.806722+00:00",
-  "open_count": 2,
+  "updated_at": "2026-05-15T06:13:39.852712+00:00",
+  "open_count": 1,
   "open_positions": [
     {
-      "id": "CAD/JPY-pdhl-1778825308",
+      "id": "CAD/JPY-pdhl-1778825619",
       "pair": "CAD/JPY",
       "method": "pdhl",
       "direction": "long",
       "entry_type": "pdhl_long_retest",
-      "entry_time": "2026-05-15T06:08:28.806722",
-      "entry_price": 115.4209976196289,
+      "entry_time": "2026-05-15T06:13:39.852712",
+      "entry_price": 115.39399719238281,
       "stop_loss": 115.06813581848145,
-      "take_profit": 115.77385942077636,
-      "score": 80,
-      "last_check_time": "2026-05-15T06:08:28.806722"
-    },
-    {
-      "id": "CAD/JPY-claude-1778825308",
-      "pair": "CAD/JPY",
-      "method": "claude",
-      "direction": "long",
-      "entry_type": "claude_confluence_long",
-      "entry_time": "2026-05-15T06:08:28.806722",
-      "entry_price": 115.4209976196289,
-      "stop_loss": 115.32758368512266,
-      "take_profit": 115.60782548864138,
-      "score": 83,
-      "last_check_time": "2026-05-15T06:08:28.806722"
+      "take_profit": 115.71985856628417,
+      "score": 75,
+      "last_check_time": "2026-05-15T06:13:39.852712"
     }
   ],
   "history_count": 0,
