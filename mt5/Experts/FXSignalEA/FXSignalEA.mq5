@@ -50,10 +50,10 @@ input bool    AutoMapSymbol      = true;    // ブローカーのサフィック
 input group "━━━ 3. 有効化する手法 ━━━"
 input bool    UseORZ             = false;
 input bool    UsePDHL            = false;
-input bool    UseBoth            = false;
-input bool    UseClaude          = false;
 input bool    UseTriple          = true;    // デフォルトは triple のみ (backtest 60d で唯一の +EV)
 input bool    UseDTP             = false;   // Daily Trend Pullback (検証してから有効化推奨)
+// 注: claude / both 手法は廃止。triple の内部計算では claude を使うが
+//     単独の発注対象からは除外 (magic index は互換維持のため据え置き)
 
 input group "━━━ 4. リスク・資金管理 ━━━"
 input double  AccountRiskPercent = 0.5;     // 1 トレードあたりのリスク% (口座残高比)
@@ -106,8 +106,8 @@ int OnInit()
    //--- 手法フラグ
    g_use_methods[0] = UseORZ;
    g_use_methods[1] = UsePDHL;
-   g_use_methods[2] = UseBoth;
-   g_use_methods[3] = UseClaude;
+   g_use_methods[2] = false;        // both 廃止
+   g_use_methods[3] = false;        // claude 廃止 (triple 内部計算でのみ使用)
    g_use_methods[4] = UseTriple;
    g_use_methods[5] = UseDTP;
    bool any = false;
@@ -119,12 +119,10 @@ int OnInit()
    }
 
    //--- 初期メッセージ
-   PrintFormat("[FXSignalEA] init: %d pairs, methods=%s%s%s%s%s%s, risk=%.2f%%, dryrun=%s, trading=%s",
+   PrintFormat("[FXSignalEA] init: %d pairs, methods=%s%s%s%s, risk=%.2f%%, dryrun=%s, trading=%s",
                g_pairs_count,
                UseORZ ? "ORZ " : "",
                UsePDHL ? "PDHL " : "",
-               UseBoth ? "BOTH " : "",
-               UseClaude ? "CLAUDE " : "",
                UseTriple ? "TRIPLE " : "",
                UseDTP ? "DTP " : "",
                AccountRiskPercent,

@@ -182,14 +182,15 @@ def write_charts() -> None:
 
 # ---------- メイン ------------------------------------------------------------
 
-METHODS_TO_NOTIFY = ("triple", "dtp", "both", "claude", "pdhl", "orz")
+METHODS_TO_NOTIFY = ("triple", "dtp", "pdhl", "orz")
 
 
 def detect_new_alerts(records: list[dict], seen: dict[str, float], now_ts: float):
     """seen を更新しつつ、今回新規となったアラートのリストを返す。
 
     同一 (pair, method, direction) は REBROADCAST_SEC 以内なら再送しない。
-    method 優先度: triple > dtp > both > claude > pdhl > orz
+    method 優先度: triple > dtp > pdhl > orz  (claude/both は UI/通知から除外、
+                  ただし triple の内部計算では claude を使うので api 側は維持)
     同一ペアに対しては最上位の method だけ通知 (ノイズ抑制)。
     """
     new_alerts: list[tuple[str, str, dict]] = []

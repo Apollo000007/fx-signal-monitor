@@ -1,6 +1,6 @@
 "use client";
 
-import { Flame, Gem, Infinity as InfinityIcon, Eye, Sun, TrendingUp } from "lucide-react";
+import { Flame, Eye, Sun, TrendingUp } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useSignalsStore } from "@/store/signals";
 import type { Method } from "@/lib/types";
@@ -31,21 +31,6 @@ const OLYMPUS_TABS: TabDef[] = [
     subtitle: "ブレイク → リテスト — 伝令",
     icon: <Flame className="h-4 w-4" />,
     accent: "from-accent-gold/60 to-accent-gold/10 border-accent-gold/40 text-accent-gold",
-  },
-  {
-    key: "both",
-    title: "Apollon · 合流",
-    subtitle: "ORZ + PDHL 同方向 — 光",
-    icon: <Gem className="h-4 w-4" />,
-    accent: "from-accent-violet/60 to-accent-violet/10 border-accent-violet/40 text-accent-violet",
-    rank: "combo",
-  },
-  {
-    key: "claude",
-    title: "Delphi · Claude",
-    subtitle: "MTF + ATR + Donchian — 神託",
-    icon: <InfinityIcon className="h-4 w-4" />,
-    accent: "from-accent-green/60 to-accent-green/10 border-accent-green/40 text-accent-green",
   },
   {
     key: "triple",
@@ -81,21 +66,6 @@ const EVA_TABS: TabDef[] = [
     subtitle: "BREAK / RETEST",
     icon: <Flame className="h-4 w-4" />,
     accent: "from-accent-red/40 to-bg-card border-accent-red/70 text-accent-red",
-  },
-  {
-    key: "both",
-    title: "SYNC-03 · 合流",
-    subtitle: "ORZ + PDHL",
-    icon: <Gem className="h-4 w-4" />,
-    accent: "from-text/25 to-bg-card border-border text-text",
-    rank: "combo",
-  },
-  {
-    key: "claude",
-    title: "AI-04 · Claude",
-    subtitle: "MTF / ATR / DONCHIAN",
-    icon: <InfinityIcon className="h-4 w-4" />,
-    accent: "from-accent-green/30 to-bg-card border-accent-green/55 text-accent-green",
   },
   {
     key: "triple",

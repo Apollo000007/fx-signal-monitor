@@ -35,7 +35,10 @@ from strategy_claude import analyze_pair_claude
 from strategy_dtp import analyze_pair_dtp
 
 
-METHOD_NAMES = ("orz", "pdhl", "both", "claude", "triple", "dtp")
+# UI/運用で使う手法のみ。claude/both は単独では使わないが、
+# triple の内部計算 (_get_signal_dict 内) では claude を参照するため
+# _get_signal_dict のロジック分岐自体は残してある。
+METHOD_NAMES = ("orz", "pdhl", "triple", "dtp")
 
 
 def is_jpy_cross(pair: str) -> bool:
