@@ -1,7 +1,34 @@
 {
-  "updated_at": "2026-05-15T08:30:17.155075+00:00",
-  "open_count": 0,
-  "open_positions": [],
+  "updated_at": "2026-05-15T08:35:26.264875+00:00",
+  "open_count": 2,
+  "open_positions": [
+    {
+      "id": "GBP/JPY-pdhl-1778834126",
+      "pair": "GBP/JPY",
+      "method": "pdhl",
+      "direction": "short",
+      "entry_type": "pdhl_short_retest",
+      "entry_time": "2026-05-15T08:35:26.264875",
+      "entry_price": 211.4770050048828,
+      "stop_loss": 213.0641126098633,
+      "take_profit": 209.88989739990234,
+      "score": 85,
+      "last_check_time": "2026-05-15T08:35:26.264875"
+    },
+    {
+      "id": "AUD/JPY-pdhl-1778834126",
+      "pair": "AUD/JPY",
+      "method": "pdhl",
+      "direction": "short",
+      "entry_type": "pdhl_short_retest",
+      "entry_time": "2026-05-15T08:35:26.264875",
+      "entry_price": 113.40699768066406,
+      "stop_loss": 114.06083438873291,
+      "take_profit": 112.75316097259521,
+      "score": 85,
+      "last_check_time": "2026-05-15T08:35:26.264875"
+    }
+  ],
   "history_count": 0,
   "recent_trades": [],
   "stats": {
