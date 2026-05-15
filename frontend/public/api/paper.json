@@ -1,32 +1,32 @@
 {
-  "updated_at": "2026-05-15T01:39:17.138981+00:00",
+  "updated_at": "2026-05-15T01:44:22.068484+00:00",
   "open_count": 2,
   "open_positions": [
     {
-      "id": "GBP/JPY-pdhl-1778809157",
+      "id": "GBP/JPY-pdhl-1778809462",
       "pair": "GBP/JPY",
       "method": "pdhl",
       "direction": "short",
       "entry_type": "pdhl_short_retest",
-      "entry_time": "2026-05-15T01:39:17.138981",
-      "entry_price": 211.8800048828125,
+      "entry_time": "2026-05-15T01:44:22.068484",
+      "entry_price": 211.8699951171875,
       "stop_loss": 213.0641126098633,
-      "take_profit": 210.6958971557617,
+      "take_profit": 210.6758776245117,
       "score": 85,
-      "last_check_time": "2026-05-15T01:39:17.138981"
+      "last_check_time": "2026-05-15T01:44:22.068484"
     },
     {
-      "id": "EUR/JPY-claude-1778809157",
+      "id": "EUR/JPY-claude-1778809462",
       "pair": "EUR/JPY",
       "method": "claude",
       "direction": "short",
       "entry_type": "claude_confluence_short",
-      "entry_time": "2026-05-15T01:39:17.138981",
-      "entry_price": 184.60699462890625,
-      "stop_loss": 184.7264883790004,
-      "take_profit": 184.36800712871798,
+      "entry_time": "2026-05-15T01:44:22.068484",
+      "entry_price": 184.59300231933594,
+      "stop_loss": 184.71292440543732,
+      "take_profit": 184.35315814713317,
       "score": 78,
-      "last_check_time": "2026-05-15T01:39:17.138981"
+      "last_check_time": "2026-05-15T01:44:22.068484"
     }
   ],
   "history_count": 0,
