@@ -1,7 +1,21 @@
 {
-  "updated_at": "2026-05-15T06:34:16.850307+00:00",
-  "open_count": 0,
-  "open_positions": [],
+  "updated_at": "2026-05-15T06:39:28.701430+00:00",
+  "open_count": 1,
+  "open_positions": [
+    {
+      "id": "EUR/JPY-claude-1778827168",
+      "pair": "EUR/JPY",
+      "method": "claude",
+      "direction": "short",
+      "entry_type": "claude_confluence_short",
+      "entry_time": "2026-05-15T06:39:28.701430",
+      "entry_price": 184.46299743652344,
+      "stop_loss": 184.58364388591053,
+      "take_profit": 184.22170453774925,
+      "score": 78,
+      "last_check_time": "2026-05-15T06:39:28.701430"
+    }
+  ],
   "history_count": 0,
   "recent_trades": [],
   "stats": {
