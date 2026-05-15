@@ -1,7 +1,34 @@
 {
-  "updated_at": "2026-05-15T00:47:34.074129+00:00",
-  "open_count": 0,
-  "open_positions": [],
+  "updated_at": "2026-05-15T00:52:48.877473+00:00",
+  "open_count": 2,
+  "open_positions": [
+    {
+      "id": "USD/JPY-pdhl-1778806368",
+      "pair": "USD/JPY",
+      "method": "pdhl",
+      "direction": "long",
+      "entry_type": "pdhl_long_retest",
+      "entry_time": "2026-05-15T00:52:48.877473",
+      "entry_price": 158.4720001220703,
+      "stop_loss": 157.94572415924074,
+      "take_profit": 158.99827608489989,
+      "score": 75,
+      "last_check_time": "2026-05-15T00:52:48.877473"
+    },
+    {
+      "id": "USD/CHF-pdhl-1778806368",
+      "pair": "USD/CHF",
+      "method": "pdhl",
+      "direction": "long",
+      "entry_type": "pdhl_long_retest",
+      "entry_time": "2026-05-15T00:52:48.877473",
+      "entry_price": 0.7849299907684326,
+      "stop_loss": 0.7822848309874535,
+      "take_profit": 0.7875751505494117,
+      "score": 75,
+      "last_check_time": "2026-05-15T00:52:48.877473"
+    }
+  ],
   "history_count": 0,
   "recent_trades": [],
   "stats": {
