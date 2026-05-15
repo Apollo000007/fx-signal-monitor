@@ -1,6 +1,9 @@
-# セッション引き継ぎサマリ (2026-05-15)
+# セッション引き継ぎサマリ (2026-05-15 更新)
 
 次の AI / 自分が続きから作業するための圧縮メモ。
+
+> **まず `../CLAUDE.md` (リポジトリ直下) を読むこと。** あちらが索引兼絶対
+> ルール集で、Claude Code は自動ロードする。本ファイルは詳細ダンプ。
 
 ## プロジェクト概要
 
@@ -86,4 +89,48 @@ GBP/JPY +3.7R = 4ペアで **+32.7R**。ZAR/JPY -34.7R が集計を破壊。
 ## 直近の git 状態
 
 main ブランチ最新コミット: claude/both を UI/通知/検証から削除
-(TRIPLE 内部計算は維持)。Vercel 自動デプロイ済み。
+(`refactor: remove claude/both as user-facing methods (TRIPLE logic intact)`)
+→ その後 `docs: session handoff summary` → 本コミットで CLAUDE.md 追加。
+Vercel 自動デプロイ済み。push 前は必ず `git pull --rebase origin main`。
+
+---
+
+## 触ってはいけない箇所 (Immutable / 不変条件)
+
+- `api.py::_build_triple_method(orz, pdhl, claude, ht)` — TRIPLE 合議ロジック。
+  **シグネチャ・計算とも変更禁止** (ユーザー明示指示)。
+- `strategy_claude.py::analyze_pair_claude` — TRIPLE が内部で呼ぶ。削除・改変禁止。
+- `api.py::_compute_signals` の `analyze_pair_claude` 呼び出し — 維持必須。
+- `~/Downloads/fx-signal-monitor-main` — 古い zip。読み書き禁止。作業は
+  `~/dev/fx-signal-monitor` のみ。
+- 手法配列の magic / index 対応 (`mt5/Experts/FXSignalEA/FXSignalEA.mq5`) —
+  `claude`/`both` の枠は `false` で残してありインデックスを崩さない。
+
+## 直近の意思決定ログ (Decision Log)
+
+- **なぜ claude/both を UI/通知から外したか**: ユーザー要望。ただし TRIPLE は
+  ORZ+PDHL+Claude の合議で成り立つため、`claude` の計算自体は API 内部で継続。
+  「ユーザーに見せる手法」と「内部部品」を分離した、という整理。
+- **なぜ DTP を追加したか**: ORZ/PDHL/TRIPLE が backtest で TRIPLE 以外 -EV。
+  再現性ある +EV を狙い、日足トレンド+押し目の DTP を 6 番目として実装。
+- **なぜ DTP をホワイトリスト運用にするか**: 全ペア集計は -EV だが
+  AUDJPY/NZDUSD/USDCHF/GBPJPY の 4 ペアだけで +32.7R。ZAR/JPY 等が集計を破壊。
+  → ペア選択が手法選択より重要、という結論。
+- **なぜライブ価格を諦めたか**: Finnhub 403 / Yahoo は Vercel IP block /
+  OANDA・Saxo は本人確認でユーザー離脱。5分 cron で運用する判断。
+- **なぜ CLAUDE.md 形式か (Skills でなく)**: Claude Code が
+  セッション開始時に自動ロードする標準。Skills は on-demand 手順呼び出し用で
+  永続文脈には不適。CLAUDE.md(索引) + 本ファイル(詳細) の二層構成を採用。
+
+## 新セッション / 他 AI への引き継ぎ手順
+
+- **新しい Claude Code セッション**: `~/dev/fx-signal-monitor` で起動すれば
+  `CLAUDE.md` が自動ロードされる。追加操作不要。本ファイルも続けて読む。
+- **他 AI (ChatGPT / Gemini / Cursor 等)**: 以下をそのまま貼って指示する。
+  > 「リポジトリ直下の `CLAUDE.md` と `docs/SESSION_HANDOFF.md` を全文読んで
+  >  から作業して。特に『絶対ルール』と『触ってはいけない箇所』を厳守。
+  >  TRIPLE のロジック (`api.py::_build_triple_method`,
+  >  `strategy_claude.py`) は絶対に変更しないこと。」
+- **次のステップ**: 2 週間 MT5 Demo (`UseTriple=true`+`UseDTP=true`,
+  `TradingPairs=AUDJPY,NZDUSD,USDCHF,GBPJPY`) → 規律スコア (S/A/B/C/D) と
+  損益を持参 → backtest と Live の乖離検証 → 戦略取捨選択。
