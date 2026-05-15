@@ -1,19 +1,19 @@
 {
-  "updated_at": "2026-05-15T07:10:25.104357+00:00",
+  "updated_at": "2026-05-15T07:16:09.176456+00:00",
   "open_count": 1,
   "open_positions": [
     {
-      "id": "EUR/GBP-orz-1778829025",
+      "id": "EUR/GBP-orz-1778829369",
       "pair": "EUR/GBP",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-05-15T07:10:25.104357",
-      "entry_price": 0.8714100122451782,
-      "stop_loss": 0.8638723982977867,
+      "entry_time": "2026-05-15T07:16:09.176456",
+      "entry_price": 0.871209979057312,
+      "stop_loss": 0.8638684056353568,
       "take_profit": 0.8735836310820146,
       "score": 77,
-      "last_check_time": "2026-05-15T07:10:25.104357"
+      "last_check_time": "2026-05-15T07:16:09.176456"
     }
   ],
   "history_count": 0,
