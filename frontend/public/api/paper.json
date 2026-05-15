@@ -1,19 +1,71 @@
 {
-  "updated_at": "2026-05-15T08:50:54.251056+00:00",
-  "open_count": 1,
+  "updated_at": "2026-05-15T08:56:00.442254+00:00",
+  "open_count": 5,
   "open_positions": [
     {
-      "id": "EUR/GBP-orz-1778835054",
+      "id": "EUR/GBP-orz-1778835360",
       "pair": "EUR/GBP",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-05-15T08:50:54.251056",
-      "entry_price": 0.8714799880981445,
+      "entry_time": "2026-05-15T08:56:00.442254",
+      "entry_price": 0.8715500235557556,
       "stop_loss": 0.8639486193656921,
       "take_profit": 0.8735836310820146,
       "score": 77,
-      "last_check_time": "2026-05-15T08:50:54.251056"
+      "last_check_time": "2026-05-15T08:56:00.442254"
+    },
+    {
+      "id": "USD/JPY-pdhl-1778835360",
+      "pair": "USD/JPY",
+      "method": "pdhl",
+      "direction": "long",
+      "entry_type": "pdhl_long_retest",
+      "entry_time": "2026-05-15T08:56:00.442254",
+      "entry_price": 158.5500030517578,
+      "stop_loss": 157.94572415924074,
+      "take_profit": 159.15428194427489,
+      "score": 87,
+      "last_check_time": "2026-05-15T08:56:00.442254"
+    },
+    {
+      "id": "GBP/USD-pdhl-1778835360",
+      "pair": "GBP/USD",
+      "method": "pdhl",
+      "direction": "short",
+      "entry_type": "pdhl_short_retest",
+      "entry_time": "2026-05-15T08:56:00.442254",
+      "entry_price": 1.3344542980194092,
+      "stop_loss": 1.3495304094552996,
+      "take_profit": 1.3193781865835188,
+      "score": 80,
+      "last_check_time": "2026-05-15T08:56:00.442254"
+    },
+    {
+      "id": "AUD/USD-pdhl-1778835360",
+      "pair": "AUD/USD",
+      "method": "pdhl",
+      "direction": "short",
+      "entry_type": "pdhl_short_retest",
+      "entry_time": "2026-05-15T08:56:00.442254",
+      "entry_price": 0.7157683968544006,
+      "stop_loss": 0.7231631719768048,
+      "take_profit": 0.7083736217319965,
+      "score": 77,
+      "last_check_time": "2026-05-15T08:56:00.442254"
+    },
+    {
+      "id": "CAD/JPY-pdhl-1778835360",
+      "pair": "CAD/JPY",
+      "method": "pdhl",
+      "direction": "long",
+      "entry_type": "pdhl_long_retest",
+      "entry_time": "2026-05-15T08:56:00.442254",
+      "entry_price": 115.3239974975586,
+      "stop_loss": 115.01921334075928,
+      "take_profit": 115.62878165435791,
+      "score": 75,
+      "last_check_time": "2026-05-15T08:56:00.442254"
     }
   ],
   "history_count": 0,
