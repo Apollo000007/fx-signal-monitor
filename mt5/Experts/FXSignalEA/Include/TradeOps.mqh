@@ -24,13 +24,14 @@ int MethodIndex(const string method)
    if(method == "both")   return 2;
    if(method == "claude") return 3;
    if(method == "triple") return 4;
+   if(method == "dtp")    return 5;
    return -1;
 }
 
 string MethodNameByIndex(const int i)
 {
-   string names[5] = {"orz", "pdhl", "both", "claude", "triple"};
-   if(i >= 0 && i < 5) return names[i];
+   string names[6] = {"orz", "pdhl", "both", "claude", "triple", "dtp"};
+   if(i >= 0 && i < 6) return names[i];
    return "";
 }
 

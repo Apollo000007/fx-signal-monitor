@@ -172,6 +172,7 @@ export function DetailDrawer({ signal, threshold, live, onClose }: Props) {
                   signal.method === "both" && "text-accent-purple border-accent-purple/40 bg-accent-purple/10",
                   signal.method === "claude" && "text-accent-green border-accent-green/40 bg-accent-green/10",
                   signal.method === "triple" && "text-accent-amber border-accent-amber/50 bg-accent-amber/15",
+                  signal.method === "dtp" && "text-accent-green border-accent-green/50 bg-accent-green/15",
                 )}
               >
                 {signal.method === "orz"
@@ -182,7 +183,9 @@ export function DetailDrawer({ signal, threshold, live, onClose }: Props) {
                       ? isEvaTheme ? "SYNC-03 合流" : "ORZ+PDHL 合意"
                       : signal.method === "claude"
                         ? isEvaTheme ? "AI-04 Claude" : "Claude Confluence"
-                        : isEvaTheme ? "FINAL-05 三手法" : "3 手法合意 🏆"}
+                        : signal.method === "dtp"
+                          ? isEvaTheme ? "UNIT-06 DTP" : "DTP 日足トレンド押し目"
+                          : isEvaTheme ? "FINAL-05 三手法" : "3 手法合意 🏆"}
               </span>
               <span className="text-xs text-text-faint font-mono hidden lg:inline">
                 {signal.symbol}
@@ -513,6 +516,8 @@ function EntryTypePill({ type }: { type?: string }) {
     claude_confluence_long: { label: "Claude Confluence (Long)", cls: "text-accent-green border-accent-green/40 bg-accent-green/10" },
     claude_confluence_short: { label: "Claude Confluence (Short)", cls: "text-accent-green border-accent-green/40 bg-accent-green/10" },
     triple_confluence: { label: isEvaTheme ? "3 手法合意 (最高勝率ゾーン)" : "3 手法合意 (最高勝率ゾーン) 🏆", cls: "text-accent-amber border-accent-amber/50 bg-accent-amber/10" },
+    dtp_long: { label: "DTP 日足トレンド押し目買い", cls: "text-accent-green border-accent-green/40 bg-accent-green/10" },
+    dtp_short: { label: "DTP 日足トレンド戻り売り", cls: "text-accent-green border-accent-green/40 bg-accent-green/10" },
     wait: { label: "待機", cls: "text-text-dim border-border/60 bg-bg-soft/40" },
   };
   const meta = map[type] ?? { label: type, cls: "text-text-dim border-border/60 bg-bg-soft" };

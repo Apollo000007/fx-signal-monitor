@@ -27,6 +27,7 @@ from data_fetcher import fetch_all, fetch_multi
 from indicators import ichimoku, sma
 from strategy import analyze_pair, analyze_timeframe
 from strategy_claude import analyze_pair_claude
+from strategy_dtp import analyze_pair_dtp
 from strategy_pdhl import analyze_pair_pdhl
 
 app = FastAPI(title="FX Signal API", version="1.0.0")
@@ -140,6 +141,22 @@ def _claude_to_method_dict(c: dict) -> dict:
         "warnings": list(c.get("warnings", [])),
         "has_trigger": bool(c.get("has_trigger", False)),
         "is_alert": bool(c.get("is_alert", False)),
+    }
+
+
+def _dtp_to_method_dict(d: dict) -> dict:
+    """strategy_dtp の戻り値 → method sub-dict (Signal.dtp)。"""
+    return {
+        "direction": d.get("direction", "none"),
+        "entry_type": d.get("entry_type", "none"),
+        "score": int(d.get("score", 0)),
+        "price": _clean_float(d.get("price")),
+        "stop_loss": _clean_float(d.get("stop_loss")),
+        "take_profit": _clean_float(d.get("take_profit")),
+        "reasons": list(d.get("reasons", [])),
+        "warnings": list(d.get("warnings", [])),
+        "has_trigger": bool(d.get("has_trigger", False)),
+        "is_alert": bool(d.get("is_alert", False)),
     }
 
 
@@ -353,11 +370,12 @@ def _build_triple_method(orz: dict, pdhl: dict, claude: dict, ht_dict: dict | No
     }
 
 
-def _signal_to_dict(sig, pdhl_dict: dict, claude_dict: dict, ht_analysis=None) -> dict:
-    """Pair 全体のレコードを組み立て。5 メソッド分の sub-dict を持つ。"""
+def _signal_to_dict(sig, pdhl_dict: dict, claude_dict: dict, dtp_dict: dict, ht_analysis=None) -> dict:
+    """Pair 全体のレコードを組み立て。6 メソッド分の sub-dict を持つ。"""
     orz = _orz_to_method_dict(sig)
     pdhl = _pdhl_to_method_dict(pdhl_dict)
     claude = _claude_to_method_dict(claude_dict)
+    dtp = _dtp_to_method_dict(dtp_dict)
     ht_dict = _tf_to_dict(ht_analysis)
     both = _build_both_method(orz, pdhl, ht_dict)
     triple = _build_triple_method(orz, pdhl, claude, ht_dict)
@@ -375,6 +393,7 @@ def _signal_to_dict(sig, pdhl_dict: dict, claude_dict: dict, ht_analysis=None) -
         "orz": orz,
         "pdhl": pdhl,
         "claude": claude,
+        "dtp": dtp,
         "both": both,
         "triple": triple,
     }
@@ -457,6 +476,24 @@ def _compute_signals():
                 "reasons": [f"Claude分析エラー: {e}"],
                 "warnings": [], "has_trigger": False, "is_alert": False,
             }
+        try:
+            dtp = analyze_pair_dtp(
+                label, symbol,
+                long_d.get(symbol),
+                mid_d.get(symbol),
+                short_d.get(symbol),
+                alert_threshold=config.ALERT_THRESHOLD,
+            )
+        except Exception as e:
+            print(f"[api] analyze_pair_dtp({label}) error: {e}")
+            dtp = {
+                "pair": label, "symbol": symbol,
+                "direction": "none", "entry_type": "none",
+                "score": 0, "price": 0.0,
+                "stop_loss": None, "take_profit": None,
+                "reasons": [f"DTP分析エラー: {e}"],
+                "warnings": [], "has_trigger": False, "is_alert": False,
+            }
         # 1H 分析 (合意判定の補助)
         ht_analysis = None
         df_h1 = h1_d.get(symbol)
@@ -465,7 +502,7 @@ def _compute_signals():
                 ht_analysis = analyze_timeframe(df_h1)
             except Exception as e:
                 print(f"[api] analyze_timeframe(h1, {label}) error: {e}")
-        results.append(_signal_to_dict(sig, pdhl, claude, ht_analysis))
+        results.append(_signal_to_dict(sig, pdhl, claude, dtp, ht_analysis))
     # キャッシュにTF生データも保存しておく（チャート用）
     now_ts = datetime.now(timezone.utc)
     for _, symbol in pairs_items:

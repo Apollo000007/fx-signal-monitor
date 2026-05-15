@@ -53,6 +53,7 @@ input bool    UsePDHL            = false;
 input bool    UseBoth            = false;
 input bool    UseClaude          = false;
 input bool    UseTriple          = true;    // デフォルトは triple のみ (backtest 60d で唯一の +EV)
+input bool    UseDTP             = false;   // Daily Trend Pullback (検証してから有効化推奨)
 
 input group "━━━ 4. リスク・資金管理 ━━━"
 input double  AccountRiskPercent = 0.5;     // 1 トレードあたりのリスク% (口座残高比)
@@ -79,8 +80,8 @@ string g_pairs_yfinance[];  // "USD/JPY" 形式
 string g_pairs_mt5[];       // ブローカー固有名 (USDJPY, USDJPY.m 等)
 long g_magic_min = 0, g_magic_max = 0;
 
-bool g_use_methods[5];      // {orz, pdhl, both, claude, triple}
-string g_method_names[5] = {"orz", "pdhl", "both", "claude", "triple"};
+bool g_use_methods[6];      // {orz, pdhl, both, claude, triple, dtp}
+string g_method_names[6] = {"orz", "pdhl", "both", "claude", "triple", "dtp"};
 
 //+------------------------------------------------------------------+
 int OnInit()
@@ -92,7 +93,7 @@ int OnInit()
       return INIT_PARAMETERS_INCORRECT;
    }
    g_magic_min = MagicBase;
-   g_magic_max = MagicBase + 14 * 10 + 4;  // 最大 pair_idx=14, method_idx=4
+   g_magic_max = MagicBase + 14 * 10 + 5;  // 最大 pair_idx=14, method_idx=5 (dtp)
 
    //--- ペア配列を構築
    ParseTradingPairs();
@@ -108,8 +109,9 @@ int OnInit()
    g_use_methods[2] = UseBoth;
    g_use_methods[3] = UseClaude;
    g_use_methods[4] = UseTriple;
+   g_use_methods[5] = UseDTP;
    bool any = false;
-   for(int i = 0; i < 5; i++) if(g_use_methods[i]) { any = true; break; }
+   for(int i = 0; i < 6; i++) if(g_use_methods[i]) { any = true; break; }
    if(!any)
    {
       Print("[FXSignalEA] 少なくとも 1 つの手法を有効化してください");
@@ -117,13 +119,14 @@ int OnInit()
    }
 
    //--- 初期メッセージ
-   PrintFormat("[FXSignalEA] init: %d pairs, methods=%s%s%s%s%s, risk=%.2f%%, dryrun=%s, trading=%s",
+   PrintFormat("[FXSignalEA] init: %d pairs, methods=%s%s%s%s%s%s, risk=%.2f%%, dryrun=%s, trading=%s",
                g_pairs_count,
                UseORZ ? "ORZ " : "",
                UsePDHL ? "PDHL " : "",
                UseBoth ? "BOTH " : "",
                UseClaude ? "CLAUDE " : "",
                UseTriple ? "TRIPLE " : "",
+               UseDTP ? "DTP " : "",
                AccountRiskPercent,
                DryRun ? "ON" : "OFF",
                EnableTrading ? "ON" : "OFF");
@@ -294,7 +297,7 @@ void EvaluatePair(const int pair_index, int current_positions_unused)
    }
 
    //--- 各 method を評価
-   for(int mi = 0; mi < 5; mi++)
+   for(int mi = 0; mi < 6; mi++)
    {
       if(!g_use_methods[mi]) continue;
       string method = g_method_names[mi];

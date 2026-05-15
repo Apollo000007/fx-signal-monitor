@@ -1,6 +1,6 @@
 "use client";
 
-import { Flame, Gem, Infinity as InfinityIcon, Eye, Sun } from "lucide-react";
+import { Flame, Gem, Infinity as InfinityIcon, Eye, Sun, TrendingUp } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useSignalsStore } from "@/store/signals";
 import type { Method } from "@/lib/types";
@@ -56,6 +56,15 @@ const OLYMPUS_TABS: TabDef[] = [
       "from-accent-gold/80 via-accent-amber/50 to-accent-violet/60 border-accent-gold/70 text-accent-gold",
     rank: "ultimate",
   },
+  {
+    key: "dtp",
+    title: "Nike · DTP 押し目",
+    subtitle: "日足トレンド押し目 — 勝利の女神",
+    icon: <TrendingUp className="h-4 w-4" />,
+    accent:
+      "from-accent-green/70 via-accent-cyan/40 to-accent-gold/50 border-accent-green/60 text-accent-green",
+    rank: "ultimate",
+  },
 ];
 
 const EVA_TABS: TabDef[] = [
@@ -97,6 +106,15 @@ const EVA_TABS: TabDef[] = [
       "from-accent-red/55 via-bg-card to-text/20 border-accent-red/80 text-accent-red",
     rank: "ultimate",
   },
+  {
+    key: "dtp",
+    title: "UNIT-06 · DTP",
+    subtitle: "DAILY TREND PULLBACK",
+    icon: <TrendingUp className="h-4 w-4" />,
+    accent:
+      "from-accent-green/40 to-bg-card border-accent-green/65 text-accent-green",
+    rank: "ultimate",
+  },
 ];
 
 export function MethodTabs() {
@@ -110,6 +128,7 @@ export function MethodTabs() {
     both: 0,
     claude: 0,
     triple: 0,
+    dtp: 0,
   };
   for (const r of records) {
     if (r.orz.is_alert) alertCounts.orz += 1;
@@ -117,6 +136,7 @@ export function MethodTabs() {
     if (r.both.is_alert) alertCounts.both += 1;
     if (r.claude?.is_alert) alertCounts.claude += 1;
     if (r.triple?.is_alert) alertCounts.triple += 1;
+    if (r.dtp?.is_alert) alertCounts.dtp += 1;
   }
 
   return (

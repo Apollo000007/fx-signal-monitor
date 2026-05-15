@@ -10,6 +10,8 @@ export type EntryType =
   | "claude_confluence_long"
   | "claude_confluence_short"
   | "triple_confluence"
+  | "dtp_long"
+  | "dtp_short"
   | "none";
 export type Regime = "trend_up" | "trend_down" | "range" | "unclear";
 
@@ -19,8 +21,9 @@ export type Regime = "trend_up" | "trend_down" | "range" | "unclear";
  *  - both   : ORZ + PDHL の合意
  *  - claude : 新手法 2 (Claude Confluence)
  *  - triple : ORZ + PDHL + Claude の 3 手法合意
+ *  - dtp    : Daily Trend Pullback (日足トレンド押し目、エビデンスベース)
  */
-export type Method = "orz" | "pdhl" | "both" | "claude" | "triple";
+export type Method = "orz" | "pdhl" | "both" | "claude" | "triple" | "dtp";
 
 export interface TimeframeAnalysis {
   direction: string;
@@ -81,6 +84,7 @@ export interface PairRecord {
   both: MethodSignal;
   claude: MethodSignal;
   triple: MethodSignal;
+  dtp: MethodSignal;
 }
 
 /** UI から見る view-model: Pair レコード + 選択された手法を projection した形。 */

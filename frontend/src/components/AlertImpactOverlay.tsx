@@ -29,6 +29,8 @@ function methodLabel(method?: string) {
       return "AI-04 Claude";
     case "triple":
       return "FINAL-05 三手法";
+    case "dtp":
+      return "UNIT-06 DTP";
     default:
       return method ?? "LIVE LEVEL";
   }

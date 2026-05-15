@@ -51,12 +51,13 @@ export default function DashboardPage() {
 
   // --- Global keyboard shortcuts ------------------------------------------
   useEffect(() => {
-    const methodKeys: Record<string, "orz" | "pdhl" | "both" | "claude" | "triple"> = {
+    const methodKeys: Record<string, "orz" | "pdhl" | "both" | "claude" | "triple" | "dtp"> = {
       "1": "orz",
       "2": "pdhl",
       "3": "both",
       "4": "claude",
       "5": "triple",
+      "6": "dtp",
     };
     const onKey = (e: KeyboardEvent) => {
       const target = e.target as HTMLElement | null;

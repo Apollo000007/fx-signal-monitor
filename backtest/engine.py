@@ -32,9 +32,10 @@ if str(ROOT) not in sys.path:
 from strategy import analyze_pair  # ORZ
 from strategy_pdhl import analyze_pair_pdhl
 from strategy_claude import analyze_pair_claude
+from strategy_dtp import analyze_pair_dtp
 
 
-METHOD_NAMES = ("orz", "pdhl", "both", "claude", "triple")
+METHOD_NAMES = ("orz", "pdhl", "both", "claude", "triple", "dtp")
 
 
 def is_jpy_cross(pair: str) -> bool:
@@ -142,6 +143,16 @@ def _get_signal_dict(
         try:
             d = analyze_pair_claude(pair, symbol, df_long_sub, df_mid_sub, df_short_sub,
                                      alert_threshold=threshold)
+        except Exception:
+            return None
+        if d["direction"] == "none":
+            return None
+        return d
+
+    if method == "dtp":
+        try:
+            d = analyze_pair_dtp(pair, symbol, df_long_sub, df_mid_sub, df_short_sub,
+                                  alert_threshold=threshold)
         except Exception:
             return None
         if d["direction"] == "none":

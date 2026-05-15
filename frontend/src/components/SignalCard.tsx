@@ -344,6 +344,8 @@ function EntryTypeBadge({ type }: { type?: string }) {
     claude_confluence_long: { label: "Claude 合流 (Long)", cls: "text-accent-green border-accent-green/40 bg-accent-green/10" },
     claude_confluence_short: { label: "Claude 合流 (Short)", cls: "text-accent-green border-accent-green/40 bg-accent-green/10" },
     triple_confluence: { label: isEvaTheme ? "3 手法合意" : "3 手法合意 🏆", cls: "text-accent-amber border-accent-amber/50 bg-accent-amber/10" },
+    dtp_long: { label: "DTP 押し目買い", cls: "text-accent-green border-accent-green/40 bg-accent-green/10" },
+    dtp_short: { label: "DTP 戻り売り", cls: "text-accent-green border-accent-green/40 bg-accent-green/10" },
     wait: { label: "待機", cls: "text-text-dim border-border/60 bg-bg-soft/40" },
   };
   const meta = map[type] ?? { label: type, cls: "text-text-dim border-border/60 bg-bg-soft" };
