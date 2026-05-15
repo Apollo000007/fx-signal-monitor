@@ -1,32 +1,32 @@
 {
-  "updated_at": "2026-05-15T06:03:19.497619+00:00",
+  "updated_at": "2026-05-15T06:08:28.806722+00:00",
   "open_count": 2,
   "open_positions": [
     {
-      "id": "EUR/GBP-orz-1778824999",
-      "pair": "EUR/GBP",
-      "method": "orz",
-      "direction": "long",
-      "entry_type": "pullback",
-      "entry_time": "2026-05-15T06:03:19.497619",
-      "entry_price": 0.871940016746521,
-      "stop_loss": 0.8638829771876335,
-      "take_profit": 0.8735836310820146,
-      "score": 77,
-      "last_check_time": "2026-05-15T06:03:19.497619"
-    },
-    {
-      "id": "CAD/JPY-pdhl-1778824999",
+      "id": "CAD/JPY-pdhl-1778825308",
       "pair": "CAD/JPY",
       "method": "pdhl",
       "direction": "long",
       "entry_type": "pdhl_long_retest",
-      "entry_time": "2026-05-15T06:03:19.497619",
-      "entry_price": 115.36799621582031,
+      "entry_time": "2026-05-15T06:08:28.806722",
+      "entry_price": 115.4209976196289,
       "stop_loss": 115.06813581848145,
-      "take_profit": 115.66785661315917,
-      "score": 75,
-      "last_check_time": "2026-05-15T06:03:19.497619"
+      "take_profit": 115.77385942077636,
+      "score": 80,
+      "last_check_time": "2026-05-15T06:08:28.806722"
+    },
+    {
+      "id": "CAD/JPY-claude-1778825308",
+      "pair": "CAD/JPY",
+      "method": "claude",
+      "direction": "long",
+      "entry_type": "claude_confluence_long",
+      "entry_time": "2026-05-15T06:08:28.806722",
+      "entry_price": 115.4209976196289,
+      "stop_loss": 115.32758368512266,
+      "take_profit": 115.60782548864138,
+      "score": 83,
+      "last_check_time": "2026-05-15T06:08:28.806722"
     }
   ],
   "history_count": 0,
