@@ -1,7 +1,21 @@
 {
-  "updated_at": "2026-05-17T23:07:36.076098+00:00",
-  "open_count": 0,
-  "open_positions": [],
+  "updated_at": "2026-05-17T23:12:44.065082+00:00",
+  "open_count": 1,
+  "open_positions": [
+    {
+      "id": "CAD/JPY-pdhl-1779059564",
+      "pair": "CAD/JPY",
+      "method": "pdhl",
+      "direction": "long",
+      "entry_type": "pdhl_long_retest",
+      "entry_time": "2026-05-17T23:12:44.065082",
+      "entry_price": 115.49500274658203,
+      "stop_loss": 115.1959497909546,
+      "take_profit": 115.79405570220946,
+      "score": 93,
+      "last_check_time": "2026-05-17T23:12:44.065082"
+    }
+  ],
   "history_count": 0,
   "recent_trades": [],
   "stats": {
