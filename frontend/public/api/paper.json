@@ -1,19 +1,58 @@
 {
-  "updated_at": "2026-05-18T05:13:27.703500+00:00",
-  "open_count": 1,
+  "updated_at": "2026-05-18T05:18:38.105111+00:00",
+  "open_count": 4,
   "open_positions": [
     {
-      "id": "USD/CAD-orz-1779081207",
+      "id": "USD/CAD-orz-1779081518",
       "pair": "USD/CAD",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-05-18T05:13:27.703500",
-      "entry_price": 1.375309944152832,
-      "stop_loss": 1.3663214863872528,
+      "entry_time": "2026-05-18T05:18:38.105111",
+      "entry_price": 1.375480055809021,
+      "stop_loss": 1.3663248818159104,
       "take_profit": 1.388136665026347,
       "score": 82,
-      "last_check_time": "2026-05-18T05:13:27.703500"
+      "last_check_time": "2026-05-18T05:18:38.105111"
+    },
+    {
+      "id": "AUD/USD-pdhl-1779081518",
+      "pair": "AUD/USD",
+      "method": "pdhl",
+      "direction": "short",
+      "entry_type": "pdhl_short_retest",
+      "entry_time": "2026-05-18T05:18:38.105111",
+      "entry_price": 0.7130124568939209,
+      "stop_loss": 0.7151711532473565,
+      "take_profit": 0.7108537605404853,
+      "score": 80,
+      "last_check_time": "2026-05-18T05:18:38.105111"
+    },
+    {
+      "id": "NZD/USD-pdhl-1779081518",
+      "pair": "NZD/USD",
+      "method": "pdhl",
+      "direction": "short",
+      "entry_type": "pdhl_short_retest",
+      "entry_time": "2026-05-18T05:18:38.105111",
+      "entry_price": 0.5835326910018921,
+      "stop_loss": 0.5852275893688202,
+      "take_profit": 0.5818377926349639,
+      "score": 80,
+      "last_check_time": "2026-05-18T05:18:38.105111"
+    },
+    {
+      "id": "AUD/JPY-pdhl-1779081518",
+      "pair": "AUD/JPY",
+      "method": "pdhl",
+      "direction": "short",
+      "entry_type": "pdhl_short_retest",
+      "entry_time": "2026-05-18T05:18:38.105111",
+      "entry_price": 113.30799865722656,
+      "stop_loss": 113.6752547492981,
+      "take_profit": 112.94074256515502,
+      "score": 85,
+      "last_check_time": "2026-05-18T05:18:38.105111"
     }
   ],
   "history_count": 0,
