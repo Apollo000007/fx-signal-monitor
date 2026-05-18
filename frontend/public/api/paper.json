@@ -1,60 +1,7 @@
 {
-  "updated_at": "2026-05-18T15:09:52.772031+00:00",
-  "open_count": 4,
-  "open_positions": [
-    {
-      "id": "USD/CAD-orz-1779116992",
-      "pair": "USD/CAD",
-      "method": "orz",
-      "direction": "long",
-      "entry_type": "pullback",
-      "entry_time": "2026-05-18T15:09:52.772031",
-      "entry_price": 1.374899983406067,
-      "stop_loss": 1.3668675936174393,
-      "take_profit": 1.3752525001764297,
-      "score": 82,
-      "last_check_time": "2026-05-18T15:09:52.772031"
-    },
-    {
-      "id": "USD/JPY-pdhl-1779116992",
-      "pair": "USD/JPY",
-      "method": "pdhl",
-      "direction": "long",
-      "entry_type": "pdhl_long_retest",
-      "entry_time": "2026-05-18T15:09:52.772031",
-      "entry_price": 158.9290008544922,
-      "stop_loss": 158.3980475845337,
-      "take_profit": 159.45995412445066,
-      "score": 77,
-      "last_check_time": "2026-05-18T15:09:52.772031"
-    },
-    {
-      "id": "AUD/JPY-pdhl-1779116992",
-      "pair": "AUD/JPY",
-      "method": "pdhl",
-      "direction": "short",
-      "entry_type": "pdhl_short_retest",
-      "entry_time": "2026-05-18T15:09:52.772031",
-      "entry_price": 113.62799835205078,
-      "stop_loss": 114.07385437774658,
-      "take_profit": 113.11799621582031,
-      "score": 80,
-      "last_check_time": "2026-05-18T15:09:52.772031"
-    },
-    {
-      "id": "ZAR/JPY-pdhl-1779116992",
-      "pair": "ZAR/JPY",
-      "method": "pdhl",
-      "direction": "short",
-      "entry_type": "pdhl_short_retest",
-      "entry_time": "2026-05-18T15:09:52.772031",
-      "entry_price": 9.527999877929688,
-      "stop_loss": 9.593368973731994,
-      "take_profit": 9.442999839782715,
-      "score": 77,
-      "last_check_time": "2026-05-18T15:09:52.772031"
-    }
-  ],
+  "updated_at": "2026-05-18T15:15:08.690161+00:00",
+  "open_count": 0,
+  "open_positions": [],
   "history_count": 0,
   "recent_trades": [],
   "stats": {
