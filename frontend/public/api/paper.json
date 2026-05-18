@@ -1,19 +1,45 @@
 {
-  "updated_at": "2026-05-18T20:16:29.682015+00:00",
-  "open_count": 1,
+  "updated_at": "2026-05-18T20:21:35.301400+00:00",
+  "open_count": 3,
   "open_positions": [
     {
-      "id": "EUR/GBP-orz-1779135389",
+      "id": "GBP/USD-orz-1779135695",
+      "pair": "GBP/USD",
+      "method": "orz",
+      "direction": "short",
+      "entry_type": "pullback",
+      "entry_time": "2026-05-18T20:21:35.301400",
+      "entry_price": 1.3439234495162964,
+      "stop_loss": 1.356033212184906,
+      "take_profit": 1.3386840025583904,
+      "score": 78,
+      "last_check_time": "2026-05-18T20:21:35.301400"
+    },
+    {
+      "id": "EUR/GBP-orz-1779135695",
       "pair": "EUR/GBP",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-05-18T20:16:29.682015",
-      "entry_price": 0.8675199747085571,
+      "entry_time": "2026-05-18T20:21:35.301400",
+      "entry_price": 0.867609977722168,
       "stop_loss": 0.8639486193656921,
       "take_profit": 0.8680066665013632,
       "score": 75,
-      "last_check_time": "2026-05-18T20:16:29.682015"
+      "last_check_time": "2026-05-18T20:21:35.301400"
+    },
+    {
+      "id": "EUR/JPY-pdhl-1779135695",
+      "pair": "EUR/JPY",
+      "method": "pdhl",
+      "direction": "long",
+      "entry_type": "pdhl_long_retest",
+      "entry_time": "2026-05-18T20:21:35.301400",
+      "entry_price": 185.18299865722656,
+      "stop_loss": 184.45888844299319,
+      "take_profit": 185.90710887145994,
+      "score": 85,
+      "last_check_time": "2026-05-18T20:21:35.301400"
     }
   ],
   "history_count": 0,
