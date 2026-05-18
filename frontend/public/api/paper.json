@@ -1,71 +1,58 @@
 {
-  "updated_at": "2026-05-18T14:38:33.872095+00:00",
-  "open_count": 5,
+  "updated_at": "2026-05-18T14:43:47.490430+00:00",
+  "open_count": 4,
   "open_positions": [
     {
-      "id": "USD/CAD-orz-1779115113",
+      "id": "USD/CAD-orz-1779115427",
       "pair": "USD/CAD",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-05-18T14:38:33.872095",
-      "entry_price": 1.3741999864578247,
-      "stop_loss": 1.3668536216783522,
+      "entry_time": "2026-05-18T14:43:47.490430",
+      "entry_price": 1.3744699954986572,
+      "stop_loss": 1.3668590110588075,
       "take_profit": 1.3752525001764297,
       "score": 82,
-      "last_check_time": "2026-05-18T14:38:33.872095"
+      "last_check_time": "2026-05-18T14:43:47.490430"
     },
     {
-      "id": "GBP/JPY-orz-1779115113",
+      "id": "GBP/JPY-orz-1779115427",
       "pair": "GBP/JPY",
       "method": "orz",
       "direction": "short",
       "entry_type": "pullback",
-      "entry_time": "2026-05-18T14:38:33.872095",
-      "entry_price": 212.81100463867188,
+      "entry_time": "2026-05-18T14:43:47.490430",
+      "entry_price": 212.7969970703125,
       "stop_loss": 214.13340563964843,
       "take_profit": 210.6006647745768,
       "score": 75,
-      "last_check_time": "2026-05-18T14:38:33.872095"
+      "last_check_time": "2026-05-18T14:43:47.490430"
     },
     {
-      "id": "EUR/GBP-orz-1779115113",
+      "id": "EUR/GBP-orz-1779115427",
       "pair": "EUR/GBP",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-05-18T14:38:33.872095",
-      "entry_price": 0.8694499731063843,
+      "entry_time": "2026-05-18T14:43:47.490430",
+      "entry_price": 0.8693600296974182,
       "stop_loss": 0.8639486193656921,
       "take_profit": 0.8735836310820146,
       "score": 75,
-      "last_check_time": "2026-05-18T14:38:33.872095"
+      "last_check_time": "2026-05-18T14:43:47.490430"
     },
     {
-      "id": "AUD/USD-pdhl-1779115113",
+      "id": "AUD/USD-pdhl-1779115427",
       "pair": "AUD/USD",
       "method": "pdhl",
       "direction": "short",
       "entry_type": "pdhl_short_retest",
-      "entry_time": "2026-05-18T14:38:33.872095",
-      "entry_price": 0.7161784768104553,
+      "entry_time": "2026-05-18T14:43:47.490430",
+      "entry_price": 0.7162297964096069,
       "stop_loss": 0.7194167135953904,
       "take_profit": 0.7123014330863953,
       "score": 77,
-      "last_check_time": "2026-05-18T14:38:33.872095"
-    },
-    {
-      "id": "EUR/JPY-pdhl-1779115113",
-      "pair": "EUR/JPY",
-      "method": "pdhl",
-      "direction": "long",
-      "entry_type": "pdhl_long_retest",
-      "entry_time": "2026-05-18T14:38:33.872095",
-      "entry_price": 185.03799438476562,
-      "stop_loss": 184.45888844299319,
-      "take_profit": 185.61710032653806,
-      "score": 80,
-      "last_check_time": "2026-05-18T14:38:33.872095"
+      "last_check_time": "2026-05-18T14:43:47.490430"
     }
   ],
   "history_count": 0,
