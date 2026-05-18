@@ -1,45 +1,45 @@
 {
-  "updated_at": "2026-05-18T20:21:35.301400+00:00",
+  "updated_at": "2026-05-18T20:26:42.590701+00:00",
   "open_count": 3,
   "open_positions": [
     {
-      "id": "GBP/USD-orz-1779135695",
+      "id": "GBP/USD-orz-1779136002",
       "pair": "GBP/USD",
       "method": "orz",
       "direction": "short",
       "entry_type": "pullback",
-      "entry_time": "2026-05-18T20:21:35.301400",
-      "entry_price": 1.3439234495162964,
+      "entry_time": "2026-05-18T20:26:42.590701",
+      "entry_price": 1.3436344861984253,
       "stop_loss": 1.356033212184906,
       "take_profit": 1.3386840025583904,
       "score": 78,
-      "last_check_time": "2026-05-18T20:21:35.301400"
+      "last_check_time": "2026-05-18T20:26:42.590701"
     },
     {
-      "id": "EUR/GBP-orz-1779135695",
+      "id": "EUR/GBP-orz-1779136002",
       "pair": "EUR/GBP",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-05-18T20:21:35.301400",
-      "entry_price": 0.867609977722168,
+      "entry_time": "2026-05-18T20:26:42.590701",
+      "entry_price": 0.8676900267601013,
       "stop_loss": 0.8639486193656921,
       "take_profit": 0.8680066665013632,
       "score": 75,
-      "last_check_time": "2026-05-18T20:21:35.301400"
+      "last_check_time": "2026-05-18T20:26:42.590701"
     },
     {
-      "id": "EUR/JPY-pdhl-1779135695",
+      "id": "EUR/JPY-pdhl-1779136002",
       "pair": "EUR/JPY",
       "method": "pdhl",
       "direction": "long",
       "entry_type": "pdhl_long_retest",
-      "entry_time": "2026-05-18T20:21:35.301400",
-      "entry_price": 185.18299865722656,
+      "entry_time": "2026-05-18T20:26:42.590701",
+      "entry_price": 185.1719970703125,
       "stop_loss": 184.45888844299319,
-      "take_profit": 185.90710887145994,
+      "take_profit": 185.88510569763181,
       "score": 85,
-      "last_check_time": "2026-05-18T20:21:35.301400"
+      "last_check_time": "2026-05-18T20:26:42.590701"
     }
   ],
   "history_count": 0,
