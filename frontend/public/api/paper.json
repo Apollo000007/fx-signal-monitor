@@ -1,58 +1,32 @@
 {
-  "updated_at": "2026-05-18T06:51:18.727910+00:00",
-  "open_count": 4,
+  "updated_at": "2026-05-18T06:56:32.592193+00:00",
+  "open_count": 2,
   "open_positions": [
     {
-      "id": "EUR/GBP-orz-1779087078",
-      "pair": "EUR/GBP",
-      "method": "orz",
-      "direction": "long",
-      "entry_type": "pullback",
-      "entry_time": "2026-05-18T06:51:18.727910",
-      "entry_price": 0.8716099858283997,
-      "stop_loss": 0.8639486193656921,
-      "take_profit": 0.8735836310820146,
-      "score": 82,
-      "last_check_time": "2026-05-18T06:51:18.727910"
-    },
-    {
-      "id": "EUR/JPY-pdhl-1779087078",
-      "pair": "EUR/JPY",
-      "method": "pdhl",
-      "direction": "long",
-      "entry_type": "pdhl_long_retest",
-      "entry_time": "2026-05-18T06:51:18.727910",
-      "entry_price": 184.88299560546875,
-      "stop_loss": 184.38500955963136,
-      "take_profit": 185.38098165130614,
-      "score": 85,
-      "last_check_time": "2026-05-18T06:51:18.727910"
-    },
-    {
-      "id": "CAD/JPY-pdhl-1779087078",
+      "id": "CAD/JPY-pdhl-1779087392",
       "pair": "CAD/JPY",
       "method": "pdhl",
       "direction": "long",
       "entry_type": "pdhl_long_retest",
-      "entry_time": "2026-05-18T06:51:18.727910",
-      "entry_price": 115.61399841308594,
+      "entry_time": "2026-05-18T06:56:32.592193",
+      "entry_price": 115.61000061035156,
       "stop_loss": 115.2498620262146,
-      "take_profit": 115.97813479995727,
+      "take_profit": 115.97013919448852,
       "score": 85,
-      "last_check_time": "2026-05-18T06:51:18.727910"
+      "last_check_time": "2026-05-18T06:56:32.592193"
     },
     {
-      "id": "CHF/JPY-pdhl-1779087078",
+      "id": "CHF/JPY-pdhl-1779087392",
       "pair": "CHF/JPY",
       "method": "pdhl",
       "direction": "long",
       "entry_type": "pdhl_long_retest",
-      "entry_time": "2026-05-18T06:51:18.727910",
-      "entry_price": 202.22000122070312,
+      "entry_time": "2026-05-18T06:56:32.592193",
+      "entry_price": 202.26400756835938,
       "stop_loss": 201.63009915924073,
-      "take_profit": 202.80990328216552,
+      "take_profit": 202.89791597747802,
       "score": 85,
-      "last_check_time": "2026-05-18T06:51:18.727910"
+      "last_check_time": "2026-05-18T06:56:32.592193"
     }
   ],
   "history_count": 0,
