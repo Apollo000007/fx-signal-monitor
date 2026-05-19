@@ -1,71 +1,32 @@
 {
-  "updated_at": "2026-05-19T11:46:22.724285+00:00",
-  "open_count": 5,
+  "updated_at": "2026-05-19T11:51:30.354033+00:00",
+  "open_count": 2,
   "open_positions": [
     {
-      "id": "CHF/JPY-orz-1779191182",
-      "pair": "CHF/JPY",
-      "method": "orz",
-      "direction": "long",
-      "entry_type": "pullback",
-      "entry_time": "2026-05-19T11:46:22.724285",
-      "entry_price": 202.11000061035156,
-      "stop_loss": 201.05807653808594,
-      "take_profit": 203.84775161743164,
-      "score": 88,
-      "last_check_time": "2026-05-19T11:46:22.724285"
-    },
-    {
-      "id": "CHF/JPY-dtp-1779191182",
-      "pair": "CHF/JPY",
-      "method": "dtp",
-      "direction": "long",
-      "entry_type": "dtp_long",
-      "entry_time": "2026-05-19T11:46:22.724285",
-      "entry_price": 202.11199951171875,
-      "stop_loss": 201.77202502441406,
-      "take_profit": 203.1319229736328,
-      "score": 100,
-      "last_check_time": "2026-05-19T11:46:22.724285"
-    },
-    {
-      "id": "USD/CAD-orz-1779191182",
+      "id": "USD/CAD-orz-1779191490",
       "pair": "USD/CAD",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-05-19T11:46:22.724285",
-      "entry_price": 1.3744100332260132,
-      "stop_loss": 1.3679594059562683,
+      "entry_time": "2026-05-19T11:51:30.354033",
+      "entry_price": 1.3741999864578247,
+      "stop_loss": 1.3679552134227753,
       "take_profit": 1.3752525001764297,
       "score": 78,
-      "last_check_time": "2026-05-19T11:46:22.724285"
+      "last_check_time": "2026-05-19T11:51:30.354033"
     },
     {
-      "id": "USD/CAD-dtp-1779191182",
+      "id": "USD/CAD-dtp-1779191490",
       "pair": "USD/CAD",
       "method": "dtp",
       "direction": "long",
       "entry_type": "dtp_long",
-      "entry_time": "2026-05-19T11:46:22.724285",
-      "entry_price": 1.374459981918335,
+      "entry_time": "2026-05-19T11:51:30.354033",
+      "entry_price": 1.3745499849319458,
       "stop_loss": 1.3741244637966157,
-      "take_profit": 1.3754665362834928,
+      "take_profit": 1.3758265483379362,
       "score": 100,
-      "last_check_time": "2026-05-19T11:46:22.724285"
-    },
-    {
-      "id": "USD/JPY-dtp-1779191182",
-      "pair": "USD/JPY",
-      "method": "dtp",
-      "direction": "long",
-      "entry_type": "dtp_long",
-      "entry_time": "2026-05-19T11:46:22.724285",
-      "entry_price": 159.10499572753906,
-      "stop_loss": 158.88895614624025,
-      "take_profit": 159.7531144714355,
-      "score": 100,
-      "last_check_time": "2026-05-19T11:46:22.724285"
+      "last_check_time": "2026-05-19T11:51:30.354033"
     }
   ],
   "history_count": 0,
