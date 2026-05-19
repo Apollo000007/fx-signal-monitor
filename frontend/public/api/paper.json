@@ -1,45 +1,58 @@
 {
-  "updated_at": "2026-05-19T17:04:18.551426+00:00",
-  "open_count": 3,
+  "updated_at": "2026-05-19T17:09:26.000167+00:00",
+  "open_count": 4,
   "open_positions": [
     {
-      "id": "USD/CAD-orz-1779210258",
+      "id": "USD/JPY-orz-1779210566",
+      "pair": "USD/JPY",
+      "method": "orz",
+      "direction": "long",
+      "entry_type": "pullback",
+      "entry_time": "2026-05-19T17:09:26.000167",
+      "entry_price": 158.8350067138672,
+      "stop_loss": 157.6259964276123,
+      "take_profit": 159.71287536621094,
+      "score": 78,
+      "last_check_time": "2026-05-19T17:09:26.000167"
+    },
+    {
+      "id": "USD/CAD-orz-1779210566",
       "pair": "USD/CAD",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-05-19T17:04:18.551426",
-      "entry_price": 1.374899983406067,
-      "stop_loss": 1.3684011186265945,
+      "entry_time": "2026-05-19T17:09:26.000167",
+      "entry_price": 1.3749300241470337,
+      "stop_loss": 1.3684017182397843,
       "take_profit": 1.3752525001764297,
       "score": 78,
-      "last_check_time": "2026-05-19T17:04:18.551426"
+      "last_check_time": "2026-05-19T17:09:26.000167"
     },
     {
-      "id": "USD/CAD-dtp-1779210258",
+      "id": "USD/CAD-dtp-1779210566",
       "pair": "USD/CAD",
       "method": "dtp",
       "direction": "long",
       "entry_type": "dtp_long",
-      "entry_time": "2026-05-19T17:04:18.551426",
-      "entry_price": 1.3749099969863892,
+      "entry_time": "2026-05-19T17:09:26.000167",
+      "entry_price": 1.3749799728393555,
       "stop_loss": 1.3740245472192765,
-      "take_profit": 1.3775663462877272,
+      "take_profit": 1.3778462496995925,
       "score": 100,
-      "last_check_time": "2026-05-19T17:04:18.551426"
+      "last_check_time": "2026-05-19T17:09:26.000167"
     },
     {
-      "id": "GBP/USD-pdhl-1779210258",
+      "id": "GBP/USD-pdhl-1779210566",
       "pair": "GBP/USD",
       "method": "pdhl",
       "direction": "long",
       "entry_type": "pdhl_long_retest",
-      "entry_time": "2026-05-19T17:04:18.551426",
-      "entry_price": 1.3406263589859009,
+      "entry_time": "2026-05-19T17:09:26.000167",
+      "entry_price": 1.3407701253890991,
       "stop_loss": 1.336876860320568,
-      "take_profit": 1.3443758576512337,
+      "take_profit": 1.3446633904576302,
       "score": 80,
-      "last_check_time": "2026-05-19T17:04:18.551426"
+      "last_check_time": "2026-05-19T17:09:26.000167"
     }
   ],
   "history_count": 0,
