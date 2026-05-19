@@ -1,58 +1,45 @@
 {
-  "updated_at": "2026-05-19T07:32:54.880314+00:00",
-  "open_count": 4,
+  "updated_at": "2026-05-19T07:38:08.690816+00:00",
+  "open_count": 3,
   "open_positions": [
     {
-      "id": "EUR/GBP-orz-1779175974",
+      "id": "EUR/GBP-orz-1779176288",
       "pair": "EUR/GBP",
       "method": "orz",
       "direction": "short",
       "entry_type": "range_reversal",
-      "entry_time": "2026-05-19T07:32:54.880314",
-      "entry_price": 0.8681899905204773,
+      "entry_time": "2026-05-19T07:38:08.690816",
+      "entry_price": 0.868120014667511,
       "stop_loss": 0.8705561346530915,
       "take_profit": 0.864424542947249,
       "score": 79,
-      "last_check_time": "2026-05-19T07:32:54.880314"
+      "last_check_time": "2026-05-19T07:38:08.690816"
     },
     {
-      "id": "USD/CAD-orz-1779175974",
+      "id": "USD/CAD-orz-1779176288",
       "pair": "USD/CAD",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-05-19T07:32:54.880314",
-      "entry_price": 1.3746700286865234,
-      "stop_loss": 1.3677254759120943,
+      "entry_time": "2026-05-19T07:38:08.690816",
+      "entry_price": 1.374650001525879,
+      "stop_loss": 1.3677250761699675,
       "take_profit": 1.3752525001764297,
       "score": 78,
-      "last_check_time": "2026-05-19T07:32:54.880314"
+      "last_check_time": "2026-05-19T07:38:08.690816"
     },
     {
-      "id": "USD/CAD-dtp-1779175974",
+      "id": "USD/CAD-dtp-1779176288",
       "pair": "USD/CAD",
       "method": "dtp",
       "direction": "long",
       "entry_type": "dtp_long",
-      "entry_time": "2026-05-19T07:32:54.880314",
-      "entry_price": 1.3746700286865234,
+      "entry_time": "2026-05-19T07:38:08.690816",
+      "entry_price": 1.3746600151062012,
       "stop_loss": 1.3724262392520905,
-      "take_profit": 1.3814013969898222,
+      "take_profit": 1.3813613426685332,
       "score": 100,
-      "last_check_time": "2026-05-19T07:32:54.880314"
-    },
-    {
-      "id": "GBP/USD-dtp-1779175974",
-      "pair": "GBP/USD",
-      "method": "dtp",
-      "direction": "short",
-      "entry_type": "dtp_short",
-      "entry_time": "2026-05-19T07:32:54.880314",
-      "entry_price": 1.33969247341156,
-      "stop_loss": 1.3431553778648375,
-      "take_profit": 1.3293037600517277,
-      "score": 100,
-      "last_check_time": "2026-05-19T07:32:54.880314"
+      "last_check_time": "2026-05-19T07:38:08.690816"
     }
   ],
   "history_count": 0,
