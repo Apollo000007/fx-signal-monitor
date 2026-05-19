@@ -1,32 +1,32 @@
 {
-  "updated_at": "2026-05-19T14:17:24.483863+00:00",
+  "updated_at": "2026-05-19T14:22:37.301434+00:00",
   "open_count": 2,
   "open_positions": [
     {
-      "id": "EUR/USD-orz-1779200244",
+      "id": "EUR/USD-orz-1779200557",
       "pair": "EUR/USD",
       "method": "orz",
       "direction": "short",
       "entry_type": "breakout",
-      "entry_time": "2026-05-19T14:17:24.483863",
+      "entry_time": "2026-05-19T14:22:37.301434",
       "entry_price": 1.1606314182281494,
       "stop_loss": 1.172840789294243,
       "take_profit": 1.1581581830978394,
       "score": 75,
-      "last_check_time": "2026-05-19T14:17:24.483863"
+      "last_check_time": "2026-05-19T14:22:37.301434"
     },
     {
-      "id": "AUD/JPY-pdhl-1779200244",
+      "id": "AUD/JPY-pdhl-1779200557",
       "pair": "AUD/JPY",
       "method": "pdhl",
       "direction": "short",
       "entry_type": "pdhl_short_retest",
-      "entry_time": "2026-05-19T14:17:24.483863",
-      "entry_price": 112.88099670410156,
+      "entry_time": "2026-05-19T14:22:37.301434",
+      "entry_price": 112.87000274658203,
       "stop_loss": 113.38983122253418,
-      "take_profit": 112.37216218566894,
+      "take_profit": 112.35017427062988,
       "score": 85,
-      "last_check_time": "2026-05-19T14:17:24.483863"
+      "last_check_time": "2026-05-19T14:22:37.301434"
     }
   ],
   "history_count": 0,
