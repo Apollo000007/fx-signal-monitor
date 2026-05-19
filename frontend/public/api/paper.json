@@ -1,32 +1,32 @@
 {
-  "updated_at": "2026-05-19T15:46:12.416442+00:00",
+  "updated_at": "2026-05-19T15:51:31.648120+00:00",
   "open_count": 2,
   "open_positions": [
     {
-      "id": "USD/CAD-orz-1779205572",
+      "id": "USD/CAD-orz-1779205891",
       "pair": "USD/CAD",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-05-19T15:46:12.416442",
-      "entry_price": 1.3759000301361084,
-      "stop_loss": 1.3682178868293762,
+      "entry_time": "2026-05-19T15:51:31.648120",
+      "entry_price": 1.375920057296753,
+      "stop_loss": 1.3682182865715027,
       "take_profit": 1.388136665026347,
       "score": 78,
-      "last_check_time": "2026-05-19T15:46:12.416442"
+      "last_check_time": "2026-05-19T15:51:31.648120"
     },
     {
-      "id": "USD/CAD-dtp-1779205572",
+      "id": "USD/CAD-dtp-1779205891",
       "pair": "USD/CAD",
       "method": "dtp",
       "direction": "long",
       "entry_type": "dtp_long",
-      "entry_time": "2026-05-19T15:46:12.416442",
-      "entry_price": 1.3758699893951416,
+      "entry_time": "2026-05-19T15:51:31.648120",
+      "entry_price": 1.375939965248108,
       "stop_loss": 1.3740245472192765,
-      "take_profit": 1.381406315922737,
+      "take_profit": 1.3816862193346022,
       "score": 100,
-      "last_check_time": "2026-05-19T15:46:12.416442"
+      "last_check_time": "2026-05-19T15:51:31.648120"
     }
   ],
   "history_count": 0,
