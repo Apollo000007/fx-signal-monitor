@@ -38,7 +38,7 @@
   "CHF/JPY:pdhl:long": 1779170067.837717,
   "GBP/JPY:pdhl:long": 1779216500.305334,
   "GBP/JPY:orz:short": 1779128767.393301,
-  "EUR/GBP:pdhl:short": 1779211182.77798,
+  "EUR/GBP:pdhl:short": 1779224656.069885,
   "GBP/USD:pdhl:long": 1779208380.589086,
   "CHF/JPY:triple:long": 1779171929.206151,
   "CHF/JPY:orz:long": 1779182183.780587,
@@ -49,6 +49,6 @@
   "GBP/USD:dtp:short": 1779216810.315065,
   "USD/JPY:dtp:long": 1779216500.305334,
   "EUR/USD:dtp:short": 1779214627.097171,
-  "CHF/JPY:pdhl:short": 1779197741.553021,
+  "CHF/JPY:pdhl:short": 1779224656.069885,
   "USD/JPY:orz:long": 1779217772.079786
 }
