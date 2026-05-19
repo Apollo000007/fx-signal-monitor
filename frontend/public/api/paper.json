@@ -1,58 +1,19 @@
 {
-  "updated_at": "2026-05-19T17:24:59.791825+00:00",
-  "open_count": 4,
+  "updated_at": "2026-05-19T17:30:09.756046+00:00",
+  "open_count": 1,
   "open_positions": [
     {
-      "id": "GBP/USD-orz-1779211499",
+      "id": "GBP/USD-orz-1779211809",
       "pair": "GBP/USD",
       "method": "orz",
       "direction": "short",
       "entry_type": "pullback",
-      "entry_time": "2026-05-19T17:24:59.791825",
+      "entry_time": "2026-05-19T17:30:09.756046",
       "entry_price": 1.3408960103988647,
       "stop_loss": 1.3514703646802904,
       "take_profit": 1.3386840025583904,
       "score": 83,
-      "last_check_time": "2026-05-19T17:24:59.791825"
-    },
-    {
-      "id": "USD/JPY-orz-1779211499",
-      "pair": "USD/JPY",
-      "method": "orz",
-      "direction": "long",
-      "entry_type": "pullback",
-      "entry_time": "2026-05-19T17:24:59.791825",
-      "entry_price": 158.8300018310547,
-      "stop_loss": 157.62589653015138,
-      "take_profit": 159.71287536621094,
-      "score": 78,
-      "last_check_time": "2026-05-19T17:24:59.791825"
-    },
-    {
-      "id": "USD/CAD-orz-1779211499",
-      "pair": "USD/CAD",
-      "method": "orz",
-      "direction": "long",
-      "entry_type": "pullback",
-      "entry_time": "2026-05-19T17:24:59.791825",
-      "entry_price": 1.3747999668121338,
-      "stop_loss": 1.3683991222953795,
-      "take_profit": 1.3752525001764297,
-      "score": 78,
-      "last_check_time": "2026-05-19T17:24:59.791825"
-    },
-    {
-      "id": "USD/CAD-dtp-1779211499",
-      "pair": "USD/CAD",
-      "method": "dtp",
-      "direction": "long",
-      "entry_type": "dtp_long",
-      "entry_time": "2026-05-19T17:24:59.791825",
-      "entry_price": 1.3751100301742554,
-      "stop_loss": 1.372925703048706,
-      "take_profit": 1.3816630115509032,
-      "score": 100,
-      "last_check_time": "2026-05-19T17:24:59.791825"
+      "last_check_time": "2026-05-19T17:30:09.756046"
     }
   ],
   "history_count": 0,
