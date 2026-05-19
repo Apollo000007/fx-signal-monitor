@@ -1,21 +1,7 @@
 {
-  "updated_at": "2026-05-19T15:25:25.878602+00:00",
-  "open_count": 1,
-  "open_positions": [
-    {
-      "id": "GBP/USD-dtp-1779204325",
-      "pair": "GBP/USD",
-      "method": "dtp",
-      "direction": "short",
-      "entry_type": "dtp_short",
-      "entry_time": "2026-05-19T15:25:25.878602",
-      "entry_price": 1.3393694162368774,
-      "stop_loss": 1.343191534399986,
-      "take_profit": 1.3279030617475516,
-      "score": 100,
-      "last_check_time": "2026-05-19T15:25:25.878602"
-    }
-  ],
+  "updated_at": "2026-05-19T15:30:37.394547+00:00",
+  "open_count": 0,
+  "open_positions": [],
   "history_count": 0,
   "recent_trades": [],
   "stats": {
