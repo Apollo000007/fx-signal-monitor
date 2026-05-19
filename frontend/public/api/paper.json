@@ -1,21 +1,7 @@
 {
-  "updated_at": "2026-05-19T14:01:44.713827+00:00",
-  "open_count": 1,
-  "open_positions": [
-    {
-      "id": "USD/JPY-dtp-1779199304",
-      "pair": "USD/JPY",
-      "method": "dtp",
-      "direction": "long",
-      "entry_type": "dtp_long",
-      "entry_time": "2026-05-19T14:01:44.713827",
-      "entry_price": 159.05099487304688,
-      "stop_loss": 158.4813593902588,
-      "take_profit": 160.7599013214111,
-      "score": 100,
-      "last_check_time": "2026-05-19T14:01:44.713827"
-    }
-  ],
+  "updated_at": "2026-05-19T14:07:00.043557+00:00",
+  "open_count": 0,
+  "open_positions": [],
   "history_count": 0,
   "recent_trades": [],
   "stats": {
