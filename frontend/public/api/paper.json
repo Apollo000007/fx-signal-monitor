@@ -1,45 +1,45 @@
 {
-  "updated_at": "2026-05-19T01:20:39.645763+00:00",
+  "updated_at": "2026-05-19T01:25:44.994038+00:00",
   "open_count": 3,
   "open_positions": [
     {
-      "id": "GBP/USD-orz-1779153639",
+      "id": "GBP/USD-orz-1779153944",
       "pair": "GBP/USD",
       "method": "orz",
       "direction": "short",
       "entry_type": "pullback",
-      "entry_time": "2026-05-19T01:20:39.645763",
-      "entry_price": 1.3419395685195923,
+      "entry_time": "2026-05-19T01:25:44.994038",
+      "entry_price": 1.341795563697815,
       "stop_loss": 1.356033212184906,
       "take_profit": 1.3386840025583904,
       "score": 83,
-      "last_check_time": "2026-05-19T01:20:39.645763"
+      "last_check_time": "2026-05-19T01:25:44.994038"
     },
     {
-      "id": "EUR/GBP-orz-1779153639",
+      "id": "EUR/GBP-orz-1779153944",
       "pair": "EUR/GBP",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-05-19T01:20:39.645763",
-      "entry_price": 0.8678200244903564,
+      "entry_time": "2026-05-19T01:25:44.994038",
+      "entry_price": 0.8678600192070007,
       "stop_loss": 0.8639486193656921,
       "take_profit": 0.8680066665013632,
       "score": 82,
-      "last_check_time": "2026-05-19T01:20:39.645763"
+      "last_check_time": "2026-05-19T01:25:44.994038"
     },
     {
-      "id": "CHF/JPY-orz-1779153639",
-      "pair": "CHF/JPY",
+      "id": "USD/CAD-orz-1779153944",
+      "pair": "USD/CAD",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-05-19T01:20:39.645763",
-      "entry_price": 202.4250030517578,
-      "stop_loss": 201.05807653808594,
-      "take_profit": 203.84775161743164,
-      "score": 80,
-      "last_check_time": "2026-05-19T01:20:39.645763"
+      "entry_time": "2026-05-19T01:25:44.994038",
+      "entry_price": 1.3748300075531006,
+      "stop_loss": 1.3674885501813887,
+      "take_profit": 1.3752525001764297,
+      "score": 78,
+      "last_check_time": "2026-05-19T01:25:44.994038"
     }
   ],
   "history_count": 0,
