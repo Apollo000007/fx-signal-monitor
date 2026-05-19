@@ -1,19 +1,45 @@
 {
-  "updated_at": "2026-05-19T12:17:29.461886+00:00",
-  "open_count": 1,
+  "updated_at": "2026-05-19T12:22:39.136382+00:00",
+  "open_count": 3,
   "open_positions": [
     {
-      "id": "GBP/USD-orz-1779193049",
+      "id": "GBP/USD-orz-1779193359",
       "pair": "GBP/USD",
       "method": "orz",
       "direction": "short",
       "entry_type": "pullback",
-      "entry_time": "2026-05-19T12:17:29.461886",
-      "entry_price": 1.3410937786102295,
-      "stop_loss": 1.3518065096426009,
+      "entry_time": "2026-05-19T12:22:39.136382",
+      "entry_price": 1.3411117792129517,
+      "stop_loss": 1.3518068703746797,
       "take_profit": 1.3386840025583904,
       "score": 83,
-      "last_check_time": "2026-05-19T12:17:29.461886"
+      "last_check_time": "2026-05-19T12:22:39.136382"
+    },
+    {
+      "id": "GBP/USD-dtp-1779193359",
+      "pair": "GBP/USD",
+      "method": "dtp",
+      "direction": "short",
+      "entry_type": "dtp_short",
+      "entry_time": "2026-05-19T12:22:39.136382",
+      "entry_price": 1.3411117792129517,
+      "stop_loss": 1.342867199540138,
+      "take_profit": 1.3358455182313926,
+      "score": 100,
+      "last_check_time": "2026-05-19T12:22:39.136382"
+    },
+    {
+      "id": "GBP/JPY-pdhl-1779193359",
+      "pair": "GBP/JPY",
+      "method": "pdhl",
+      "direction": "long",
+      "entry_type": "pdhl_long_retest",
+      "entry_time": "2026-05-19T12:22:39.136382",
+      "entry_price": 213.4010009765625,
+      "stop_loss": 212.85822678375246,
+      "take_profit": 213.94377516937254,
+      "score": 93,
+      "last_check_time": "2026-05-19T12:22:39.136382"
     }
   ],
   "history_count": 0,
