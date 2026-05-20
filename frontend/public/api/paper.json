@@ -1,21 +1,7 @@
 {
-  "updated_at": "2026-05-20T06:12:48.157192+00:00",
-  "open_count": 1,
-  "open_positions": [
-    {
-      "id": "GBP/JPY-pdhl-1779257568",
-      "pair": "GBP/JPY",
-      "method": "pdhl",
-      "direction": "short",
-      "entry_type": "pdhl_short_retest",
-      "entry_time": "2026-05-20T06:12:48.157192",
-      "entry_price": 212.80499267578125,
-      "stop_loss": 213.27542764282228,
-      "take_profit": 212.33455770874022,
-      "score": 80,
-      "last_check_time": "2026-05-20T06:12:48.157192"
-    }
-  ],
+  "updated_at": "2026-05-20T06:17:58.151283+00:00",
+  "open_count": 0,
+  "open_positions": [],
   "history_count": 0,
   "recent_trades": [],
   "stats": {
