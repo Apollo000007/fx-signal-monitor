@@ -1,19 +1,19 @@
 {
-  "updated_at": "2026-05-20T16:09:30.275660+00:00",
+  "updated_at": "2026-05-20T16:16:06.535438+00:00",
   "open_count": 1,
   "open_positions": [
     {
-      "id": "CAD/JPY-dtp-1779293370",
-      "pair": "CAD/JPY",
-      "method": "dtp",
+      "id": "USD/JPY-orz-1779293766",
+      "pair": "USD/JPY",
+      "method": "orz",
       "direction": "long",
-      "entry_type": "dtp_long",
-      "entry_time": "2026-05-20T16:09:30.275660",
-      "entry_price": 115.54900360107422,
-      "stop_loss": 115.32855624389649,
-      "take_profit": 116.21034567260742,
-      "score": 100,
-      "last_check_time": "2026-05-20T16:09:30.275660"
+      "entry_type": "pullback",
+      "entry_time": "2026-05-20T16:16:06.535438",
+      "entry_price": 158.78799438476562,
+      "stop_loss": 157.89006744689942,
+      "take_profit": 159.71287536621094,
+      "score": 78,
+      "last_check_time": "2026-05-20T16:16:06.535438"
     }
   ],
   "history_count": 0,
