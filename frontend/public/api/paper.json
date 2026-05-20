@@ -1,19 +1,19 @@
 {
-  "updated_at": "2026-05-20T06:07:32.847008+00:00",
+  "updated_at": "2026-05-20T06:12:48.157192+00:00",
   "open_count": 1,
   "open_positions": [
     {
-      "id": "USD/JPY-orz-1779257252",
-      "pair": "USD/JPY",
-      "method": "orz",
-      "direction": "long",
-      "entry_type": "pullback",
-      "entry_time": "2026-05-20T06:07:32.847008",
-      "entry_price": 158.9720001220703,
-      "stop_loss": 157.75759305847168,
-      "take_profit": 159.71287536621094,
-      "score": 88,
-      "last_check_time": "2026-05-20T06:07:32.847008"
+      "id": "GBP/JPY-pdhl-1779257568",
+      "pair": "GBP/JPY",
+      "method": "pdhl",
+      "direction": "short",
+      "entry_type": "pdhl_short_retest",
+      "entry_time": "2026-05-20T06:12:48.157192",
+      "entry_price": 212.80499267578125,
+      "stop_loss": 213.27542764282228,
+      "take_profit": 212.33455770874022,
+      "score": 80,
+      "last_check_time": "2026-05-20T06:12:48.157192"
     }
   ],
   "history_count": 0,
