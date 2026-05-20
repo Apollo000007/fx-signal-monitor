@@ -1,71 +1,19 @@
 {
-  "updated_at": "2026-05-20T20:28:51.875754+00:00",
-  "open_count": 5,
+  "updated_at": "2026-05-20T20:33:59.052822+00:00",
+  "open_count": 1,
   "open_positions": [
     {
-      "id": "USD/JPY-orz-1779308931",
+      "id": "USD/JPY-orz-1779309239",
       "pair": "USD/JPY",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-05-20T20:28:51.875754",
-      "entry_price": 158.87899780273438,
-      "stop_loss": 157.93653438537598,
+      "entry_time": "2026-05-20T20:33:59.052822",
+      "entry_price": 158.90499877929688,
+      "stop_loss": 157.93705336486815,
       "take_profit": 159.71287536621094,
       "score": 88,
-      "last_check_time": "2026-05-20T20:28:51.875754"
-    },
-    {
-      "id": "AUD/USD-orz-1779308931",
-      "pair": "AUD/USD",
-      "method": "orz",
-      "direction": "short",
-      "entry_type": "pullback",
-      "entry_time": "2026-05-20T20:28:51.875754",
-      "entry_price": 0.7158196568489075,
-      "stop_loss": 0.7206700341010094,
-      "take_profit": 0.7113099992275238,
-      "score": 80,
-      "last_check_time": "2026-05-20T20:28:51.875754"
-    },
-    {
-      "id": "NZD/JPY-orz-1779308931",
-      "pair": "NZD/JPY",
-      "method": "orz",
-      "direction": "short",
-      "entry_type": "range_reversal",
-      "entry_time": "2026-05-20T20:28:51.875754",
-      "entry_price": 93.25399780273438,
-      "stop_loss": 94.00530170440673,
-      "take_profit": 90.78474998474121,
-      "score": 79,
-      "last_check_time": "2026-05-20T20:28:51.875754"
-    },
-    {
-      "id": "EUR/USD-dtp-1779308931",
-      "pair": "EUR/USD",
-      "method": "dtp",
-      "direction": "short",
-      "entry_type": "dtp_short",
-      "entry_time": "2026-05-20T20:28:51.875754",
-      "entry_price": 1.163061261177063,
-      "stop_loss": 1.1650371881723403,
-      "take_profit": 1.1571334801912312,
-      "score": 100,
-      "last_check_time": "2026-05-20T20:28:51.875754"
-    },
-    {
-      "id": "GBP/USD-dtp-1779308931",
-      "pair": "GBP/USD",
-      "method": "dtp",
-      "direction": "short",
-      "entry_type": "dtp_short",
-      "entry_time": "2026-05-20T20:28:51.875754",
-      "entry_price": 1.3437608480453491,
-      "stop_loss": 1.3462805912494658,
-      "take_profit": 1.3362016184329992,
-      "score": 100,
-      "last_check_time": "2026-05-20T20:28:51.875754"
+      "last_check_time": "2026-05-20T20:33:59.052822"
     }
   ],
   "history_count": 0,
