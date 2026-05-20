@@ -1,58 +1,32 @@
 {
-  "updated_at": "2026-05-20T19:41:56.249608+00:00",
-  "open_count": 4,
+  "updated_at": "2026-05-20T19:47:11.705875+00:00",
+  "open_count": 2,
   "open_positions": [
     {
-      "id": "EUR/USD-orz-1779306116",
-      "pair": "EUR/USD",
-      "method": "orz",
-      "direction": "short",
-      "entry_type": "pullback",
-      "entry_time": "2026-05-20T19:41:56.249608",
-      "entry_price": 1.1634671688079834,
-      "stop_loss": 1.1708328159856796,
-      "take_profit": 1.1615347862243652,
-      "score": 83,
-      "last_check_time": "2026-05-20T19:41:56.249608"
-    },
-    {
-      "id": "AUD/USD-orz-1779306116",
-      "pair": "AUD/USD",
-      "method": "orz",
-      "direction": "short",
-      "entry_type": "pullback",
-      "entry_time": "2026-05-20T19:41:56.249608",
-      "entry_price": 0.7161784768104553,
-      "stop_loss": 0.7208530638241768,
-      "take_profit": 0.7113099992275238,
-      "score": 80,
-      "last_check_time": "2026-05-20T19:41:56.249608"
-    },
-    {
-      "id": "NZD/JPY-orz-1779306116",
+      "id": "NZD/JPY-orz-1779306431",
       "pair": "NZD/JPY",
       "method": "orz",
       "direction": "short",
       "entry_type": "range_reversal",
-      "entry_time": "2026-05-20T19:41:56.249608",
-      "entry_price": 93.27300262451172,
+      "entry_time": "2026-05-20T19:47:11.705875",
+      "entry_price": 93.25900268554688,
       "stop_loss": 94.00530170440673,
       "take_profit": 90.78474998474121,
       "score": 79,
-      "last_check_time": "2026-05-20T19:41:56.249608"
+      "last_check_time": "2026-05-20T19:47:11.705875"
     },
     {
-      "id": "GBP/USD-dtp-1779306116",
-      "pair": "GBP/USD",
+      "id": "USD/CAD-dtp-1779306431",
+      "pair": "USD/CAD",
       "method": "dtp",
-      "direction": "short",
-      "entry_type": "dtp_short",
-      "entry_time": "2026-05-20T19:41:56.249608",
-      "entry_price": 1.344700574874878,
-      "stop_loss": 1.3462805912494658,
-      "take_profit": 1.3399605257511145,
+      "direction": "long",
+      "entry_type": "dtp_long",
+      "entry_time": "2026-05-20T19:47:11.705875",
+      "entry_price": 1.3744800090789795,
+      "stop_loss": 1.3725261558294297,
+      "take_profit": 1.3803415688276288,
       "score": 100,
-      "last_check_time": "2026-05-20T19:41:56.249608"
+      "last_check_time": "2026-05-20T19:47:11.705875"
     }
   ],
   "history_count": 0,
