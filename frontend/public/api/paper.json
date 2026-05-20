@@ -1,19 +1,71 @@
 {
-  "updated_at": "2026-05-20T16:16:06.535438+00:00",
-  "open_count": 1,
+  "updated_at": "2026-05-20T16:21:19.258730+00:00",
+  "open_count": 5,
   "open_positions": [
     {
-      "id": "USD/JPY-orz-1779293766",
+      "id": "EUR/USD-orz-1779294079",
+      "pair": "EUR/USD",
+      "method": "orz",
+      "direction": "short",
+      "entry_type": "pullback",
+      "entry_time": "2026-05-20T16:21:19.258730",
+      "entry_price": 1.1633317470550537,
+      "stop_loss": 1.1708301021337508,
+      "take_profit": 1.1615347862243652,
+      "score": 83,
+      "last_check_time": "2026-05-20T16:21:19.258730"
+    },
+    {
+      "id": "AUD/USD-orz-1779294079",
+      "pair": "AUD/USD",
+      "method": "orz",
+      "direction": "short",
+      "entry_type": "pullback",
+      "entry_time": "2026-05-20T16:21:19.258730",
+      "entry_price": 0.7162810564041138,
+      "stop_loss": 0.7208551195192336,
+      "take_profit": 0.7113099992275238,
+      "score": 80,
+      "last_check_time": "2026-05-20T16:21:19.258730"
+    },
+    {
+      "id": "NZD/JPY-orz-1779294079",
+      "pair": "NZD/JPY",
+      "method": "orz",
+      "direction": "short",
+      "entry_type": "range_reversal",
+      "entry_time": "2026-05-20T16:21:19.258730",
+      "entry_price": 93.25399780273438,
+      "stop_loss": 94.00530170440673,
+      "take_profit": 90.78474998474121,
+      "score": 79,
+      "last_check_time": "2026-05-20T16:21:19.258730"
+    },
+    {
+      "id": "USD/JPY-orz-1779294079",
       "pair": "USD/JPY",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-05-20T16:16:06.535438",
-      "entry_price": 158.78799438476562,
-      "stop_loss": 157.89006744689942,
+      "entry_time": "2026-05-20T16:21:19.258730",
+      "entry_price": 158.83200073242188,
+      "stop_loss": 157.89094581359862,
       "take_profit": 159.71287536621094,
       "score": 78,
-      "last_check_time": "2026-05-20T16:16:06.535438"
+      "last_check_time": "2026-05-20T16:21:19.258730"
+    },
+    {
+      "id": "NZD/USD-orz-1779294079",
+      "pair": "NZD/USD",
+      "method": "orz",
+      "direction": "short",
+      "entry_type": "pullback",
+      "entry_time": "2026-05-20T16:21:19.258730",
+      "entry_price": 0.5876821875572205,
+      "stop_loss": 0.5911501392674446,
+      "take_profit": 0.5831863284111023,
+      "score": 77,
+      "last_check_time": "2026-05-20T16:21:19.258730"
     }
   ],
   "history_count": 0,
