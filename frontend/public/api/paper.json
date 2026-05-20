@@ -1,19 +1,58 @@
 {
-  "updated_at": "2026-05-20T05:46:33.518217+00:00",
-  "open_count": 1,
+  "updated_at": "2026-05-20T05:51:41.674151+00:00",
+  "open_count": 4,
   "open_positions": [
     {
-      "id": "USD/JPY-orz-1779255993",
+      "id": "USD/JPY-orz-1779256301",
       "pair": "USD/JPY",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-05-20T05:46:33.518217",
-      "entry_price": 158.95199584960938,
-      "stop_loss": 157.75719377319336,
+      "entry_time": "2026-05-20T05:51:41.674151",
+      "entry_price": 158.95799255371094,
+      "stop_loss": 157.75731346740724,
       "take_profit": 159.71287536621094,
       "score": 88,
-      "last_check_time": "2026-05-20T05:46:33.518217"
+      "last_check_time": "2026-05-20T05:51:41.674151"
+    },
+    {
+      "id": "EUR/USD-orz-1779256301",
+      "pair": "EUR/USD",
+      "method": "orz",
+      "direction": "short",
+      "entry_type": "pullback",
+      "entry_time": "2026-05-20T05:51:41.674151",
+      "entry_price": 1.1595547199249268,
+      "stop_loss": 1.1717707146120073,
+      "take_profit": 1.1581581830978394,
+      "score": 83,
+      "last_check_time": "2026-05-20T05:51:41.674151"
+    },
+    {
+      "id": "EUR/JPY-pdhl-1779256301",
+      "pair": "EUR/JPY",
+      "method": "pdhl",
+      "direction": "short",
+      "entry_type": "pdhl_short_retest",
+      "entry_time": "2026-05-20T05:51:41.674151",
+      "entry_price": 184.2740020751953,
+      "stop_loss": 184.68961387634278,
+      "take_profit": 183.85839027404785,
+      "score": 85,
+      "last_check_time": "2026-05-20T05:51:41.674151"
+    },
+    {
+      "id": "CHF/JPY-pdhl-1779256301",
+      "pair": "CHF/JPY",
+      "method": "pdhl",
+      "direction": "short",
+      "entry_type": "pdhl_short_retest",
+      "entry_time": "2026-05-20T05:51:41.674151",
+      "entry_price": 201.13400268554688,
+      "stop_loss": 201.60595685577394,
+      "take_profit": 200.6620485153198,
+      "score": 85,
+      "last_check_time": "2026-05-20T05:51:41.674151"
     }
   ],
   "history_count": 0,
