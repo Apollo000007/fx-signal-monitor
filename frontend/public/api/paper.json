@@ -1,58 +1,19 @@
 {
-  "updated_at": "2026-05-20T07:41:15.681227+00:00",
-  "open_count": 4,
+  "updated_at": "2026-05-20T07:46:28.820666+00:00",
+  "open_count": 1,
   "open_positions": [
     {
-      "id": "USD/JPY-orz-1779262875",
+      "id": "USD/JPY-orz-1779263188",
       "pair": "USD/JPY",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-05-20T07:41:15.681227",
-      "entry_price": 159.00599670410156,
-      "stop_loss": 157.75827163024903,
+      "entry_time": "2026-05-20T07:46:28.820666",
+      "entry_price": 159.0279998779297,
+      "stop_loss": 157.75871081359864,
       "take_profit": 159.71287536621094,
       "score": 88,
-      "last_check_time": "2026-05-20T07:41:15.681227"
-    },
-    {
-      "id": "EUR/USD-orz-1779262875",
-      "pair": "EUR/USD",
-      "method": "orz",
-      "direction": "short",
-      "entry_type": "pullback",
-      "entry_time": "2026-05-20T07:41:15.681227",
-      "entry_price": 1.1599582433700562,
-      "stop_loss": 1.1717788012218475,
-      "take_profit": 1.1581581830978394,
-      "score": 83,
-      "last_check_time": "2026-05-20T07:41:15.681227"
-    },
-    {
-      "id": "EUR/USD-dtp-1779262875",
-      "pair": "EUR/USD",
-      "method": "dtp",
-      "direction": "short",
-      "entry_type": "dtp_short",
-      "entry_time": "2026-05-20T07:41:15.681227",
-      "entry_price": 1.1599582433700562,
-      "stop_loss": 1.1620617320537565,
-      "take_profit": 1.153647777318955,
-      "score": 100,
-      "last_check_time": "2026-05-20T07:41:15.681227"
-    },
-    {
-      "id": "USD/CAD-dtp-1779262875",
-      "pair": "USD/CAD",
-      "method": "dtp",
-      "direction": "long",
-      "entry_type": "dtp_long",
-      "entry_time": "2026-05-20T07:41:15.681227",
-      "entry_price": 1.3767399787902832,
-      "stop_loss": 1.3733252502679825,
-      "take_profit": 1.3869841643571854,
-      "score": 100,
-      "last_check_time": "2026-05-20T07:41:15.681227"
+      "last_check_time": "2026-05-20T07:46:28.820666"
     }
   ],
   "history_count": 0,
