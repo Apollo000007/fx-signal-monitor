@@ -1,84 +1,71 @@
 {
-  "updated_at": "2026-05-21T20:09:25.068439+00:00",
-  "open_count": 6,
+  "updated_at": "2026-05-21T20:14:45.413075+00:00",
+  "open_count": 5,
   "open_positions": [
     {
-      "id": "EUR/USD-orz-1779394165",
+      "id": "EUR/USD-orz-1779394485",
       "pair": "EUR/USD",
       "method": "orz",
       "direction": "short",
       "entry_type": "pullback",
-      "entry_time": "2026-05-21T20:09:25.068439",
+      "entry_time": "2026-05-21T20:14:45.413075",
       "entry_price": 1.1621150970458984,
       "stop_loss": 1.1685636129283905,
       "take_profit": 1.1615347862243652,
       "score": 88,
-      "last_check_time": "2026-05-21T20:09:25.068439"
+      "last_check_time": "2026-05-21T20:14:45.413075"
     },
     {
-      "id": "EUR/USD-dtp-1779394165",
+      "id": "EUR/USD-dtp-1779394485",
       "pair": "EUR/USD",
       "method": "dtp",
       "direction": "short",
       "entry_type": "dtp_short",
-      "entry_time": "2026-05-21T20:09:25.068439",
+      "entry_time": "2026-05-21T20:14:45.413075",
       "entry_price": 1.1621150970458984,
       "stop_loss": 1.1644950788021087,
       "take_profit": 1.1549751517772677,
       "score": 100,
-      "last_check_time": "2026-05-21T20:09:25.068439"
+      "last_check_time": "2026-05-21T20:14:45.413075"
     },
     {
-      "id": "USD/CAD-dtp-1779394165",
-      "pair": "USD/CAD",
-      "method": "dtp",
-      "direction": "long",
-      "entry_type": "dtp_long",
-      "entry_time": "2026-05-21T20:09:25.068439",
-      "entry_price": 1.3779699802398682,
-      "stop_loss": 1.3749236773252487,
-      "take_profit": 1.3871088889837266,
-      "score": 100,
-      "last_check_time": "2026-05-21T20:09:25.068439"
-    },
-    {
-      "id": "USD/JPY-dtp-1779394165",
+      "id": "USD/JPY-dtp-1779394485",
       "pair": "USD/JPY",
       "method": "dtp",
       "direction": "long",
       "entry_type": "dtp_long",
-      "entry_time": "2026-05-21T20:09:25.068439",
-      "entry_price": 158.95799255371094,
+      "entry_time": "2026-05-21T20:14:45.413075",
+      "entry_price": 158.96400451660156,
       "stop_loss": 158.65318446350096,
-      "take_profit": 159.87241682434086,
+      "take_profit": 159.89646467590336,
       "score": 100,
-      "last_check_time": "2026-05-21T20:09:25.068439"
+      "last_check_time": "2026-05-21T20:14:45.413075"
     },
     {
-      "id": "GBP/USD-dtp-1779394165",
+      "id": "GBP/USD-dtp-1779394485",
       "pair": "GBP/USD",
       "method": "dtp",
       "direction": "short",
       "entry_type": "dtp_short",
-      "entry_time": "2026-05-21T20:09:25.068439",
-      "entry_price": 1.3435442447662354,
+      "entry_time": "2026-05-21T20:14:45.413075",
+      "entry_price": 1.3435983657836914,
       "stop_loss": 1.3463348857164381,
-      "take_profit": 1.335172321915627,
+      "take_profit": 1.3353888059854513,
       "score": 100,
-      "last_check_time": "2026-05-21T20:09:25.068439"
+      "last_check_time": "2026-05-21T20:14:45.413075"
     },
     {
-      "id": "NZD/USD-dtp-1779394165",
+      "id": "NZD/USD-dtp-1779394485",
       "pair": "NZD/USD",
       "method": "dtp",
       "direction": "short",
       "entry_type": "dtp_short",
-      "entry_time": "2026-05-21T20:09:25.068439",
-      "entry_price": 0.5875785946846008,
+      "entry_time": "2026-05-21T20:14:45.413075",
+      "entry_price": 0.5875440835952759,
       "stop_loss": 0.5895517561435699,
-      "take_profit": 0.5816591103076936,
+      "take_profit": 0.5815210659503938,
       "score": 100,
-      "last_check_time": "2026-05-21T20:09:25.068439"
+      "last_check_time": "2026-05-21T20:14:45.413075"
     }
   ],
   "history_count": 0,
