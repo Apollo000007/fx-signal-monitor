@@ -1,19 +1,19 @@
 {
-  "updated_at": "2026-05-21T01:27:36.212668+00:00",
+  "updated_at": "2026-05-21T01:32:47.427597+00:00",
   "open_count": 1,
   "open_positions": [
     {
-      "id": "CHF/JPY-pdhl-1779326856",
+      "id": "CHF/JPY-pdhl-1779327167",
       "pair": "CHF/JPY",
       "method": "pdhl",
       "direction": "long",
       "entry_type": "pdhl_long_retest",
-      "entry_time": "2026-05-21T01:27:36.212668",
-      "entry_price": 201.95399475097656,
+      "entry_time": "2026-05-21T01:32:47.427597",
+      "entry_price": 201.98500061035156,
       "stop_loss": 201.44537909698488,
-      "take_profit": 202.46261040496825,
-      "score": 75,
-      "last_check_time": "2026-05-21T01:27:36.212668"
+      "take_profit": 202.52462212371825,
+      "score": 83,
+      "last_check_time": "2026-05-21T01:32:47.427597"
     }
   ],
   "history_count": 0,
