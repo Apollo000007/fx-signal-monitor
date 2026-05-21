@@ -38,7 +38,7 @@
   "CHF/JPY:triple:long": 1779171929.206151,
   "CHF/JPY:orz:long": 1779182183.780587,
   "AUD/USD:pdhl:long": 1779302365.554087,
-  "NZD/JPY:pdhl:long": 1779339526.686145,
+  "NZD/JPY:pdhl:long": 1779351285.214825,
   "USD/CAD:dtp:long": 1779347251.574549,
   "ZAR/JPY:dtp:long": 1779346937.064585,
   "GBP/USD:dtp:short": 1779349118.237126,
@@ -53,5 +53,5 @@
   "AUD/USD:orz:short": 1779317591.85078,
   "NZD/JPY:orz:short": 1779317591.85078,
   "NZD/USD:pdhl:long": 1779302365.554087,
-  "AUD/JPY:pdhl:long": 1779325936.32957
+  "AUD/JPY:pdhl:long": 1779351285.214825
 }
