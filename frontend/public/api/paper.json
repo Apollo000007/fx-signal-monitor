@@ -1,19 +1,19 @@
 {
-  "updated_at": "2026-05-21T10:39:30.876317+00:00",
+  "updated_at": "2026-05-21T10:44:44.787385+00:00",
   "open_count": 1,
   "open_positions": [
     {
-      "id": "USD/CAD-dtp-1779359970",
-      "pair": "USD/CAD",
-      "method": "dtp",
+      "id": "ZAR/JPY-orz-1779360284",
+      "pair": "ZAR/JPY",
+      "method": "orz",
       "direction": "long",
-      "entry_type": "dtp_long",
-      "entry_time": "2026-05-21T10:39:30.876317",
-      "entry_price": 1.377020001411438,
-      "stop_loss": 1.3743242969512939,
-      "take_profit": 1.3851071147918703,
-      "score": 100,
-      "last_check_time": "2026-05-21T10:39:30.876317"
+      "entry_type": "pullback",
+      "entry_time": "2026-05-21T10:44:44.787385",
+      "entry_price": 9.592000007629395,
+      "stop_loss": 9.441080038070679,
+      "take_profit": 9.632599830627441,
+      "score": 83,
+      "last_check_time": "2026-05-21T10:44:44.787385"
     }
   ],
   "history_count": 0,
