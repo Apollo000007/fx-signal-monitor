@@ -1,21 +1,7 @@
 {
-  "updated_at": "2026-05-21T13:36:48.994692+00:00",
-  "open_count": 1,
-  "open_positions": [
-    {
-      "id": "USD/CAD-dtp-1779370608",
-      "pair": "USD/CAD",
-      "method": "dtp",
-      "direction": "long",
-      "entry_type": "dtp_long",
-      "entry_time": "2026-05-21T13:36:48.994692",
-      "entry_price": 1.3786499500274658,
-      "stop_loss": 1.3748237607479095,
-      "take_profit": 1.390128517866135,
-      "score": 100,
-      "last_check_time": "2026-05-21T13:36:48.994692"
-    }
-  ],
+  "updated_at": "2026-05-21T13:41:59.028161+00:00",
+  "open_count": 0,
+  "open_positions": [],
   "history_count": 0,
   "recent_trades": [],
   "stats": {
