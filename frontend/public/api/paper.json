@@ -1,7 +1,34 @@
 {
-  "updated_at": "2026-05-21T06:57:11.288209+00:00",
-  "open_count": 0,
-  "open_positions": [],
+  "updated_at": "2026-05-21T07:02:17.064585+00:00",
+  "open_count": 2,
+  "open_positions": [
+    {
+      "id": "GBP/JPY-pdhl-1779346937",
+      "pair": "GBP/JPY",
+      "method": "pdhl",
+      "direction": "long",
+      "entry_type": "pdhl_long_retest",
+      "entry_time": "2026-05-21T07:02:17.064585",
+      "entry_price": 213.73399353027344,
+      "stop_loss": 213.25064264678957,
+      "take_profit": 214.2173444137573,
+      "score": 80,
+      "last_check_time": "2026-05-21T07:02:17.064585"
+    },
+    {
+      "id": "ZAR/JPY-dtp-1779346937",
+      "pair": "ZAR/JPY",
+      "method": "dtp",
+      "direction": "long",
+      "entry_type": "dtp_long",
+      "entry_time": "2026-05-21T07:02:17.064585",
+      "entry_price": 9.614999771118164,
+      "stop_loss": 9.59239823627472,
+      "take_profit": 9.682804375648496,
+      "score": 87,
+      "last_check_time": "2026-05-21T07:02:17.064585"
+    }
+  ],
   "history_count": 0,
   "recent_trades": [],
   "stats": {
