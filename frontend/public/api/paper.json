@@ -1,19 +1,58 @@
 {
-  "updated_at": "2026-05-21T20:51:10.914186+00:00",
-  "open_count": 1,
+  "updated_at": "2026-05-21T20:56:25.311585+00:00",
+  "open_count": 4,
   "open_positions": [
     {
-      "id": "ZAR/JPY-dtp-1779396670",
-      "pair": "ZAR/JPY",
+      "id": "EUR/USD-orz-1779396985",
+      "pair": "EUR/USD",
+      "method": "orz",
+      "direction": "short",
+      "entry_type": "pullback",
+      "entry_time": "2026-05-21T20:56:25.311585",
+      "entry_price": 1.1619800329208374,
+      "stop_loss": 1.1685609062433244,
+      "take_profit": 1.1615347862243652,
+      "score": 83,
+      "last_check_time": "2026-05-21T20:56:25.311585"
+    },
+    {
+      "id": "USD/CAD-dtp-1779396985",
+      "pair": "USD/CAD",
       "method": "dtp",
       "direction": "long",
       "entry_type": "dtp_long",
-      "entry_time": "2026-05-21T20:51:10.914186",
-      "entry_price": 9.647000312805176,
-      "stop_loss": 9.624365824699401,
-      "take_profit": 9.7149037771225,
-      "score": 87,
-      "last_check_time": "2026-05-21T20:51:10.914186"
+      "entry_time": "2026-05-21T20:56:25.311585",
+      "entry_price": 1.377869963645935,
+      "stop_loss": 1.3749236773252487,
+      "take_profit": 1.3867088226079942,
+      "score": 100,
+      "last_check_time": "2026-05-21T20:56:25.311585"
+    },
+    {
+      "id": "NZD/USD-dtp-1779396985",
+      "pair": "NZD/USD",
+      "method": "dtp",
+      "direction": "short",
+      "entry_type": "dtp_short",
+      "entry_time": "2026-05-21T20:56:25.311585",
+      "entry_price": 0.5876476764678955,
+      "stop_loss": 0.5895517561435699,
+      "take_profit": 0.5819354374408723,
+      "score": 100,
+      "last_check_time": "2026-05-21T20:56:25.311585"
+    },
+    {
+      "id": "USD/CHF-dtp-1779396985",
+      "pair": "USD/CHF",
+      "method": "dtp",
+      "direction": "long",
+      "entry_type": "dtp_long",
+      "entry_time": "2026-05-21T20:56:25.311585",
+      "entry_price": 0.7866500020027161,
+      "stop_loss": 0.7851341038942337,
+      "take_profit": 0.7911976963281633,
+      "score": 100,
+      "last_check_time": "2026-05-21T20:56:25.311585"
     }
   ],
   "history_count": 0,
