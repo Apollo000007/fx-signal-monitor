@@ -1,32 +1,19 @@
 {
-  "updated_at": "2026-05-21T14:08:11.482633+00:00",
-  "open_count": 2,
+  "updated_at": "2026-05-21T14:13:29.863438+00:00",
+  "open_count": 1,
   "open_positions": [
     {
-      "id": "AUD/USD-orz-1779372491",
-      "pair": "AUD/USD",
-      "method": "orz",
-      "direction": "short",
-      "entry_type": "pullback",
-      "entry_time": "2026-05-21T14:08:11.482633",
-      "entry_price": 0.7130632996559143,
-      "stop_loss": 0.719747065243721,
-      "take_profit": 0.7113099992275238,
-      "score": 75,
-      "last_check_time": "2026-05-21T14:08:11.482633"
-    },
-    {
-      "id": "USD/CAD-pdhl-1779372491",
+      "id": "USD/CAD-pdhl-1779372809",
       "pair": "USD/CAD",
       "method": "pdhl",
       "direction": "long",
       "entry_type": "pdhl_long_retest",
-      "entry_time": "2026-05-21T14:08:11.482633",
-      "entry_price": 1.3790299892425537,
+      "entry_time": "2026-05-21T14:13:29.863438",
+      "entry_price": 1.3793200254440308,
       "stop_loss": 1.3757332878112793,
-      "take_profit": 1.382326690673828,
+      "take_profit": 1.3829067630767822,
       "score": 80,
-      "last_check_time": "2026-05-21T14:08:11.482633"
+      "last_check_time": "2026-05-21T14:13:29.863438"
     }
   ],
   "history_count": 0,
