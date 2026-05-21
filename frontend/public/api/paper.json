@@ -1,19 +1,32 @@
 {
-  "updated_at": "2026-05-21T14:18:42.375837+00:00",
-  "open_count": 1,
+  "updated_at": "2026-05-21T14:23:55.023269+00:00",
+  "open_count": 2,
   "open_positions": [
     {
-      "id": "USD/CAD-dtp-1779373122",
+      "id": "USD/CAD-pdhl-1779373435",
       "pair": "USD/CAD",
-      "method": "dtp",
+      "method": "pdhl",
       "direction": "long",
-      "entry_type": "dtp_long",
-      "entry_time": "2026-05-21T14:18:42.375837",
-      "entry_price": 1.3793100118637085,
-      "stop_loss": 1.3748237607479095,
-      "take_profit": 1.3927687652111056,
-      "score": 100,
-      "last_check_time": "2026-05-21T14:18:42.375837"
+      "entry_type": "pdhl_long_retest",
+      "entry_time": "2026-05-21T14:23:55.023269",
+      "entry_price": 1.3795700073242188,
+      "stop_loss": 1.3757332878112793,
+      "take_profit": 1.3834067268371582,
+      "score": 75,
+      "last_check_time": "2026-05-21T14:23:55.023269"
+    },
+    {
+      "id": "CAD/JPY-pdhl-1779373435",
+      "pair": "CAD/JPY",
+      "method": "pdhl",
+      "direction": "short",
+      "entry_type": "pdhl_short_retest",
+      "entry_time": "2026-05-21T14:23:55.023269",
+      "entry_price": 115.41999816894531,
+      "stop_loss": 115.76137943267823,
+      "take_profit": 115.0786169052124,
+      "score": 85,
+      "last_check_time": "2026-05-21T14:23:55.023269"
     }
   ],
   "history_count": 0,
