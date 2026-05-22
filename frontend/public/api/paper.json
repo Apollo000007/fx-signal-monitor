@@ -1,7 +1,34 @@
 {
-  "updated_at": "2026-05-22T01:46:21.495111+00:00",
-  "open_count": 0,
-  "open_positions": [],
+  "updated_at": "2026-05-22T01:51:29.749166+00:00",
+  "open_count": 2,
+  "open_positions": [
+    {
+      "id": "NZD/JPY-pdhl-1779414689",
+      "pair": "NZD/JPY",
+      "method": "pdhl",
+      "direction": "long",
+      "entry_type": "pdhl_long_retest",
+      "entry_time": "2026-05-22T01:51:29.749166",
+      "entry_price": 93.4800033569336,
+      "stop_loss": 93.21097142791749,
+      "take_profit": 93.7490352859497,
+      "score": 85,
+      "last_check_time": "2026-05-22T01:51:29.749166"
+    },
+    {
+      "id": "NZD/USD-pdhl-1779414689",
+      "pair": "NZD/USD",
+      "method": "pdhl",
+      "direction": "long",
+      "entry_type": "pdhl_long_retest",
+      "entry_time": "2026-05-22T01:51:29.749166",
+      "entry_price": 0.587924063205719,
+      "stop_loss": 0.586318293273449,
+      "take_profit": 0.589529833137989,
+      "score": 85,
+      "last_check_time": "2026-05-22T01:51:29.749166"
+    }
+  ],
   "history_count": 0,
   "recent_trades": [],
   "stats": {
