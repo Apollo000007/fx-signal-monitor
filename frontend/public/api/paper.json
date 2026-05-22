@@ -1,19 +1,58 @@
 {
-  "updated_at": "2026-05-22T11:27:28.141385+00:00",
-  "open_count": 1,
+  "updated_at": "2026-05-22T11:32:31.925269+00:00",
+  "open_count": 4,
   "open_positions": [
     {
-      "id": "CHF/JPY-dtp-1779449248",
+      "id": "USD/CAD-orz-1779449551",
+      "pair": "USD/CAD",
+      "method": "orz",
+      "direction": "long",
+      "entry_type": "pullback",
+      "entry_time": "2026-05-22T11:32:31.925269",
+      "entry_price": 1.3798400163650513,
+      "stop_loss": 1.3698547594547272,
+      "take_profit": 1.388136665026347,
+      "score": 80,
+      "last_check_time": "2026-05-22T11:32:31.925269"
+    },
+    {
+      "id": "USD/CAD-dtp-1779449551",
+      "pair": "USD/CAD",
+      "method": "dtp",
+      "direction": "long",
+      "entry_type": "dtp_long",
+      "entry_time": "2026-05-22T11:32:31.925269",
+      "entry_price": 1.3796000480651855,
+      "stop_loss": 1.3765221043825149,
+      "take_profit": 1.3888338791131976,
+      "score": 100,
+      "last_check_time": "2026-05-22T11:32:31.925269"
+    },
+    {
+      "id": "USD/JPY-dtp-1779449551",
+      "pair": "USD/JPY",
+      "method": "dtp",
+      "direction": "long",
+      "entry_type": "dtp_long",
+      "entry_time": "2026-05-22T11:32:31.925269",
+      "entry_price": 159.1300048828125,
+      "stop_loss": 158.9099312438965,
+      "take_profit": 159.79022579956052,
+      "score": 100,
+      "last_check_time": "2026-05-22T11:32:31.925269"
+    },
+    {
+      "id": "CHF/JPY-dtp-1779449551",
       "pair": "CHF/JPY",
       "method": "dtp",
       "direction": "long",
       "entry_type": "dtp_long",
-      "entry_time": "2026-05-22T11:27:28.141385",
-      "entry_price": 202.2310028076172,
+      "entry_time": "2026-05-22T11:32:31.925269",
+      "entry_price": 202.2220001220703,
       "stop_loss": 202.07771878051759,
-      "take_profit": 202.690854888916,
+      "take_profit": 202.6548441467285,
       "score": 100,
-      "last_check_time": "2026-05-22T11:27:28.141385"
+      "last_check_time": "2026-05-22T11:32:31.925269"
     }
   ],
   "history_count": 0,
