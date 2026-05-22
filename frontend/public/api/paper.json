@@ -1,7 +1,21 @@
 {
-  "updated_at": "2026-05-22T03:34:05.582437+00:00",
-  "open_count": 0,
-  "open_positions": [],
+  "updated_at": "2026-05-22T03:39:14.473651+00:00",
+  "open_count": 1,
+  "open_positions": [
+    {
+      "id": "NZD/JPY-orz-1779421154",
+      "pair": "NZD/JPY",
+      "method": "orz",
+      "direction": "short",
+      "entry_type": "range_reversal",
+      "entry_time": "2026-05-22T03:39:14.473651",
+      "entry_price": 93.37300109863281,
+      "stop_loss": 94.0132067006429,
+      "take_profit": 90.78474998474121,
+      "score": 79,
+      "last_check_time": "2026-05-22T03:39:14.473651"
+    }
+  ],
   "history_count": 0,
   "recent_trades": [],
   "stats": {
