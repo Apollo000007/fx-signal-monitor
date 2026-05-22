@@ -1,7 +1,21 @@
 {
-  "updated_at": "2026-05-22T02:01:50.828954+00:00",
-  "open_count": 0,
-  "open_positions": [],
+  "updated_at": "2026-05-22T02:07:02.232800+00:00",
+  "open_count": 1,
+  "open_positions": [
+    {
+      "id": "EUR/USD-orz-1779415622",
+      "pair": "EUR/USD",
+      "method": "orz",
+      "direction": "short",
+      "entry_type": "pullback",
+      "entry_time": "2026-05-22T02:07:02.232800",
+      "entry_price": 1.161440134048462,
+      "stop_loss": 1.1682290709543228,
+      "take_profit": 1.1581581830978394,
+      "score": 83,
+      "last_check_time": "2026-05-22T02:07:02.232800"
+    }
+  ],
   "history_count": 0,
   "recent_trades": [],
   "stats": {
