@@ -1,7 +1,21 @@
 {
-  "updated_at": "2026-05-22T14:27:47.168488+00:00",
-  "open_count": 0,
-  "open_positions": [],
+  "updated_at": "2026-05-22T14:33:01.143495+00:00",
+  "open_count": 1,
+  "open_positions": [
+    {
+      "id": "ZAR/JPY-orz-1779460381",
+      "pair": "ZAR/JPY",
+      "method": "orz",
+      "direction": "long",
+      "entry_type": "pullback",
+      "entry_time": "2026-05-22T14:33:01.143495",
+      "entry_price": 9.66100025177002,
+      "stop_loss": 9.546728322486878,
+      "take_profit": 9.75857982635498,
+      "score": 83,
+      "last_check_time": "2026-05-22T14:33:01.143495"
+    }
+  ],
   "history_count": 0,
   "recent_trades": [],
   "stats": {
