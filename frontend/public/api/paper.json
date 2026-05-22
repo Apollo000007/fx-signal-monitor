@@ -1,7 +1,34 @@
 {
-  "updated_at": "2026-05-22T05:47:55.174349+00:00",
-  "open_count": 0,
-  "open_positions": [],
+  "updated_at": "2026-05-22T05:53:06.222023+00:00",
+  "open_count": 2,
+  "open_positions": [
+    {
+      "id": "AUD/USD-pdhl-1779429186",
+      "pair": "AUD/USD",
+      "method": "pdhl",
+      "direction": "long",
+      "entry_type": "pdhl_long_retest",
+      "entry_time": "2026-05-22T05:53:06.222023",
+      "entry_price": 0.7147452235221863,
+      "stop_loss": 0.7130614675879479,
+      "take_profit": 0.7170514464378357,
+      "score": 85,
+      "last_check_time": "2026-05-22T05:53:06.222023"
+    },
+    {
+      "id": "AUD/JPY-pdhl-1779429186",
+      "pair": "AUD/JPY",
+      "method": "pdhl",
+      "direction": "long",
+      "entry_type": "pdhl_long_retest",
+      "entry_time": "2026-05-22T05:53:06.222023",
+      "entry_price": 113.66200256347656,
+      "stop_loss": 113.35970378112793,
+      "take_profit": 113.96430134582519,
+      "score": 85,
+      "last_check_time": "2026-05-22T05:53:06.222023"
+    }
+  ],
   "history_count": 0,
   "recent_trades": [],
   "stats": {
