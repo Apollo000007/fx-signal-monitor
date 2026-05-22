@@ -1,32 +1,32 @@
 {
-  "updated_at": "2026-05-22T19:07:03.800301+00:00",
+  "updated_at": "2026-05-22T19:12:11.957784+00:00",
   "open_count": 2,
   "open_positions": [
     {
-      "id": "EUR/USD-orz-1779476823",
+      "id": "EUR/USD-orz-1779477131",
       "pair": "EUR/USD",
       "method": "orz",
       "direction": "short",
       "entry_type": "pullback",
-      "entry_time": "2026-05-22T19:07:03.800301",
+      "entry_time": "2026-05-22T19:12:11.957784",
       "entry_price": 1.16130530834198,
       "stop_loss": 1.1671029991865158,
       "take_profit": 1.1581581830978394,
       "score": 88,
-      "last_check_time": "2026-05-22T19:07:03.800301"
+      "last_check_time": "2026-05-22T19:12:11.957784"
     },
     {
-      "id": "USD/JPY-dtp-1779476823",
+      "id": "USD/JPY-dtp-1779477131",
       "pair": "USD/JPY",
       "method": "dtp",
       "direction": "long",
       "entry_type": "dtp_long",
-      "entry_time": "2026-05-22T19:07:03.800301",
-      "entry_price": 159.14300537109375,
+      "entry_time": "2026-05-22T19:12:11.957784",
+      "entry_price": 159.14100646972656,
       "stop_loss": 158.8929499511719,
-      "take_profit": 159.89317163085934,
+      "take_profit": 159.8851760253906,
       "score": 100,
-      "last_check_time": "2026-05-22T19:07:03.800301"
+      "last_check_time": "2026-05-22T19:12:11.957784"
     }
   ],
   "history_count": 0,
