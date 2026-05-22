@@ -1,19 +1,71 @@
 {
-  "updated_at": "2026-05-22T16:48:09.844202+00:00",
-  "open_count": 1,
+  "updated_at": "2026-05-22T16:53:18.388579+00:00",
+  "open_count": 5,
   "open_positions": [
     {
-      "id": "ZAR/JPY-orz-1779468489",
+      "id": "EUR/USD-orz-1779468798",
+      "pair": "EUR/USD",
+      "method": "orz",
+      "direction": "short",
+      "entry_type": "pullback",
+      "entry_time": "2026-05-22T16:53:18.388579",
+      "entry_price": 1.161170482635498,
+      "stop_loss": 1.1671002972793578,
+      "take_profit": 1.1581581830978394,
+      "score": 83,
+      "last_check_time": "2026-05-22T16:53:18.388579"
+    },
+    {
+      "id": "EUR/USD-dtp-1779468798",
+      "pair": "EUR/USD",
+      "method": "dtp",
+      "direction": "short",
+      "entry_type": "dtp_short",
+      "entry_time": "2026-05-22T16:53:18.388579",
+      "entry_price": 1.161170482635498,
+      "stop_loss": 1.1632772121429442,
+      "take_profit": 1.1548502941131595,
+      "score": 100,
+      "last_check_time": "2026-05-22T16:53:18.388579"
+    },
+    {
+      "id": "ZAR/JPY-orz-1779468798",
       "pair": "ZAR/JPY",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-05-22T16:48:09.844202",
-      "entry_price": 9.664999961853027,
-      "stop_loss": 9.549722314872742,
+      "entry_time": "2026-05-22T16:53:18.388579",
+      "entry_price": 9.663000106811523,
+      "stop_loss": 9.549682397766112,
       "take_profit": 9.75857982635498,
       "score": 83,
-      "last_check_time": "2026-05-22T16:48:09.844202"
+      "last_check_time": "2026-05-22T16:53:18.388579"
+    },
+    {
+      "id": "USD/JPY-dtp-1779468798",
+      "pair": "USD/JPY",
+      "method": "dtp",
+      "direction": "long",
+      "entry_type": "dtp_long",
+      "entry_time": "2026-05-22T16:53:18.388579",
+      "entry_price": 159.1959991455078,
+      "stop_loss": 158.91892492675782,
+      "take_profit": 160.02722180175778,
+      "score": 100,
+      "last_check_time": "2026-05-22T16:53:18.388579"
+    },
+    {
+      "id": "NZD/USD-dtp-1779468798",
+      "pair": "NZD/USD",
+      "method": "dtp",
+      "direction": "short",
+      "entry_type": "dtp_short",
+      "entry_time": "2026-05-22T16:53:18.388579",
+      "entry_price": 0.5858917236328125,
+      "stop_loss": 0.58737234044075,
+      "take_profit": 0.5814498732089999,
+      "score": 100,
+      "last_check_time": "2026-05-22T16:53:18.388579"
     }
   ],
   "history_count": 0,
