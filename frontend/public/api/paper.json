@@ -1,45 +1,32 @@
 {
-  "updated_at": "2026-05-22T06:18:35.505796+00:00",
-  "open_count": 3,
+  "updated_at": "2026-05-22T06:23:40.781602+00:00",
+  "open_count": 2,
   "open_positions": [
     {
-      "id": "NZD/JPY-orz-1779430715",
-      "pair": "NZD/JPY",
-      "method": "orz",
-      "direction": "short",
-      "entry_type": "range_reversal",
-      "entry_time": "2026-05-22T06:18:35.505796",
-      "entry_price": 93.36199951171875,
-      "stop_loss": 94.02161242167155,
-      "take_profit": 90.78474998474121,
-      "score": 79,
-      "last_check_time": "2026-05-22T06:18:35.505796"
-    },
-    {
-      "id": "AUD/USD-orz-1779430715",
+      "id": "AUD/USD-orz-1779431020",
       "pair": "AUD/USD",
       "method": "orz",
       "direction": "short",
       "entry_type": "pullback",
-      "entry_time": "2026-05-22T06:18:35.505796",
-      "entry_price": 0.7136231064796448,
-      "stop_loss": 0.7189475348424911,
+      "entry_time": "2026-05-22T06:23:40.781602",
+      "entry_price": 0.7136739492416382,
+      "stop_loss": 0.7189485537314415,
       "take_profit": 0.7113099992275238,
-      "score": 75,
-      "last_check_time": "2026-05-22T06:18:35.505796"
+      "score": 85,
+      "last_check_time": "2026-05-22T06:23:40.781602"
     },
     {
-      "id": "USD/CHF-orz-1779430715",
-      "pair": "USD/CHF",
+      "id": "NZD/JPY-orz-1779431020",
+      "pair": "NZD/JPY",
       "method": "orz",
-      "direction": "long",
-      "entry_type": "pullback",
-      "entry_time": "2026-05-22T06:18:35.505796",
-      "entry_price": 0.7867000102996826,
-      "stop_loss": 0.7836695216751098,
-      "take_profit": 0.792570024728775,
-      "score": 75,
-      "last_check_time": "2026-05-22T06:18:35.505796"
+      "direction": "short",
+      "entry_type": "range_reversal",
+      "entry_time": "2026-05-22T06:23:40.781602",
+      "entry_price": 93.36399841308594,
+      "stop_loss": 94.02161242167155,
+      "take_profit": 90.78474998474121,
+      "score": 79,
+      "last_check_time": "2026-05-22T06:23:40.781602"
     }
   ],
   "history_count": 0,
