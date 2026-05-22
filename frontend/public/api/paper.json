@@ -1,32 +1,45 @@
 {
-  "updated_at": "2026-05-22T02:47:53.564011+00:00",
-  "open_count": 2,
+  "updated_at": "2026-05-22T02:53:00.131962+00:00",
+  "open_count": 3,
   "open_positions": [
     {
-      "id": "AUD/USD-orz-1779418073",
-      "pair": "AUD/USD",
-      "method": "orz",
-      "direction": "short",
-      "entry_type": "pullback",
-      "entry_time": "2026-05-22T02:47:53.564011",
-      "entry_price": 0.7143877744674683,
-      "stop_loss": 0.7191398587918282,
-      "take_profit": 0.7113099992275238,
-      "score": 85,
-      "last_check_time": "2026-05-22T02:47:53.564011"
-    },
-    {
-      "id": "EUR/USD-orz-1779418073",
+      "id": "EUR/USD-orz-1779418380",
       "pair": "EUR/USD",
       "method": "orz",
       "direction": "short",
       "entry_type": "pullback",
-      "entry_time": "2026-05-22T02:47:53.564011",
-      "entry_price": 1.1615750789642334,
-      "stop_loss": 1.1682317752504348,
+      "entry_time": "2026-05-22T02:53:00.131962",
+      "entry_price": 1.1617100238800049,
+      "stop_loss": 1.168234479546547,
       "take_profit": 1.1615347862243652,
       "score": 83,
-      "last_check_time": "2026-05-22T02:47:53.564011"
+      "last_check_time": "2026-05-22T02:53:00.131962"
+    },
+    {
+      "id": "NZD/JPY-orz-1779418380",
+      "pair": "NZD/JPY",
+      "method": "orz",
+      "direction": "short",
+      "entry_type": "range_reversal",
+      "entry_time": "2026-05-22T02:53:00.131962",
+      "entry_price": 93.40799713134766,
+      "stop_loss": 94.0132067006429,
+      "take_profit": 90.78474998474121,
+      "score": 79,
+      "last_check_time": "2026-05-22T02:53:00.131962"
+    },
+    {
+      "id": "CAD/JPY-pdhl-1779418380",
+      "pair": "CAD/JPY",
+      "method": "pdhl",
+      "direction": "short",
+      "entry_type": "pdhl_short_retest",
+      "entry_time": "2026-05-22T02:53:00.131962",
+      "entry_price": 115.31600189208984,
+      "stop_loss": 115.59112626647949,
+      "take_profit": 115.0408775177002,
+      "score": 85,
+      "last_check_time": "2026-05-22T02:53:00.131962"
     }
   ],
   "history_count": 0,
