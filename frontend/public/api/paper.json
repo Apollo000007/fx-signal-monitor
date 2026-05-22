@@ -1,32 +1,32 @@
 {
-  "updated_at": "2026-05-22T06:23:40.781602+00:00",
+  "updated_at": "2026-05-22T06:28:47.786620+00:00",
   "open_count": 2,
   "open_positions": [
     {
-      "id": "AUD/USD-orz-1779431020",
-      "pair": "AUD/USD",
-      "method": "orz",
-      "direction": "short",
-      "entry_type": "pullback",
-      "entry_time": "2026-05-22T06:23:40.781602",
-      "entry_price": 0.7136739492416382,
-      "stop_loss": 0.7189485537314415,
-      "take_profit": 0.7113099992275238,
-      "score": 85,
-      "last_check_time": "2026-05-22T06:23:40.781602"
-    },
-    {
-      "id": "NZD/JPY-orz-1779431020",
+      "id": "NZD/JPY-orz-1779431327",
       "pair": "NZD/JPY",
       "method": "orz",
       "direction": "short",
       "entry_type": "range_reversal",
-      "entry_time": "2026-05-22T06:23:40.781602",
-      "entry_price": 93.36399841308594,
+      "entry_time": "2026-05-22T06:28:47.786620",
+      "entry_price": 93.34500122070312,
       "stop_loss": 94.02161242167155,
       "take_profit": 90.78474998474121,
       "score": 79,
-      "last_check_time": "2026-05-22T06:23:40.781602"
+      "last_check_time": "2026-05-22T06:28:47.786620"
+    },
+    {
+      "id": "AUD/USD-orz-1779431327",
+      "pair": "AUD/USD",
+      "method": "orz",
+      "direction": "short",
+      "entry_type": "pullback",
+      "entry_time": "2026-05-22T06:28:47.786620",
+      "entry_price": 0.7135721445083618,
+      "stop_loss": 0.7189465135645866,
+      "take_profit": 0.7113099992275238,
+      "score": 75,
+      "last_check_time": "2026-05-22T06:28:47.786620"
     }
   ],
   "history_count": 0,
