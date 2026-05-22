@@ -1,19 +1,19 @@
 {
-  "updated_at": "2026-05-22T05:32:26.666025+00:00",
+  "updated_at": "2026-05-22T05:37:41.601657+00:00",
   "open_count": 1,
   "open_positions": [
     {
-      "id": "EUR/USD-orz-1779427946",
-      "pair": "EUR/USD",
+      "id": "AUD/USD-orz-1779428261",
+      "pair": "AUD/USD",
       "method": "orz",
       "direction": "short",
       "entry_type": "pullback",
-      "entry_time": "2026-05-22T05:32:26.666025",
-      "entry_price": 1.1618449687957764,
-      "stop_loss": 1.1679497663784026,
-      "take_profit": 1.1615347862243652,
-      "score": 83,
-      "last_check_time": "2026-05-22T05:32:26.666025"
+      "entry_time": "2026-05-22T05:37:41.601657",
+      "entry_price": 0.7145408987998962,
+      "stop_loss": 0.718965927400589,
+      "take_profit": 0.7113099992275238,
+      "score": 85,
+      "last_check_time": "2026-05-22T05:37:41.601657"
     }
   ],
   "history_count": 0,
