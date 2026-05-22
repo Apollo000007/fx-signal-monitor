@@ -1,32 +1,45 @@
 {
-  "updated_at": "2026-05-22T05:17:02.017816+00:00",
-  "open_count": 2,
+  "updated_at": "2026-05-22T05:22:09.732090+00:00",
+  "open_count": 3,
   "open_positions": [
     {
-      "id": "ZAR/JPY-orz-1779427022",
-      "pair": "ZAR/JPY",
+      "id": "AUD/USD-orz-1779427329",
+      "pair": "AUD/USD",
       "method": "orz",
-      "direction": "long",
+      "direction": "short",
       "entry_type": "pullback",
-      "entry_time": "2026-05-22T05:17:02.017816",
-      "entry_price": 9.668000221252441,
-      "stop_loss": 9.542017761268616,
-      "take_profit": 9.75857982635498,
-      "score": 83,
-      "last_check_time": "2026-05-22T05:17:02.017816"
+      "entry_time": "2026-05-22T05:22:09.732090",
+      "entry_price": 0.714438796043396,
+      "stop_loss": 0.7189638812613488,
+      "take_profit": 0.7113099992275238,
+      "score": 85,
+      "last_check_time": "2026-05-22T05:22:09.732090"
     },
     {
-      "id": "USD/CHF-orz-1779427022",
+      "id": "EUR/USD-orz-1779427329",
+      "pair": "EUR/USD",
+      "method": "orz",
+      "direction": "short",
+      "entry_type": "pullback",
+      "entry_time": "2026-05-22T05:22:09.732090",
+      "entry_price": 1.1618449687957764,
+      "stop_loss": 1.1679497663784026,
+      "take_profit": 1.1615347862243652,
+      "score": 83,
+      "last_check_time": "2026-05-22T05:22:09.732090"
+    },
+    {
+      "id": "USD/CHF-orz-1779427329",
       "pair": "USD/CHF",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-05-22T05:17:02.017816",
-      "entry_price": 0.786329984664917,
-      "stop_loss": 0.78366213596344,
+      "entry_time": "2026-05-22T05:22:09.732090",
+      "entry_price": 0.7863699793815613,
+      "stop_loss": 0.7836629342579842,
       "take_profit": 0.792570024728775,
       "score": 75,
-      "last_check_time": "2026-05-22T05:17:02.017816"
+      "last_check_time": "2026-05-22T05:22:09.732090"
     }
   ],
   "history_count": 0,
