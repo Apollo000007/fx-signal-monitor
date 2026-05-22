@@ -1,19 +1,45 @@
 {
-  "updated_at": "2026-05-22T11:48:03.117159+00:00",
-  "open_count": 1,
+  "updated_at": "2026-05-22T11:53:22.836847+00:00",
+  "open_count": 3,
   "open_positions": [
     {
-      "id": "EUR/USD-orz-1779450483",
+      "id": "EUR/USD-orz-1779450802",
       "pair": "EUR/USD",
       "method": "orz",
       "direction": "short",
       "entry_type": "pullback",
-      "entry_time": "2026-05-22T11:48:03.117159",
-      "entry_price": 1.160092830657959,
-      "stop_loss": 1.1676384450387955,
+      "entry_time": "2026-05-22T11:53:22.836847",
+      "entry_price": 1.1602274179458618,
+      "stop_loss": 1.167641142168045,
       "take_profit": 1.1581581830978394,
       "score": 83,
-      "last_check_time": "2026-05-22T11:48:03.117159"
+      "last_check_time": "2026-05-22T11:53:22.836847"
+    },
+    {
+      "id": "EUR/USD-dtp-1779450802",
+      "pair": "EUR/USD",
+      "method": "dtp",
+      "direction": "short",
+      "entry_type": "dtp_short",
+      "entry_time": "2026-05-22T11:53:22.836847",
+      "entry_price": 1.1602274179458618,
+      "stop_loss": 1.1623316531181334,
+      "take_profit": 1.1539147124290472,
+      "score": 100,
+      "last_check_time": "2026-05-22T11:53:22.836847"
+    },
+    {
+      "id": "GBP/USD-dtp-1779450802",
+      "pair": "GBP/USD",
+      "method": "dtp",
+      "direction": "short",
+      "entry_type": "dtp_short",
+      "entry_time": "2026-05-22T11:53:22.836847",
+      "entry_price": 1.342209815979004,
+      "stop_loss": 1.3445626188516615,
+      "take_profit": 1.335151407361031,
+      "score": 100,
+      "last_check_time": "2026-05-22T11:53:22.836847"
     }
   ],
   "history_count": 0,
