@@ -1,58 +1,32 @@
 {
-  "updated_at": "2026-05-22T19:53:05.311393+00:00",
-  "open_count": 4,
+  "updated_at": "2026-05-22T19:58:12.753852+00:00",
+  "open_count": 2,
   "open_positions": [
     {
-      "id": "USD/CAD-orz-1779479585",
-      "pair": "USD/CAD",
-      "method": "orz",
-      "direction": "long",
-      "entry_type": "pullback",
-      "entry_time": "2026-05-22T19:53:05.311393",
-      "entry_price": 1.3811999559402466,
-      "stop_loss": 1.3698547594547272,
-      "take_profit": 1.388136665026347,
-      "score": 85,
-      "last_check_time": "2026-05-22T19:53:05.311393"
-    },
-    {
-      "id": "USD/CAD-pdhl-1779479585",
-      "pair": "USD/CAD",
-      "method": "pdhl",
-      "direction": "long",
-      "entry_type": "pdhl_long_retest",
-      "entry_time": "2026-05-22T19:53:05.311393",
-      "entry_price": 1.3811899423599243,
-      "stop_loss": 1.3778401272296907,
-      "take_profit": 1.384539757490158,
-      "score": 83,
-      "last_check_time": "2026-05-22T19:53:05.311393"
-    },
-    {
-      "id": "USD/CAD-dtp-1779479585",
-      "pair": "USD/CAD",
-      "method": "dtp",
-      "direction": "long",
-      "entry_type": "dtp_long",
-      "entry_time": "2026-05-22T19:53:05.311393",
-      "entry_price": 1.3811899423599243,
-      "stop_loss": 1.378619995236397,
-      "take_profit": 1.3888997837305066,
-      "score": 100,
-      "last_check_time": "2026-05-22T19:53:05.311393"
-    },
-    {
-      "id": "ZAR/JPY-orz-1779479585",
+      "id": "ZAR/JPY-orz-1779479892",
       "pair": "ZAR/JPY",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-05-22T19:53:05.311393",
-      "entry_price": 9.657999992370605,
-      "stop_loss": 9.549582595481873,
+      "entry_time": "2026-05-22T19:58:12.753852",
+      "entry_price": 9.65999984741211,
+      "stop_loss": 9.5496225125885,
       "take_profit": 9.75857982635498,
       "score": 83,
-      "last_check_time": "2026-05-22T19:53:05.311393"
+      "last_check_time": "2026-05-22T19:58:12.753852"
+    },
+    {
+      "id": "CHF/JPY-dtp-1779479892",
+      "pair": "CHF/JPY",
+      "method": "dtp",
+      "direction": "long",
+      "entry_type": "dtp_long",
+      "entry_time": "2026-05-22T19:58:12.753852",
+      "entry_price": 202.7949981689453,
+      "stop_loss": 202.58320948791504,
+      "take_profit": 203.43036421203612,
+      "score": 100,
+      "last_check_time": "2026-05-22T19:58:12.753852"
     }
   ],
   "history_count": 0,
