@@ -1,19 +1,19 @@
 {
-  "updated_at": "2026-05-22T11:22:19.737067+00:00",
+  "updated_at": "2026-05-22T11:27:28.141385+00:00",
   "open_count": 1,
   "open_positions": [
     {
-      "id": "CHF/JPY-dtp-1779448939",
+      "id": "CHF/JPY-dtp-1779449248",
       "pair": "CHF/JPY",
       "method": "dtp",
       "direction": "long",
       "entry_type": "dtp_long",
-      "entry_time": "2026-05-22T11:22:19.737067",
-      "entry_price": 202.22500610351562,
+      "entry_time": "2026-05-22T11:27:28.141385",
+      "entry_price": 202.2310028076172,
       "stop_loss": 202.07771878051759,
-      "take_profit": 202.66686807250974,
+      "take_profit": 202.690854888916,
       "score": 100,
-      "last_check_time": "2026-05-22T11:22:19.737067"
+      "last_check_time": "2026-05-22T11:27:28.141385"
     }
   ],
   "history_count": 0,
