@@ -1,45 +1,19 @@
 {
-  "updated_at": "2026-05-24T23:42:44.654147+00:00",
-  "open_count": 3,
+  "updated_at": "2026-05-24T23:47:57.131405+00:00",
+  "open_count": 1,
   "open_positions": [
     {
-      "id": "USD/CAD-orz-1779666164",
-      "pair": "USD/CAD",
-      "method": "orz",
-      "direction": "long",
-      "entry_type": "pullback",
-      "entry_time": "2026-05-24T23:42:44.654147",
-      "entry_price": 1.3800699710845947,
-      "stop_loss": 1.3698547594547272,
-      "take_profit": 1.388136665026347,
-      "score": 80,
-      "last_check_time": "2026-05-24T23:42:44.654147"
-    },
-    {
-      "id": "CHF/JPY-orz-1779666164",
+      "id": "CHF/JPY-orz-1779666477",
       "pair": "CHF/JPY",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-05-24T23:42:44.654147",
-      "entry_price": 203.21299743652344,
+      "entry_time": "2026-05-24T23:47:57.131405",
+      "entry_price": 203.2169952392578,
       "stop_loss": 201.10697451782227,
       "take_profit": 203.84775161743164,
       "score": 80,
-      "last_check_time": "2026-05-24T23:42:44.654147"
-    },
-    {
-      "id": "CHF/JPY-pdhl-1779666164",
-      "pair": "CHF/JPY",
-      "method": "pdhl",
-      "direction": "long",
-      "entry_type": "pdhl_long_retest",
-      "entry_time": "2026-05-24T23:42:44.654147",
-      "entry_price": 203.2310028076172,
-      "stop_loss": 202.33072206115725,
-      "take_profit": 204.13128355407713,
-      "score": 85,
-      "last_check_time": "2026-05-24T23:42:44.654147"
+      "last_check_time": "2026-05-24T23:47:57.131405"
     }
   ],
   "history_count": 0,
