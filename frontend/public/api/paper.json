@@ -1,7 +1,21 @@
 {
-  "updated_at": "2026-05-25T07:15:54.996395+00:00",
-  "open_count": 0,
-  "open_positions": [],
+  "updated_at": "2026-05-25T07:21:03.591032+00:00",
+  "open_count": 1,
+  "open_positions": [
+    {
+      "id": "USD/CAD-orz-1779693663",
+      "pair": "USD/CAD",
+      "method": "orz",
+      "direction": "long",
+      "entry_type": "pullback",
+      "entry_time": "2026-05-25T07:21:03.591032",
+      "entry_price": 1.3819500207901,
+      "stop_loss": 1.3698547594547272,
+      "take_profit": 1.388136665026347,
+      "score": 85,
+      "last_check_time": "2026-05-25T07:21:03.591032"
+    }
+  ],
   "history_count": 0,
   "recent_trades": [],
   "stats": {
