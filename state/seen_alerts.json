@@ -50,5 +50,6 @@
   "USD/CHF:pdhl:short": 1779684983.959002,
   "EUR/USD:pdhl:long": 1779684670.273973,
   "USD/JPY:pdhl:short": 1779670456.047827,
-  "EUR/GBP:dtp:short": 1779694272.732387
+  "EUR/GBP:dtp:short": 1779694272.732387,
+  "GBP/JPY:dtp:long": 1779694886.431856
 }
