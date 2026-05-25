@@ -1,58 +1,32 @@
 {
-  "updated_at": "2026-05-25T05:37:52.055917+00:00",
-  "open_count": 4,
+  "updated_at": "2026-05-25T05:42:56.794965+00:00",
+  "open_count": 2,
   "open_positions": [
     {
-      "id": "USD/CAD-orz-1779687472",
+      "id": "USD/CAD-orz-1779687776",
       "pair": "USD/CAD",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-05-25T05:37:52.055917",
-      "entry_price": 1.3807499408721924,
+      "entry_time": "2026-05-25T05:42:56.794965",
+      "entry_price": 1.3805700540542603,
       "stop_loss": 1.3698547594547272,
       "take_profit": 1.388136665026347,
       "score": 85,
-      "last_check_time": "2026-05-25T05:37:52.055917"
+      "last_check_time": "2026-05-25T05:42:56.794965"
     },
     {
-      "id": "CHF/JPY-orz-1779687472",
+      "id": "CHF/JPY-orz-1779687776",
       "pair": "CHF/JPY",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-05-25T05:37:52.055917",
-      "entry_price": 203.18899536132812,
+      "entry_time": "2026-05-25T05:42:56.794965",
+      "entry_price": 203.19000244140625,
       "stop_loss": 201.10697451782227,
       "take_profit": 203.84775161743164,
       "score": 80,
-      "last_check_time": "2026-05-25T05:37:52.055917"
-    },
-    {
-      "id": "EUR/USD-pdhl-1779687472",
-      "pair": "EUR/USD",
-      "method": "pdhl",
-      "direction": "long",
-      "entry_type": "pdhl_long_retest",
-      "entry_time": "2026-05-25T05:37:52.055917",
-      "entry_price": 1.1648223400115967,
-      "stop_loss": 1.1601022013425828,
-      "take_profit": 1.1695424786806106,
-      "score": 85,
-      "last_check_time": "2026-05-25T05:37:52.055917"
-    },
-    {
-      "id": "GBP/USD-pdhl-1779687472",
-      "pair": "GBP/USD",
-      "method": "pdhl",
-      "direction": "long",
-      "entry_type": "pdhl_long_retest",
-      "entry_time": "2026-05-25T05:37:52.055917",
-      "entry_price": 1.3487632274627686,
-      "stop_loss": 1.3439304872751237,
-      "take_profit": 1.3535959676504135,
-      "score": 85,
-      "last_check_time": "2026-05-25T05:37:52.055917"
+      "last_check_time": "2026-05-25T05:42:56.794965"
     }
   ],
   "history_count": 0,
