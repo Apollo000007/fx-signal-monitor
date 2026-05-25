@@ -1,32 +1,45 @@
 {
-  "updated_at": "2026-05-25T13:21:14.776356+00:00",
-  "open_count": 2,
+  "updated_at": "2026-05-25T13:26:21.890823+00:00",
+  "open_count": 3,
   "open_positions": [
     {
-      "id": "USD/JPY-dtp-1779715274",
+      "id": "ZAR/JPY-dtp-1779715581",
+      "pair": "ZAR/JPY",
+      "method": "dtp",
+      "direction": "long",
+      "entry_type": "dtp_long",
+      "entry_time": "2026-05-25T13:26:21.890823",
+      "entry_price": 9.729000091552734,
+      "stop_loss": 9.70328729724884,
+      "take_profit": 9.806138474464417,
+      "score": 75,
+      "last_check_time": "2026-05-25T13:26:21.890823"
+    },
+    {
+      "id": "USD/JPY-dtp-1779715581",
       "pair": "USD/JPY",
       "method": "dtp",
       "direction": "long",
       "entry_type": "dtp_long",
-      "entry_time": "2026-05-25T13:21:14.776356",
-      "entry_price": 158.90499877929688,
+      "entry_time": "2026-05-25T13:26:21.890823",
+      "entry_price": 158.9040069580078,
       "stop_loss": 158.72810641479492,
-      "take_profit": 159.43567587280273,
+      "take_profit": 159.43170858764648,
       "score": 100,
-      "last_check_time": "2026-05-25T13:21:14.776356"
+      "last_check_time": "2026-05-25T13:26:21.890823"
     },
     {
-      "id": "AUD/JPY-dtp-1779715274",
+      "id": "AUD/JPY-dtp-1779715581",
       "pair": "AUD/JPY",
       "method": "dtp",
       "direction": "long",
       "entry_type": "dtp_long",
-      "entry_time": "2026-05-25T13:21:14.776356",
-      "entry_price": 113.94999694824219,
+      "entry_time": "2026-05-25T13:26:21.890823",
+      "entry_price": 113.9469985961914,
       "stop_loss": 113.75812964630127,
-      "take_profit": 114.52559885406494,
+      "take_profit": 114.51360544586181,
       "score": 100,
-      "last_check_time": "2026-05-25T13:21:14.776356"
+      "last_check_time": "2026-05-25T13:26:21.890823"
     }
   ],
   "history_count": 0,
