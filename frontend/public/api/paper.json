@@ -1,32 +1,58 @@
 {
-  "updated_at": "2026-05-25T09:19:56.209992+00:00",
-  "open_count": 2,
+  "updated_at": "2026-05-25T09:25:07.181061+00:00",
+  "open_count": 4,
   "open_positions": [
     {
-      "id": "CHF/JPY-dtp-1779700796",
+      "id": "CHF/JPY-pdhl-1779701107",
+      "pair": "CHF/JPY",
+      "method": "pdhl",
+      "direction": "long",
+      "entry_type": "pdhl_long_retest",
+      "entry_time": "2026-05-25T09:25:07.181061",
+      "entry_price": 203.35899353027344,
+      "stop_loss": 202.33072206115725,
+      "take_profit": 204.38726499938963,
+      "score": 85,
+      "last_check_time": "2026-05-25T09:25:07.181061"
+    },
+    {
+      "id": "CHF/JPY-dtp-1779701107",
       "pair": "CHF/JPY",
       "method": "dtp",
       "direction": "long",
       "entry_type": "dtp_long",
-      "entry_time": "2026-05-25T09:19:56.209992",
-      "entry_price": 203.34300231933594,
+      "entry_time": "2026-05-25T09:25:07.181061",
+      "entry_price": 203.35899353027344,
       "stop_loss": 203.0097844390869,
-      "take_profit": 204.34265596008305,
+      "take_profit": 204.40662080383305,
       "score": 87,
-      "last_check_time": "2026-05-25T09:19:56.209992"
+      "last_check_time": "2026-05-25T09:25:07.181061"
     },
     {
-      "id": "AUD/JPY-dtp-1779700796",
-      "pair": "AUD/JPY",
+      "id": "USD/JPY-dtp-1779701107",
+      "pair": "USD/JPY",
       "method": "dtp",
       "direction": "long",
       "entry_type": "dtp_long",
-      "entry_time": "2026-05-25T09:19:56.209992",
-      "entry_price": 113.9020004272461,
-      "stop_loss": 113.62326251220703,
-      "take_profit": 114.73821417236327,
+      "entry_time": "2026-05-25T09:25:07.181061",
+      "entry_price": 158.93299865722656,
+      "stop_loss": 158.67415956115724,
+      "take_profit": 159.70951594543453,
       "score": 100,
-      "last_check_time": "2026-05-25T09:19:56.209992"
+      "last_check_time": "2026-05-25T09:25:07.181061"
+    },
+    {
+      "id": "GBP/JPY-dtp-1779701107",
+      "pair": "GBP/JPY",
+      "method": "dtp",
+      "direction": "long",
+      "entry_type": "dtp_long",
+      "entry_time": "2026-05-25T09:25:07.181061",
+      "entry_price": 214.46200561523438,
+      "stop_loss": 213.96782482910157,
+      "take_profit": 215.94454797363278,
+      "score": 87,
+      "last_check_time": "2026-05-25T09:25:07.181061"
     }
   ],
   "history_count": 0,
