@@ -1,32 +1,32 @@
 {
-  "updated_at": "2026-05-25T09:45:43.623978+00:00",
+  "updated_at": "2026-05-25T09:50:50.962106+00:00",
   "open_count": 2,
   "open_positions": [
     {
-      "id": "GBP/USD-pdhl-1779702343",
-      "pair": "GBP/USD",
-      "method": "pdhl",
+      "id": "USD/CAD-orz-1779702650",
+      "pair": "USD/CAD",
+      "method": "orz",
       "direction": "long",
-      "entry_type": "pdhl_long_retest",
-      "entry_time": "2026-05-25T09:45:43.623978",
-      "entry_price": 1.3496187925338745,
-      "stop_loss": 1.3439304872751237,
-      "take_profit": 1.3553070977926254,
-      "score": 80,
-      "last_check_time": "2026-05-25T09:45:43.623978"
+      "entry_type": "pullback",
+      "entry_time": "2026-05-25T09:50:50.962106",
+      "entry_price": 1.3811999559402466,
+      "stop_loss": 1.3698547594547272,
+      "take_profit": 1.388136665026347,
+      "score": 85,
+      "last_check_time": "2026-05-25T09:50:50.962106"
     },
     {
-      "id": "AUD/USD-pdhl-1779702343",
-      "pair": "AUD/USD",
-      "method": "pdhl",
+      "id": "USD/CAD-dtp-1779702650",
+      "pair": "USD/CAD",
+      "method": "dtp",
       "direction": "long",
-      "entry_type": "pdhl_long_retest",
-      "entry_time": "2026-05-25T09:45:43.623978",
-      "entry_price": 0.7172057628631592,
-      "stop_loss": 0.7136577507555485,
-      "take_profit": 0.7207537749707699,
-      "score": 80,
-      "last_check_time": "2026-05-25T09:45:43.623978"
+      "entry_type": "dtp_long",
+      "entry_time": "2026-05-25T09:50:50.962106",
+      "entry_price": 1.3812400102615356,
+      "stop_loss": 1.3792193756103515,
+      "take_profit": 1.3873019142150882,
+      "score": 100,
+      "last_check_time": "2026-05-25T09:50:50.962106"
     }
   ],
   "history_count": 0,
