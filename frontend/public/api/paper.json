@@ -1,19 +1,58 @@
 {
-  "updated_at": "2026-05-25T20:01:54.826446+00:00",
-  "open_count": 1,
+  "updated_at": "2026-05-25T20:07:03.497767+00:00",
+  "open_count": 4,
   "open_positions": [
     {
-      "id": "ZAR/JPY-dtp-1779739314",
+      "id": "USD/CAD-orz-1779739623",
+      "pair": "USD/CAD",
+      "method": "orz",
+      "direction": "long",
+      "entry_type": "pullback",
+      "entry_time": "2026-05-25T20:07:03.497767",
+      "entry_price": 1.3796000480651855,
+      "stop_loss": 1.3698547594547272,
+      "take_profit": 1.388136665026347,
+      "score": 85,
+      "last_check_time": "2026-05-25T20:07:03.497767"
+    },
+    {
+      "id": "USD/CAD-dtp-1779739623",
+      "pair": "USD/CAD",
+      "method": "dtp",
+      "direction": "long",
+      "entry_type": "dtp_long",
+      "entry_time": "2026-05-25T20:07:03.497767",
+      "entry_price": 1.3799599409103394,
+      "stop_loss": 1.3782204480171203,
+      "take_profit": 1.3851784195899965,
+      "score": 100,
+      "last_check_time": "2026-05-25T20:07:03.497767"
+    },
+    {
+      "id": "CHF/JPY-orz-1779739623",
+      "pair": "CHF/JPY",
+      "method": "orz",
+      "direction": "long",
+      "entry_type": "pullback",
+      "entry_time": "2026-05-25T20:07:03.497767",
+      "entry_price": 203.05099487304688,
+      "stop_loss": 201.10697451782227,
+      "take_profit": 203.84775161743164,
+      "score": 80,
+      "last_check_time": "2026-05-25T20:07:03.497767"
+    },
+    {
+      "id": "ZAR/JPY-dtp-1779739623",
       "pair": "ZAR/JPY",
       "method": "dtp",
       "direction": "long",
       "entry_type": "dtp_long",
-      "entry_time": "2026-05-25T20:01:54.826446",
-      "entry_price": 9.73799991607666,
+      "entry_time": "2026-05-25T20:07:03.497767",
+      "entry_price": 9.75,
       "stop_loss": 9.716273832321168,
-      "take_profit": 9.803178167343138,
+      "take_profit": 9.851178503036497,
       "score": 75,
-      "last_check_time": "2026-05-25T20:01:54.826446"
+      "last_check_time": "2026-05-25T20:07:03.497767"
     }
   ],
   "history_count": 0,
