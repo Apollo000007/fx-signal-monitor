@@ -1,45 +1,32 @@
 {
-  "updated_at": "2026-05-26T22:29:11.531271+00:00",
-  "open_count": 3,
+  "updated_at": "2026-05-26T22:34:24.132701+00:00",
+  "open_count": 2,
   "open_positions": [
     {
-      "id": "USD/CAD-orz-1779834551",
-      "pair": "USD/CAD",
+      "id": "GBP/JPY-orz-1779834864",
+      "pair": "GBP/JPY",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-05-26T22:29:11.531271",
-      "entry_price": 1.3809000253677368,
-      "stop_loss": 1.3743825314474105,
-      "take_profit": 1.388136665026347,
+      "entry_time": "2026-05-26T22:34:24.132701",
+      "entry_price": 214.1909942626953,
+      "stop_loss": 212.83347451782225,
+      "take_profit": 214.32250213623047,
       "score": 88,
-      "last_check_time": "2026-05-26T22:29:11.531271"
+      "last_check_time": "2026-05-26T22:34:24.132701"
     },
     {
-      "id": "CHF/JPY-orz-1779834551",
-      "pair": "CHF/JPY",
+      "id": "EUR/GBP-orz-1779834864",
+      "pair": "EUR/GBP",
       "method": "orz",
       "direction": "long",
-      "entry_type": "pullback",
-      "entry_time": "2026-05-26T22:29:11.531271",
-      "entry_price": 202.76400756835938,
-      "stop_loss": 201.10697451782227,
-      "take_profit": 203.84775161743164,
-      "score": 88,
-      "last_check_time": "2026-05-26T22:29:11.531271"
-    },
-    {
-      "id": "NZD/USD-pdhl-1779834551",
-      "pair": "NZD/USD",
-      "method": "pdhl",
-      "direction": "short",
-      "entry_type": "pdhl_short_retest",
-      "entry_time": "2026-05-26T22:29:11.531271",
-      "entry_price": 0.5837711691856384,
-      "stop_loss": 0.5872591570317746,
-      "take_profit": 0.5802831813395023,
-      "score": 75,
-      "last_check_time": "2026-05-26T22:29:11.531271"
+      "entry_type": "range_reversal",
+      "entry_time": "2026-05-26T22:34:24.132701",
+      "entry_price": 0.8648800253868103,
+      "stop_loss": 0.862418579608202,
+      "take_profit": 0.867920994758606,
+      "score": 79,
+      "last_check_time": "2026-05-26T22:34:24.132701"
     }
   ],
   "history_count": 0,
