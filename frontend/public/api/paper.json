@@ -1,58 +1,19 @@
 {
-  "updated_at": "2026-05-26T19:49:35.537484+00:00",
-  "open_count": 4,
+  "updated_at": "2026-05-26T19:54:47.229501+00:00",
+  "open_count": 1,
   "open_positions": [
     {
-      "id": "GBP/JPY-orz-1779824975",
-      "pair": "GBP/JPY",
-      "method": "orz",
-      "direction": "long",
-      "entry_type": "pullback",
-      "entry_time": "2026-05-26T19:49:35.537484",
-      "entry_price": 214.25399780273438,
-      "stop_loss": 212.83347451782225,
-      "take_profit": 214.32250213623047,
-      "score": 88,
-      "last_check_time": "2026-05-26T19:49:35.537484"
-    },
-    {
-      "id": "GBP/JPY-dtp-1779824975",
-      "pair": "GBP/JPY",
-      "method": "dtp",
-      "direction": "long",
-      "entry_type": "dtp_long",
-      "entry_time": "2026-05-26T19:49:35.537484",
-      "entry_price": 214.2519989013672,
-      "stop_loss": 213.88689692687987,
-      "take_profit": 215.34730482482914,
-      "score": 100,
-      "last_check_time": "2026-05-26T19:49:35.537484"
-    },
-    {
-      "id": "EUR/GBP-orz-1779824975",
+      "id": "EUR/GBP-orz-1779825287",
       "pair": "EUR/GBP",
       "method": "orz",
       "direction": "long",
       "entry_type": "range_reversal",
-      "entry_time": "2026-05-26T19:49:35.537484",
-      "entry_price": 0.8648499846458435,
+      "entry_time": "2026-05-26T19:54:47.229501",
+      "entry_price": 0.8648200035095215,
       "stop_loss": 0.862418579608202,
       "take_profit": 0.867920994758606,
       "score": 79,
-      "last_check_time": "2026-05-26T19:49:35.537484"
-    },
-    {
-      "id": "AUD/JPY-dtp-1779824975",
-      "pair": "AUD/JPY",
-      "method": "dtp",
-      "direction": "long",
-      "entry_type": "dtp_long",
-      "entry_time": "2026-05-26T19:49:35.537484",
-      "entry_price": 114.21600341796875,
-      "stop_loss": 113.97390943908691,
-      "take_profit": 114.94228535461427,
-      "score": 100,
-      "last_check_time": "2026-05-26T19:49:35.537484"
+      "last_check_time": "2026-05-26T19:54:47.229501"
     }
   ],
   "history_count": 0,
