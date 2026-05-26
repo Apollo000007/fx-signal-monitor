@@ -1,19 +1,19 @@
 {
-  "updated_at": "2026-05-26T04:55:38.148808+00:00",
+  "updated_at": "2026-05-26T05:00:42.998039+00:00",
   "open_count": 1,
   "open_positions": [
     {
-      "id": "USD/CAD-orz-1779771338",
-      "pair": "USD/CAD",
-      "method": "orz",
-      "direction": "long",
-      "entry_type": "pullback",
-      "entry_time": "2026-05-26T04:55:38.148808",
-      "entry_price": 1.38100004196167,
-      "stop_loss": 1.373641019320488,
-      "take_profit": 1.388136665026347,
-      "score": 88,
-      "last_check_time": "2026-05-26T04:55:38.148808"
+      "id": "NZD/USD-pdhl-1779771642",
+      "pair": "NZD/USD",
+      "method": "pdhl",
+      "direction": "short",
+      "entry_type": "pdhl_short_retest",
+      "entry_time": "2026-05-26T05:00:42.998039",
+      "entry_price": 0.5852060317993164,
+      "stop_loss": 0.5872591570317746,
+      "take_profit": 0.5831529065668583,
+      "score": 80,
+      "last_check_time": "2026-05-26T05:00:42.998039"
     }
   ],
   "history_count": 0,
