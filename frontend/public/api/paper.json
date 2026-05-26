@@ -1,45 +1,45 @@
 {
-  "updated_at": "2026-05-26T21:27:39.247206+00:00",
+  "updated_at": "2026-05-26T21:32:45.167874+00:00",
   "open_count": 3,
   "open_positions": [
     {
-      "id": "GBP/JPY-orz-1779830859",
-      "pair": "GBP/JPY",
+      "id": "USD/CAD-orz-1779831165",
+      "pair": "USD/CAD",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-05-26T21:27:39.247206",
-      "entry_price": 214.13800048828125,
-      "stop_loss": 212.83347451782225,
-      "take_profit": 214.32250213623047,
+      "entry_time": "2026-05-26T21:32:45.167874",
+      "entry_price": 1.38100004196167,
+      "stop_loss": 1.3743845277786255,
+      "take_profit": 1.388136665026347,
       "score": 88,
-      "last_check_time": "2026-05-26T21:27:39.247206"
+      "last_check_time": "2026-05-26T21:32:45.167874"
     },
     {
-      "id": "CHF/JPY-orz-1779830859",
-      "pair": "CHF/JPY",
+      "id": "ZAR/JPY-orz-1779831165",
+      "pair": "ZAR/JPY",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-05-26T21:27:39.247206",
-      "entry_price": 202.68800354003906,
-      "stop_loss": 201.10697451782227,
-      "take_profit": 203.84775161743164,
-      "score": 88,
-      "last_check_time": "2026-05-26T21:27:39.247206"
+      "entry_time": "2026-05-26T21:32:45.167874",
+      "entry_price": 9.706000328063965,
+      "stop_loss": 9.585091345939636,
+      "take_profit": 9.75857982635498,
+      "score": 83,
+      "last_check_time": "2026-05-26T21:32:45.167874"
     },
     {
-      "id": "EUR/GBP-orz-1779830859",
+      "id": "EUR/GBP-orz-1779831165",
       "pair": "EUR/GBP",
       "method": "orz",
       "direction": "long",
       "entry_type": "range_reversal",
-      "entry_time": "2026-05-26T21:27:39.247206",
+      "entry_time": "2026-05-26T21:32:45.167874",
       "entry_price": 0.8645099997520447,
       "stop_loss": 0.862418579608202,
       "take_profit": 0.867920994758606,
       "score": 79,
-      "last_check_time": "2026-05-26T21:27:39.247206"
+      "last_check_time": "2026-05-26T21:32:45.167874"
     }
   ],
   "history_count": 0,
