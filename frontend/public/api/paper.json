@@ -1,45 +1,45 @@
 {
-  "updated_at": "2026-05-26T08:47:25.544171+00:00",
+  "updated_at": "2026-05-26T08:52:43.465347+00:00",
   "open_count": 3,
   "open_positions": [
     {
-      "id": "CHF/JPY-orz-1779785245",
+      "id": "CHF/JPY-orz-1779785563",
       "pair": "CHF/JPY",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-05-26T08:47:25.544171",
-      "entry_price": 202.88699340820312,
+      "entry_time": "2026-05-26T08:52:43.465347",
+      "entry_price": 202.9080047607422,
       "stop_loss": 201.10697451782227,
       "take_profit": 203.84775161743164,
       "score": 88,
-      "last_check_time": "2026-05-26T08:47:25.544171"
+      "last_check_time": "2026-05-26T08:52:43.465347"
     },
     {
-      "id": "GBP/JPY-orz-1779785245",
+      "id": "GBP/JPY-orz-1779785563",
       "pair": "GBP/JPY",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-05-26T08:47:25.544171",
-      "entry_price": 214.5240020751953,
-      "stop_loss": 212.78729295715334,
+      "entry_time": "2026-05-26T08:52:43.465347",
+      "entry_price": 214.54400634765625,
+      "stop_loss": 212.78769224243163,
       "take_profit": 214.91300201416016,
       "score": 83,
-      "last_check_time": "2026-05-26T08:47:25.544171"
+      "last_check_time": "2026-05-26T08:52:43.465347"
     },
     {
-      "id": "EUR/GBP-dtp-1779785245",
+      "id": "EUR/GBP-dtp-1779785563",
       "pair": "EUR/GBP",
       "method": "dtp",
       "direction": "short",
       "entry_type": "dtp_short",
-      "entry_time": "2026-05-26T08:47:25.544171",
-      "entry_price": 0.8635299801826477,
+      "entry_time": "2026-05-26T08:52:43.465347",
+      "entry_price": 0.8635200262069702,
       "stop_loss": 0.8647038239240645,
-      "take_profit": 0.8600084489583972,
+      "take_profit": 0.8599686330556873,
       "score": 100,
-      "last_check_time": "2026-05-26T08:47:25.544171"
+      "last_check_time": "2026-05-26T08:52:43.465347"
     }
   ],
   "history_count": 0,
