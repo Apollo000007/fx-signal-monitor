@@ -1,19 +1,19 @@
 {
-  "updated_at": "2026-05-26T03:54:11.213982+00:00",
+  "updated_at": "2026-05-26T03:59:15.275574+00:00",
   "open_count": 1,
   "open_positions": [
     {
-      "id": "CHF/JPY-orz-1779767651",
+      "id": "CHF/JPY-orz-1779767955",
       "pair": "CHF/JPY",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-05-26T03:54:11.213982",
-      "entry_price": 202.927001953125,
+      "entry_time": "2026-05-26T03:59:15.275574",
+      "entry_price": 202.97900390625,
       "stop_loss": 201.10697451782227,
       "take_profit": 203.84775161743164,
       "score": 88,
-      "last_check_time": "2026-05-26T03:54:11.213982"
+      "last_check_time": "2026-05-26T03:59:15.275574"
     }
   ],
   "history_count": 0,
