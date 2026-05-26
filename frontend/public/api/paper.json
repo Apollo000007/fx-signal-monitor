@@ -1,7 +1,47 @@
 {
-  "updated_at": "2026-05-26T10:15:32.662167+00:00",
-  "open_count": 0,
-  "open_positions": [],
+  "updated_at": "2026-05-26T10:20:42.795263+00:00",
+  "open_count": 3,
+  "open_positions": [
+    {
+      "id": "EUR/GBP-orz-1779790842",
+      "pair": "EUR/GBP",
+      "method": "orz",
+      "direction": "long",
+      "entry_type": "range_reversal",
+      "entry_time": "2026-05-26T10:20:42.795263",
+      "entry_price": 0.863569974899292,
+      "stop_loss": 0.862418579608202,
+      "take_profit": 0.867920994758606,
+      "score": 75,
+      "last_check_time": "2026-05-26T10:20:42.795263"
+    },
+    {
+      "id": "ZAR/JPY-dtp-1779790842",
+      "pair": "ZAR/JPY",
+      "method": "dtp",
+      "direction": "long",
+      "entry_type": "dtp_long",
+      "entry_time": "2026-05-26T10:20:42.795263",
+      "entry_price": 9.71500015258789,
+      "stop_loss": 9.695294923782349,
+      "take_profit": 9.774115839004516,
+      "score": 87,
+      "last_check_time": "2026-05-26T10:20:42.795263"
+    },
+    {
+      "id": "AUD/USD-dtp-1779790842",
+      "pair": "AUD/USD",
+      "method": "dtp",
+      "direction": "long",
+      "entry_type": "dtp_long",
+      "entry_time": "2026-05-26T10:20:42.795263",
+      "entry_price": 0.7166403532028198,
+      "stop_loss": 0.7155135666131973,
+      "take_profit": 0.7200207129716873,
+      "score": 100,
+      "last_check_time": "2026-05-26T10:20:42.795263"
+    }
+  ],
   "history_count": 0,
   "recent_trades": [],
   "stats": {
