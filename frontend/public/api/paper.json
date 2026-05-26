@@ -1,32 +1,45 @@
 {
-  "updated_at": "2026-05-26T21:12:14.461795+00:00",
-  "open_count": 2,
+  "updated_at": "2026-05-26T21:17:22.844335+00:00",
+  "open_count": 3,
   "open_positions": [
     {
-      "id": "GBP/JPY-orz-1779829934",
+      "id": "USD/CAD-orz-1779830242",
+      "pair": "USD/CAD",
+      "method": "orz",
+      "direction": "long",
+      "entry_type": "pullback",
+      "entry_time": "2026-05-26T21:17:22.844335",
+      "entry_price": 1.38100004196167,
+      "stop_loss": 1.3743845277786255,
+      "take_profit": 1.388136665026347,
+      "score": 88,
+      "last_check_time": "2026-05-26T21:17:22.844335"
+    },
+    {
+      "id": "GBP/JPY-orz-1779830242",
       "pair": "GBP/JPY",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-05-26T21:12:14.461795",
-      "entry_price": 214.1739959716797,
+      "entry_time": "2026-05-26T21:17:22.844335",
+      "entry_price": 214.17300415039062,
       "stop_loss": 212.83347451782225,
       "take_profit": 214.32250213623047,
       "score": 88,
-      "last_check_time": "2026-05-26T21:12:14.461795"
+      "last_check_time": "2026-05-26T21:17:22.844335"
     },
     {
-      "id": "CHF/JPY-pdhl-1779829934",
-      "pair": "CHF/JPY",
-      "method": "pdhl",
-      "direction": "short",
-      "entry_type": "pdhl_short_retest",
-      "entry_time": "2026-05-26T21:12:14.461795",
-      "entry_price": 202.6790008544922,
-      "stop_loss": 203.1542811126709,
-      "take_profit": 202.20372059631347,
-      "score": 93,
-      "last_check_time": "2026-05-26T21:12:14.461795"
+      "id": "ZAR/JPY-orz-1779830242",
+      "pair": "ZAR/JPY",
+      "method": "orz",
+      "direction": "long",
+      "entry_type": "pullback",
+      "entry_time": "2026-05-26T21:17:22.844335",
+      "entry_price": 9.70199966430664,
+      "stop_loss": 9.58501149269104,
+      "take_profit": 9.75857982635498,
+      "score": 83,
+      "last_check_time": "2026-05-26T21:17:22.844335"
     }
   ],
   "history_count": 0,
