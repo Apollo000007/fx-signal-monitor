@@ -1,19 +1,58 @@
 {
-  "updated_at": "2026-05-26T10:00:05.511138+00:00",
-  "open_count": 1,
+  "updated_at": "2026-05-26T10:05:15.981780+00:00",
+  "open_count": 4,
   "open_positions": [
     {
-      "id": "ZAR/JPY-dtp-1779789605",
+      "id": "USD/CAD-orz-1779789915",
+      "pair": "USD/CAD",
+      "method": "orz",
+      "direction": "long",
+      "entry_type": "pullback",
+      "entry_time": "2026-05-26T10:05:15.981780",
+      "entry_price": 1.3802800178527832,
+      "stop_loss": 1.3738354296207427,
+      "take_profit": 1.388136665026347,
+      "score": 88,
+      "last_check_time": "2026-05-26T10:05:15.981780"
+    },
+    {
+      "id": "USD/CAD-dtp-1779789915",
+      "pair": "USD/CAD",
+      "method": "dtp",
+      "direction": "long",
+      "entry_type": "dtp_long",
+      "entry_time": "2026-05-26T10:05:15.981780",
+      "entry_price": 1.380329966545105,
+      "stop_loss": 1.378120531439781,
+      "take_profit": 1.3869582718610767,
+      "score": 100,
+      "last_check_time": "2026-05-26T10:05:15.981780"
+    },
+    {
+      "id": "EUR/GBP-orz-1779789915",
+      "pair": "EUR/GBP",
+      "method": "orz",
+      "direction": "long",
+      "entry_type": "range_reversal",
+      "entry_time": "2026-05-26T10:05:15.981780",
+      "entry_price": 0.8635500073432922,
+      "stop_loss": 0.862418579608202,
+      "take_profit": 0.867920994758606,
+      "score": 75,
+      "last_check_time": "2026-05-26T10:05:15.981780"
+    },
+    {
+      "id": "ZAR/JPY-dtp-1779789915",
       "pair": "ZAR/JPY",
       "method": "dtp",
       "direction": "long",
       "entry_type": "dtp_long",
-      "entry_time": "2026-05-26T10:00:05.511138",
-      "entry_price": 9.713000297546387,
+      "entry_time": "2026-05-26T10:05:15.981780",
+      "entry_price": 9.711999893188477,
       "stop_loss": 9.695294923782349,
-      "take_profit": 9.7661164188385,
+      "take_profit": 9.76211480140686,
       "score": 87,
-      "last_check_time": "2026-05-26T10:00:05.511138"
+      "last_check_time": "2026-05-26T10:05:15.981780"
     }
   ],
   "history_count": 0,
