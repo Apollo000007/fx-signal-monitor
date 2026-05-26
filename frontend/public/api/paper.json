@@ -1,58 +1,45 @@
 {
-  "updated_at": "2026-05-26T08:21:41.850814+00:00",
-  "open_count": 4,
+  "updated_at": "2026-05-26T08:26:46.736677+00:00",
+  "open_count": 3,
   "open_positions": [
     {
-      "id": "CHF/JPY-orz-1779783701",
-      "pair": "CHF/JPY",
-      "method": "orz",
-      "direction": "long",
-      "entry_type": "pullback",
-      "entry_time": "2026-05-26T08:21:41.850814",
-      "entry_price": 202.99000549316406,
-      "stop_loss": 201.10697451782227,
-      "take_profit": 203.84775161743164,
-      "score": 88,
-      "last_check_time": "2026-05-26T08:21:41.850814"
-    },
-    {
-      "id": "CHF/JPY-dtp-1779783701",
-      "pair": "CHF/JPY",
-      "method": "dtp",
-      "direction": "long",
-      "entry_type": "dtp_long",
-      "entry_time": "2026-05-26T08:21:41.850814",
-      "entry_price": 202.99600219726562,
-      "stop_loss": 202.41638429260254,
-      "take_profit": 204.73485591125487,
-      "score": 100,
-      "last_check_time": "2026-05-26T08:21:41.850814"
-    },
-    {
-      "id": "GBP/JPY-orz-1779783701",
+      "id": "GBP/JPY-orz-1779784006",
       "pair": "GBP/JPY",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-05-26T08:21:41.850814",
-      "entry_price": 214.6009979248047,
-      "stop_loss": 212.78882979431154,
+      "entry_time": "2026-05-26T08:26:46.736677",
+      "entry_price": 214.56700134277344,
+      "stop_loss": 212.7881512225342,
       "take_profit": 214.91300201416016,
       "score": 83,
-      "last_check_time": "2026-05-26T08:21:41.850814"
+      "last_check_time": "2026-05-26T08:26:46.736677"
     },
     {
-      "id": "EUR/GBP-orz-1779783701",
+      "id": "EUR/GBP-orz-1779784006",
       "pair": "EUR/GBP",
       "method": "orz",
       "direction": "long",
       "entry_type": "range_reversal",
-      "entry_time": "2026-05-26T08:21:41.850814",
-      "entry_price": 0.8636199831962585,
+      "entry_time": "2026-05-26T08:26:46.736677",
+      "entry_price": 0.8637400269508362,
       "stop_loss": 0.862418579608202,
       "take_profit": 0.867920994758606,
       "score": 75,
-      "last_check_time": "2026-05-26T08:21:41.850814"
+      "last_check_time": "2026-05-26T08:26:46.736677"
+    },
+    {
+      "id": "CAD/JPY-pdhl-1779784006",
+      "pair": "CAD/JPY",
+      "method": "pdhl",
+      "direction": "long",
+      "entry_type": "pdhl_long_retest",
+      "entry_time": "2026-05-26T08:26:46.736677",
+      "entry_price": 115.3759994506836,
+      "stop_loss": 114.99424931716919,
+      "take_profit": 115.757749584198,
+      "score": 85,
+      "last_check_time": "2026-05-26T08:26:46.736677"
     }
   ],
   "history_count": 0,
