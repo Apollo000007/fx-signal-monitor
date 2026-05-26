@@ -1,58 +1,45 @@
 {
-  "updated_at": "2026-05-26T19:29:09.083950+00:00",
-  "open_count": 4,
+  "updated_at": "2026-05-26T19:34:14.796133+00:00",
+  "open_count": 3,
   "open_positions": [
     {
-      "id": "GBP/JPY-orz-1779823749",
+      "id": "GBP/JPY-orz-1779824054",
       "pair": "GBP/JPY",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-05-26T19:29:09.083950",
-      "entry_price": 214.21200561523438,
+      "entry_time": "2026-05-26T19:34:14.796133",
+      "entry_price": 214.22999572753906,
       "stop_loss": 212.83347451782225,
       "take_profit": 214.32250213623047,
       "score": 88,
-      "last_check_time": "2026-05-26T19:29:09.083950"
+      "last_check_time": "2026-05-26T19:34:14.796133"
     },
     {
-      "id": "CHF/JPY-orz-1779823749",
+      "id": "CHF/JPY-orz-1779824054",
       "pair": "CHF/JPY",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-05-26T19:29:09.083950",
-      "entry_price": 202.7530059814453,
+      "entry_time": "2026-05-26T19:34:14.796133",
+      "entry_price": 202.7689971923828,
       "stop_loss": 201.10697451782227,
       "take_profit": 203.84775161743164,
       "score": 88,
-      "last_check_time": "2026-05-26T19:29:09.083950"
+      "last_check_time": "2026-05-26T19:34:14.796133"
     },
     {
-      "id": "USD/JPY-dtp-1779823749",
-      "pair": "USD/JPY",
-      "method": "dtp",
+      "id": "ZAR/JPY-orz-1779824054",
+      "pair": "ZAR/JPY",
+      "method": "orz",
       "direction": "long",
-      "entry_type": "dtp_long",
-      "entry_time": "2026-05-26T19:29:09.083950",
-      "entry_price": 159.32400512695312,
-      "stop_loss": 159.11672497558592,
-      "take_profit": 159.94584558105473,
-      "score": 100,
-      "last_check_time": "2026-05-26T19:29:09.083950"
-    },
-    {
-      "id": "EUR/GBP-dtp-1779823749",
-      "pair": "EUR/GBP",
-      "method": "dtp",
-      "direction": "short",
-      "entry_type": "dtp_short",
-      "entry_time": "2026-05-26T19:29:09.083950",
-      "entry_price": 0.8649200201034546,
-      "stop_loss": 0.8657648929357528,
-      "take_profit": 0.8623854016065601,
-      "score": 100,
-      "last_check_time": "2026-05-26T19:29:09.083950"
+      "entry_type": "pullback",
+      "entry_time": "2026-05-26T19:34:14.796133",
+      "entry_price": 9.71500015258789,
+      "stop_loss": 9.585270982437134,
+      "take_profit": 9.75857982635498,
+      "score": 83,
+      "last_check_time": "2026-05-26T19:34:14.796133"
     }
   ],
   "history_count": 0,
