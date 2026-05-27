@@ -1,19 +1,19 @@
 {
-  "updated_at": "2026-05-27T04:49:23.731533+00:00",
+  "updated_at": "2026-05-27T04:54:29.658991+00:00",
   "open_count": 1,
   "open_positions": [
     {
-      "id": "CHF/JPY-orz-1779857363",
-      "pair": "CHF/JPY",
-      "method": "orz",
+      "id": "NZD/USD-pdhl-1779857669",
+      "pair": "NZD/USD",
+      "method": "pdhl",
       "direction": "long",
-      "entry_type": "pullback",
-      "entry_time": "2026-05-27T04:49:23.731533",
-      "entry_price": 202.80099487304688,
-      "stop_loss": 201.82007122314454,
-      "take_profit": 203.84775161743164,
-      "score": 92,
-      "last_check_time": "2026-05-27T04:49:23.731533"
+      "entry_type": "pdhl_long_retest",
+      "entry_time": "2026-05-27T04:54:29.658991",
+      "entry_price": 0.5878203511238098,
+      "stop_loss": 0.585311235934496,
+      "take_profit": 0.5903294663131237,
+      "score": 80,
+      "last_check_time": "2026-05-27T04:54:29.658991"
     }
   ],
   "history_count": 0,
