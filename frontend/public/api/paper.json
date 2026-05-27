@@ -1,19 +1,58 @@
 {
-  "updated_at": "2026-05-27T04:54:29.658991+00:00",
-  "open_count": 1,
+  "updated_at": "2026-05-27T04:59:40.218997+00:00",
+  "open_count": 4,
   "open_positions": [
     {
-      "id": "NZD/USD-pdhl-1779857669",
+      "id": "CHF/JPY-orz-1779857980",
+      "pair": "CHF/JPY",
+      "method": "orz",
+      "direction": "long",
+      "entry_type": "pullback",
+      "entry_time": "2026-05-27T04:59:40.218997",
+      "entry_price": 202.79100036621094,
+      "stop_loss": 201.8198717327881,
+      "take_profit": 203.84775161743164,
+      "score": 92,
+      "last_check_time": "2026-05-27T04:59:40.218997"
+    },
+    {
+      "id": "GBP/JPY-orz-1779857980",
+      "pair": "GBP/JPY",
+      "method": "orz",
+      "direction": "long",
+      "entry_type": "pullback",
+      "entry_time": "2026-05-27T04:59:40.218997",
+      "entry_price": 214.23800659179688,
+      "stop_loss": 212.83347451782225,
+      "take_profit": 214.32250213623047,
+      "score": 85,
+      "last_check_time": "2026-05-27T04:59:40.218997"
+    },
+    {
+      "id": "ZAR/JPY-orz-1779857980",
+      "pair": "ZAR/JPY",
+      "method": "orz",
+      "direction": "long",
+      "entry_type": "pullback",
+      "entry_time": "2026-05-27T04:59:40.218997",
+      "entry_price": 9.722000122070312,
+      "stop_loss": 9.589961594619751,
+      "take_profit": 9.75857982635498,
+      "score": 83,
+      "last_check_time": "2026-05-27T04:59:40.218997"
+    },
+    {
+      "id": "NZD/USD-pdhl-1779857980",
       "pair": "NZD/USD",
       "method": "pdhl",
       "direction": "long",
       "entry_type": "pdhl_long_retest",
-      "entry_time": "2026-05-27T04:54:29.658991",
+      "entry_time": "2026-05-27T04:59:40.218997",
       "entry_price": 0.5878203511238098,
       "stop_loss": 0.585311235934496,
       "take_profit": 0.5903294663131237,
       "score": 80,
-      "last_check_time": "2026-05-27T04:54:29.658991"
+      "last_check_time": "2026-05-27T04:59:40.218997"
     }
   ],
   "history_count": 0,
