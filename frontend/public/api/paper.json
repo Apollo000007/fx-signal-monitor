@@ -1,19 +1,19 @@
 {
-  "updated_at": "2026-05-27T04:23:54.473167+00:00",
+  "updated_at": "2026-05-27T04:28:59.686591+00:00",
   "open_count": 1,
   "open_positions": [
     {
-      "id": "GBP/USD-orz-1779855834",
-      "pair": "GBP/USD",
-      "method": "orz",
+      "id": "NZD/USD-pdhl-1779856139",
+      "pair": "NZD/USD",
+      "method": "pdhl",
       "direction": "long",
-      "entry_type": "range_reversal",
-      "entry_time": "2026-05-27T04:23:54.473167",
-      "entry_price": 1.345569133758545,
-      "stop_loss": 1.3424733681231737,
-      "take_profit": 1.3644134998321533,
-      "score": 79,
-      "last_check_time": "2026-05-27T04:23:54.473167"
+      "entry_type": "pdhl_long_retest",
+      "entry_time": "2026-05-27T04:28:59.686591",
+      "entry_price": 0.5873370170593262,
+      "stop_loss": 0.585311235934496,
+      "take_profit": 0.5893627981841564,
+      "score": 80,
+      "last_check_time": "2026-05-27T04:28:59.686591"
     }
   ],
   "history_count": 0,
