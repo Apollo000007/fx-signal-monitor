@@ -50,5 +50,6 @@
   "AUD/USD:dtp:long": 1779825913.973809,
   "GBP/JPY:orz:long": 1779857980.218997,
   "GBP/USD:orz:long": 1779862306.449193,
-  "EUR/GBP:pdhl:long": 1779861687.284535
+  "EUR/GBP:pdhl:long": 1779861687.284535,
+  "AUD/USD:pdhl:short": 1779866616.41791
 }
