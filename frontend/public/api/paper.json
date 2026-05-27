@@ -1,84 +1,84 @@
 {
-  "updated_at": "2026-05-27T04:39:10.692255+00:00",
+  "updated_at": "2026-05-27T04:44:16.422832+00:00",
   "open_count": 6,
   "open_positions": [
     {
-      "id": "CHF/JPY-orz-1779856750",
+      "id": "CHF/JPY-orz-1779857056",
       "pair": "CHF/JPY",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-05-27T04:39:10.692255",
-      "entry_price": 202.7949981689453,
-      "stop_loss": 201.8199515289307,
+      "entry_time": "2026-05-27T04:44:16.422832",
+      "entry_price": 202.8040008544922,
+      "stop_loss": 201.82013122253417,
       "take_profit": 203.84775161743164,
       "score": 92,
-      "last_check_time": "2026-05-27T04:39:10.692255"
+      "last_check_time": "2026-05-27T04:44:16.422832"
     },
     {
-      "id": "GBP/JPY-orz-1779856750",
+      "id": "GBP/JPY-orz-1779857056",
       "pair": "GBP/JPY",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-05-27T04:39:10.692255",
-      "entry_price": 214.24400329589844,
+      "entry_time": "2026-05-27T04:44:16.422832",
+      "entry_price": 214.24099731445312,
       "stop_loss": 212.83347451782225,
       "take_profit": 214.32250213623047,
       "score": 85,
-      "last_check_time": "2026-05-27T04:39:10.692255"
+      "last_check_time": "2026-05-27T04:44:16.422832"
     },
     {
-      "id": "ZAR/JPY-orz-1779856750",
+      "id": "ZAR/JPY-orz-1779857056",
       "pair": "ZAR/JPY",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-05-27T04:39:10.692255",
-      "entry_price": 9.718000411987305,
-      "stop_loss": 9.589881760406493,
+      "entry_time": "2026-05-27T04:44:16.422832",
+      "entry_price": 9.718999862670898,
+      "stop_loss": 9.58990170944214,
       "take_profit": 9.75857982635498,
       "score": 83,
-      "last_check_time": "2026-05-27T04:39:10.692255"
+      "last_check_time": "2026-05-27T04:44:16.422832"
     },
     {
-      "id": "GBP/USD-orz-1779856750",
+      "id": "GBP/USD-orz-1779857056",
       "pair": "GBP/USD",
       "method": "orz",
       "direction": "long",
       "entry_type": "range_reversal",
-      "entry_time": "2026-05-27T04:39:10.692255",
-      "entry_price": 1.345496654510498,
+      "entry_time": "2026-05-27T04:44:16.422832",
+      "entry_price": 1.3454785346984863,
       "stop_loss": 1.3424733681231737,
       "take_profit": 1.3644134998321533,
       "score": 79,
-      "last_check_time": "2026-05-27T04:39:10.692255"
+      "last_check_time": "2026-05-27T04:44:16.422832"
     },
     {
-      "id": "EUR/JPY-pdhl-1779856750",
+      "id": "EUR/JPY-pdhl-1779857056",
       "pair": "EUR/JPY",
       "method": "pdhl",
       "direction": "long",
       "entry_type": "pdhl_long_retest",
-      "entry_time": "2026-05-27T04:39:10.692255",
-      "entry_price": 185.36700439453125,
+      "entry_time": "2026-05-27T04:44:16.422832",
+      "entry_price": 185.36500549316406,
       "stop_loss": 184.99109369659425,
-      "take_profit": 185.74291509246825,
+      "take_profit": 185.73891728973388,
       "score": 85,
-      "last_check_time": "2026-05-27T04:39:10.692255"
+      "last_check_time": "2026-05-27T04:44:16.422832"
     },
     {
-      "id": "NZD/USD-pdhl-1779856750",
+      "id": "NZD/USD-pdhl-1779857056",
       "pair": "NZD/USD",
       "method": "pdhl",
       "direction": "long",
       "entry_type": "pdhl_long_retest",
-      "entry_time": "2026-05-27T04:39:10.692255",
+      "entry_time": "2026-05-27T04:44:16.422832",
       "entry_price": 0.5875095129013062,
       "stop_loss": 0.585311235934496,
       "take_profit": 0.5897077898681163,
       "score": 75,
-      "last_check_time": "2026-05-27T04:39:10.692255"
+      "last_check_time": "2026-05-27T04:44:16.422832"
     }
   ],
   "history_count": 0,
