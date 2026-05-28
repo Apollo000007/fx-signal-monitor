@@ -1,32 +1,32 @@
 {
-  "updated_at": "2026-05-28T03:00:26.467492+00:00",
+  "updated_at": "2026-05-28T03:05:32.844668+00:00",
   "open_count": 2,
   "open_positions": [
     {
-      "id": "EUR/USD-orz-1779937226",
+      "id": "EUR/USD-orz-1779937532",
       "pair": "EUR/USD",
       "method": "orz",
       "direction": "long",
       "entry_type": "range_reversal",
-      "entry_time": "2026-05-28T03:00:26.467492",
-      "entry_price": 1.1615750789642334,
+      "entry_time": "2026-05-28T03:05:32.844668",
+      "entry_price": 1.1617100238800049,
       "stop_loss": 1.1579315702517827,
       "take_profit": 1.1772714427539281,
       "score": 79,
-      "last_check_time": "2026-05-28T03:00:26.467492"
+      "last_check_time": "2026-05-28T03:05:32.844668"
     },
     {
-      "id": "AUD/USD-orz-1779937226",
+      "id": "AUD/USD-orz-1779937532",
       "pair": "AUD/USD",
       "method": "orz",
       "direction": "long",
       "entry_type": "range_reversal",
-      "entry_time": "2026-05-28T03:00:26.467492",
-      "entry_price": 0.7126567959785461,
+      "entry_time": "2026-05-28T03:05:32.844668",
+      "entry_price": 0.7129108309745789,
       "stop_loss": 0.7117477416098118,
       "take_profit": 0.7266821503639221,
       "score": 75,
-      "last_check_time": "2026-05-28T03:00:26.467492"
+      "last_check_time": "2026-05-28T03:05:32.844668"
     }
   ],
   "history_count": 0,
