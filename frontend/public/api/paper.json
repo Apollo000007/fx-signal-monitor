@@ -1,32 +1,58 @@
 {
-  "updated_at": "2026-05-28T00:36:26.518686+00:00",
-  "open_count": 2,
+  "updated_at": "2026-05-28T00:41:34.839887+00:00",
+  "open_count": 4,
   "open_positions": [
     {
-      "id": "USD/JPY-orz-1779928586",
+      "id": "USD/CAD-orz-1779928894",
+      "pair": "USD/CAD",
+      "method": "orz",
+      "direction": "long",
+      "entry_type": "pullback",
+      "entry_time": "2026-05-28T00:41:34.839887",
+      "entry_price": 1.3841999769210815,
+      "stop_loss": 1.375668751707077,
+      "take_profit": 1.388136665026347,
+      "score": 88,
+      "last_check_time": "2026-05-28T00:41:34.839887"
+    },
+    {
+      "id": "GBP/JPY-orz-1779928894",
+      "pair": "GBP/JPY",
+      "method": "orz",
+      "direction": "long",
+      "entry_type": "pullback",
+      "entry_time": "2026-05-28T00:41:34.839887",
+      "entry_price": 214.09300231933594,
+      "stop_loss": 213.1699060192871,
+      "take_profit": 214.32250213623047,
+      "score": 85,
+      "last_check_time": "2026-05-28T00:41:34.839887"
+    },
+    {
+      "id": "USD/JPY-orz-1779928894",
       "pair": "USD/JPY",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-05-28T00:36:26.518686",
-      "entry_price": 159.56500244140625,
+      "entry_time": "2026-05-28T00:41:34.839887",
+      "entry_price": 159.5919952392578,
       "stop_loss": 158.50136224365235,
       "take_profit": 159.71287536621094,
       "score": 83,
-      "last_check_time": "2026-05-28T00:36:26.518686"
+      "last_check_time": "2026-05-28T00:41:34.839887"
     },
     {
-      "id": "AUD/USD-orz-1779928586",
+      "id": "AUD/USD-orz-1779928894",
       "pair": "AUD/USD",
       "method": "orz",
       "direction": "long",
       "entry_type": "range_reversal",
-      "entry_time": "2026-05-28T00:36:26.518686",
-      "entry_price": 0.7133685350418091,
+      "entry_time": "2026-05-28T00:41:34.839887",
+      "entry_price": 0.7133176326751709,
       "stop_loss": 0.7117158265297229,
       "take_profit": 0.7266821503639221,
       "score": 79,
-      "last_check_time": "2026-05-28T00:36:26.518686"
+      "last_check_time": "2026-05-28T00:41:34.839887"
     }
   ],
   "history_count": 0,
