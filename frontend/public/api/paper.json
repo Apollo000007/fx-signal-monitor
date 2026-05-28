@@ -1,58 +1,32 @@
 {
-  "updated_at": "2026-05-28T02:55:19.794962+00:00",
-  "open_count": 4,
+  "updated_at": "2026-05-28T03:00:26.467492+00:00",
+  "open_count": 2,
   "open_positions": [
     {
-      "id": "USD/JPY-orz-1779936919",
-      "pair": "USD/JPY",
-      "method": "orz",
-      "direction": "long",
-      "entry_type": "pullback",
-      "entry_time": "2026-05-28T02:55:19.794962",
-      "entry_price": 159.5679931640625,
-      "stop_loss": 158.50136224365235,
-      "take_profit": 159.71287536621094,
-      "score": 83,
-      "last_check_time": "2026-05-28T02:55:19.794962"
-    },
-    {
-      "id": "ZAR/JPY-orz-1779936919",
-      "pair": "ZAR/JPY",
-      "method": "orz",
-      "direction": "long",
-      "entry_type": "pullback",
-      "entry_time": "2026-05-28T02:55:19.794962",
-      "entry_price": 9.687999725341797,
-      "stop_loss": 9.609761926193238,
-      "take_profit": 9.75857982635498,
-      "score": 80,
-      "last_check_time": "2026-05-28T02:55:19.794962"
-    },
-    {
-      "id": "EUR/USD-orz-1779936919",
+      "id": "EUR/USD-orz-1779937226",
       "pair": "EUR/USD",
       "method": "orz",
       "direction": "long",
       "entry_type": "range_reversal",
-      "entry_time": "2026-05-28T02:55:19.794962",
+      "entry_time": "2026-05-28T03:00:26.467492",
       "entry_price": 1.1615750789642334,
       "stop_loss": 1.1579315702517827,
       "take_profit": 1.1772714427539281,
       "score": 79,
-      "last_check_time": "2026-05-28T02:55:19.794962"
+      "last_check_time": "2026-05-28T03:00:26.467492"
     },
     {
-      "id": "AUD/USD-orz-1779936919",
+      "id": "AUD/USD-orz-1779937226",
       "pair": "AUD/USD",
       "method": "orz",
       "direction": "long",
       "entry_type": "range_reversal",
-      "entry_time": "2026-05-28T02:55:19.794962",
-      "entry_price": 0.7126059532165527,
+      "entry_time": "2026-05-28T03:00:26.467492",
+      "entry_price": 0.7126567959785461,
       "stop_loss": 0.7117477416098118,
       "take_profit": 0.7266821503639221,
       "score": 75,
-      "last_check_time": "2026-05-28T02:55:19.794962"
+      "last_check_time": "2026-05-28T03:00:26.467492"
     }
   ],
   "history_count": 0,
