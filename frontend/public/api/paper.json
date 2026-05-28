@@ -1,32 +1,58 @@
 {
-  "updated_at": "2026-05-28T10:46:10.215663+00:00",
-  "open_count": 2,
+  "updated_at": "2026-05-28T10:51:23.532695+00:00",
+  "open_count": 4,
   "open_positions": [
     {
-      "id": "ZAR/JPY-orz-1779965170",
-      "pair": "ZAR/JPY",
+      "id": "USD/JPY-orz-1779965483",
+      "pair": "USD/JPY",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-05-28T10:46:10.215663",
-      "entry_price": 9.71500015258789,
-      "stop_loss": 9.618065293502807,
-      "take_profit": 9.75857982635498,
-      "score": 85,
-      "last_check_time": "2026-05-28T10:46:10.215663"
+      "entry_time": "2026-05-28T10:51:23.532695",
+      "entry_price": 159.45199584960938,
+      "stop_loss": 158.50136224365235,
+      "take_profit": 159.71287536621094,
+      "score": 88,
+      "last_check_time": "2026-05-28T10:51:23.532695"
     },
     {
-      "id": "AUD/USD-pdhl-1779965170",
+      "id": "USD/JPY-dtp-1779965483",
+      "pair": "USD/JPY",
+      "method": "dtp",
+      "direction": "long",
+      "entry_type": "dtp_long",
+      "entry_time": "2026-05-28T10:51:23.532695",
+      "entry_price": 159.45599365234375,
+      "stop_loss": 159.21163119506835,
+      "take_profit": 160.18908102416995,
+      "score": 100,
+      "last_check_time": "2026-05-28T10:51:23.532695"
+    },
+    {
+      "id": "AUD/USD-pdhl-1779965483",
       "pair": "AUD/USD",
       "method": "pdhl",
       "direction": "short",
       "entry_type": "pdhl_short_retest",
-      "entry_time": "2026-05-28T10:46:10.215663",
-      "entry_price": 0.7114905714988708,
+      "entry_time": "2026-05-28T10:51:23.532695",
+      "entry_price": 0.7113893628120422,
       "stop_loss": 0.7136748621463777,
-      "take_profit": 0.709306280851364,
+      "take_profit": 0.7091038634777068,
       "score": 80,
-      "last_check_time": "2026-05-28T10:46:10.215663"
+      "last_check_time": "2026-05-28T10:51:23.532695"
+    },
+    {
+      "id": "AUD/JPY-pdhl-1779965483",
+      "pair": "AUD/JPY",
+      "method": "pdhl",
+      "direction": "short",
+      "entry_type": "pdhl_short_retest",
+      "entry_time": "2026-05-28T10:51:23.532695",
+      "entry_price": 113.36299896240234,
+      "stop_loss": 113.7513727836609,
+      "take_profit": 112.97462514114379,
+      "score": 85,
+      "last_check_time": "2026-05-28T10:51:23.532695"
     }
   ],
   "history_count": 0,
