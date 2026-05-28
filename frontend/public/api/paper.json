@@ -1,32 +1,32 @@
 {
-  "updated_at": "2026-05-28T16:49:38.803198+00:00",
+  "updated_at": "2026-05-28T16:54:50.558671+00:00",
   "open_count": 2,
   "open_positions": [
     {
-      "id": "USD/JPY-orz-1779986978",
-      "pair": "USD/JPY",
-      "method": "orz",
-      "direction": "long",
-      "entry_type": "pullback",
-      "entry_time": "2026-05-28T16:49:38.803198",
-      "entry_price": 159.177001953125,
-      "stop_loss": 158.50136224365235,
-      "take_profit": 159.71287536621094,
-      "score": 88,
-      "last_check_time": "2026-05-28T16:49:38.803198"
-    },
-    {
-      "id": "USD/JPY-dtp-1779986978",
-      "pair": "USD/JPY",
+      "id": "ZAR/JPY-dtp-1779987290",
+      "pair": "ZAR/JPY",
       "method": "dtp",
       "direction": "long",
       "entry_type": "dtp_long",
-      "entry_time": "2026-05-28T16:49:38.803198",
-      "entry_price": 159.18699645996094,
-      "stop_loss": 159.014821975708,
-      "take_profit": 159.70351991271974,
+      "entry_time": "2026-05-28T16:54:50.558671",
+      "entry_price": 9.786999702453613,
+      "stop_loss": 9.708282411575317,
+      "take_profit": 10.023151575088503,
+      "score": 75,
+      "last_check_time": "2026-05-28T16:54:50.558671"
+    },
+    {
+      "id": "USD/CAD-dtp-1779987290",
+      "pair": "USD/CAD",
+      "method": "dtp",
+      "direction": "long",
+      "entry_type": "dtp_long",
+      "entry_time": "2026-05-28T16:54:50.558671",
+      "entry_price": 1.379520058631897,
+      "stop_loss": 1.3760712584853172,
+      "take_profit": 1.3898664590716363,
       "score": 100,
-      "last_check_time": "2026-05-28T16:49:38.803198"
+      "last_check_time": "2026-05-28T16:54:50.558671"
     }
   ],
   "history_count": 0,
