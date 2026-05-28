@@ -1,21 +1,7 @@
 {
-  "updated_at": "2026-05-28T23:23:19.364386+00:00",
-  "open_count": 1,
-  "open_positions": [
-    {
-      "id": "USD/JPY-orz-1780010599",
-      "pair": "USD/JPY",
-      "method": "orz",
-      "direction": "long",
-      "entry_type": "pullback",
-      "entry_time": "2026-05-28T23:23:19.364386",
-      "entry_price": 159.24000549316406,
-      "stop_loss": 158.50136224365235,
-      "take_profit": 159.71287536621094,
-      "score": 92,
-      "last_check_time": "2026-05-28T23:23:19.364386"
-    }
-  ],
+  "updated_at": "2026-05-28T23:28:21.220217+00:00",
+  "open_count": 0,
+  "open_positions": [],
   "history_count": 0,
   "recent_trades": [],
   "stats": {
