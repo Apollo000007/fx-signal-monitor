@@ -1,45 +1,45 @@
 {
-  "updated_at": "2026-05-28T21:09:41.354919+00:00",
+  "updated_at": "2026-05-28T21:14:54.992432+00:00",
   "open_count": 3,
   "open_positions": [
     {
-      "id": "USD/CHF-pdhl-1780002581",
+      "id": "USD/CHF-pdhl-1780002894",
       "pair": "USD/CHF",
       "method": "pdhl",
       "direction": "short",
       "entry_type": "pdhl_short_retest",
-      "entry_time": "2026-05-28T21:09:41.354919",
-      "entry_price": 0.7829599976539612,
+      "entry_time": "2026-05-28T21:14:54.992432",
+      "entry_price": 0.7830600142478943,
       "stop_loss": 0.7855065054297448,
-      "take_profit": 0.7804134898781776,
-      "score": 80,
-      "last_check_time": "2026-05-28T21:09:41.354919"
+      "take_profit": 0.7806135230660438,
+      "score": 75,
+      "last_check_time": "2026-05-28T21:14:54.992432"
     },
     {
-      "id": "GBP/JPY-pdhl-1780002581",
+      "id": "GBP/JPY-pdhl-1780002894",
       "pair": "GBP/JPY",
       "method": "pdhl",
       "direction": "short",
       "entry_type": "pdhl_short_retest",
-      "entry_time": "2026-05-28T21:09:41.354919",
-      "entry_price": 213.97900390625,
+      "entry_time": "2026-05-28T21:14:54.992432",
+      "entry_price": 213.9340057373047,
       "stop_loss": 214.4121399230957,
       "take_profit": 213.3070068359375,
       "score": 85,
-      "last_check_time": "2026-05-28T21:09:41.354919"
+      "last_check_time": "2026-05-28T21:14:54.992432"
     },
     {
-      "id": "AUD/JPY-pdhl-1780002581",
+      "id": "AUD/JPY-pdhl-1780002894",
       "pair": "AUD/JPY",
       "method": "pdhl",
       "direction": "short",
       "entry_type": "pdhl_short_retest",
-      "entry_time": "2026-05-28T21:09:41.354919",
-      "entry_price": 113.90699768066406,
+      "entry_time": "2026-05-28T21:14:54.992432",
+      "entry_price": 113.93299865722656,
       "stop_loss": 114.27515227127076,
       "take_profit": 113.26499938964844,
       "score": 85,
-      "last_check_time": "2026-05-28T21:09:41.354919"
+      "last_check_time": "2026-05-28T21:14:54.992432"
     }
   ],
   "history_count": 0,
