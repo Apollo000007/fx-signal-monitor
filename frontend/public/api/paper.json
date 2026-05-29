@@ -1,32 +1,58 @@
 {
-  "updated_at": "2026-05-29T10:50:37.488659+00:00",
-  "open_count": 2,
+  "updated_at": "2026-05-29T10:55:47.553428+00:00",
+  "open_count": 4,
   "open_positions": [
     {
-      "id": "EUR/JPY-dtp-1780051837",
+      "id": "USD/JPY-orz-1780052147",
+      "pair": "USD/JPY",
+      "method": "orz",
+      "direction": "long",
+      "entry_type": "pullback",
+      "entry_time": "2026-05-29T10:55:47.553428",
+      "entry_price": 159.28500366210938,
+      "stop_loss": 158.78678573608397,
+      "take_profit": 159.71287536621094,
+      "score": 92,
+      "last_check_time": "2026-05-29T10:55:47.553428"
+    },
+    {
+      "id": "USD/JPY-dtp-1780052147",
+      "pair": "USD/JPY",
+      "method": "dtp",
+      "direction": "long",
+      "entry_type": "dtp_long",
+      "entry_time": "2026-05-29T10:55:47.553428",
+      "entry_price": 159.28700256347656,
+      "stop_loss": 159.07177180480957,
+      "take_profit": 159.93269483947753,
+      "score": 100,
+      "last_check_time": "2026-05-29T10:55:47.553428"
+    },
+    {
+      "id": "EUR/JPY-dtp-1780052147",
       "pair": "EUR/JPY",
       "method": "dtp",
       "direction": "long",
       "entry_type": "dtp_long",
-      "entry_time": "2026-05-29T10:50:37.488659",
+      "entry_time": "2026-05-29T10:55:47.553428",
       "entry_price": 185.4320068359375,
       "stop_loss": 184.99382185363768,
       "take_profit": 186.74656178283695,
       "score": 100,
-      "last_check_time": "2026-05-29T10:50:37.488659"
+      "last_check_time": "2026-05-29T10:55:47.553428"
     },
     {
-      "id": "CHF/JPY-dtp-1780051837",
-      "pair": "CHF/JPY",
-      "method": "dtp",
+      "id": "AUD/JPY-pdhl-1780052147",
+      "pair": "AUD/JPY",
+      "method": "pdhl",
       "direction": "long",
-      "entry_type": "dtp_long",
-      "entry_time": "2026-05-29T10:50:37.488659",
-      "entry_price": 203.38999938964844,
-      "stop_loss": 202.7530376586914,
-      "take_profit": 205.30088458251956,
-      "score": 100,
-      "last_check_time": "2026-05-29T10:50:37.488659"
+      "entry_type": "pdhl_long_retest",
+      "entry_time": "2026-05-29T10:55:47.553428",
+      "entry_price": 114.0009994506836,
+      "stop_loss": 113.72615766906739,
+      "take_profit": 114.2758412322998,
+      "score": 85,
+      "last_check_time": "2026-05-29T10:55:47.553428"
     }
   ],
   "history_count": 0,
