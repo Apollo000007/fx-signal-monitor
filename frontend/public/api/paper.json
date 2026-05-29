@@ -1,19 +1,58 @@
 {
-  "updated_at": "2026-05-29T10:04:25.209574+00:00",
-  "open_count": 1,
+  "updated_at": "2026-05-29T10:09:41.346846+00:00",
+  "open_count": 4,
   "open_positions": [
     {
-      "id": "USD/JPY-orz-1780049065",
+      "id": "USD/JPY-orz-1780049381",
       "pair": "USD/JPY",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-05-29T10:04:25.209574",
-      "entry_price": 159.31500244140625,
+      "entry_time": "2026-05-29T10:09:41.346846",
+      "entry_price": 159.28900146484375,
       "stop_loss": 158.78678573608397,
       "take_profit": 159.71287536621094,
       "score": 92,
-      "last_check_time": "2026-05-29T10:04:25.209574"
+      "last_check_time": "2026-05-29T10:09:41.346846"
+    },
+    {
+      "id": "EUR/JPY-dtp-1780049381",
+      "pair": "EUR/JPY",
+      "method": "dtp",
+      "direction": "long",
+      "entry_type": "dtp_long",
+      "entry_time": "2026-05-29T10:09:41.346846",
+      "entry_price": 185.45799255371094,
+      "stop_loss": 184.99382185363768,
+      "take_profit": 186.8505046539307,
+      "score": 100,
+      "last_check_time": "2026-05-29T10:09:41.346846"
+    },
+    {
+      "id": "NZD/JPY-dtp-1780049381",
+      "pair": "NZD/JPY",
+      "method": "dtp",
+      "direction": "long",
+      "entry_type": "dtp_long",
+      "entry_time": "2026-05-29T10:09:41.346846",
+      "entry_price": 95.00499725341797,
+      "stop_loss": 94.71718446350097,
+      "take_profit": 95.86843562316896,
+      "score": 75,
+      "last_check_time": "2026-05-29T10:09:41.346846"
+    },
+    {
+      "id": "NZD/USD-dtp-1780049381",
+      "pair": "NZD/USD",
+      "method": "dtp",
+      "direction": "long",
+      "entry_type": "dtp_long",
+      "entry_time": "2026-05-29T10:09:41.346846",
+      "entry_price": 0.5966231226921082,
+      "stop_loss": 0.5950678839683533,
+      "take_profit": 0.6012888388633727,
+      "score": 75,
+      "last_check_time": "2026-05-29T10:09:41.346846"
     }
   ],
   "history_count": 0,
