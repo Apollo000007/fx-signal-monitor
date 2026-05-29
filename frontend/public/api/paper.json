@@ -1,19 +1,58 @@
 {
-  "updated_at": "2026-05-28T23:58:51.853830+00:00",
-  "open_count": 1,
+  "updated_at": "2026-05-29T00:04:01.709257+00:00",
+  "open_count": 4,
   "open_positions": [
     {
-      "id": "USD/JPY-orz-1780012731",
+      "id": "USD/JPY-orz-1780013041",
       "pair": "USD/JPY",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-05-28T23:58:51.853830",
-      "entry_price": 159.2689971923828,
+      "entry_time": "2026-05-29T00:04:01.709257",
+      "entry_price": 159.29100036621094,
       "stop_loss": 158.50136224365235,
       "take_profit": 159.71287536621094,
       "score": 92,
-      "last_check_time": "2026-05-28T23:58:51.853830"
+      "last_check_time": "2026-05-29T00:04:01.709257"
+    },
+    {
+      "id": "USD/CAD-orz-1780013041",
+      "pair": "USD/CAD",
+      "method": "orz",
+      "direction": "short",
+      "entry_type": "range_reversal",
+      "entry_time": "2026-05-29T00:04:01.709257",
+      "entry_price": 1.378000020980835,
+      "stop_loss": 1.3842098992824554,
+      "take_profit": 1.3632063648917458,
+      "score": 79,
+      "last_check_time": "2026-05-29T00:04:01.709257"
+    },
+    {
+      "id": "CAD/JPY-pdhl-1780013041",
+      "pair": "CAD/JPY",
+      "method": "pdhl",
+      "direction": "long",
+      "entry_type": "pdhl_long_retest",
+      "entry_time": "2026-05-29T00:04:01.709257",
+      "entry_price": 115.56999969482422,
+      "stop_loss": 115.27183219528199,
+      "take_profit": 115.86816719436645,
+      "score": 85,
+      "last_check_time": "2026-05-29T00:04:01.709257"
+    },
+    {
+      "id": "CHF/JPY-pdhl-1780013041",
+      "pair": "CHF/JPY",
+      "method": "pdhl",
+      "direction": "long",
+      "entry_type": "pdhl_long_retest",
+      "entry_time": "2026-05-29T00:04:01.709257",
+      "entry_price": 203.22500610351562,
+      "stop_loss": 202.78735724639893,
+      "take_profit": 203.66265496063232,
+      "score": 85,
+      "last_check_time": "2026-05-29T00:04:01.709257"
     }
   ],
   "history_count": 0,
