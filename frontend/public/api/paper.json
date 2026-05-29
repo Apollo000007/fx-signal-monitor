@@ -1,19 +1,32 @@
 {
-  "updated_at": "2026-05-29T05:47:55.373153+00:00",
-  "open_count": 1,
+  "updated_at": "2026-05-29T05:53:04.338871+00:00",
+  "open_count": 2,
   "open_positions": [
     {
-      "id": "USD/JPY-orz-1780033675",
+      "id": "USD/JPY-orz-1780033984",
       "pair": "USD/JPY",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-05-29T05:47:55.373153",
-      "entry_price": 159.28399658203125,
+      "entry_time": "2026-05-29T05:53:04.338871",
+      "entry_price": 159.2989959716797,
       "stop_loss": 158.78678573608397,
       "take_profit": 159.71287536621094,
       "score": 92,
-      "last_check_time": "2026-05-29T05:47:55.373153"
+      "last_check_time": "2026-05-29T05:53:04.338871"
+    },
+    {
+      "id": "USD/CAD-orz-1780033984",
+      "pair": "USD/CAD",
+      "method": "orz",
+      "direction": "short",
+      "entry_type": "range_reversal",
+      "entry_time": "2026-05-29T05:53:04.338871",
+      "entry_price": 1.3785699605941772,
+      "stop_loss": 1.3842098992824554,
+      "take_profit": 1.3632063648917458,
+      "score": 79,
+      "last_check_time": "2026-05-29T05:53:04.338871"
     }
   ],
   "history_count": 0,
