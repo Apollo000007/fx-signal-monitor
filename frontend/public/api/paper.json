@@ -1,45 +1,45 @@
 {
-  "updated_at": "2026-05-29T00:24:23.370823+00:00",
+  "updated_at": "2026-05-29T00:29:31.503782+00:00",
   "open_count": 3,
   "open_positions": [
     {
-      "id": "USD/CAD-orz-1780014263",
+      "id": "USD/CAD-orz-1780014571",
       "pair": "USD/CAD",
       "method": "orz",
       "direction": "short",
       "entry_type": "range_reversal",
-      "entry_time": "2026-05-29T00:24:23.370823",
-      "entry_price": 1.3780399560928345,
+      "entry_time": "2026-05-29T00:29:31.503782",
+      "entry_price": 1.377959966659546,
       "stop_loss": 1.3842098992824554,
       "take_profit": 1.3632063648917458,
       "score": 79,
-      "last_check_time": "2026-05-29T00:24:23.370823"
+      "last_check_time": "2026-05-29T00:29:31.503782"
     },
     {
-      "id": "AUD/USD-pdhl-1780014263",
+      "id": "AUD/USD-pdhl-1780014571",
       "pair": "AUD/USD",
       "method": "pdhl",
       "direction": "long",
       "entry_type": "pdhl_long_retest",
-      "entry_time": "2026-05-29T00:24:23.370823",
-      "entry_price": 0.7169486880302429,
+      "entry_time": "2026-05-29T00:29:31.503782",
+      "entry_price": 0.716794490814209,
       "stop_loss": 0.7150755227506161,
-      "take_profit": 0.7188218533098697,
+      "take_profit": 0.7185134588778018,
       "score": 85,
-      "last_check_time": "2026-05-29T00:24:23.370823"
+      "last_check_time": "2026-05-29T00:29:31.503782"
     },
     {
-      "id": "NZD/USD-pdhl-1780014263",
+      "id": "NZD/USD-pdhl-1780014571",
       "pair": "NZD/USD",
       "method": "pdhl",
       "direction": "long",
       "entry_type": "pdhl_long_retest",
-      "entry_time": "2026-05-29T00:24:23.370823",
-      "entry_price": 0.5948839783668518,
+      "entry_time": "2026-05-29T00:29:31.503782",
+      "entry_price": 0.5948132276535034,
       "stop_loss": 0.592268805295229,
-      "take_profit": 0.5974991514384747,
+      "take_profit": 0.5973576500117779,
       "score": 85,
-      "last_check_time": "2026-05-29T00:24:23.370823"
+      "last_check_time": "2026-05-29T00:29:31.503782"
     }
   ],
   "history_count": 0,
