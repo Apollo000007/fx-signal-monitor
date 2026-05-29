@@ -1,32 +1,19 @@
 {
-  "updated_at": "2026-05-29T09:18:12.858265+00:00",
-  "open_count": 2,
+  "updated_at": "2026-05-29T09:23:18.418295+00:00",
+  "open_count": 1,
   "open_positions": [
     {
-      "id": "EUR/JPY-dtp-1780046292",
-      "pair": "EUR/JPY",
+      "id": "CHF/JPY-dtp-1780046598",
+      "pair": "CHF/JPY",
       "method": "dtp",
       "direction": "long",
       "entry_type": "dtp_long",
-      "entry_time": "2026-05-29T09:18:12.858265",
-      "entry_price": 185.343994140625,
-      "stop_loss": 185.20361856079103,
-      "take_profit": 185.76512088012691,
+      "entry_time": "2026-05-29T09:23:18.418295",
+      "entry_price": 203.19400024414062,
+      "stop_loss": 202.7530376586914,
+      "take_profit": 204.5168880004883,
       "score": 100,
-      "last_check_time": "2026-05-29T09:18:12.858265"
-    },
-    {
-      "id": "AUD/JPY-dtp-1780046292",
-      "pair": "AUD/JPY",
-      "method": "dtp",
-      "direction": "long",
-      "entry_type": "dtp_long",
-      "entry_time": "2026-05-29T09:18:12.858265",
-      "entry_price": 113.95999908447266,
-      "stop_loss": 113.86802025604248,
-      "take_profit": 114.23593556976317,
-      "score": 100,
-      "last_check_time": "2026-05-29T09:18:12.858265"
+      "last_check_time": "2026-05-29T09:23:18.418295"
     }
   ],
   "history_count": 0,
