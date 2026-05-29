@@ -1,21 +1,7 @@
 {
-  "updated_at": "2026-05-29T04:15:51.722619+00:00",
-  "open_count": 1,
-  "open_positions": [
-    {
-      "id": "NZD/USD-pdhl-1780028151",
-      "pair": "NZD/USD",
-      "method": "pdhl",
-      "direction": "long",
-      "entry_type": "pdhl_long_retest",
-      "entry_time": "2026-05-29T04:15:51.722619",
-      "entry_price": 0.5958410501480103,
-      "stop_loss": 0.592268805295229,
-      "take_profit": 0.5994132950007915,
-      "score": 80,
-      "last_check_time": "2026-05-29T04:15:51.722619"
-    }
-  ],
+  "updated_at": "2026-05-29T04:20:58.246426+00:00",
+  "open_count": 0,
+  "open_positions": [],
   "history_count": 0,
   "recent_trades": [],
   "stats": {
