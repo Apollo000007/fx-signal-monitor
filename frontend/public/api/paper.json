@@ -1,32 +1,58 @@
 {
-  "updated_at": "2026-05-29T14:31:36.656558+00:00",
-  "open_count": 2,
+  "updated_at": "2026-05-29T14:36:44.337035+00:00",
+  "open_count": 4,
   "open_positions": [
     {
-      "id": "GBP/JPY-orz-1780065096",
+      "id": "USD/CAD-orz-1780065404",
+      "pair": "USD/CAD",
+      "method": "orz",
+      "direction": "short",
+      "entry_type": "range_reversal",
+      "entry_time": "2026-05-29T14:36:44.337035",
+      "entry_price": 1.3802200555801392,
+      "stop_loss": 1.3842098992824554,
+      "take_profit": 1.3632063648917458,
+      "score": 79,
+      "last_check_time": "2026-05-29T14:36:44.337035"
+    },
+    {
+      "id": "GBP/JPY-orz-1780065404",
       "pair": "GBP/JPY",
       "method": "orz",
       "direction": "short",
       "entry_type": "range_reversal",
-      "entry_time": "2026-05-29T14:31:36.656558",
-      "entry_price": 214.12899780273438,
+      "entry_time": "2026-05-29T14:36:44.337035",
+      "entry_price": 214.0709991455078,
       "stop_loss": 214.9460347016987,
       "take_profit": 210.5500030517578,
       "score": 79,
-      "last_check_time": "2026-05-29T14:31:36.656558"
+      "last_check_time": "2026-05-29T14:36:44.337035"
     },
     {
-      "id": "AUD/JPY-orz-1780065096",
+      "id": "AUD/JPY-orz-1780065404",
       "pair": "AUD/JPY",
       "method": "orz",
       "direction": "short",
       "entry_type": "range_reversal",
-      "entry_time": "2026-05-29T14:31:36.656558",
-      "entry_price": 114.41899871826172,
+      "entry_time": "2026-05-29T14:36:44.337035",
+      "entry_price": 114.36799621582031,
       "stop_loss": 114.94943867492675,
       "take_profit": 112.27250289916992,
       "score": 79,
-      "last_check_time": "2026-05-29T14:31:36.656558"
+      "last_check_time": "2026-05-29T14:36:44.337035"
+    },
+    {
+      "id": "AUD/USD-dtp-1780065404",
+      "pair": "AUD/USD",
+      "method": "dtp",
+      "direction": "long",
+      "entry_type": "dtp_long",
+      "entry_time": "2026-05-29T14:36:44.337035",
+      "entry_price": 0.7183908224105835,
+      "stop_loss": 0.7145411365628243,
+      "take_profit": 0.7299398799538612,
+      "score": 87,
+      "last_check_time": "2026-05-29T14:36:44.337035"
     }
   ],
   "history_count": 0,
