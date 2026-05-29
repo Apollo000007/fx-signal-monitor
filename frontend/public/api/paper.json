@@ -1,19 +1,19 @@
 {
-  "updated_at": "2026-05-29T02:01:51.108142+00:00",
+  "updated_at": "2026-05-29T02:06:57.603838+00:00",
   "open_count": 1,
   "open_positions": [
     {
-      "id": "USD/CAD-orz-1780020111",
+      "id": "USD/CAD-orz-1780020417",
       "pair": "USD/CAD",
       "method": "orz",
       "direction": "short",
       "entry_type": "range_reversal",
-      "entry_time": "2026-05-29T02:01:51.108142",
-      "entry_price": 1.3782299757003784,
+      "entry_time": "2026-05-29T02:06:57.603838",
+      "entry_price": 1.3779000043869019,
       "stop_loss": 1.3842098992824554,
       "take_profit": 1.3632063648917458,
       "score": 79,
-      "last_check_time": "2026-05-29T02:01:51.108142"
+      "last_check_time": "2026-05-29T02:06:57.603838"
     }
   ],
   "history_count": 0,
