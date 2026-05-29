@@ -1,71 +1,32 @@
 {
-  "updated_at": "2026-05-29T17:08:41.629882+00:00",
-  "open_count": 5,
+  "updated_at": "2026-05-29T17:13:53.794163+00:00",
+  "open_count": 2,
   "open_positions": [
     {
-      "id": "USD/JPY-orz-1780074521",
-      "pair": "USD/JPY",
-      "method": "orz",
-      "direction": "short",
-      "entry_type": "range_reversal",
-      "entry_time": "2026-05-29T17:08:41.629882",
-      "entry_price": 159.19200134277344,
-      "stop_loss": 159.82755181884767,
-      "take_profit": 155.48300170898438,
-      "score": 79,
-      "last_check_time": "2026-05-29T17:08:41.629882"
-    },
-    {
-      "id": "GBP/USD-orz-1780074521",
-      "pair": "GBP/USD",
-      "method": "orz",
-      "direction": "long",
-      "entry_type": "range_reversal",
-      "entry_time": "2026-05-29T17:08:41.629882",
-      "entry_price": 1.3470189571380615,
-      "stop_loss": 1.3422097807228566,
-      "take_profit": 1.3644134998321533,
-      "score": 79,
-      "last_check_time": "2026-05-29T17:08:41.629882"
-    },
-    {
-      "id": "USD/CAD-orz-1780074521",
+      "id": "USD/CAD-orz-1780074833",
       "pair": "USD/CAD",
       "method": "orz",
       "direction": "short",
       "entry_type": "range_reversal",
-      "entry_time": "2026-05-29T17:08:41.629882",
-      "entry_price": 1.3798500299453735,
+      "entry_time": "2026-05-29T17:13:53.794163",
+      "entry_price": 1.3799500465393066,
       "stop_loss": 1.3842098992824554,
       "take_profit": 1.3632063648917458,
       "score": 79,
-      "last_check_time": "2026-05-29T17:08:41.629882"
+      "last_check_time": "2026-05-29T17:13:53.794163"
     },
     {
-      "id": "GBP/JPY-dtp-1780074521",
+      "id": "GBP/JPY-dtp-1780074833",
       "pair": "GBP/JPY",
       "method": "dtp",
       "direction": "long",
       "entry_type": "dtp_long",
-      "entry_time": "2026-05-29T17:08:41.629882",
-      "entry_price": 214.39700317382812,
+      "entry_time": "2026-05-29T17:13:53.794163",
+      "entry_price": 214.4010009765625,
       "stop_loss": 213.78000929260253,
-      "take_profit": 216.2479848175049,
+      "take_profit": 216.2639760284424,
       "score": 100,
-      "last_check_time": "2026-05-29T17:08:41.629882"
-    },
-    {
-      "id": "AUD/JPY-dtp-1780074521",
-      "pair": "AUD/JPY",
-      "method": "dtp",
-      "direction": "long",
-      "entry_type": "dtp_long",
-      "entry_time": "2026-05-29T17:08:41.629882",
-      "entry_price": 114.44300079345703,
-      "stop_loss": 114.22666241455079,
-      "take_profit": 115.09201593017576,
-      "score": 87,
-      "last_check_time": "2026-05-29T17:08:41.629882"
+      "last_check_time": "2026-05-29T17:13:53.794163"
     }
   ],
   "history_count": 0,
