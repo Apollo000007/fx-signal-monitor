@@ -1,34 +1,7 @@
 {
-  "updated_at": "2026-06-01T23:53:59.008571+00:00",
-  "open_count": 2,
-  "open_positions": [
-    {
-      "id": "ZAR/JPY-orz-1780358039",
-      "pair": "ZAR/JPY",
-      "method": "orz",
-      "direction": "long",
-      "entry_type": "pullback",
-      "entry_time": "2026-06-01T23:53:59.008571",
-      "entry_price": 9.776000022888184,
-      "stop_loss": 9.69946219390869,
-      "take_profit": 9.825300216674805,
-      "score": 80,
-      "last_check_time": "2026-06-01T23:53:59.008571"
-    },
-    {
-      "id": "EUR/GBP-orz-1780358039",
-      "pair": "EUR/GBP",
-      "method": "orz",
-      "direction": "long",
-      "entry_type": "range_reversal",
-      "entry_time": "2026-06-01T23:53:59.008571",
-      "entry_price": 0.8644300103187561,
-      "stop_loss": 0.862418579608202,
-      "take_profit": 0.8724749982357025,
-      "score": 79,
-      "last_check_time": "2026-06-01T23:53:59.008571"
-    }
-  ],
+  "updated_at": "2026-06-01T23:59:09.611652+00:00",
+  "open_count": 0,
+  "open_positions": [],
   "history_count": 0,
   "recent_trades": [],
   "stats": {
