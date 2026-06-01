@@ -1,32 +1,45 @@
 {
-  "updated_at": "2026-06-01T10:48:34.231076+00:00",
-  "open_count": 2,
+  "updated_at": "2026-06-01T10:53:38.352852+00:00",
+  "open_count": 3,
   "open_positions": [
     {
-      "id": "USD/JPY-orz-1780310914",
+      "id": "USD/JPY-orz-1780311218",
       "pair": "USD/JPY",
       "method": "orz",
       "direction": "short",
       "entry_type": "range_reversal",
-      "entry_time": "2026-06-01T10:48:34.231076",
-      "entry_price": 159.4409942626953,
+      "entry_time": "2026-06-01T10:53:38.352852",
+      "entry_price": 159.43800354003906,
       "stop_loss": 159.82755181884767,
       "take_profit": 155.48300170898438,
       "score": 79,
-      "last_check_time": "2026-06-01T10:48:34.231076"
+      "last_check_time": "2026-06-01T10:53:38.352852"
     },
     {
-      "id": "EUR/GBP-orz-1780310914",
-      "pair": "EUR/GBP",
+      "id": "GBP/USD-orz-1780311218",
+      "pair": "GBP/USD",
       "method": "orz",
       "direction": "long",
       "entry_type": "range_reversal",
-      "entry_time": "2026-06-01T10:48:34.231076",
-      "entry_price": 0.8651700019836426,
-      "stop_loss": 0.862418579608202,
-      "take_profit": 0.8724749982357025,
+      "entry_time": "2026-06-01T10:53:38.352852",
+      "entry_price": 1.34645676612854,
+      "stop_loss": 1.3423831435889007,
+      "take_profit": 1.3644134998321533,
       "score": 79,
-      "last_check_time": "2026-06-01T10:48:34.231076"
+      "last_check_time": "2026-06-01T10:53:38.352852"
+    },
+    {
+      "id": "EUR/GBP-pdhl-1780311218",
+      "pair": "EUR/GBP",
+      "method": "pdhl",
+      "direction": "short",
+      "entry_type": "pdhl_short_retest",
+      "entry_time": "2026-06-01T10:53:38.352852",
+      "entry_price": 0.865090012550354,
+      "stop_loss": 0.8669985564947129,
+      "take_profit": 0.8631814686059951,
+      "score": 85,
+      "last_check_time": "2026-06-01T10:53:38.352852"
     }
   ],
   "history_count": 0,
