@@ -1,7 +1,21 @@
 {
-  "updated_at": "2026-06-01T22:16:01.100424+00:00",
-  "open_count": 0,
-  "open_positions": [],
+  "updated_at": "2026-06-01T22:21:06.300486+00:00",
+  "open_count": 1,
+  "open_positions": [
+    {
+      "id": "USD/JPY-orz-1780352466",
+      "pair": "USD/JPY",
+      "method": "orz",
+      "direction": "short",
+      "entry_type": "range_reversal",
+      "entry_time": "2026-06-01T22:21:06.300486",
+      "entry_price": 159.61300659179688,
+      "stop_loss": 159.82755181884767,
+      "take_profit": 155.48300170898438,
+      "score": 75,
+      "last_check_time": "2026-06-01T22:21:06.300486"
+    }
+  ],
   "history_count": 0,
   "recent_trades": [],
   "stats": {
