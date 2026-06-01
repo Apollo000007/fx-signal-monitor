@@ -1,7 +1,34 @@
 {
-  "updated_at": "2026-06-01T02:27:42.885799+00:00",
-  "open_count": 0,
-  "open_positions": [],
+  "updated_at": "2026-06-01T02:32:47.725288+00:00",
+  "open_count": 2,
+  "open_positions": [
+    {
+      "id": "USD/JPY-orz-1780281167",
+      "pair": "USD/JPY",
+      "method": "orz",
+      "direction": "short",
+      "entry_type": "range_reversal",
+      "entry_time": "2026-06-01T02:32:47.725288",
+      "entry_price": 159.46800231933594,
+      "stop_loss": 159.82755181884767,
+      "take_profit": 155.48300170898438,
+      "score": 79,
+      "last_check_time": "2026-06-01T02:32:47.725288"
+    },
+    {
+      "id": "GBP/USD-orz-1780281167",
+      "pair": "GBP/USD",
+      "method": "orz",
+      "direction": "long",
+      "entry_type": "range_reversal",
+      "entry_time": "2026-06-01T02:32:47.725288",
+      "entry_price": 1.345442295074463,
+      "stop_loss": 1.3423831435889007,
+      "take_profit": 1.3644134998321533,
+      "score": 79,
+      "last_check_time": "2026-06-01T02:32:47.725288"
+    }
+  ],
   "history_count": 0,
   "recent_trades": [],
   "stats": {
