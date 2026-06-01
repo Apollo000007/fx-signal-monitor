@@ -1,58 +1,32 @@
 {
-  "updated_at": "2026-06-01T12:37:13.555419+00:00",
-  "open_count": 4,
+  "updated_at": "2026-06-01T12:42:18.975093+00:00",
+  "open_count": 2,
   "open_positions": [
     {
-      "id": "USD/CAD-orz-1780317433",
+      "id": "USD/CAD-orz-1780317738",
       "pair": "USD/CAD",
       "method": "orz",
       "direction": "short",
       "entry_type": "range_reversal",
-      "entry_time": "2026-06-01T12:37:13.555419",
-      "entry_price": 1.3831700086593628,
+      "entry_time": "2026-06-01T12:42:18.975093",
+      "entry_price": 1.3831000328063965,
       "stop_loss": 1.390149747133255,
       "take_profit": 1.3632063648917458,
       "score": 79,
-      "last_check_time": "2026-06-01T12:37:13.555419"
+      "last_check_time": "2026-06-01T12:42:18.975093"
     },
     {
-      "id": "EUR/JPY-dtp-1780317433",
-      "pair": "EUR/JPY",
-      "method": "dtp",
-      "direction": "long",
-      "entry_type": "dtp_long",
-      "entry_time": "2026-06-01T12:37:13.555419",
-      "entry_price": 185.7740020751953,
-      "stop_loss": 185.45736236572264,
-      "take_profit": 186.72392120361332,
-      "score": 100,
-      "last_check_time": "2026-06-01T12:37:13.555419"
-    },
-    {
-      "id": "USD/JPY-dtp-1780317433",
+      "id": "USD/JPY-dtp-1780317738",
       "pair": "USD/JPY",
       "method": "dtp",
       "direction": "long",
       "entry_type": "dtp_long",
-      "entry_time": "2026-06-01T12:37:13.555419",
-      "entry_price": 159.4669952392578,
+      "entry_time": "2026-06-01T12:42:18.975093",
+      "entry_price": 159.46600341796875,
       "stop_loss": 159.2765686340332,
-      "take_profit": 160.03827505493166,
+      "take_profit": 160.0343077697754,
       "score": 100,
-      "last_check_time": "2026-06-01T12:37:13.555419"
-    },
-    {
-      "id": "ZAR/JPY-dtp-1780317433",
-      "pair": "ZAR/JPY",
-      "method": "dtp",
-      "direction": "long",
-      "entry_type": "dtp_long",
-      "entry_time": "2026-06-01T12:37:13.555419",
-      "entry_price": 9.803000450134277,
-      "stop_loss": 9.775214847564698,
-      "take_profit": 9.886357257843017,
-      "score": 100,
-      "last_check_time": "2026-06-01T12:37:13.555419"
+      "last_check_time": "2026-06-01T12:42:18.975093"
     }
   ],
   "history_count": 0,
