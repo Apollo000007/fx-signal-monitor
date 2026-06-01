@@ -1,45 +1,45 @@
 {
-  "updated_at": "2026-06-01T22:52:14.307940+00:00",
+  "updated_at": "2026-06-01T22:57:20.115591+00:00",
   "open_count": 3,
   "open_positions": [
     {
-      "id": "AUD/JPY-orz-1780354334",
+      "id": "AUD/JPY-orz-1780354640",
       "pair": "AUD/JPY",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-06-01T22:52:14.307940",
-      "entry_price": 114.31199645996094,
+      "entry_time": "2026-06-01T22:57:20.115591",
+      "entry_price": 114.30699920654297,
       "stop_loss": 113.6512398071289,
       "take_profit": 114.33357238769531,
       "score": 83,
-      "last_check_time": "2026-06-01T22:52:14.307940"
+      "last_check_time": "2026-06-01T22:57:20.115591"
     },
     {
-      "id": "GBP/USD-orz-1780354334",
+      "id": "ZAR/JPY-orz-1780354640",
+      "pair": "ZAR/JPY",
+      "method": "orz",
+      "direction": "long",
+      "entry_type": "pullback",
+      "entry_time": "2026-06-01T22:57:20.115591",
+      "entry_price": 9.767000198364258,
+      "stop_loss": 9.696348431167603,
+      "take_profit": 9.825300216674805,
+      "score": 83,
+      "last_check_time": "2026-06-01T22:57:20.115591"
+    },
+    {
+      "id": "GBP/USD-orz-1780354640",
       "pair": "GBP/USD",
       "method": "orz",
       "direction": "long",
       "entry_type": "range_reversal",
-      "entry_time": "2026-06-01T22:52:14.307940",
-      "entry_price": 1.3458044528961182,
+      "entry_time": "2026-06-01T22:57:20.115591",
+      "entry_price": 1.3458406925201416,
       "stop_loss": 1.3423831435889007,
       "take_profit": 1.3644134998321533,
       "score": 79,
-      "last_check_time": "2026-06-01T22:52:14.307940"
-    },
-    {
-      "id": "USD/JPY-orz-1780354334",
-      "pair": "USD/JPY",
-      "method": "orz",
-      "direction": "short",
-      "entry_type": "range_reversal",
-      "entry_time": "2026-06-01T22:52:14.307940",
-      "entry_price": 159.63600158691406,
-      "stop_loss": 159.82755181884767,
-      "take_profit": 155.48300170898438,
-      "score": 75,
-      "last_check_time": "2026-06-01T22:52:14.307940"
+      "last_check_time": "2026-06-01T22:57:20.115591"
     }
   ],
   "history_count": 0,
