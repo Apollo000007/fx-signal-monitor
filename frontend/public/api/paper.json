@@ -1,32 +1,19 @@
 {
-  "updated_at": "2026-06-02T23:25:23.535245+00:00",
-  "open_count": 2,
+  "updated_at": "2026-06-02T23:30:26.091281+00:00",
+  "open_count": 1,
   "open_positions": [
     {
-      "id": "EUR/GBP-orz-1780442723",
-      "pair": "EUR/GBP",
-      "method": "orz",
-      "direction": "long",
-      "entry_type": "range_reversal",
-      "entry_time": "2026-06-02T23:25:23.535245",
-      "entry_price": 0.8637300133705139,
-      "stop_loss": 0.862385300131405,
-      "take_profit": 0.8668621025587383,
-      "score": 75,
-      "last_check_time": "2026-06-02T23:25:23.535245"
-    },
-    {
-      "id": "EUR/USD-pdhl-1780442723",
+      "id": "EUR/USD-pdhl-1780443026",
       "pair": "EUR/USD",
       "method": "pdhl",
       "direction": "short",
       "entry_type": "pdhl_short_retest",
-      "entry_time": "2026-06-02T23:25:23.535245",
+      "entry_time": "2026-06-02T23:30:26.091281",
       "entry_price": 1.1626555919647217,
       "stop_loss": 1.16548349994421,
       "take_profit": 1.1598276839852333,
       "score": 80,
-      "last_check_time": "2026-06-02T23:25:23.535245"
+      "last_check_time": "2026-06-02T23:30:26.091281"
     }
   ],
   "history_count": 0,
