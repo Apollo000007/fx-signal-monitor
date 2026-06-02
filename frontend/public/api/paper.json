@@ -1,58 +1,32 @@
 {
-  "updated_at": "2026-06-02T06:09:55.410847+00:00",
-  "open_count": 4,
+  "updated_at": "2026-06-02T06:15:11.365110+00:00",
+  "open_count": 2,
   "open_positions": [
     {
-      "id": "AUD/JPY-orz-1780380595",
+      "id": "AUD/JPY-orz-1780380911",
       "pair": "AUD/JPY",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-06-02T06:09:55.410847",
-      "entry_price": 114.45500183105469,
-      "stop_loss": 113.68265877685548,
+      "entry_time": "2026-06-02T06:15:11.365110",
+      "entry_price": 114.48300170898438,
+      "stop_loss": 113.68321765441895,
       "take_profit": 114.71099853515625,
       "score": 95,
-      "last_check_time": "2026-06-02T06:09:55.410847"
+      "last_check_time": "2026-06-02T06:15:11.365110"
     },
     {
-      "id": "GBP/JPY-pdhl-1780380595",
-      "pair": "GBP/JPY",
-      "method": "pdhl",
-      "direction": "long",
-      "entry_type": "pdhl_long_retest",
-      "entry_time": "2026-06-02T06:09:55.410847",
-      "entry_price": 215.11900329589844,
-      "stop_loss": 214.5466997909546,
-      "take_profit": 215.69130680084228,
-      "score": 97,
-      "last_check_time": "2026-06-02T06:09:55.410847"
-    },
-    {
-      "id": "GBP/JPY-triple-1780380595",
-      "pair": "GBP/JPY",
-      "method": "triple",
-      "direction": "long",
-      "entry_type": "triple_confluence",
-      "entry_time": "2026-06-02T06:09:55.410847",
-      "entry_price": 215.11900329589844,
-      "stop_loss": 215.02637238746522,
-      "take_profit": 215.30426511276488,
-      "score": 98,
-      "last_check_time": "2026-06-02T06:09:55.410847"
-    },
-    {
-      "id": "GBP/USD-orz-1780380595",
+      "id": "GBP/USD-orz-1780380911",
       "pair": "GBP/USD",
       "method": "orz",
       "direction": "long",
       "entry_type": "range_reversal",
-      "entry_time": "2026-06-02T06:09:55.410847",
-      "entry_price": 1.3468557596206665,
+      "entry_time": "2026-06-02T06:15:11.365110",
+      "entry_price": 1.347400188446045,
       "stop_loss": 1.3421400191783905,
       "take_profit": 1.3644134998321533,
       "score": 79,
-      "last_check_time": "2026-06-02T06:09:55.410847"
+      "last_check_time": "2026-06-02T06:15:11.365110"
     }
   ],
   "history_count": 0,
