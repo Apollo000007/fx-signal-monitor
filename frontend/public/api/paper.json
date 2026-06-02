@@ -1,32 +1,58 @@
 {
-  "updated_at": "2026-06-02T01:05:49.838380+00:00",
-  "open_count": 2,
+  "updated_at": "2026-06-02T01:11:02.666611+00:00",
+  "open_count": 4,
   "open_positions": [
     {
-      "id": "AUD/JPY-orz-1780362349",
+      "id": "AUD/JPY-orz-1780362662",
       "pair": "AUD/JPY",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-06-02T01:05:49.838380",
-      "entry_price": 114.3219985961914,
-      "stop_loss": 113.6628385723877,
-      "take_profit": 114.33357238769531,
+      "entry_time": "2026-06-02T01:11:02.666611",
+      "entry_price": 114.37999725341797,
+      "stop_loss": 113.66519377685547,
+      "take_profit": 114.71099853515625,
       "score": 95,
-      "last_check_time": "2026-06-02T01:05:49.838380"
+      "last_check_time": "2026-06-02T01:11:02.666611"
     },
     {
-      "id": "ZAR/JPY-orz-1780362349",
+      "id": "ZAR/JPY-orz-1780362662",
       "pair": "ZAR/JPY",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-06-02T01:05:49.838380",
-      "entry_price": 9.765999794006348,
-      "stop_loss": 9.698703711776734,
+      "entry_time": "2026-06-02T01:11:02.666611",
+      "entry_price": 9.770000457763672,
+      "stop_loss": 9.699342442588806,
       "take_profit": 9.825300216674805,
       "score": 80,
-      "last_check_time": "2026-06-02T01:05:49.838380"
+      "last_check_time": "2026-06-02T01:11:02.666611"
+    },
+    {
+      "id": "EUR/USD-orz-1780362662",
+      "pair": "EUR/USD",
+      "method": "orz",
+      "direction": "long",
+      "entry_type": "range_reversal",
+      "entry_time": "2026-06-02T01:11:02.666611",
+      "entry_price": 1.1637378931045532,
+      "stop_loss": 1.1581780316299861,
+      "take_profit": 1.1783436685800552,
+      "score": 79,
+      "last_check_time": "2026-06-02T01:11:02.666611"
+    },
+    {
+      "id": "GBP/USD-orz-1780362662",
+      "pair": "GBP/USD",
+      "method": "orz",
+      "direction": "long",
+      "entry_type": "range_reversal",
+      "entry_time": "2026-06-02T01:11:02.666611",
+      "entry_price": 1.3457139730453491,
+      "stop_loss": 1.3421400191783905,
+      "take_profit": 1.3644134998321533,
+      "score": 79,
+      "last_check_time": "2026-06-02T01:11:02.666611"
     }
   ],
   "history_count": 0,
