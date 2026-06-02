@@ -1,19 +1,19 @@
 {
-  "updated_at": "2026-06-02T05:43:53.725675+00:00",
+  "updated_at": "2026-06-02T05:49:03.153694+00:00",
   "open_count": 1,
   "open_positions": [
     {
-      "id": "GBP/USD-orz-1780379033",
-      "pair": "GBP/USD",
+      "id": "EUR/GBP-orz-1780379343",
+      "pair": "EUR/GBP",
       "method": "orz",
       "direction": "long",
       "entry_type": "range_reversal",
-      "entry_time": "2026-06-02T05:43:53.725675",
-      "entry_price": 1.3466744422912598,
-      "stop_loss": 1.3421400191783905,
-      "take_profit": 1.3644134998321533,
+      "entry_time": "2026-06-02T05:49:03.153694",
+      "entry_price": 0.8643100261688232,
+      "stop_loss": 0.862418579608202,
+      "take_profit": 0.8724749982357025,
       "score": 79,
-      "last_check_time": "2026-06-02T05:43:53.725675"
+      "last_check_time": "2026-06-02T05:49:03.153694"
     }
   ],
   "history_count": 0,
