@@ -1,32 +1,32 @@
 {
-  "updated_at": "2026-06-02T23:15:14.346896+00:00",
+  "updated_at": "2026-06-02T23:20:19.317543+00:00",
   "open_count": 2,
   "open_positions": [
     {
-      "id": "ZAR/JPY-orz-1780442114",
-      "pair": "ZAR/JPY",
+      "id": "EUR/GBP-orz-1780442419",
+      "pair": "EUR/GBP",
       "method": "orz",
       "direction": "long",
-      "entry_type": "pullback",
-      "entry_time": "2026-06-02T23:15:14.346896",
-      "entry_price": 9.826000213623047,
-      "stop_loss": 9.705550380706788,
-      "take_profit": 9.884299755096436,
-      "score": 80,
-      "last_check_time": "2026-06-02T23:15:14.346896"
+      "entry_type": "range_reversal",
+      "entry_time": "2026-06-02T23:20:19.317543",
+      "entry_price": 0.8636199831962585,
+      "stop_loss": 0.862385300131405,
+      "take_profit": 0.8668621025587383,
+      "score": 75,
+      "last_check_time": "2026-06-02T23:20:19.317543"
     },
     {
-      "id": "EUR/USD-pdhl-1780442114",
+      "id": "EUR/USD-pdhl-1780442419",
       "pair": "EUR/USD",
       "method": "pdhl",
       "direction": "short",
       "entry_type": "pdhl_short_retest",
-      "entry_time": "2026-06-02T23:15:14.346896",
-      "entry_price": 1.1627906560897827,
+      "entry_time": "2026-06-02T23:20:19.317543",
+      "entry_price": 1.1626555919647217,
       "stop_loss": 1.16548349994421,
-      "take_profit": 1.1600978122353554,
-      "score": 80,
-      "last_check_time": "2026-06-02T23:15:14.346896"
+      "take_profit": 1.1598276839852333,
+      "score": 75,
+      "last_check_time": "2026-06-02T23:20:19.317543"
     }
   ],
   "history_count": 0,
