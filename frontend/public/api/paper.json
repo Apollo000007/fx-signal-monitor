@@ -1,45 +1,45 @@
 {
-  "updated_at": "2026-06-02T03:04:15.549456+00:00",
+  "updated_at": "2026-06-02T03:09:27.662658+00:00",
   "open_count": 3,
   "open_positions": [
     {
-      "id": "AUD/JPY-orz-1780369455",
-      "pair": "AUD/JPY",
+      "id": "EUR/USD-orz-1780369767",
+      "pair": "EUR/USD",
       "method": "orz",
       "direction": "long",
-      "entry_type": "pullback",
-      "entry_time": "2026-06-02T03:04:15.549456",
-      "entry_price": 114.3270034790039,
-      "stop_loss": 113.68010392974853,
-      "take_profit": 114.33357238769531,
-      "score": 95,
-      "last_check_time": "2026-06-02T03:04:15.549456"
+      "entry_type": "range_reversal",
+      "entry_time": "2026-06-02T03:09:27.662658",
+      "entry_price": 1.163602590560913,
+      "stop_loss": 1.1581780316299861,
+      "take_profit": 1.1783436685800552,
+      "score": 79,
+      "last_check_time": "2026-06-02T03:09:27.662658"
     },
     {
-      "id": "GBP/USD-orz-1780369455",
+      "id": "GBP/USD-orz-1780369767",
       "pair": "GBP/USD",
       "method": "orz",
       "direction": "long",
       "entry_type": "range_reversal",
-      "entry_time": "2026-06-02T03:04:15.549456",
-      "entry_price": 1.345496654510498,
+      "entry_time": "2026-06-02T03:09:27.662658",
+      "entry_price": 1.3455508947372437,
       "stop_loss": 1.3421400191783905,
       "take_profit": 1.3644134998321533,
       "score": 79,
-      "last_check_time": "2026-06-02T03:04:15.549456"
+      "last_check_time": "2026-06-02T03:09:27.662658"
     },
     {
-      "id": "EUR/GBP-orz-1780369455",
+      "id": "EUR/GBP-orz-1780369767",
       "pair": "EUR/GBP",
       "method": "orz",
       "direction": "long",
       "entry_type": "range_reversal",
-      "entry_time": "2026-06-02T03:04:15.549456",
-      "entry_price": 0.8644899725914001,
+      "entry_time": "2026-06-02T03:09:27.662658",
+      "entry_price": 0.8645099997520447,
       "stop_loss": 0.862418579608202,
       "take_profit": 0.8724749982357025,
       "score": 79,
-      "last_check_time": "2026-06-02T03:04:15.549456"
+      "last_check_time": "2026-06-02T03:09:27.662658"
     }
   ],
   "history_count": 0,
