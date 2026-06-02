@@ -1,32 +1,45 @@
 {
-  "updated_at": "2026-06-02T03:19:59.729301+00:00",
-  "open_count": 2,
+  "updated_at": "2026-06-02T03:25:01.885525+00:00",
+  "open_count": 3,
   "open_positions": [
     {
-      "id": "AUD/JPY-orz-1780370399",
-      "pair": "AUD/JPY",
-      "method": "orz",
-      "direction": "long",
-      "entry_type": "pullback",
-      "entry_time": "2026-06-02T03:19:59.729301",
-      "entry_price": 114.31400299072266,
-      "stop_loss": 113.67984444000244,
-      "take_profit": 114.33357238769531,
-      "score": 95,
-      "last_check_time": "2026-06-02T03:19:59.729301"
-    },
-    {
-      "id": "ZAR/JPY-orz-1780370399",
+      "id": "ZAR/JPY-orz-1780370701",
       "pair": "ZAR/JPY",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-06-02T03:19:59.729301",
-      "entry_price": 9.772000312805176,
-      "stop_loss": 9.70213683040619,
+      "entry_time": "2026-06-02T03:25:01.885525",
+      "entry_price": 9.77400016784668,
+      "stop_loss": 9.702176747512818,
       "take_profit": 9.825300216674805,
       "score": 80,
-      "last_check_time": "2026-06-02T03:19:59.729301"
+      "last_check_time": "2026-06-02T03:25:01.885525"
+    },
+    {
+      "id": "EUR/USD-orz-1780370701",
+      "pair": "EUR/USD",
+      "method": "orz",
+      "direction": "long",
+      "entry_type": "range_reversal",
+      "entry_time": "2026-06-02T03:25:01.885525",
+      "entry_price": 1.163602590560913,
+      "stop_loss": 1.1581780316299861,
+      "take_profit": 1.1783436685800552,
+      "score": 79,
+      "last_check_time": "2026-06-02T03:25:01.885525"
+    },
+    {
+      "id": "GBP/USD-orz-1780370701",
+      "pair": "GBP/USD",
+      "method": "orz",
+      "direction": "long",
+      "entry_type": "range_reversal",
+      "entry_time": "2026-06-02T03:25:01.885525",
+      "entry_price": 1.345569133758545,
+      "stop_loss": 1.3421400191783905,
+      "take_profit": 1.3644134998321533,
+      "score": 79,
+      "last_check_time": "2026-06-02T03:25:01.885525"
     }
   ],
   "history_count": 0,
