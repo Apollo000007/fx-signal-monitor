@@ -1,19 +1,19 @@
 {
-  "updated_at": "2026-06-03T22:51:33.581348+00:00",
+  "updated_at": "2026-06-03T22:56:42.174822+00:00",
   "open_count": 1,
   "open_positions": [
     {
-      "id": "GBP/JPY-orz-1780527093",
-      "pair": "GBP/JPY",
+      "id": "AUD/USD-orz-1780527402",
+      "pair": "AUD/USD",
       "method": "orz",
       "direction": "long",
-      "entry_type": "pullback",
-      "entry_time": "2026-06-03T22:51:33.581348",
-      "entry_price": 214.59500122070312,
-      "stop_loss": 213.9672041015625,
-      "take_profit": 214.62740173339844,
-      "score": 88,
-      "last_check_time": "2026-06-03T22:51:33.581348"
+      "entry_type": "range_reversal",
+      "entry_time": "2026-06-03T22:56:42.174822",
+      "entry_price": 0.7131141424179077,
+      "stop_loss": 0.7115722319568907,
+      "take_profit": 0.7266821503639221,
+      "score": 79,
+      "last_check_time": "2026-06-03T22:56:42.174822"
     }
   ],
   "history_count": 0,
