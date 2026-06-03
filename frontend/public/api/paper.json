@@ -1,32 +1,32 @@
 {
-  "updated_at": "2026-06-03T04:04:24.200356+00:00",
+  "updated_at": "2026-06-03T04:09:33.470479+00:00",
   "open_count": 2,
   "open_positions": [
     {
-      "id": "AUD/JPY-orz-1780459464",
+      "id": "AUD/JPY-orz-1780459773",
       "pair": "AUD/JPY",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-06-03T04:04:24.200356",
-      "entry_price": 114.67500305175781,
+      "entry_time": "2026-06-03T04:09:33.470479",
+      "entry_price": 114.66200256347656,
       "stop_loss": 113.71311988830567,
       "take_profit": 114.71099853515625,
       "score": 95,
-      "last_check_time": "2026-06-03T04:04:24.200356"
+      "last_check_time": "2026-06-03T04:09:33.470479"
     },
     {
-      "id": "USD/CHF-orz-1780459464",
+      "id": "USD/CHF-pdhl-1780459773",
       "pair": "USD/CHF",
-      "method": "orz",
-      "direction": "short",
-      "entry_type": "range_reversal",
-      "entry_time": "2026-06-03T04:04:24.200356",
-      "entry_price": 0.788129985332489,
-      "stop_loss": 0.7909496525092559,
-      "take_profit": 0.7781858344872793,
-      "score": 79,
-      "last_check_time": "2026-06-03T04:04:24.200356"
+      "method": "pdhl",
+      "direction": "long",
+      "entry_type": "pdhl_long_retest",
+      "entry_time": "2026-06-03T04:09:33.470479",
+      "entry_price": 0.7882400155067444,
+      "stop_loss": 0.7859393046498299,
+      "take_profit": 0.7905407263636589,
+      "score": 83,
+      "last_check_time": "2026-06-03T04:09:33.470479"
     }
   ],
   "history_count": 0,
