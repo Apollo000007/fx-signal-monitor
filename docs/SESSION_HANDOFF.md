@@ -97,9 +97,13 @@ Vercel 自動デプロイ済み。push 前は必ず `git pull --rebase origin ma
 
 ## 触ってはいけない箇所 (Immutable / 不変条件)
 
-- `api.py::_build_triple_method(orz, pdhl, claude, ht)` — TRIPLE 合議ロジック。
-  **シグネチャ・計算とも変更禁止** (ユーザー明示指示)。
-- `strategy_claude.py::analyze_pair_claude` — TRIPLE が内部で呼ぶ。削除・改変禁止。
+- **【2026-05-18 更新】TRIPLE の SL/TP は変更可。** ユーザーが「トリプルの
+  ロジックも損切り/利確ラインを変更して構わない」と明示。当初の「TRIPLE
+  全面変更禁止」は SL/TP に関しては解除。`api.py::_build_triple_method` の
+  SL/TP 算出は資産管理方針 (最低2R/推奨3R) に寄せてよい。ただし合議の
+  方向一致条件など中核ロジックは合意なく変えない。
+- `strategy_claude.py::analyze_pair_claude` — TRIPLE が内部で呼ぶ。削除禁止。
+  挙動変更時は backtest/paper への影響を必ず確認。
 - `api.py::_compute_signals` の `analyze_pair_claude` 呼び出し — 維持必須。
 - `~/Downloads/fx-signal-monitor-main` — 古い zip。読み書き禁止。作業は
   `~/dev/fx-signal-monitor` のみ。
@@ -121,6 +125,42 @@ Vercel 自動デプロイ済み。push 前は必ず `git pull --rebase origin ma
 - **なぜ CLAUDE.md 形式か (Skills でなく)**: Claude Code が
   セッション開始時に自動ロードする標準。Skills は on-demand 手順呼び出し用で
   永続文脈には不適。CLAUDE.md(索引) + 本ファイル(詳細) の二層構成を採用。
+- **【2026-05-18】利確を最低2R/推奨3R に変更**: チャート/カード/ドロワー/
+  Telegram 本文の利確目安が約1:1だったため、`frontend/src/lib/mm.ts` を新設し
+  「SL=構造(1R) 固定・利確=Rの倍数(最低2R, 推奨3R, 構造TPが2Rより遠ければ
+  採用)」へ統一。`scripts/build_static.py::_mm_levels`/`_format_alert` も同様。
+  strategy/api のシグナル本体は当初未変更だったが、上記ルール2の許可により
+  TRIPLE 含め本体側も2R/3Rへ寄せてよい (未実施なら次タスク候補)。
+- **【2026-06-03】2週間デモ ポストモーテム → +EV化リファクタ**: 実トレード14件が
+  RR≈1:1 / 勝率50% で実質トントンだった反省から:
+  (1) **TP最低2R床** `risk.min_rr_tp` を `api._signal_to_dict` に適用し signals.json/
+  Telegram/paper/MT5 の**実値**まで≥2R化（旧PDHL 1:1 を廃止。表示だけだった2Rを実体化）。
+  (2) **手法×ペア EVゲート** `ev_whitelist.is_pair_allowed` を is_alert に適用。
+  TRIPLE=常時許可（合議がEVゲート・低頻度高精度）、DTP=証拠4ペア∪whitelist、
+  PDHL/ORZ=降格（whitelistのみ＝実質閉）。`scripts/backtest.py --emit-whitelist
+  --min-rr 2` で `state/ev_whitelist.json` 生成。
+  (3) **通知集中** `METHODS_TO_NOTIFY=(triple,dtp,pa)`、PDHL/ORZ は UI「参考」バッジ。
+  (4) **相関キャップ** `detect_new_alerts` に 1サイクル最大4件・同一通貨最大1件。
+  (5) backtest にも2R床（`run_backtest(min_rr=2.0)`）で backtest=本番一致。
+  60d検証: TRIPLE PF3.03 +0.83R（★）/ PA ±0 / DTP・PDHL・ORZ 集計-EV。
+  **重要教訓**: これら改善は長く未コミット＝本番Vercelは旧1:1で稼働していた。
+  必ずコミット&デプロイすること。詳細 `docs/POSTMORTEM_2W.md`。
+- **【2026-05-18】PA (ローソク足パターン) 手法を追加**: 参照 HTML
+  (`docs/candlestick_patterns_reference.html`) 準拠。`patterns.py` (純OHLC検出
+  ~32種) + `strategy_pa.py` (大前提ハードゲート: 確定足/上位足順方向/重要節目/
+  次足確認/ランクS-A/指標リスク抑制/資金管理3R)。勝率の核心は
+  `scripts/backtest_pa.py` が pair×pattern を個別検証し n≥20&PF≥1.1&EV>0 の
+  組合せだけ `state/pa_whitelist.json` に登録→そこだけ is_alert。未生成時は
+  S ランクのみ暫定許可。dtp と同じ統合点で api/build_static/backtest/paper/
+  frontend(タブ「PA」, ショートカット7)に配線。60日検証で
+  `CAD/JPY|pin_bar_bull` が PF1.93 EV+0.525R で採用。Phase2=チャートパターン
+  (ダブルトップ/H&S/三角) は未実装。詳細 `docs/PA_METHOD.md`。
+- **【2026-05-18】経済カレンダー + 当日リスクスコア追加**: `news_calendar.py`
+  が Forex Factory 無料フィードを cron で取得し `calendar.json` を出力。
+  フロントは `lib/calendar.ts`/`RiskBadge`/`EconCalendarDrawer` で表示
+  (ヘッダー星バッジ + 全画面ドロワー, ショートカット N)。リスクは監視全
+  通貨の当日 高/中 重要度を加重し星1〜5。Forex Factory はキー不要・GitHub
+  Actions のクリーン IP で取得可 (Vercel IP ブロック問題と無関係)。
 
 ## 新セッション / 他 AI への引き継ぎ手順
 

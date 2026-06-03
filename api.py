@@ -28,7 +28,10 @@ from indicators import ichimoku, sma
 from strategy import analyze_pair, analyze_timeframe
 from strategy_claude import analyze_pair_claude
 from strategy_dtp import analyze_pair_dtp
+from strategy_pa import analyze_pair_pa
 from strategy_pdhl import analyze_pair_pdhl
+import risk
+import ev_whitelist
 
 app = FastAPI(title="FX Signal API", version="1.0.0")
 
@@ -157,6 +160,25 @@ def _dtp_to_method_dict(d: dict) -> dict:
         "warnings": list(d.get("warnings", [])),
         "has_trigger": bool(d.get("has_trigger", False)),
         "is_alert": bool(d.get("is_alert", False)),
+    }
+
+
+def _pa_to_method_dict(p: dict) -> dict:
+    """strategy_pa の戻り値 → method sub-dict (Signal.pa)。"""
+    return {
+        "direction": p.get("direction", "none"),
+        "entry_type": p.get("entry_type", "none"),
+        "score": int(p.get("score", 0)),
+        "price": _clean_float(p.get("price")),
+        "stop_loss": _clean_float(p.get("stop_loss")),
+        "take_profit": _clean_float(p.get("take_profit")),
+        "reasons": list(p.get("reasons", [])),
+        "warnings": list(p.get("warnings", [])),
+        "has_trigger": bool(p.get("has_trigger", False)),
+        "is_alert": bool(p.get("is_alert", False)),
+        "pattern": p.get("pattern"),
+        "rank": p.get("rank"),
+        "pattern_name": p.get("pattern_name"),
     }
 
 
@@ -370,15 +392,38 @@ def _build_triple_method(orz: dict, pdhl: dict, claude: dict, ht_dict: dict | No
     }
 
 
-def _signal_to_dict(sig, pdhl_dict: dict, claude_dict: dict, dtp_dict: dict, ht_analysis=None) -> dict:
-    """Pair 全体のレコードを組み立て。6 メソッド分の sub-dict を持つ。"""
+def _signal_to_dict(sig, pdhl_dict: dict, claude_dict: dict, dtp_dict: dict, pa_dict: dict, ht_analysis=None) -> dict:
+    """Pair 全体のレコードを組み立て。各手法分の sub-dict を持つ。"""
     orz = _orz_to_method_dict(sig)
     pdhl = _pdhl_to_method_dict(pdhl_dict)
     claude = _claude_to_method_dict(claude_dict)
     dtp = _dtp_to_method_dict(dtp_dict)
+    pa = _pa_to_method_dict(pa_dict)
     ht_dict = _tf_to_dict(ht_analysis)
     both = _build_both_method(orz, pdhl, ht_dict)
     triple = _build_triple_method(orz, pdhl, claude, ht_dict)
+
+    # ===== 後段ポリシ: TP 最低2R床 + 手法×ペア EV ゲート =====
+    # strategy/合議のロジックは不変。TP の床と is_alert のみを統一的に補正する。
+    pair = sig.pair
+    for method_name, m in (("orz", orz), ("pdhl", pdhl), ("claude", claude),
+                           ("dtp", dtp), ("pa", pa), ("both", both), ("triple", triple)):
+        # 1) TP に最低2Rの床 (1:1 を廃止)
+        new_tp = risk.min_rr_tp(m.get("price"), m.get("stop_loss"),
+                                m.get("take_profit"), m.get("direction", "none"))
+        m["take_profit"] = _clean_float(new_tp)
+        rr = risk.r_multiple(m.get("price"), m.get("stop_loss"),
+                             m.get("take_profit"), m.get("direction", "none"))
+        if rr is not None:
+            m["rr"] = round(rr, 2)
+        # 2) +EV ホワイトリストで is_alert をゲート (pa は自己ゲートなので素通し)
+        if m.get("is_alert"):
+            allowed, why = ev_whitelist.is_pair_allowed(method_name, pair)
+            if not allowed:
+                m["is_alert"] = False
+                if why:
+                    m.setdefault("reasons", []).append(f"⛔ {why}")
+
     return {
         "pair": sig.pair,
         "symbol": sig.symbol,
@@ -394,6 +439,7 @@ def _signal_to_dict(sig, pdhl_dict: dict, claude_dict: dict, dtp_dict: dict, ht_
         "pdhl": pdhl,
         "claude": claude,
         "dtp": dtp,
+        "pa": pa,
         "both": both,
         "triple": triple,
     }
@@ -494,6 +540,25 @@ def _compute_signals():
                 "reasons": [f"DTP分析エラー: {e}"],
                 "warnings": [], "has_trigger": False, "is_alert": False,
             }
+        try:
+            pa = analyze_pair_pa(
+                label, symbol,
+                long_d.get(symbol),
+                mid_d.get(symbol),
+                short_d.get(symbol),
+                alert_threshold=config.ALERT_THRESHOLD,
+            )
+        except Exception as e:
+            print(f"[api] analyze_pair_pa({label}) error: {e}")
+            pa = {
+                "pair": label, "symbol": symbol,
+                "direction": "none", "entry_type": "none",
+                "score": 0, "price": 0.0,
+                "stop_loss": None, "take_profit": None,
+                "reasons": [f"PA分析エラー: {e}"],
+                "warnings": [], "has_trigger": False, "is_alert": False,
+                "pattern": None, "rank": None, "pattern_name": None,
+            }
         # 1H 分析 (合意判定の補助)
         ht_analysis = None
         df_h1 = h1_d.get(symbol)
@@ -502,7 +567,7 @@ def _compute_signals():
                 ht_analysis = analyze_timeframe(df_h1)
             except Exception as e:
                 print(f"[api] analyze_timeframe(h1, {label}) error: {e}")
-        results.append(_signal_to_dict(sig, pdhl, claude, dtp, ht_analysis))
+        results.append(_signal_to_dict(sig, pdhl, claude, dtp, pa, ht_analysis))
     # キャッシュにTF生データも保存しておく（チャート用）
     now_ts = datetime.now(timezone.utc)
     for _, symbol in pairs_items:

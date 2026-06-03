@@ -36,7 +36,7 @@ LAST_SUMMARY_FILE = STATE_DIR / "paper_last_summary.json"
 OUT_FILE = ROOT / "frontend" / "public" / "api" / "paper.json"
 
 # 全 5 手法を Paper Trade 対象 (検証用)
-METHODS = ("orz", "pdhl", "triple", "dtp")
+METHODS = ("orz", "pdhl", "triple", "dtp", "pa")
 
 # 同一 pair × method に対する同時 open は 1 件のみ
 # 同一 pair に複数手法のポジションは並行 OK

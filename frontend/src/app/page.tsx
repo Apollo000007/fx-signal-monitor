@@ -1,9 +1,11 @@
 "use client";
 
 import { AnimatePresence } from "framer-motion";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { AlertImpactOverlay } from "@/components/AlertImpactOverlay";
 import { DetailDrawer } from "@/components/DetailDrawer";
+import { EconCalendarDrawer } from "@/components/EconCalendarDrawer";
+import { fetchCalendar, type CalendarPayload } from "@/lib/calendar";
 import { FilterBar } from "@/components/FilterBar";
 import { Header } from "@/components/Header";
 import { LiveStatus } from "@/components/LiveStatus";
@@ -35,11 +37,24 @@ export default function DashboardPage() {
     toggleSound,
   } = store;
 
+  // 経済カレンダー / 当日相場リスク
+  const [calendar, setCalendar] = useState<CalendarPayload | null>(null);
+  const [showCalendar, setShowCalendar] = useState(false);
+
   // Initial load
   useEffect(() => {
     fetchConfig();
     refresh();
   }, [fetchConfig, refresh]);
+
+  // 経済カレンダーを取得 (5 分ごと。cron が calendar.json を更新)
+  useEffect(() => {
+    let alive = true;
+    const load = () => fetchCalendar().then((c) => { if (alive) setCalendar(c); });
+    load();
+    const id = setInterval(load, 5 * 60_000);
+    return () => { alive = false; clearInterval(id); };
+  }, []);
 
   // Auto-refresh loop
   useEffect(() => {
@@ -51,13 +66,14 @@ export default function DashboardPage() {
 
   // --- Global keyboard shortcuts ------------------------------------------
   useEffect(() => {
-    const methodKeys: Record<string, "orz" | "pdhl" | "both" | "claude" | "triple" | "dtp"> = {
+    const methodKeys: Record<string, "orz" | "pdhl" | "both" | "claude" | "triple" | "dtp" | "pa"> = {
       "1": "orz",
       "2": "pdhl",
       "3": "both",
       "4": "claude",
       "5": "triple",
       "6": "dtp",
+      "7": "pa",
     };
     const onKey = (e: KeyboardEvent) => {
       const target = e.target as HTMLElement | null;
@@ -93,6 +109,7 @@ export default function DashboardPage() {
       if (e.key === "s" || e.key === "S") setFilter("short");
       if (e.key === "p" || e.key === "P") setFilter("pinned");
       if (e.key === "m" || e.key === "M") toggleSound();
+      if (e.key === "n" || e.key === "N") setShowCalendar((v) => !v);
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -116,7 +133,10 @@ export default function DashboardPage() {
 
   return (
     <main className="max-w-[1400px] mx-auto px-6 py-8">
-      <Header />
+      <Header
+        calendarRisk={calendar?.risk ?? null}
+        onOpenCalendar={() => setShowCalendar(true)}
+      />
 
       <div className="mb-4">
         <MethodTabs />
@@ -190,6 +210,12 @@ export default function DashboardPage() {
         threshold={threshold}
         live={selectedSignal ? live.prices.get(selectedSignal.symbol) ?? null : null}
         onClose={() => setSelected(null)}
+      />
+
+      <EconCalendarDrawer
+        open={showCalendar}
+        payload={calendar}
+        onClose={() => setShowCalendar(false)}
       />
 
       <ToastStack />

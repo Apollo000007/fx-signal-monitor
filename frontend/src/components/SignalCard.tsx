@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Pin, PinOff, Sparkles, ArrowDownCircle, ArrowUpCircle, MinusCircle, TrendingUp, TrendingDown } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { LivePrice } from "@/lib/oanda";
+import { computeMMLevels } from "@/lib/mm";
 import type { Signal } from "@/lib/types";
 import { cn, formatPrice } from "@/lib/utils";
 import { isEvaTheme } from "@/lib/visualTheme";
@@ -20,22 +21,12 @@ interface Props {
   live?: LivePrice | null;
 }
 
-function computeRR(signal: Signal): number | null {
-  const { price, stop_loss, take_profit, direction } = signal;
-  if (price == null || stop_loss == null || take_profit == null) return null;
-  const risk = Math.abs(price - stop_loss);
-  const reward = Math.abs(take_profit - price);
-  if (risk === 0) return null;
-  // direction mismatch sanity-check
-  if (direction === "long" && (stop_loss >= price || take_profit <= price)) return null;
-  if (direction === "short" && (stop_loss <= price || take_profit >= price)) return null;
-  return reward / risk;
-}
-
 export function SignalCard({ signal, pinned, onSelect, onTogglePin, threshold, live }: Props) {
   const isAlert = signal.is_alert;
   const hasTrigger = signal.has_trigger;
-  const rr = computeRR(signal);
+  // 資産管理ベースの利確 (最低2R) と実効 RR
+  const mm = computeMMLevels(signal);
+  const rr = mm?.rr ?? null;
 
   // ライブ価格の tick フラッシュ。価格更新のたびに 600ms だけ色を変える。
   const [flash, setFlash] = useState<"up" | "down" | null>(null);
@@ -181,7 +172,23 @@ export function SignalCard({ signal, pinned, onSelect, onTogglePin, threshold, l
       </div>
 
       <div className="relative flex items-center justify-between gap-2">
-        <EntryTypeBadge type={signal.entry_type} />
+        {signal.method === "pa" && signal.pattern_name ? (
+          <span
+            className={cn(
+              "text-[10px] font-semibold px-2 py-0.5 rounded-full border",
+              signal.rank === "S"
+                ? "text-accent-red border-accent-red/50 bg-accent-red/10"
+                : signal.rank === "A"
+                  ? "text-accent-amber border-accent-amber/50 bg-accent-amber/10"
+                  : "text-accent-cyan border-accent-cyan/40 bg-accent-cyan/10",
+            )}
+            title="ローソク足パターン (信頼度ランク)"
+          >
+            {signal.rank ? `【${signal.rank}】` : ""}{signal.pattern_name}
+          </span>
+        ) : (
+          <EntryTypeBadge type={signal.entry_type} />
+        )}
         {signal.mt?.clarity !== undefined && (
           <span className="text-[9px] font-mono text-text-faint uppercase tracking-wider">
             明瞭度 {signal.mt.clarity}/100
@@ -204,13 +211,13 @@ export function SignalCard({ signal, pinned, onSelect, onTogglePin, threshold, l
           accent="neutral"
         />
         <EntryRow
-          label="損切 SL"
+          label="損切 SL (1R)"
           value={signal.stop_loss}
           accent="red"
         />
         <EntryRow
-          label="利確 TP"
-          value={signal.take_profit}
+          label="利確 最低2R"
+          value={mm ? mm.primaryTp : signal.take_profit}
           sub={rr ? `RR ${rr.toFixed(2)}` : undefined}
           accent="green"
         />

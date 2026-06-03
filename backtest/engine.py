@@ -33,12 +33,14 @@ from strategy import analyze_pair  # ORZ
 from strategy_pdhl import analyze_pair_pdhl
 from strategy_claude import analyze_pair_claude
 from strategy_dtp import analyze_pair_dtp
+from strategy_pa import analyze_pair_pa
+import risk
 
 
 # UI/運用で使う手法のみ。claude/both は単独では使わないが、
 # triple の内部計算 (_get_signal_dict 内) では claude を参照するため
 # _get_signal_dict のロジック分岐自体は残してある。
-METHOD_NAMES = ("orz", "pdhl", "triple", "dtp")
+METHOD_NAMES = ("orz", "pdhl", "triple", "dtp", "pa")
 
 
 def is_jpy_cross(pair: str) -> bool:
@@ -65,6 +67,7 @@ class Trade:
     stop_loss: float
     take_profit: float
     score: int
+    pattern: Optional[str] = None        # PA 手法: 発火したパターンキー
     exit_time: Optional[str] = None
     exit_price: Optional[float] = None
     exit_reason: Optional[str] = None    # "sl" / "tp" / "forced"
@@ -162,6 +165,16 @@ def _get_signal_dict(
             return None
         return d
 
+    if method == "pa":
+        try:
+            d = analyze_pair_pa(pair, symbol, df_long_sub, df_mid_sub, df_short_sub,
+                                alert_threshold=threshold)
+        except Exception:
+            return None
+        if d["direction"] == "none" or d.get("stop_loss") is None:
+            return None
+        return d
+
     # ===== 合成手法 (both / triple) =====
     orz = _get_signal_dict("orz", pair, symbol, df_long_sub, df_mid_sub, df_h1_sub, df_short_sub, threshold)
     pdhl = _get_signal_dict("pdhl", pair, symbol, df_long_sub, df_mid_sub, df_h1_sub, df_short_sub, threshold)
@@ -247,15 +260,17 @@ def run_backtest(
     min_bars: int = 200,
     verbose: bool = False,
     tp_rr: Optional[float] = None,
+    min_rr: Optional[float] = 2.0,
 ) -> BacktestResult:
     """1 ペア × 1 手法のバックテスト。
 
     sample_step: 15M バーの何本ごとに評価するか (4 = 1 時間に 1 回)。
                  1 にすれば全 15M バーで評価 (最も精密だが遅い)。
     min_bars   : これより前の 15M バーはウォームアップ扱いで評価しない。
-    tp_rr      : None なら strategy 由来の構造的 TP を使う (デフォルト)。
-                 数値 (例 3.0) なら、TP を entry ± rr * (entry - SL) で上書きする
-                 (1R = |entry - SL|)。資産管理プロ推奨は 2R 〜 3R。
+    tp_rr      : 数値 (例 3.0) なら TP を entry ± rr*(entry-SL) で固定上書き。
+    min_rr     : tp_rr 未指定時に適用する「最低 RR 床」(既定 2.0)。本番 api と
+                 同じく利益側で max(構造TP, min_rr×R) に引き上げる → backtest=本番。
+                 None で床なし (旧来の生 TP)。
     """
     started = time.monotonic()
     result = BacktestResult(pair=pair, method=method, period=f"{df_short.index[0]}~{df_short.index[-1]}")
@@ -325,7 +340,7 @@ def run_backtest(
                 sl = float(sig["stop_loss"])
                 tp = float(sig["take_profit"])
 
-                # ★ tp_rr が指定されていれば TP を R-multiple 由来で上書き
+                # ★ tp_rr が指定されていれば TP を R-multiple 由来で固定上書き
                 #   (entry ± rr × |entry - SL|)
                 if tp_rr is not None and tp_rr > 0:
                     r = abs(entry - sl)
@@ -334,6 +349,9 @@ def run_backtest(
                             tp = entry + tp_rr * r
                         elif sig["direction"] == "short":
                             tp = entry - tp_rr * r
+                # ★ それ以外は本番と同じ「最低 min_rr 床」を TP に適用
+                elif min_rr is not None and min_rr > 0:
+                    tp = risk.min_rr_tp(entry, sl, tp, sig["direction"], min_rr)
 
                 # sanity check: direction と SL/TP が整合
                 if sig["direction"] == "long" and not (sl < entry < tp):
@@ -351,6 +369,7 @@ def run_backtest(
                     stop_loss=sl,
                     take_profit=tp,
                     score=int(sig.get("score", 0)),
+                    pattern=sig.get("pattern"),
                 )
                 open_idx = i + 1
                 if verbose:

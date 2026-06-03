@@ -9,6 +9,7 @@ import { RiskCalculator } from "./RiskCalculator";
 import { ScoreGauge } from "./ScoreGauge";
 import type { LivePrice } from "@/lib/oanda";
 import { pipSize } from "@/lib/oanda";
+import { computeMMLevels } from "@/lib/mm";
 import type { ChartTf, Signal, TimeframeAnalysis } from "@/lib/types";
 import { cn, formatPrice } from "@/lib/utils";
 import { isEvaTheme } from "@/lib/visualTheme";
@@ -94,32 +95,23 @@ export function DetailDrawer({ signal, threshold, live, onClose }: Props) {
     if (!signal) return undefined;
     const a = tfToAnalysis(tf, signal);
     // --- 資産管理 (Money-Management) 利確ラインを算出 ---
-    // 1R = |entry - SL| を 1 単位リスクとし、Long なら entry + N×R、Short なら entry - N×R を目標値に。
-    // RR=2 で勝率33%、RR=3 で勝率25%でもプラス期待値となるプロ標準のレシオ。
-    const entry = signal.price;
-    const sl = signal.stop_loss;
-    let mmTp2R: number | null = null;
-    let mmTp3R: number | null = null;
-    if (entry != null && sl != null && signal.direction !== "none") {
-      const r = Math.abs(entry - sl);
-      if (r > 0) {
-        const isLong = signal.direction === "long";
-        mmTp2R = isLong ? entry + 2 * r : entry - 2 * r;
-        mmTp3R = isLong ? entry + 3 * r : entry - 3 * r;
-      }
-    }
+    // SL は構造 SL (= 1R)。利確は R の倍数: メイン = 最低 2R、推奨 3R。
+    // RR 2 → 損益分岐 勝率 33%、RR 3 → 同 25%。低勝率でも資産が残る構成。
+    const mm = computeMMLevels(signal);
     return {
       pdh: signal.pdh ?? null,
       pdl: signal.pdl ?? null,
       resistances: a?.resistances ?? [],
       supports: a?.supports ?? [],
-      entry,
-      stopLoss: sl,
-      takeProfit: signal.take_profit,
-      mmTp2R,
-      mmTp3R,
+      entry: signal.price,
+      stopLoss: signal.stop_loss,
+      // メイン利確: 最低 2R (構造 TP が 2R より遠ければそちらを採用)
+      takeProfit: mm ? mm.primaryTp : signal.take_profit,
+      mmTp3R: mm ? mm.tp3R : null,
     };
   }, [signal, tf]);
+
+  const mm = useMemo(() => (signal ? computeMMLevels(signal) : null), [signal]);
 
   return (
     <AnimatePresence>
@@ -257,7 +249,22 @@ export function DetailDrawer({ signal, threshold, live, onClose }: Props) {
                 <ScoreGauge score={signal.score} threshold={threshold} size="lg" showValue />
                 <div className="mt-3 flex items-center flex-wrap gap-2 text-[11px]">
                   <span className="text-text-faint">戦略タイプ:</span>
-                  <EntryTypePill type={signal.entry_type} />
+                  {signal.method === "pa" && signal.pattern_name ? (
+                    <span
+                      className={cn(
+                        "px-2 py-0.5 rounded-full border font-semibold",
+                        signal.rank === "S"
+                          ? "text-accent-red border-accent-red/50 bg-accent-red/10"
+                          : signal.rank === "A"
+                            ? "text-accent-amber border-accent-amber/50 bg-accent-amber/10"
+                            : "text-accent-cyan border-accent-cyan/40 bg-accent-cyan/10",
+                      )}
+                    >
+                      {signal.rank ? `【${signal.rank}】` : ""}{signal.pattern_name}
+                    </span>
+                  ) : (
+                    <EntryTypePill type={signal.entry_type} />
+                  )}
                   {signal.mt?.regime && (
                     <span className="px-2 py-0.5 rounded-full border border-border/60 bg-bg-soft/40 text-text-dim">
                       4H: {regimeLabel(signal.mt.regime)}
@@ -284,8 +291,12 @@ export function DetailDrawer({ signal, threshold, live, onClose }: Props) {
               {/* Price block */}
               <section className="grid grid-cols-3 gap-3">
                 <InfoBlock label="現在値" value={formatPrice(signal.price)} />
-                <InfoBlock label="損切目安 (SL)" value={formatPrice(signal.stop_loss)} accent="red" />
-                <InfoBlock label="利確目標 (TP)" value={formatPrice(signal.take_profit)} accent="green" />
+                <InfoBlock label="損切目安 (SL · 1R)" value={formatPrice(signal.stop_loss)} accent="red" />
+                <InfoBlock
+                  label={mm ? `利確目標 (最低2R · RR${mm.rr.toFixed(1)})` : "利確目標 (TP)"}
+                  value={formatPrice(mm ? mm.primaryTp : signal.take_profit)}
+                  accent="green"
+                />
               </section>
 
               {/* PDH / PDL info — only meaningful for pdhl/both tabs */}
@@ -362,14 +373,16 @@ function LiveLevelDistance({
   const mid = live.mid;
   if (mid == null) return null;
   const ps = pipSize(live.instrument);
+  const mm = computeMMLevels(signal);
   type LevelRow = { label: string; price: number | null | undefined; accent: "red" | "green" | "neutral" };
   const rows: LevelRow[] = (
     [
       { label: "前日高値 (PDH)", price: signal.pdh ?? null, accent: "green" },
       { label: "前日安値 (PDL)", price: signal.pdl ?? null, accent: "red" },
       { label: "エントリー", price: signal.price, accent: "neutral" },
-      { label: "損切り (SL)", price: signal.stop_loss, accent: "red" },
-      { label: "利確 (TP)", price: signal.take_profit, accent: "green" },
+      { label: "損切り (SL · 1R)", price: signal.stop_loss, accent: "red" },
+      { label: "利確 最低2R", price: mm ? mm.primaryTp : signal.take_profit, accent: "green" },
+      { label: "利確 推奨3R", price: mm ? mm.tp3R : null, accent: "green" },
     ] as LevelRow[]
   ).filter((r) => r.price != null);
 

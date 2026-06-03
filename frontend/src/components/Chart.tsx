@@ -22,9 +22,8 @@ export interface ChartLevels {
   supports?: (number | null | undefined)[];
   entry?: number | null;
   stopLoss?: number | null;
+  /** メイン利確: 最低 2R (構造 TP が 2R より遠ければそれを採用)。RR 1:2 → 勝率33%でブレークイーブン */
   takeProfit?: number | null;
-  /** 資産管理: 2R 利確 (リスクリワード 1:2 — 勝率33%でブレークイーブン) */
-  mmTp2R?: number | null;
   /** 資産管理: 3R 利確 (リスクリワード 1:3 — 勝率25%でも資産増、プロ推奨) */
   mmTp3R?: number | null;
 }
@@ -318,11 +317,11 @@ export function Chart({
         );
 
         addLine(levels.entry, palette.sma20, "エントリー", LineStyle.Dotted, 2);
+        // --- 資産管理ライン: 1R = |entry - SL|. メイン利確 = 最低2R (勝率33%でBE),
+        //     推奨 = 3R (勝率25%でも資産増)。1:1 の構造TPはここでは描画しない ---
         addLine(levels.stopLoss, palette.down, "損切り (1R)", LineStyle.Solid, 2);
-        addLine(levels.takeProfit, palette.up, "利確 (構造)", LineStyle.Solid, 2);
-        // --- 資産管理ライン: 1R = |entry - SL|. RR ≥ 2 でブレークイーブン勝率33%, ≥ 3 で25% ---
-        addLine(levels.mmTp2R, palette.sma100, "利確@2R 最低基準", LineStyle.Dashed, 2);
-        addLine(levels.mmTp3R, palette.crosshair, "利確@3R 推奨", LineStyle.Solid, 3);
+        addLine(levels.takeProfit, palette.up, "利確 最低2R", LineStyle.Solid, 2);
+        addLine(levels.mmTp3R, palette.crosshair, "利確 推奨3R", LineStyle.Solid, 3);
         // ※ LIVE 現在値ラインは別 useEffect (liveMid 変化のみで更新、チャート再生成なし) で管理
       }
     } catch (e) {
@@ -454,13 +453,10 @@ export function Chart({
               <LegendItem swatch="solid" color="var(--chart-down)" label="損切り (1R)" />
             )}
             {levels?.takeProfit != null && (
-              <LegendItem swatch="solid" color="var(--chart-up)" label="利確 (構造)" />
-            )}
-            {levels?.mmTp2R != null && (
-              <LegendItem swatch="dashed" color="var(--chart-sma100)" label="利確@2R 最低基準" />
+              <LegendItem swatch="solid" color="var(--chart-up)" label="利確 最低2R" />
             )}
             {levels?.mmTp3R != null && (
-              <LegendItem swatch="solid" color="var(--chart-crosshair)" label="利確@3R 推奨" />
+              <LegendItem swatch="solid" color="var(--chart-crosshair)" label="利確 推奨3R" />
             )}
           </div>
         </div>

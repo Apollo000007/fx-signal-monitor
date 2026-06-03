@@ -1,0 +1,15 @@
+{
+  "generated_at": "2026-05-18T00:35:07.926682+00:00",
+  "period": "60d",
+  "min_n": 20,
+  "min_pf": 1.1,
+  "threshold": 75,
+  "entries": {
+    "CAD/JPY|pin_bar_bull": {
+      "n": 24,
+      "wr": 45.8,
+      "pf": 1.93,
+      "ev": 0.525
+    }
+  }
+}

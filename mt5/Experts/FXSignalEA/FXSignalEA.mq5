@@ -7,11 +7,15 @@
 //|     - EA は signals.json をポーリングし、is_alert=True で発注する │
 //|     - Magic Number でこの EA の建玉だけ管理 (他 EA / 手動注文と  │
 //|       競合しない)                                                  │
-//|     - 全 5 手法 (orz/pdhl/both/claude/triple) のうち任意の組合せ  │
-//|       を有効化可能。デフォルトは triple のみ (バックテストで唯一 │
-//|       の +EV だったため)                                          │
+//|     - 手法 orz/pdhl/triple/dtp/pa を任意に有効化可能。デフォルト │
+//|       は triple のみ (+EV 実証)。pdhl/orz は降格 (is_alert 出ず) │
 //|     - SL / TP は MT5 サーバ側に乗せる (PC が落ちても約定する)    │
-//|     - UseTP3R=true で 3R 利確 (推奨)、false で構造的 TP          │
+//|     - UseTP3R=true で 3R 利確 (推奨)、false でも signals.json 側 │
+//|       で最低2R床済 (risk.min_rr_tp) なので 1:1 にはならない      │
+//|     - is_alert は Python 側で +EV ゲート済 (ev_whitelist):       │
+//|       DTPは4ペアのみ・PDHL/ORZは出ない。EA は is_alert に従うだけ │
+//|       → 推奨: UseTriple=true + UseDTP=true, MaxConcurrentTrades  │
+//|         で相関上限を絞る (2週間デモの GBP/USD3連敗の再発防止)    │
 //|                                                                  │
 //|  安全装置:                                                        │
 //|     - MaxConcurrentTrades : 同時建玉上限                          │
@@ -52,6 +56,7 @@ input bool    UseORZ             = false;
 input bool    UsePDHL            = false;
 input bool    UseTriple          = true;    // デフォルトは triple のみ (backtest 60d で唯一の +EV)
 input bool    UseDTP             = false;   // Daily Trend Pullback (検証してから有効化推奨)
+input bool    UsePA              = false;   // Price Action ローソク足パターン (EVホワイトリスト準拠)
 // 注: claude / both 手法は廃止。triple の内部計算では claude を使うが
 //     単独の発注対象からは除外 (magic index は互換維持のため据え置き)
 
@@ -80,8 +85,8 @@ string g_pairs_yfinance[];  // "USD/JPY" 形式
 string g_pairs_mt5[];       // ブローカー固有名 (USDJPY, USDJPY.m 等)
 long g_magic_min = 0, g_magic_max = 0;
 
-bool g_use_methods[6];      // {orz, pdhl, both, claude, triple, dtp}
-string g_method_names[6] = {"orz", "pdhl", "both", "claude", "triple", "dtp"};
+bool g_use_methods[7];      // {orz, pdhl, both, claude, triple, dtp, pa}
+string g_method_names[7] = {"orz", "pdhl", "both", "claude", "triple", "dtp", "pa"};
 
 //+------------------------------------------------------------------+
 int OnInit()
@@ -93,7 +98,7 @@ int OnInit()
       return INIT_PARAMETERS_INCORRECT;
    }
    g_magic_min = MagicBase;
-   g_magic_max = MagicBase + 14 * 10 + 5;  // 最大 pair_idx=14, method_idx=5 (dtp)
+   g_magic_max = MagicBase + 14 * 10 + 6;  // 最大 pair_idx=14, method_idx=6 (pa)
 
    //--- ペア配列を構築
    ParseTradingPairs();
@@ -110,8 +115,9 @@ int OnInit()
    g_use_methods[3] = false;        // claude 廃止 (triple 内部計算でのみ使用)
    g_use_methods[4] = UseTriple;
    g_use_methods[5] = UseDTP;
+   g_use_methods[6] = UsePA;
    bool any = false;
-   for(int i = 0; i < 6; i++) if(g_use_methods[i]) { any = true; break; }
+   for(int i = 0; i < 7; i++) if(g_use_methods[i]) { any = true; break; }
    if(!any)
    {
       Print("[FXSignalEA] 少なくとも 1 つの手法を有効化してください");
@@ -119,12 +125,13 @@ int OnInit()
    }
 
    //--- 初期メッセージ
-   PrintFormat("[FXSignalEA] init: %d pairs, methods=%s%s%s%s, risk=%.2f%%, dryrun=%s, trading=%s",
+   PrintFormat("[FXSignalEA] init: %d pairs, methods=%s%s%s%s%s, risk=%.2f%%, dryrun=%s, trading=%s",
                g_pairs_count,
                UseORZ ? "ORZ " : "",
                UsePDHL ? "PDHL " : "",
                UseTriple ? "TRIPLE " : "",
                UseDTP ? "DTP " : "",
+               UsePA ? "PA " : "",
                AccountRiskPercent,
                DryRun ? "ON" : "OFF",
                EnableTrading ? "ON" : "OFF");
@@ -295,7 +302,7 @@ void EvaluatePair(const int pair_index, int current_positions_unused)
    }
 
    //--- 各 method を評価
-   for(int mi = 0; mi < 6; mi++)
+   for(int mi = 0; mi < 7; mi++)
    {
       if(!g_use_methods[mi]) continue;
       string method = g_method_names[mi];

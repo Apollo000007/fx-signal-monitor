@@ -29,6 +29,7 @@ sys.path.insert(0, str(ROOT))
 
 import config  # noqa: E402
 import alerts  # noqa: E402
+import risk  # noqa: E402
 from api import (  # noqa: E402
     _compute_signals,
     _cache,
@@ -41,6 +42,8 @@ OUT_DIR = ROOT / "frontend" / "public" / "api"
 CHART_DIR = OUT_DIR / "chart"
 STATE_DIR = ROOT / "state"
 STATE_FILE = STATE_DIR / "seen_alerts.json"
+CALENDAR_FILE = OUT_DIR / "calendar.json"
+CALENDAR_CACHE = STATE_DIR / "calendar_cache.json"
 
 
 # ---------- 通知 --------------------------------------------------------------
@@ -80,17 +83,48 @@ def send_notifications(message: str) -> None:
         print(f"[notify] Discord: {'ok' if ok else 'FAILED'}")
 
 
+def _mm_levels(sub: dict):
+    """資産管理ベースの利確レベルを算出 (通知整形用、risk.py を流用)。
+
+    sub["take_profit"] は api 側で既に最低2R床が適用済み (= primary)。
+    ここでは推奨3R と実効RR を併記するために再計算する。
+    """
+    entry = sub.get("price")
+    sl = sub.get("stop_loss")
+    direction = sub.get("direction")
+    if entry is None or sl is None or direction not in ("long", "short"):
+        return None
+    r = abs(entry - sl)
+    if r <= 0:
+        return None
+    primary = sub.get("take_profit")  # api で 2R 床適用済み
+    if primary is None:
+        primary = risk.min_rr_tp(entry, sl, None, direction)
+    tp3 = risk.rr_target(entry, sl, direction, risk.RECOMMENDED_RR)
+    rr = risk.r_multiple(entry, sl, primary, direction) or risk.DEFAULT_MIN_RR
+    return {"tp3": tp3, "primary": primary, "rr": rr}
+
+
 def _format_alert(pair: str, method: str, sub: dict) -> str:
     arrow = "↑ LONG" if sub["direction"] == "long" else "↓ SHORT"
     lines = [
         f"[FX] {pair} {arrow}  ({method.upper()})",
         f"スコア: {sub['score']}/100",
     ]
+    if sub.get("pattern_name"):
+        rk = sub.get("rank")
+        lines.append(f"パターン: {sub['pattern_name']}" + (f" 【{rk}】" if rk else ""))
     if sub.get("price") is not None:
         lines.append(f"Entry: {sub['price']:.4f}")
     if sub.get("stop_loss") is not None:
-        lines.append(f"SL   : {sub['stop_loss']:.4f}")
-    if sub.get("take_profit") is not None:
+        lines.append(f"SL (1R)    : {sub['stop_loss']:.4f}")
+    mm = _mm_levels(sub)
+    if mm is not None:
+        lines.append(f"利確 最低2R : {mm['primary']:.4f}  (RR {mm['rr']:.2f})")
+        if mm.get("tp3") is not None:
+            lines.append(f"利確 推奨3R : {mm['tp3']:.4f}")
+        lines.append("※ SL=1R。1Rで半分利確→建値移動→残りを3Rへ(損小利大)")
+    elif sub.get("take_profit") is not None:
         lines.append(f"TP   : {sub['take_profit']:.4f}")
     if sub.get("reasons"):
         lines.append("根拠:")
@@ -180,35 +214,96 @@ def write_charts() -> None:
             print(f"[chart] {symbol}/{tf} 書き出し失敗: {e}")
 
 
+def write_calendar(now: datetime) -> None:
+    """FX 経済カレンダー + 当日リスクスコアを calendar.json に書き出す。
+
+    フェッチ失敗時は前回キャッシュ (state/calendar_cache.json) にフォールバック
+    し、UI が空にならないようにする。signals 本体とは独立 (失敗しても続行)。
+    """
+    from news_calendar import build_calendar_payload
+
+    payload = build_calendar_payload(now)
+    if payload.get("ok"):
+        STATE_DIR.mkdir(parents=True, exist_ok=True)
+        CALENDAR_CACHE.write_text(
+            json.dumps(payload, ensure_ascii=False), encoding="utf-8"
+        )
+    else:
+        # 取得失敗 → 直近キャッシュがあれば updated_at だけ差し替えて使う
+        try:
+            cached = json.loads(CALENDAR_CACHE.read_text(encoding="utf-8"))
+            cached["updated_at"] = now.isoformat()
+            cached["risk"]["summary"] = (
+                cached["risk"].get("summary", "")
+                + "（最新取得失敗・前回データ表示中）"
+            )
+            payload = cached
+            print("[calendar] feed failed → using cached payload")
+        except Exception:
+            print("[calendar] feed failed and no cache → minimal payload")
+
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    CALENDAR_FILE.write_text(
+        json.dumps(payload, ensure_ascii=False), encoding="utf-8"
+    )
+    r = payload.get("risk", {})
+    print(f"[calendar] {len(payload.get('events', []))} events, "
+          f"risk={r.get('stars')}★ {r.get('level')}")
+
+
 # ---------- メイン ------------------------------------------------------------
 
-METHODS_TO_NOTIFY = ("triple", "dtp", "pdhl", "orz")
+# +EV 集中: 通知は実証手法のみ (PDHL=1:1 / ORZ=不安定TP は UI 参考表示に降格)
+METHODS_TO_NOTIFY = ("triple", "dtp", "pa")
+
+# 相関・同時数キャップ (2週間デモの GBP/USD 3連敗・JPY系多重を防ぐ)
+MAX_ALERTS_PER_CYCLE = 4    # 1 サイクルで送る新規通知の上限
+MAX_PER_CURRENCY = 1        # 同一通貨を含むペアは 1 サイクル最大 N 件
+
+
+def _currencies(pair: str) -> tuple[str, ...]:
+    return tuple(c.strip().upper() for c in pair.split("/") if c.strip())
 
 
 def detect_new_alerts(records: list[dict], seen: dict[str, float], now_ts: float):
     """seen を更新しつつ、今回新規となったアラートのリストを返す。
 
     同一 (pair, method, direction) は REBROADCAST_SEC 以内なら再送しない。
-    method 優先度: triple > dtp > pdhl > orz  (claude/both は UI/通知から除外、
-                  ただし triple の内部計算では claude を使うので api 側は維持)
-    同一ペアに対しては最上位の method だけ通知 (ノイズ抑制)。
+    method 優先度: triple > dtp > pa。同一ペアは最上位 method だけ通知。
+    さらに相関抑制: 1 サイクル合計 MAX_ALERTS_PER_CYCLE 件、同一通貨は
+    MAX_PER_CURRENCY 件までに制限 (JPY系/USD系の重ね打ちを防止)。
+    優先度の高い手法 (triple>dtp>pa) を先に確保するため、候補を収集後に並べ替える。
     """
-    new_alerts: list[tuple[str, str, dict]] = []
+    # --- 候補収集 (ペアごとに最上位 method 1 件、クールダウン通過分) ---
+    candidates: list[tuple[str, str, dict, int]] = []  # (pair, method, sub, prio)
     for rec in records:
         pair = rec["pair"]
-        for method in METHODS_TO_NOTIFY:
+        for prio, method in enumerate(METHODS_TO_NOTIFY):
             sub = rec.get(method)
             if not sub or not sub.get("is_alert"):
                 continue
             if sub["direction"] == "none":
                 continue
             key = f"{pair}:{method}:{sub['direction']}"
-            prev = seen.get(key, 0.0)
-            if (now_ts - prev) < REBROADCAST_SEC:
+            if (now_ts - seen.get(key, 0.0)) < REBROADCAST_SEC:
                 continue
-            seen[key] = now_ts
-            new_alerts.append((pair, method, sub))
+            candidates.append((pair, method, sub, prio))
             break  # このペアは最上位メソッドだけ
+
+    # --- 優先度順 (手法優先 → スコア降順) に確定。相関/同時数キャップを適用 ---
+    candidates.sort(key=lambda c: (c[3], -int(c[2].get("score", 0))))
+    new_alerts: list[tuple[str, str, dict]] = []
+    ccy_count: dict[str, int] = {}
+    for pair, method, sub, _prio in candidates:
+        if len(new_alerts) >= MAX_ALERTS_PER_CYCLE:
+            break
+        ccys = _currencies(pair)
+        if any(ccy_count.get(c, 0) >= MAX_PER_CURRENCY for c in ccys):
+            continue  # 同一通貨の重ね打ちを抑制
+        for c in ccys:
+            ccy_count[c] = ccy_count.get(c, 0) + 1
+        seen[f"{pair}:{method}:{sub['direction']}"] = now_ts
+        new_alerts.append((pair, method, sub))
     return new_alerts
 
 
@@ -227,6 +322,13 @@ def main() -> int:
     write_config()
     write_charts()
     print(f"[build_static] wrote {len(records)} signals + charts")
+
+    # 経済カレンダー + 当日リスクスコア (失敗しても signals は出す)
+    try:
+        write_calendar(now)
+    except Exception as e:
+        traceback.print_exc()
+        print(f"[build_static] calendar error (continuing): {e}")
 
     # 新規アラート検出 → 通知
     seen = load_seen()

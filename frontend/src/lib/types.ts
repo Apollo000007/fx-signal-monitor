@@ -22,8 +22,9 @@ export type Regime = "trend_up" | "trend_down" | "range" | "unclear";
  *  - claude : 新手法 2 (Claude Confluence)
  *  - triple : ORZ + PDHL + Claude の 3 手法合意
  *  - dtp    : Daily Trend Pullback (日足トレンド押し目、エビデンスベース)
+ *  - pa     : Price Action / ローソク足パターン (確定足+上位足+節目+次足確認)
  */
-export type Method = "orz" | "pdhl" | "both" | "claude" | "triple" | "dtp";
+export type Method = "orz" | "pdhl" | "both" | "claude" | "triple" | "dtp" | "pa";
 
 export interface TimeframeAnalysis {
   direction: string;
@@ -63,9 +64,13 @@ export interface MethodSignal {
   /** PDHL method only */
   pdh?: number | null;
   pdl?: number | null;
+  /** PA method only: 発火したパターン */
+  pattern?: string | null;
+  rank?: string | null;
+  pattern_name?: string | null;
 }
 
-/** バックエンドから返る 1 ペアのレコード。5 手法分を持つ。 */
+/** バックエンドから返る 1 ペアのレコード。各手法分を持つ。 */
 export interface PairRecord {
   pair: string;
   symbol: string;
@@ -85,6 +90,7 @@ export interface PairRecord {
   claude: MethodSignal;
   triple: MethodSignal;
   dtp: MethodSignal;
+  pa: MethodSignal;
 }
 
 /** UI から見る view-model: Pair レコード + 選択された手法を projection した形。 */
@@ -110,6 +116,10 @@ export interface Signal {
   /** PDHL method only */
   pdh?: number | null;
   pdl?: number | null;
+  /** PA method only */
+  pattern?: string | null;
+  rank?: string | null;
+  pattern_name?: string | null;
 }
 
 export interface SignalsResponse {
@@ -183,5 +193,8 @@ export function projectSignal(rec: PairRecord, method: Method): Signal {
     method,
     pdh: rec.pdh ?? null,
     pdl: rec.pdl ?? null,
+    pattern: m.pattern ?? null,
+    rank: m.rank ?? null,
+    pattern_name: m.pattern_name ?? null,
   };
 }

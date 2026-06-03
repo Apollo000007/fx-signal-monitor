@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ロウソク足パターン集 — 15分足トレード実践（信頼度ランク付き）</title>
+<style>
+  :root{
+    --bg:#0f172a; --card:#1e293b; --card2:#273449; --line:#334155;
+    --txt:#e2e8f0; --muted:#94a3b8; --accent:#38bdf8;
+    --up:#22c55e; --down:#ef4444; --doji:#94a3b8;
+    --S:#f43f5e; --A:#f59e0b; --B:#38bdf8; --C:#64748b;
+    --buy:#22c55e; --sell:#ef4444; --neu:#94a3b8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif;
+    background:var(--bg);color:var(--txt);line-height:1.65;padding:16px;font-size:15px}
+  .wrap{max-width:1080px;margin:0 auto}
+  h1{font-size:1.4rem;margin-bottom:4px}
+  .sub{color:var(--muted);font-size:.85rem;margin-bottom:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:16px}
+  h2{font-size:1.05rem;color:var(--accent);margin-bottom:12px;border-left:4px solid var(--accent);padding-left:10px}
+  h3{font-size:.95rem;color:var(--accent);margin:14px 0 6px}
+  .pre li{margin-left:18px;font-size:.9rem;margin-bottom:3px}
+  .pre b{color:var(--txt)}
+  /* filter bar */
+  .bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:14px}
+  .fb{padding:8px 14px;background:var(--card2);border:1px solid var(--line);
+    border-radius:999px;cursor:pointer;font-size:.85rem;user-select:none;transition:.12s}
+  .fb:hover{border-color:var(--accent)}
+  .fb.on{background:var(--accent);color:#06283a;font-weight:700;border-color:var(--accent)}
+  .tg{margin-left:auto;display:flex;align-items:center;gap:7px;font-size:.82rem;color:var(--muted)}
+  .tg input{width:18px;height:18px}
+  /* quick table */
+  table{width:100%;border-collapse:collapse;font-size:.85rem;margin-top:6px}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:var(--card2);color:var(--accent)}
+  .qbuy{color:var(--buy);font-weight:600}.qsell{color:var(--sell);font-weight:600}
+  .alink{color:var(--accent);cursor:pointer;text-decoration:none}
+  .alink:hover{text-decoration:underline}
+  /* grid */
+  .cat{font-size:1rem;color:var(--accent);margin:22px 0 10px;padding-bottom:6px;border-bottom:1px dashed var(--line)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+  .p{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column}
+  .p.dim{display:none}
+  .phead{display:flex;align-items:center;gap:8px;margin-bottom:4px;flex-wrap:wrap}
+  .pname{font-weight:700;font-size:1.02rem}
+  .pen{color:var(--muted);font-size:.75rem}
+  .badge{font-size:.72rem;font-weight:800;padding:2px 9px;border-radius:999px;color:#0b1220}
+  .b-S{background:var(--S);color:#fff}.b-A{background:var(--A)}.b-B{background:var(--B);color:#06283a}.b-C{background:var(--C);color:#fff}
+  .sig{font-size:.72rem;font-weight:700;padding:2px 9px;border-radius:6px}
+  .s-buy{background:#14331f;color:var(--buy);border:1px solid var(--buy)}
+  .s-sell{background:#3a1414;color:var(--sell);border:1px solid var(--sell)}
+  .s-neutral{background:#273449;color:var(--neu);border:1px solid var(--neu)}
+  .chart{height:150px;background:var(--card2);border-radius:8px;margin:8px 0;
+    display:flex;align-items:stretch;justify-content:center;gap:10px;padding:10px 14px;position:relative}
+  .mid{position:absolute;left:8px;right:8px;border-top:1px dashed #3b4a63;opacity:.5}
+  .cndl{position:relative;width:26px}
+  .wick{position:absolute;left:50%;width:2px;transform:translateX(-50%);background:currentColor}
+  .body{position:absolute;left:50%;width:18px;transform:translateX(-50%);border-radius:2px;background:currentColor;min-height:2px}
+  .up{color:var(--up)} .down{color:var(--down)} .dj{color:var(--doji)}
+  .cv-wrap{padding:8px 10px}
+  .cv{width:100%;height:100%;display:block;overflow:visible}
+  .cv .pl{fill:none;stroke:var(--accent);stroke-width:2.4;vector-effect:non-scaling-stroke;stroke-linejoin:round;stroke-linecap:round}
+  .cv .nl{fill:none;stroke:var(--muted);stroke-width:1.3;stroke-dasharray:4 3;vector-effect:non-scaling-stroke}
+  .cv .ab{fill:none;stroke:var(--up);stroke-width:3.4;vector-effect:non-scaling-stroke;stroke-linejoin:round;stroke-linecap:round}
+  .cv .as{fill:none;stroke:var(--down);stroke-width:3.4;vector-effect:non-scaling-stroke;stroke-linejoin:round;stroke-linecap:round}
+  .cv .an{fill:none;stroke:var(--accent);stroke-width:3.4;vector-effect:non-scaling-stroke;stroke-linejoin:round;stroke-linecap:round}
+  .meaning{font-size:.86rem;color:var(--txt);margin:6px 0 8px}
+  .rule{font-size:.82rem;margin:3px 0;color:var(--muted)}
+  .rule b{color:var(--txt)}
+  .rk{font-size:.78rem;color:#fca5a5;margin-top:6px;border-top:1px solid var(--line);padding-top:6px}
+  .disc{font-size:.76rem;color:var(--muted);margin-top:10px;border-top:1px dashed var(--line);padding-top:10px}
+  .lk{color:var(--accent)}
+  details{margin-top:8px}summary{cursor:pointer;color:var(--accent);font-size:.9rem;padding:4px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>ロウソク足＆チャートパターン集 — 15分足トレード実践</h1>
+  <div class="sub">「この形が出たら買い／売り」をローソク足＋チャートパターン（ダブルトップ/ボトム・三角・トレンドの高値安値切り下げ等）まで網羅。<b>信頼度ランク S→C 順</b>。図はコード描画。緑＝買い／赤＝売り。</div>
+
+  <div class="card">
+    <h2>15分足で使うときの大前提（これを守らないとどの形も機能しない）</h2>
+    <ul class="pre">
+      <li>① <b>確定足で判断</b>：形は「:00 / :15 / :30 / :45 にロウソクが確定してから」。形成中の足で飛びつかない。</li>
+      <li>② <b>上位足の方向に従う</b>：1時間足・4時間足のトレンド方向と<b>同じ向き</b>のパターンだけ採用（逆張りは難度大）。</li>
+      <li>③ <b>「重要な節目」で出た形だけ</b>：水平線・前日高安・キリ番・移動平均線・ボリンジャーバンド端に重なった時のみ信頼度が上がる。何もない所の形は無視。</li>
+      <li>④ <b>次の足で確認</b>：反転系は「次の足がパターンの方向に動いて確定」したらエントリー。ダマシを大きく減らせる。</li>
+      <li>⑤ <b>資金管理が前提</b>：ロットは <span class="lk">ロット計算ツール.html</span>、リスク1〜2%は <span class="lk">資産管理ガイド.md</span> 参照。形は“優位性”を作るだけ。</li>
+    </ul>
+    <details>
+      <summary>チャートパターン（ダブルトップ等）の大前提 ＋ 信憑性の考え方</summary>
+      <ul class="pre">
+        <li>① <b>確定ブレイクで初めて成立</b>：ネックライン／トレンドラインを<b>15分足の終値</b>で抜けるまでは“未完成”。形が見えただけで入らない。</li>
+        <li>② <b>リターンムーブで入る</b>：ブレイク後に抜けたラインまで一度戻ってから再度離れる動きが最も安全（ダマシ＝ヒゲだけ抜けを回避）。</li>
+        <li>③ <b>値幅目標（メジャードムーブ）</b>：パターンの高さを、ブレイク点から同じ分だけ投影＝利確目安。</li>
+        <li>④ <b>上位足の方向と一致</b>で信頼度大。逆方向のパターンは難度が上がる。</li>
+        <li>⑤ <b>一般にチャートパターンはローソク足単体より信憑性が高い</b>：多くの足で形成＝多数のトレーダーが同じラインを意識するため。本書は<b>信頼度 S→C 順</b>に並べ、早見表でも上から信憑性が高い。</li>
+      </ul>
+    </details>
+  </div>
+
+  <div class="card">
+    <h2>絞り込み</h2>
+    <div class="bar" id="bar">
+      <span class="fb on" data-f="all">すべて</span>
+      <span class="fb" data-f="S">S（最重要）</span>
+      <span class="fb" data-f="A">A（強い）</span>
+      <span class="fb" data-f="B">B（補助）</span>
+      <span class="fb" data-f="C">C（単体不可）</span>
+      <span class="fb" data-f="単体">単体</span>
+      <span class="fb" data-f="2本組">2本組</span>
+      <span class="fb" data-f="3本組">3本組</span>
+      <span class="fb" data-f="酒田五法">酒田五法</span>
+      <span class="fb" data-f="チャート反転">チャート(反転)</span>
+      <span class="fb" data-f="チャート継続">チャート(継続)</span>
+      <span class="fb" data-f="トレンドの形">トレンドの形</span>
+      <label class="tg"><input type="checkbox" id="hi"> 高信頼（S・A）のみ表示</label>
+    </div>
+
+    <details open>
+      <summary>信頼度別 早見表（タップで各パターンへ）</summary>
+      <table id="quick">
+        <tr><th style="width:54px">ランク</th><th>買いシグナル</th><th>売りシグナル</th></tr>
+      </table>
+    </details>
+  </div>
+
+  <div id="cards"></div>
+
+  <div class="card">
+    <h2>15分足 実践プレイブック</h2>
+    <h3>エントリー前チェックリスト（5つ全部Yesで初めて検討）</h3>
+    <ul class="pre">
+      <li>□ 1時間・4時間足の<b>トレンド方向</b>はどちら？　その方向の形か？</li>
+      <li>□ 形が出た場所は<b>重要な水平線／前日高安／キリ番／MA／BB端</b>に重なっているか？</li>
+      <li>□ 15分足が<b>確定</b>したか？（形成中で判断しない）</li>
+      <li>□ 反転系なら<b>次の足</b>がその方向に動いて確認できたか？</li>
+      <li>□ <b>損切り位置とロット</b>を先に決めたか？（リスク1〜2%・ロット計算ツール）</li>
+    </ul>
+    <h3>時間帯（東京時間 ＝ JST）</h3>
+    <ul class="pre">
+      <li><b>東京 9:00〜15:00</b>：値動き穏やか。レンジになりやすい＝毛抜き／はらみ／逆張り系が効きやすい。</li>
+      <li><b>ロンドン 16:00〜（夏時間）</b>：トレンド発生しやすい。包み足・三兵・ブレイク系が機能。</li>
+      <li><b>NY 21:30〜（指標集中）</b>：最も動く。指標発表の<b>直前直後はパターン無効</b>。発表後に落ち着いてから。</li>
+    </ul>
+    <h3>上位足・水平線フィルター手順</h3>
+    <ul class="pre">
+      <li>1. 4時間足でトレンド（高値安値の切り上げ/切り下げ）と主要水平線を引く。</li>
+      <li>2. 1時間足で押し目／戻りの位置を確認（＝形が出てほしいゾーン）。</li>
+      <li>3. 15分足でそのゾーンに来た時だけ、本書の形を待つ。出なければ見送り。</li>
+      <li>4. 利確はRR<b>1:1.5〜2</b>を基本、または直近の高値安値／上位足の節目。</li>
+    </ul>
+    <h3>関連ファイル</h3>
+    <ul class="pre">
+      <li><span class="lk">資産管理ガイド.md</span>／<span class="lk">FX資産管理_完全保存版.md</span> … リスク%・期待値・ロット逆算の理論</li>
+      <li><span class="lk">ロット計算ツール.html</span> … 損切りpipsから適正ロットを自動計算</li>
+      <li><span class="lk">有名トレード手法10選.md</span> … 本書の形は「#3 プライスアクション」「#5 ダウ理論 押し目買い/戻り売り」と直結</li>
+    </ul>
+    <h3>練習課題（2〜4週間）</h3>
+    <ul class="pre">
+      <li>1. 過去チャート（15分足）でS・Aパターンを各20個ずつ探してスクショ。</li>
+      <li>2. 「上位足順方向＋節目」の条件付きで、勝ち負けを記録（最低50回）。</li>
+      <li>3. 勝率と平均RRを集計 → 期待値プラスの形だけ残す（自分専用パターン表を作る）。</li>
+      <li>4. デモ／最小ロットで①〜④の手順を“機械的に”実行する練習。</li>
+    </ul>
+    <div class="disc">
+      ⚠️ 免責：信頼度ランクは一般的なセオリーに基づく<b>実践目安</b>で、勝率・利益を保証しません。
+      ロウソク足の形は<b>単体では機能しにくく</b>、必ず「上位足の方向・重要な節目・確定足・次足確認」とセットで使うこと。
+      最終的な優位性は各自のバックテスト／フォワード検証と<b>資金管理</b>で決まります。投資判断は自己責任で。
+    </div>
+  </div>
+</div>
+
+<script>
+/* 座標系: 0=上(高値) … 100=下(安値)。candle = {h,o,c,l}（%）
+   陽線(緑)=価格上昇=画面上 close が open より上 → c < o
+   陰線(赤)=価格下落 → c > o ／ 同事 = |o-c| 極小 */
+const P = [
+ // ---------- 単体 ----------
+ {cat:'単体',name:'大陽線（陽の丸坊主）',en:'Bullish Marubozu',rank:'C',sig:'buy',
+  cd:[{h:9,o:90,c:12,l:93}],
+  m:'始値から終値までほぼ一直線の強い上昇。買い圧力が圧倒的。',
+  e:'安値圏・サポートで出たら押し目買いの起点。単体では追わず、次の押し目を待つ。',
+  s:'この大陽線の安値割れ。',t:'直近高値／RR1:2。',
+  fk:'高値圏で出た大陽線は“最後の踏み上げ（売り場）”のことも。単体では使わない。'},
+
+ {cat:'単体',name:'大陰線（陰の丸坊主）',en:'Bearish Marubozu',rank:'C',sig:'sell',
+  cd:[{h:9,o:12,c:90,l:93}],
+  m:'ほぼ一直線の強い下落。売り圧力が圧倒的。',
+  e:'高値圏・レジスタンスで出たら戻り売りの起点。',
+  s:'この大陰線の高値超え。',t:'直近安値／RR1:2。',
+  fk:'安値圏の大陰線は“セリングクライマックス（買い場）”のことも。'},
+
+ {cat:'単体',name:'コマ（小陽線・小陰線）',en:'Spinning Top',rank:'C',sig:'neutral',
+  cd:[{h:16,o:58,c:46,l:84}],
+  m:'実体が小さく上下にヒゲ＝買い売り拮抗・迷い。トレンドの勢い低下。',
+  e:'単体では入らない。トレンド終盤で出たら反転の予兆として警戒。',
+  s:'—',t:'—',
+  fk:'レンジ中は頻発しノイズ。節目＋次足の方向が出て初めて意味を持つ。'},
+
+ {cat:'単体',name:'十字線（同事）',en:'Doji',rank:'C',sig:'neutral',
+  cd:[{h:14,o:50,c:50.6,l:86}],
+  m:'始値≒終値。完全な拮抗。トレンドの転換点になりやすい“注意信号”。',
+  e:'単体不可。高値圏／安値圏＋重要節目で出たら、次足の方向にエントリー検討。',
+  s:'十字線のヒゲ外側。',t:'直近高安。',
+  fk:'レンジ中の十字線は無意味。位置（節目）が全て。'},
+
+ {cat:'単体',name:'トンボ（下影同事）',en:'Dragonfly Doji',rank:'B',sig:'buy',
+  cd:[{h:17,o:18,c:18.6,l:90}],
+  m:'長い下ヒゲで安値を否定し始値付近に戻る＝下げ拒否。底打ちサイン。',
+  e:'下落後・サポートで出現→次足が陽線で確定したら買い。',
+  s:'トンボの安値（下ヒゲ先）の少し下。',t:'直近戻り高値／RR1:2。',
+  fk:'上位足が強い下降中だと反発は一時的。順方向の押し目で使うのが安全。'},
+
+ {cat:'単体',name:'トウバ／墓石（上影同事）',en:'Gravestone Doji',rank:'B',sig:'sell',
+  cd:[{h:12,o:82,c:82.6,l:85}],
+  m:'長い上ヒゲで高値を否定。天井サイン。',
+  e:'上昇後・レジスタンスで出現→次足が陰線で確定したら売り。',
+  s:'上ヒゲ先の少し上。',t:'直近押し安値／RR1:2。',
+  fk:'強い上昇トレンド中は一時的。戻り売りの位置で使う。'},
+
+ {cat:'単体',name:'ハンマー（カラカサ）',en:'Hammer',rank:'A',sig:'buy',
+  cd:[{h:24,o:33,c:24,l:90}],
+  m:'下落の<b>底</b>で、長い下ヒゲ＋小さな実体。売られたが買い戻された＝強い反発示唆。',
+  e:'明確な下落後＋サポートで出現→次足陽線確定で買い。',
+  s:'ハンマーの安値（下ヒゲ先）の下。',t:'直近高値／RR1:2。損切り浅く取りやすい良形。',
+  fk:'下降の途中（節目でない所）のハンマーは弱い。位置と次足確認が必須。'},
+
+ {cat:'単体',name:'逆ハンマー',en:'Inverted Hammer',rank:'B',sig:'buy',
+  cd:[{h:12,o:78,c:70,l:82}],
+  m:'下落の底で、長い上ヒゲ＋小さな実体。反発の初期サイン（要確認）。',
+  e:'下落後・サポートで出現。<b>必ず</b>次足の強い陽線を待ってから買い。',
+  s:'逆ハンマーの安値の下。',t:'直近高値／RR1:2。',
+  fk:'単体での信頼度は低め。確認なしで入ると“戻り売り”に巻き込まれる。'},
+
+ {cat:'単体',name:'首吊り線',en:'Hanging Man',rank:'B',sig:'sell',
+  cd:[{h:24,o:33,c:25,l:90}],
+  m:'形はハンマーと同じだが<b>上昇の天井</b>で出る＝下落転換の警戒。',
+  e:'上昇後・レジスタンスで出現→次足陰線確定で売り。',
+  s:'首吊り線の高値の上。',t:'直近安値／RR1:2。',
+  fk:'位置（天井かどうか）で意味が真逆。上昇継続することも多く確認必須。'},
+
+ {cat:'単体',name:'流れ星（流星）',en:'Shooting Star',rank:'A',sig:'sell',
+  cd:[{h:12,o:80,c:88,l:91}],
+  m:'上昇の<b>天井</b>で、長い上ヒゲ＋小さな実体。買われたが売り戻された＝反落示唆。',
+  e:'明確な上昇後＋レジスタンスで出現→次足陰線確定で売り。',
+  s:'流れ星の高値（上ヒゲ先）の上。',t:'直近安値／RR1:2。損切り浅い良形。',
+  fk:'上昇途中（節目でない所）の流れ星は弱い。位置と次足確認が必須。'},
+
+ {cat:'単体',name:'足長同事（十字寄せ）',en:'Long-legged Doji',rank:'C',sig:'neutral',
+  cd:[{h:8,o:50,c:50.6,l:92}],
+  m:'上下に非常に長いヒゲ＋実体ほぼ無し。極度の迷い＝大きな転換の前触れになりうる。',
+  e:'単体不可。天底＋節目で出たら次足の方向に従う。',
+  s:'ヒゲ外側。',t:'直近高安。',
+  fk:'ボラ急増局面のノイズも多い。重要指標前後は無視。'},
+
+ {cat:'単体',name:'ピンバー（プライスアクション）',en:'Pin Bar',rank:'S',sig:'buy',
+  cd:[{h:22,o:34,c:26,l:92}],
+  m:'長いヒゲで価格を明確に拒絶した足（ハンマー/流れ星の総称）。海外勢の主力サイン（→手法10選 #3）。',
+  e:'<b>重要な水平線・前日高安・キリ番</b>でヒゲがその水準を否定→ヒゲと逆方向にエントリー。図は買いの例（売りは上下反転）。',
+  s:'ヒゲ先の少し外側（損切りが浅く、RRを取りやすい）。',t:'RR1:2以上／直近高安。',
+  fk:'“重要な節目で出たもの限定”。何もない所の長ヒゲは無視。15分足では4時間足の節目と重なると最強。'},
+
+ // ---------- 2本組 ----------
+ {cat:'2本組',name:'陽の包み足（強気の抱き線）',en:'Bullish Engulfing',rank:'S',sig:'buy',
+  cd:[{h:42,o:52,c:62,l:69},{h:30,o:72,c:38,l:80}],
+  m:'小さな陰線を、次の<b>大陽線が完全に包み込む</b>。買い勢力が売りを飲み込んだ＝強力な反転。',
+  e:'下落後・サポートで2本目の大陽線が確定したらその確定で買い（次足を待たず入れる強い形）。',
+  s:'2本目（包んだ大陽線）の安値の下。',t:'直近高値／RR1:2〜。',
+  fk:'レンジ内の包み足は弱い。出来高・勢いが伴い、上位足が反転方向だと信頼大。'},
+
+ {cat:'2本組',name:'陰の包み足（弱気の抱き線）',en:'Bearish Engulfing',rank:'S',sig:'sell',
+  cd:[{h:42,o:60,c:50,l:69},{h:30,o:38,c:72,l:80}],
+  m:'小さな陽線を次の<b>大陰線が完全に包む</b>。売りが買いを飲み込んだ＝強力な天井反転。',
+  e:'上昇後・レジスタンスで2本目の大陰線確定で売り。',
+  s:'2本目の大陰線の高値の上。',t:'直近安値／RR1:2〜。',
+  fk:'強い上昇の押し目では機能しにくい。天井圏＋節目で信頼大。'},
+
+ {cat:'2本組',name:'はらみ足（強気）',en:'Bullish Harami',rank:'B',sig:'buy',
+  cd:[{h:30,o:36,c:80,l:86},{h:52,o:64,c:56,l:70}],
+  m:'大陰線の後、その実体に<b>収まる小陽線</b>。下落の勢い減速＝反転の初期サイン。',
+  e:'下落後に出現→次足が陽線で上抜け確定したら買い（確認必須）。',
+  s:'大陰線（1本目）の安値の下。',t:'直近戻り高値／RR1:1.5。',
+  fk:'包み足より弱い“減速”サイン。単体では入らず必ず確認。'},
+
+ {cat:'2本組',name:'はらみ寄せ線',en:'Harami Cross',rank:'A',sig:'buy',
+  cd:[{h:30,o:36,c:80,l:86},{h:55,o:62,c:62.6,l:70}],
+  m:'大陰線の後に<b>十字線</b>がはらむ。迷いが極まり反転確度が高い（はらみ足の強化版）。',
+  e:'下落後・サポートで出現→次足の陽線確定で買い。',
+  s:'1本目の安値の下。',t:'直近高値／RR1:2。',
+  fk:'位置が重要。トレンド途中だと一時停止で終わることも。'},
+
+ {cat:'2本組',name:'かぶせ線',en:'Dark Cloud Cover',rank:'A',sig:'sell',
+  cd:[{h:36,o:74,c:40,l:80},{h:26,o:32,c:58,l:64}],
+  m:'上昇中、大陽線の翌足が<b>上に窓を開けて始まり、陽線の実体半分以下まで急落</b>。天井反転。',
+  e:'上昇後・レジスタンスで2本目が陽線の中値を割って確定→売り。',
+  s:'2本目の高値の上。',t:'直近安値／RR1:2。',
+  fk:'割り込みが浅い（中値未満でない）と不成立。深く被せるほど強い。'},
+
+ {cat:'2本組',name:'切り込み線',en:'Piercing Line',rank:'A',sig:'buy',
+  cd:[{h:36,o:40,c:74,l:80},{h:26,o:82,c:48,l:88}],
+  m:'下落中、大陰線の翌足が<b>下に窓を開けて始まり、陰線の実体半分以上まで急反発</b>。底反転。',
+  e:'下落後・サポートで2本目が陰線の中値超えで確定→買い。',
+  s:'2本目の安値の下。',t:'直近高値／RR1:2。',
+  fk:'反発が中値未満だと不成立（弱い）。中値を大きく超えるほど強い。'},
+
+ {cat:'2本組',name:'毛抜き天井',en:'Tweezer Top',rank:'A',sig:'sell',
+  cd:[{h:25,o:70,c:30,l:75},{h:25,o:33,c:72,l:79}],
+  m:'2本のロウソクの<b>高値がほぼ揃う</b>（陽→陰）。同じ価格で2度跳ね返された＝強い抵抗。',
+  e:'上昇後・レジスタンスで高値が揃い2本目陰線確定→売り。',
+  s:'揃った高値のすぐ上。損切りが極めて浅く取れる。',t:'直近安値／RR1:2〜3。',
+  fk:'水平線と高値が一致すると非常に強い。バラついた高値では無効。'},
+
+ {cat:'2本組',name:'毛抜き底',en:'Tweezer Bottom',rank:'A',sig:'buy',
+  cd:[{h:25,o:30,c:70,l:80},{h:25,o:72,c:33,l:80}],
+  m:'2本の<b>安値がほぼ揃う</b>（陰→陽）。同じ価格で2度支えられた＝強いサポート。',
+  e:'下落後・サポートで安値が揃い2本目陽線確定→買い。',
+  s:'揃った安値のすぐ下（浅い損切り）。',t:'直近高値／RR1:2〜3。',
+  fk:'水平線と一致で強力。安値がズレていれば無効。'},
+
+ {cat:'2本組',name:'出会い線（迎え線）',en:'Counterattack Line',rank:'B',sig:'buy',
+  cd:[{h:30,o:40,c:74,l:80},{h:64,o:88,c:74,l:92}],
+  m:'逆方向の大ロウソクが、前足と<b>ほぼ同じ終値</b>で止まる。勢いが受け止められた＝反転示唆。',
+  e:'トレンド終盤＋節目で出現→次足の方向確認で。図は買いの例。',
+  s:'2本のヒゲ外側。',t:'直近高安／RR1:1.5。',
+  fk:'包み足より弱い。終値が揃っていることが条件。確認必須。'},
+
+ {cat:'2本組',name:'上げたすき線',en:'Tasuki (Up, 継続)',rank:'B',sig:'buy',
+  cd:[{h:40,o:66,c:46,l:72},{h:36,o:40,c:54,l:60}],
+  m:'上昇中、陽線の後に窓を埋めない小陰線＝<b>押し目（継続）</b>。反転ではなくトレンド継続。',
+  e:'上昇トレンド中、たすきの窓が埋まらず次足が陽線→押し目買い（順張り）。',
+  s:'窓（または2本目の安値）の下。',t:'直近高値更新／トレンド終了まで。',
+  fk:'窓を完全に埋めたら継続シグナル消滅。トレンド明確な時だけ。'},
+
+ // ---------- 3本組 ----------
+ {cat:'3本組',name:'明けの明星',en:'Morning Star',rank:'S',sig:'buy',
+  cd:[{h:28,o:32,c:74,l:78},{h:80,o:86,c:84,l:90},{h:30,o:70,c:34,l:74}],
+  m:'大陰線→窓を空けた小さな星→大陽線。<b>下落→迷い→買い転換</b>の3段階。底の最重要シグナル。',
+  e:'下落後・サポートで3本目の大陽線確定で買い（強く、次足を待たず入れる）。',
+  s:'真ん中の星の安値の下。',t:'直近高値／RR1:2〜3。',
+  fk:'星が大きい／3本目が浅いと弱い。窓＋深い回復ほど信頼大。15分足では4H節目と重なると最強。'},
+
+ {cat:'3本組',name:'宵の明星',en:'Evening Star',rank:'S',sig:'sell',
+  cd:[{h:26,o:74,c:32,l:78},{h:10,o:16,c:14,l:20},{h:30,o:34,c:70,l:74}],
+  m:'大陽線→窓を空けた小さな星→大陰線。<b>上昇→迷い→売り転換</b>。天井の最重要シグナル。',
+  e:'上昇後・レジスタンスで3本目の大陰線確定で売り。',
+  s:'真ん中の星の高値の上。',t:'直近安値／RR1:2〜3。',
+  fk:'3本目の陰線が浅いと不発。深く差し込むほど強い。'},
+
+ {cat:'3本組',name:'捨て子線（明けの明星の強形）',en:'Abandoned Baby',rank:'A',sig:'buy',
+  cd:[{h:26,o:30,c:70,l:74},{h:88,o:90,c:90.6,l:93},{h:28,o:66,c:32,l:70}],
+  m:'真ん中が<b>上下とも窓で完全に孤立した同事</b>。出現は稀だが反転の信頼度は非常に高い。',
+  e:'下落後・節目で3本目確定→買い（売りは上下反転）。',
+  s:'孤立した同事の安値の下。',t:'直近高値／RR1:2〜3。',
+  fk:'FX（24時間市場）では窓が小さく成立は稀。出れば強い。'},
+
+ {cat:'3本組',name:'赤三兵',en:'Three White Soldiers',rank:'A',sig:'buy',
+  cd:[{h:66,o:80,c:70,l:84},{h:50,o:66,c:54,l:70},{h:34,o:50,c:38,l:54}],
+  m:'実体の大きい陽線が<b>3本連続で切り上がる</b>。安定した強い上昇開始。',
+  e:'安値圏・レンジ上抜けで3本確定→押し目を待って順張り買い。',
+  s:'3本目の安値、または直近押し安値。',t:'トレンド終了まで（伸ばす）／RR1:2〜。',
+  fk:'高値圏で出る赤三兵は“最後の上げ”の可能性。3本目に長い上ヒゲ＝勢い減速注意。'},
+
+ {cat:'3本組',name:'黒三兵（三羽烏）',en:'Three Black Crows',rank:'A',sig:'sell',
+  cd:[{h:16,o:30,c:20,l:34},{h:32,o:46,c:36,l:50},{h:48,o:62,c:52,l:66}],
+  m:'実体の大きい陰線が<b>3本連続で切り下がる</b>。本格的な下落開始。',
+  e:'高値圏・レンジ下抜けで3本確定→戻りを待って順張り売り。',
+  s:'3本目の高値、または直近戻り高値。',t:'トレンド終了まで／RR1:2〜。',
+  fk:'安値圏の三羽烏は売られ過ぎ＝反発注意。飛び乗らず戻りで。'},
+
+ {cat:'3本組',name:'三空踏み上げ',en:'Three Gaps Up（過熱）',rank:'C',sig:'sell',
+  cd:[{h:60,o:74,c:64,l:78},{h:44,o:56,c:48,l:60},{h:28,o:40,c:32,l:44},{h:14,o:24,c:18,l:28}],
+  m:'窓を空けながら4本上昇＝買いの過熱（クライマックス）。<b>上昇の終わり</b>を警戒。',
+  e:'新規買いは禁物。利確の目安、または天井反転（宵の明星等）の出現を待つ。',
+  s:'—（逆張り売りは確認必須）',t:'—',
+  fk:'勢いが強いと更に伸びる。単体での逆張りは危険。反転形の出現を待つ。'},
+
+ {cat:'3本組',name:'三空叩き込み',en:'Three Gaps Down（過熱）',rank:'C',sig:'buy',
+  cd:[{h:18,o:30,c:22,l:34},{h:34,o:46,c:38,l:50},{h:50,o:62,c:54,l:66},{h:66,o:78,c:70,l:82}],
+  m:'窓を空けながら4本下落＝売りの過熱（セリングクライマックス）。<b>下落の終わり</b>を警戒。',
+  e:'新規売りは禁物。底反転（明けの明星・ハンマー等）の出現を待って買い。',
+  s:'—（確認必須）',t:'—',
+  fk:'パニック下落は行き過ぎても続くことがある。反転形＋次足確認まで待つ。'},
+
+ {cat:'3本組',name:'上げ三法',en:'Rising Three Methods（継続）',rank:'B',sig:'buy',
+  cd:[{h:38,o:78,c:42,l:82},{h:50,o:56,c:62,l:66},{h:48,o:54,c:60,l:64},{h:46,o:52,c:58,l:62},{h:30,o:64,c:34,l:70}],
+  m:'大陽線→小さな調整3本（陽線の範囲内）→新高値の大陽線。<b>上昇トレンドの継続</b>。',
+  e:'上昇トレンド中、調整が1本目の範囲を割らず5本目が高値更新で確定→順張り買い。',
+  s:'調整の安値（1本目大陽線の安値）の下。',t:'トレンド継続中ホールド／直近高値更新。',
+  fk:'調整が1本目の安値を割ったら不成立（継続失敗）。トレンド明確時のみ。'},
+
+ {cat:'3本組',name:'下げ三法',en:'Falling Three Methods（継続）',rank:'B',sig:'sell',
+  cd:[{h:18,o:22,c:58,l:62},{h:38,o:44,c:38,l:50},{h:40,o:46,c:40,l:52},{h:42,o:48,c:42,l:54},{h:30,o:66,c:36,l:70}],
+  m:'大陰線→小さな戻り3本（陰線の範囲内）→新安値の大陰線。<b>下落トレンドの継続</b>。',
+  e:'下落トレンド中、戻りが1本目の範囲を超えず5本目が安値更新で確定→順張り売り。',
+  s:'戻りの高値（1本目大陰線の高値）の上。',t:'トレンド継続中ホールド／直近安値更新。',
+  fk:'戻りが1本目の高値を超えたら不成立。'},
+
+ // ---------- 酒田五法 ----------
+ {cat:'酒田五法',name:'三山（＝三尊／ヘッド&ショルダー）',en:'Three Mountains / H&S',rank:'S',sig:'sell',
+  cd:[{h:40,o:55,c:42,l:60},{h:48,o:54,c:50,l:58},{h:20,o:46,c:24,l:50},{h:50,o:55,c:52,l:60},{h:40,o:55,c:43,l:62},{h:58,o:64,c:78,l:84}],
+  m:'高値を3回試し、中央が最も高い（三尊＝ヘッド&ショルダー）。<b>天井の最重要反転</b>。',
+  e:'3つの谷を結んだ<b>ネックライン</b>を15分足終値で下抜け確定→売り。',
+  s:'右肩の高値の上。',t:'山の高さをネックラインから下に投影した値幅／直近安値。',
+  fk:'ネックライン割れ前に入らない（未完成で崩れる）。出来高減少を伴うと信頼大。'},
+
+ {cat:'酒田五法',name:'三川（＝逆三尊／逆H&S）',en:'Three Rivers / Inv H&S',rank:'S',sig:'buy',
+  cd:[{h:40,o:46,c:58,l:62},{h:42,o:50,c:46,l:52},{h:50,o:54,c:76,l:80},{h:42,o:48,c:46,l:50},{h:38,o:45,c:58,l:62},{h:18,o:36,c:24,l:42}],
+  m:'安値を3回試し、中央が最も安い（逆三尊）。<b>底の最重要反転</b>。',
+  e:'3つの山を結んだネックラインを15分足終値で上抜け確定→買い。',
+  s:'右肩の安値の下。',t:'谷の深さをネックラインから上に投影／直近高値。',
+  fk:'ネックライン抜け前に飛びつかない。抜け後の押し目（リターンムーブ）で入ると安全。'},
+
+ {cat:'酒田五法',name:'三空（過熱）',en:'Three Gaps',rank:'C',sig:'neutral',
+  cd:[{h:56,o:70,c:60,l:74},{h:40,o:52,c:44,l:56},{h:24,o:36,c:28,l:40}],
+  m:'窓（空）が3つ連続＝相場の過熱。上昇なら売り場、下落なら買い場の“予兆”。詳細は「三空踏み上げ／叩き込み」参照。',
+  e:'順張りの新規は控える。反転パターンの出現を待ってから。',
+  s:'—',t:'—',
+  fk:'勢い相場では空が続く。単体逆張り厳禁、必ず反転形＋確認。'},
+
+ {cat:'酒田五法',name:'三兵（勢い）',en:'Three Soldiers/Crows',rank:'A',sig:'neutral',
+  cd:[{h:60,o:74,c:64,l:78},{h:46,o:60,c:50,l:64},{h:32,o:46,c:36,l:50}],
+  m:'同色の大きめロウソク3本連続＝明確な方向性。赤三兵（買い）／黒三兵＝三羽烏（売り）。詳細は各カード参照。',
+  e:'3本確定後、<b>飛び乗らず押し目／戻り</b>を待って順張り。',
+  s:'直近の押し安値／戻り高値。',t:'トレンド終了まで。',
+  fk:'天底圏の三兵は“最後の勢い”の反転前兆になることもある。'},
+
+ {cat:'酒田五法',name:'三法（保ち合い→継続）',en:'Three Methods',rank:'B',sig:'neutral',
+  cd:[{h:34,o:74,c:38,l:80},{h:48,o:54,c:60,l:64},{h:46,o:52,c:58,l:62},{h:44,o:50,c:56,l:60},{h:28,o:62,c:32,l:68}],
+  m:'大きな1本の後に小さな保ち合い→同方向に放れて継続。「休む」も相場＝待ちの教え。上げ三法／下げ三法参照。',
+  e:'保ち合いが1本目の範囲を割らず、ブレイク確定で順張り。',
+  s:'保ち合いの逆側（1本目の安値／高値）。',t:'1本目と同等以上の値幅。',
+  fk:'保ち合いが1本目の範囲を超えたら継続失敗（手仕舞い）。'},
+
+ // ========== チャート反転 ==========
+ {cat:'チャート反転',name:'ダブルトップ',en:'Double Top（M字）',rank:'S',sig:'sell',
+  sv:{pts:[[6,72],[20,30],[40,58],[60,30],[74,58],[84,76],[92,90]],bk:4,lines:[[10,58,90,58]]},
+  m:'同じ価格帯で<b>2回高値をつけ</b>、間の谷（ネックライン）を割って下落＝強力な天井反転。',
+  e:'2つ目の山が1つ目とほぼ同値で失速→<b>ネックラインを15分足終値で下抜け</b>で売り。戻り（リターンムーブ）で入ると安全。',
+  s:'2つ目の山の高値の少し上。',t:'山の高さをネックラインから下に投影／直近安値。',
+  fk:'ネックライン割れ前は未完成（飛びつき禁止）。2山の高値が大きくズレると無効。'},
+
+ {cat:'チャート反転',name:'ダブルボトム',en:'Double Bottom（W字）',rank:'S',sig:'buy',
+  sv:{pts:[[6,28],[20,70],[40,42],[60,70],[74,42],[84,24],[92,10]],bk:4,lines:[[10,42,90,42]]},
+  m:'同価格で<b>2回安値をつけ</b>、間の山（ネックライン）を上抜け＝強力な底反転。',
+  e:'2つ目の底が1つ目とほぼ同値で反発→ネックライン上抜け確定で買い。戻りで入ると安全。',
+  s:'2つ目の底の安値の少し下。',t:'底の深さをネックラインから上に投影／直近高値。',
+  fk:'上抜け前は入らない。2底が大きくズレると無効。出来高増加を伴うと信頼大。'},
+
+ {cat:'チャート反転',name:'トリプルトップ',en:'Triple Top',rank:'A',sig:'sell',
+  sv:{pts:[[6,75],[16,34],[28,60],[40,34],[52,60],[64,34],[78,60],[86,78],[92,90]],bk:6,lines:[[10,60,90,60]]},
+  m:'高値を3回はね返されネックライン割れ＝天井。時間をかけた分、抜けの信頼は厚い。',
+  e:'3山目で失速→ネックライン下抜け確定で売り。',
+  s:'直近の山の高値の上。',t:'山の高さを下に投影／直近安値。',
+  fk:'3度目で上抜けると逆に強い上昇。割れ確定を待つ。'},
+
+ {cat:'チャート反転',name:'トリプルボトム',en:'Triple Bottom',rank:'A',sig:'buy',
+  sv:{pts:[[6,25],[16,66],[28,40],[40,66],[52,40],[64,66],[78,40],[86,22],[92,10]],bk:6,lines:[[10,40,90,40]]},
+  m:'安値を3回支えられネックライン上抜け＝底。強いサポートの証明。',
+  e:'3底目で反発→ネックライン上抜け確定で買い。',
+  s:'直近の底の下。',t:'深さを上に投影／直近高値。',
+  fk:'上抜け前は入らない。3度目で割れると下落加速。'},
+
+ {cat:'チャート反転',name:'ヘッドアンドショルダー',en:'Head & Shoulders',rank:'S',sig:'sell',
+  sv:{pts:[[6,70],[16,46],[26,58],[38,26],[50,58],[60,44],[72,60],[82,80],[90,90]],bk:6,lines:[[12,58,86,58]]},
+  m:'左肩→頭（最高値）→右肩→ネック割れ。天井反転の最重要形（＝三尊。ローソク版は酒田五法カード）。',
+  e:'右肩形成後、<b>ネックライン（2つの谷を結ぶ線）を15分足終値で下抜け</b>で売り。戻りで入ると安全。',
+  s:'右肩の高値の上。',t:'頭からネックまでの高さを下に投影／直近安値。',
+  fk:'ネック割れ前は未完成（崩れて上昇も）。頭で出来高増・右肩で減ると信頼大。'},
+
+ {cat:'チャート反転',name:'逆ヘッドアンドショルダー',en:'Inverse H&S',rank:'S',sig:'buy',
+  sv:{pts:[[6,30],[16,54],[26,42],[38,74],[50,42],[60,56],[72,40],[82,20],[90,10]],bk:6,lines:[[12,42,86,42]]},
+  m:'逆三尊。底反転の最重要形。',
+  e:'右肩形成後、ネックラインを15分足終値で上抜けで買い。戻りで入ると安全。',
+  s:'右肩の安値の下。',t:'頭の深さを上に投影／直近高値。',
+  fk:'上抜け前は入らない。ダマシブレイクに注意、終値確定で判断。'},
+
+ {cat:'チャート反転',name:'ソーサーボトム（丸み底）',en:'Rounding Bottom',rank:'B',sig:'buy',
+  sv:{pts:[[6,28],[16,44],[28,60],[42,70],[56,70],[70,58],[80,44],[88,30],[92,20]],bk:6,lines:[[10,30,90,30]]},
+  m:'売り買いがゆっくり入れ替わる丸い底＝大きな底入れ。時間はかかるが転換は本物になりやすい。',
+  e:'丸みを経てリム（縁の水平線）を上抜けで買い。',
+  s:'直近の押し安値の下。',t:'器の深さを上に投影。',
+  fk:'形成に時間がかかり判別が難しい。明確なリム上抜けまで待つ。'},
+
+ {cat:'チャート反転',name:'V字反転（スパイク）',en:'V-Shape / Spike',rank:'B',sig:'buy',
+  sv:{pts:[[6,26],[20,48],[36,82],[40,84],[56,50],[76,26],[90,16]],bk:4,lines:[]},
+  m:'急落→即急反発の鋭い底（売られ過ぎの反動）。強いが<b>タイミングが難しく後追い厳禁</b>。',
+  e:'反発を確認し、直近の戻り高値を上抜けてから順張りで（落ちるナイフを掴まない）。',
+  s:'V字の安値の下。',t:'直近高値／RR1:1.5。',
+  fk:'一時的リバウンドで再下落も多い。上位足が下降中は特に危険。確認必須。'},
+
+ {cat:'チャート反転',name:'上昇ウェッジ',en:'Rising Wedge',rank:'B',sig:'sell',
+  sv:{pts:[[6,78],[14,56],[22,68],[30,50],[38,62],[46,46],[54,58],[62,44],[68,56],[78,78],[88,90]],bk:8,lines:[[12,80,68,50],[16,56,64,42]]},
+  m:'高値も安値も切り上げるが値幅が収縮＝上昇の勢い喪失。<b>上げているのに売りサイン</b>。',
+  e:'下側のラインを15分足終値で下抜けで売り。',
+  s:'直近の戻り高値の上。',t:'ウェッジ始点の安値／RR1:2。',
+  fk:'上昇継続に見えて騙されやすい。下抜け確定を待つ。上位足が下降だと信頼大。'},
+
+ {cat:'チャート反転',name:'下降ウェッジ',en:'Falling Wedge',rank:'B',sig:'buy',
+  sv:{pts:[[6,22],[14,44],[22,32],[30,50],[38,38],[46,54],[54,42],[62,56],[68,44],[78,22],[88,10]],bk:8,lines:[[12,20,68,50],[16,44,64,58]]},
+  m:'安値も高値も切り下げるが収縮＝下落の勢い喪失。<b>下げているのに買いサイン</b>。',
+  e:'上側のラインを15分足終値で上抜けで買い。',
+  s:'直近の押し安値の下。',t:'ウェッジ始点の高値／RR1:2。',
+  fk:'下落継続に見えて騙されやすい。上抜け確定を待つ。'},
+
+ // ========== チャート継続 ==========
+ {cat:'チャート継続',name:'アセンディングトライアングル',en:'Ascending Triangle',rank:'A',sig:'buy',
+  sv:{pts:[[6,60],[16,34],[26,56],[36,34],[46,50],[56,34],[64,46],[72,33],[82,18],[90,8]],bk:7,lines:[[12,34,74,34],[14,60,64,46]]},
+  m:'高値が水平（強い抵抗）＋<b>安値切り上げ</b>＝買い圧力増。上抜けで上放れ（継続）。',
+  e:'水平の上値ラインを15分足終値で上抜けで買い。戻りで入ると安全。',
+  s:'直近の押し安値の下。',t:'三角の高さを上に投影。',
+  fk:'上抜け前は入らない。安値切り上げライン割れなら逆に売り。'},
+
+ {cat:'チャート継続',name:'ディセンディングトライアングル',en:'Descending Triangle',rank:'A',sig:'sell',
+  sv:{pts:[[6,40],[16,66],[26,46],[36,66],[46,54],[56,66],[64,58],[72,67],[82,82],[90,92]],bk:7,lines:[[12,66,74,66],[14,40,64,58]]},
+  m:'安値が水平（サポート）＋<b>高値が切り下げ</b>＝売り圧力増。下抜けで下放れ（継続）。',
+  e:'水平の下値ラインを15分足終値で下抜けで売り。戻りで入ると安全。',
+  s:'直近の戻り高値の上。',t:'三角の高さを下に投影。',
+  fk:'下抜け前は入らない。上放れなら逆に買い。'},
+
+ {cat:'チャート継続',name:'対称三角（保ち合い）',en:'Symmetrical Triangle',rank:'B',sig:'neutral',
+  sv:{pts:[[6,28],[16,72],[26,38],[36,64],[46,46],[54,56],[60,50],[68,42],[78,24],[88,12]],bk:7,lines:[[10,26,66,46],[10,74,66,52]]},
+  m:'高値切り下げ＋安値切り上げで収縮＝エネルギー蓄積。<b>抜けた方向に走る</b>（方向は事前に決めない）。',
+  e:'上抜け→買い／下抜け→売り（15分足終値で確定した方向に順張り）。上位足の方向に抜けると信頼大。',
+  s:'三角の反対側の直近高安。',t:'三角の最大幅をブレイク点から投影。',
+  fk:'頂点間際の抜けはダマシ多発。早めの抜け＋勢いが理想。'},
+
+ {cat:'チャート継続',name:'上昇フラッグ',en:'Bull Flag',rank:'A',sig:'buy',
+  sv:{pts:[[6,84],[18,30],[28,42],[38,38],[48,50],[56,46],[64,36],[74,20],[88,8]],bk:6,lines:[[26,40,60,52],[30,32,64,44]]},
+  m:'急騰（ポール）→緩やかに下る平行チャネルの小休止→再上昇。強い<b>上昇継続</b>。',
+  e:'フラッグ上辺を15分足終値で上抜けで買い（順張り）。',
+  s:'フラッグ下辺の下。',t:'ポールの値幅をブレイク点から上に投影。',
+  fk:'フラッグが深く下げ過ぎ／長すぎると失敗。ポール後の浅い調整が理想。'},
+
+ {cat:'チャート継続',name:'ペナント',en:'Pennant',rank:'A',sig:'buy',
+  sv:{pts:[[6,84],[18,30],[26,42],[34,34],[42,42],[48,37],[54,40],[62,30],[74,16],[88,8]],bk:7,lines:[[24,40,56,40],[26,34,56,38]]},
+  m:'急騰→小さな三角の保ち合い→再上昇。フラッグの三角版。短時間の継続サイン。',
+  e:'ペナント上辺を15分足終値で上抜けで買い。',
+  s:'ペナント下辺の下。',t:'ポール値幅を投影。',
+  fk:'保ち合いが長引くと勢い喪失。短期で抜けるのが理想、下放れは見送り。'},
+
+ {cat:'チャート継続',name:'レクタングル（ボックス／レンジ）',en:'Rectangle / Range',rank:'A',sig:'neutral',
+  sv:{pts:[[6,42],[14,68],[24,40],[34,68],[44,40],[54,68],[64,40],[72,55],[80,38],[86,18],[92,8]],bk:8,lines:[[12,40,78,40],[12,68,78,68]]},
+  m:'水平の上限・下限を往復するレンジ。<b>抜けた方向に放れる</b>。レンジ内は端で逆張りも可。',
+  e:'順張り＝上限/下限を15分足終値でブレイクした方向に。逆張り＝端で反転確認し逆へ（損切り近く）。',
+  s:'ブレイク＝反対の枠の外／逆張り＝枠の少し外。',t:'ボックスの高さをブレイク点から投影／逆張りは反対の枠。',
+  fk:'ヒゲだけのダマシ抜けが頻発。終値確定＋リターンムーブで。'},
+
+ {cat:'チャート継続',name:'カップウィズハンドル',en:'Cup with Handle',rank:'B',sig:'buy',
+  sv:{pts:[[6,30],[14,46],[24,62],[38,72],[52,72],[64,58],[72,44],[78,34],[82,46],[88,36],[92,20]],bk:8,lines:[[10,32,84,32]]},
+  m:'丸い器（カップ）＋小さな押し（取っ手）→上放れ。押し目を作ってからの強い上昇継続。',
+  e:'取っ手の高値（リム）を15分足終値で上抜けで買い。',
+  s:'取っ手の安値の下。',t:'カップの深さを上に投影。',
+  fk:'取っ手が深すぎる（カップ半値超の押し）と失敗。リム上抜け確定で。'},
+
+ // ========== トレンドの形（ダウ理論） ==========
+ {cat:'トレンドの形',name:'上昇トレンド（高値・安値切り上げ）',en:'Uptrend: HH & HL',rank:'A',sig:'buy',
+  sv:{pts:[[6,82],[18,52],[28,64],[40,34],[52,48],[64,20],[76,36],[88,10]],bk:4,lines:[[20,70,90,26]]},
+  m:'<b>高値切り上げ＋安値切り上げ</b>＝ダウ理論の上昇トレンド。基本は押し目買いだけを狙う。',
+  e:'高値更新後の<b>押し（安値切り上げの位置）</b>で反発確認→買い。サポート／トレンドラインと重なると最良。',
+  s:'押し目を作った直近安値の下（ここ割れでトレンド疑い）。',t:'次の高値更新／トレンド終了まで伸ばす。',
+  fk:'高値更新が止まり安値を割ったらトレンド終了（→トレンド転換カード）。上位足も上向きが前提。'},
+
+ {cat:'トレンドの形',name:'下降トレンド（高値・安値切り下げ）',en:'Downtrend: LH & LL',rank:'A',sig:'sell',
+  sv:{pts:[[6,18],[18,50],[28,36],[40,68],[52,54],[64,80],[76,66],[88,90]],bk:4,lines:[[20,30,90,72]]},
+  m:'<b>高値切り下げ＋安値切り下げ</b>＝ダウ理論の下降トレンド。基本は戻り売りだけを狙う。',
+  e:'安値更新後の<b>戻り（高値切り下げの位置）</b>で失速確認→売り。レジスタンス／トレンドラインと重なると最良。',
+  s:'戻り高値の上（ここ超えでトレンド疑い）。',t:'次の安値更新／トレンド終了まで。',
+  fk:'安値更新が止まり高値を超えたらトレンド終了。「高値切り下げ」が崩れたら撤退。上位足も下向きが前提。'},
+
+ {cat:'トレンドの形',name:'トレンド転換（ダウ理論ブレイク）',en:'Trend Reversal (Dow)',rank:'A',sig:'sell',
+  sv:{pts:[[6,78],[18,44],[28,58],[40,28],[52,50],[62,40],[70,62],[80,80],[90,90]],bk:6,lines:[[12,50,86,50]]},
+  m:'上昇中に<b>高値を更新できず（高値切り下げ）→直近の押し安値を割る</b>＝上昇トレンド終了の確定サイン。',
+  e:'直近の重要な押し安値（水平線）を15分足終値で下抜け→売り転換（買いは上下反転）。',
+  s:'直近の戻り高値の上。',t:'次の安値／前の上昇分の半値〜全戻し。',
+  fk:'一時的な割れ（ダマシ）に注意。明確な構造転換＋戻り売りで入ると安全。'},
+
+ {cat:'トレンドの形',name:'トレンドライン／チャネル割れ',en:'Trendline / Channel Break',rank:'A',sig:'sell',
+  sv:{pts:[[6,72],[16,54],[24,66],[34,46],[44,58],[54,38],[62,52],[70,46],[78,64],[86,82],[92,90]],bk:8,lines:[[10,74,78,46],[10,58,78,30]]},
+  m:'安値を結んだトレンドライン（チャネル）を価格が割る＝上昇の勢い終了／転換点。',
+  e:'トレンドライン（チャネル下限）を15分足終値で下抜け→売り。戻りでライン下から当ててから入ると安全。',
+  s:'直近の戻り高値の上／チャネル内に戻ったら撤退。',t:'チャネル幅を下に投影／直近安値。',
+  fk:'ラインの引き方で精度が変わる。安値2点＋3点目で機能を確認。ヒゲ抜けだけは無効。'},
+];
+
+const QORDER = ['S','A','B','C'];
+const RANKLABEL = {S:'S（最重要）',A:'A（強い）',B:'B（補助）',C:'C（単体不可）'};
+
+/* ---- candle render ---- */
+function candleHTML(cd){
+  // up(緑): c<o(終値が画面上=価格高) / down(赤): c>o / doji: |o-c|<1.5
+  let cls = Math.abs(cd.o-cd.c)<1.5 ? 'dj' : (cd.c < cd.o ? 'up':'down');
+  let bt = Math.min(cd.o,cd.c), bb = Math.max(cd.o,cd.c);
+  let bh = Math.max(bb-bt, 1.5);
+  return `<div class="cndl ${cls}">
+    <div class="wick" style="top:${cd.h}%;height:${cd.l-cd.h}%"></div>
+    <div class="body" style="top:${bt}%;height:${bh}%"></div></div>`;
+}
+function chartHTML(cds){
+  return `<div class="chart"><div class="mid" style="top:50%"></div>`
+    + cds.map(candleHTML).join('') + `</div>`;
+}
+/* ---- chart-pattern (SVG) render ---- 0=上(高値)…100=下(安値)
+   sv = { pts:[[x,y]...], bk:ブレイク開始index, lines:[[x1,y1,x2,y2]...] } */
+function svgHTML(sv,sig){
+  const col = sig==='buy'?'ab':sig==='sell'?'as':'an';
+  const str = a => a.map(p=>p[0]+','+p[1]).join(' ');
+  const main = sv.pts.slice(0, sv.bk+1);
+  const tail = sv.pts.slice(sv.bk);
+  const lines = (sv.lines||[]).map(l=>
+    `<line class="nl" x1="${l[0]}" y1="${l[1]}" x2="${l[2]}" y2="${l[3]}"/>`).join('');
+  return `<div class="chart cv-wrap"><svg class="cv" viewBox="0 0 100 100" preserveAspectRatio="none">
+    ${lines}
+    <polyline class="pl" points="${str(main)}"/>
+    <polyline class="${col}" points="${str(tail)}"/>
+  </svg></div>`;
+}
+
+/* ---- build cards ---- */
+const cats = ['単体','2本組','3本組','酒田五法','チャート反転','チャート継続','トレンドの形'];
+let html='';
+cats.forEach(cat=>{
+  html += `<div class="cat" data-cat="${cat}">${cat}</div><div class="grid">`;
+  P.filter(p=>p.cat===cat).forEach((p,i)=>{
+    const id = p.cat+'-'+i;
+    p._id = id;
+    html += `<div class="p" id="${id}" data-rank="${p.rank}" data-cat="${p.cat}">
+      <div class="phead">
+        <span class="badge b-${p.rank}">${p.rank}</span>
+        <span class="pname">${p.name}</span>
+        <span class="sig s-${p.sig}">${p.sig==='buy'?'買い':p.sig==='sell'?'売り':'中立/要確認'}</span>
+      </div>
+      <div class="pen">${p.en}</div>
+      ${p.cd?chartHTML(p.cd):svgHTML(p.sv,p.sig)}
+      <div class="meaning">${p.m}</div>
+      <div class="rule"><b>エントリー</b>：${p.e}</div>
+      <div class="rule"><b>損切り</b>：${p.s}</div>
+      <div class="rule"><b>利確</b>：${p.t}</div>
+      <div class="rk">⚠ ダマシ注意：${p.fk}</div>
+    </div>`;
+  });
+  html += `</div>`;
+});
+document.getElementById('cards').innerHTML = html;
+
+/* ---- quick table ---- */
+let q = document.getElementById('quick');
+QORDER.forEach(r=>{
+  const buys = P.filter(p=>p.rank===r && p.sig==='buy');
+  const sells= P.filter(p=>p.rank===r && p.sig==='sell');
+  const neu  = P.filter(p=>p.rank===r && p.sig==='neutral');
+  const link = a => `<a class="alink" onclick="jump('${a._id}')">${a.name}</a>`;
+  const tr = document.createElement('tr');
+  tr.innerHTML = `<td><span class="badge b-${r}">${r}</span></td>
+    <td class="qbuy">${buys.map(link).join('、')||'—'}</td>
+    <td class="qsell">${sells.map(link).join('、')||'—'}${neu.length?`<br><span style="color:var(--neu)">中立: `+neu.map(link).join('、')+`</span>`:''}</td>`;
+  q.appendChild(tr);
+});
+function jump(id){
+  const el=document.getElementById(id);
+  el.scrollIntoView({behavior:'smooth',block:'center'});
+  el.style.outline='2px solid var(--accent)';
+  setTimeout(()=>el.style.outline='',1600);
+}
+
+/* ---- filters ---- */
+let curF='all';
+function apply(){
+  const hiOnly=document.getElementById('hi').checked;
+  document.querySelectorAll('.p').forEach(el=>{
+    const r=el.dataset.rank, c=el.dataset.cat;
+    let show = (curF==='all') || (curF===r) || (curF===c);
+    if(hiOnly && !(r==='S'||r==='A')) show=false;
+    el.classList.toggle('dim', !show);
+  });
+  document.querySelectorAll('.cat').forEach(h=>{
+    const c=h.dataset.cat;
+    const any=[...document.querySelectorAll('.p[data-cat="'+c+'"]')].some(e=>!e.classList.contains('dim'));
+    const grid=h.nextElementSibling;
+    h.style.display=any?'':'none';
+    if(grid) grid.style.display=any?'':'none';
+  });
+}
+document.querySelectorAll('.fb').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.fb').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on'); curF=b.dataset.f; apply();
+  });
+});
+document.getElementById('hi').addEventListener('change',apply);
+apply();
+</script>
+</body>
+</html>

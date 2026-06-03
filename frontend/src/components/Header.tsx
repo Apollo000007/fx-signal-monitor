@@ -6,8 +6,16 @@ import { useEffect, useState } from "react";
 import { useSignalsStore } from "@/store/signals";
 import { cn, formatTime } from "@/lib/utils";
 import { isEvaTheme } from "@/lib/visualTheme";
+import type { CalendarRisk } from "@/lib/calendar";
+import { RiskBadge } from "./RiskBadge";
 
-export function Header() {
+export function Header({
+  calendarRisk,
+  onOpenCalendar,
+}: {
+  calendarRisk?: CalendarRisk | null;
+  onOpenCalendar?: () => void;
+}) {
   const { updatedAt, config, signals, loading, soundEnabled, toggleSound } = useSignalsStore();
   const alertCount = signals.filter((s) => s.is_alert).length;
 
@@ -131,6 +139,11 @@ export function Header() {
             </span>
           </div>
 
+          {/* 本日の相場リスク (経済カレンダー) */}
+          {onOpenCalendar && (
+            <RiskBadge risk={calendarRisk ?? null} onClick={onOpenCalendar} />
+          )}
+
           {/* Sound toggle */}
           <button
             onClick={toggleSound}
@@ -158,7 +171,7 @@ export function Header() {
 
       {showShortcuts && (
         <div className={cn("mt-3 p-3 rounded-xl glass border border-border/60 text-[11px] font-mono grid grid-cols-2 md:grid-cols-4 gap-2", isEvaTheme && "eva-frame")}>
-          <ShortcutRow k="1 – 5" v="手法タブ切替" />
+          <ShortcutRow k="1 – 7" v="手法タブ切替 (7=PA)" />
           <ShortcutRow k="/" v="ペア検索フォーカス" />
           <ShortcutRow k="R" v="手動リフレッシュ" />
           <ShortcutRow k="Esc" v="詳細/ヘルプを閉じる" />
@@ -166,6 +179,7 @@ export function Header() {
           <ShortcutRow k="L / S" v="LONG / SHORT フィルタ" />
           <ShortcutRow k="P" v="ピン止めフィルタ" />
           <ShortcutRow k="M" v="音 ON/OFF" />
+          <ShortcutRow k="N" v="経済カレンダー/相場リスク" />
         </div>
       )}
     </header>

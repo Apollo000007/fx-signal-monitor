@@ -12,6 +12,7 @@ const METHOD_LABEL: Record<string, string> = {
   claude: "Claude",
   triple: "3 手法",
   dtp: "DTP 押し目",
+  pa: "PA パターン",
 };
 
 export function PaperStats() {

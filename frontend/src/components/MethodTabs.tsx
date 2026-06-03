@@ -1,6 +1,6 @@
 "use client";
 
-import { Flame, Eye, Sun, TrendingUp } from "lucide-react";
+import { Flame, Eye, Sun, TrendingUp, CandlestickChart } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useSignalsStore } from "@/store/signals";
 import type { Method } from "@/lib/types";
@@ -15,22 +15,26 @@ interface TabDef {
   accent: string;
   /** タブ強調レベル (3手法合意は最高ランク) */
   rank?: "base" | "combo" | "ultimate";
+  /** +EV 検証で降格 (アラート対象外・参考表示のみ) */
+  reference?: boolean;
 }
 
 const OLYMPUS_TABS: TabDef[] = [
   {
     key: "orz",
     title: "Athena · ORZ",
-    subtitle: "Dow + SMA + 一目雲 — 智慧",
+    subtitle: "Dow + SMA + 一目雲 — 参考",
     icon: <Eye className="h-4 w-4" />,
     accent: "from-accent-cyan/60 to-accent-cyan/10 border-accent-cyan/40 text-accent-cyan",
+    reference: true,
   },
   {
     key: "pdhl",
     title: "Hermes · PDH/PDL",
-    subtitle: "ブレイク → リテスト — 伝令",
+    subtitle: "ブレイク → リテスト — 参考",
     icon: <Flame className="h-4 w-4" />,
     accent: "from-accent-gold/60 to-accent-gold/10 border-accent-gold/40 text-accent-gold",
+    reference: true,
   },
   {
     key: "triple",
@@ -50,22 +54,33 @@ const OLYMPUS_TABS: TabDef[] = [
       "from-accent-green/70 via-accent-cyan/40 to-accent-gold/50 border-accent-green/60 text-accent-green",
     rank: "ultimate",
   },
+  {
+    key: "pa",
+    title: "Apollo · PA パターン",
+    subtitle: "ローソク足型 + 上位足 + 節目 — 予言",
+    icon: <CandlestickChart className="h-4 w-4" />,
+    accent:
+      "from-accent-violet/70 via-accent-cyan/40 to-accent-gold/50 border-accent-violet/60 text-accent-violet",
+    rank: "ultimate",
+  },
 ];
 
 const EVA_TABS: TabDef[] = [
   {
     key: "orz",
     title: "OPS-01 · ORZ",
-    subtitle: "DOW / SMA / ICHIMOKU",
+    subtitle: "DOW / SMA / ICHIMOKU (REF)",
     icon: <Eye className="h-4 w-4" />,
     accent: "from-accent-cyan/35 to-bg-card border-accent-cyan/60 text-accent-cyan",
+    reference: true,
   },
   {
     key: "pdhl",
     title: "OPS-02 · PDH/PDL",
-    subtitle: "BREAK / RETEST",
+    subtitle: "BREAK / RETEST (REF)",
     icon: <Flame className="h-4 w-4" />,
     accent: "from-accent-red/40 to-bg-card border-accent-red/70 text-accent-red",
+    reference: true,
   },
   {
     key: "triple",
@@ -85,6 +100,15 @@ const EVA_TABS: TabDef[] = [
       "from-accent-green/40 to-bg-card border-accent-green/65 text-accent-green",
     rank: "ultimate",
   },
+  {
+    key: "pa",
+    title: "UNIT-07 · PA",
+    subtitle: "PRICE ACTION PATTERNS",
+    icon: <CandlestickChart className="h-4 w-4" />,
+    accent:
+      "from-accent-violet/40 to-bg-card border-accent-violet/65 text-accent-violet",
+    rank: "ultimate",
+  },
 ];
 
 export function MethodTabs() {
@@ -99,6 +123,7 @@ export function MethodTabs() {
     claude: 0,
     triple: 0,
     dtp: 0,
+    pa: 0,
   };
   for (const r of records) {
     if (r.orz.is_alert) alertCounts.orz += 1;
@@ -107,6 +132,7 @@ export function MethodTabs() {
     if (r.claude?.is_alert) alertCounts.claude += 1;
     if (r.triple?.is_alert) alertCounts.triple += 1;
     if (r.dtp?.is_alert) alertCounts.dtp += 1;
+    if (r.pa?.is_alert) alertCounts.pa += 1;
   }
 
   return (
@@ -158,6 +184,14 @@ export function MethodTabs() {
                     )}
                   >
                     {count}
+                  </span>
+                )}
+                {t.reference && (
+                  <span
+                    className="px-1.5 py-0.5 rounded-full text-[9px] font-bold border border-text-faint/40 text-text-faint"
+                    title="+EV 検証で降格。参考表示のみ（アラート対象外）"
+                  >
+                    参考
                   </span>
                 )}
               </div>

@@ -53,7 +53,13 @@ def parse_args():
     p.add_argument("--min-bars", type=int, default=200,
                    help="ウォームアップバー数 (これより前は評価しない)")
     p.add_argument("--tp-rr", type=float, default=None,
-                   help="TP を R-multiple で上書き (例: 3.0)。未指定なら strategy 由来の構造的 TP を使う")
+                   help="TP を R-multiple で固定上書き (例: 3.0)")
+    p.add_argument("--min-rr", type=float, default=2.0,
+                   help="tp_rr 未指定時の最低RR床 (既定 2.0、本番 api と一致)")
+    p.add_argument("--emit-whitelist", action="store_true",
+                   help="n>=min-n & PF>=min-pf & EV>0 の (手法,ペア) を state/ev_whitelist.json に書き出す")
+    p.add_argument("--min-n", type=int, default=20, help="ホワイトリスト採用の最小サンプル数")
+    p.add_argument("--min-pf", type=float, default=1.10, help="ホワイトリスト採用の最小 PF")
     p.add_argument("--verbose", "-v", action="store_true")
     return p.parse_args()
 
@@ -159,6 +165,7 @@ def main():
                 min_bars=args.min_bars,
                 verbose=args.verbose,
                 tp_rr=args.tp_rr,
+                min_rr=args.min_rr,
             )
             results.append(res)
             stats = compute_stats(res.trades)
@@ -201,6 +208,54 @@ def main():
     print()
     print(f"📊 詳細レポート: {RESULTS_DIR / 'index.html'}")
     print(f"   ブラウザで開く: open {RESULTS_DIR / 'index.html'}")
+
+    # ---- +EV ホワイトリスト生成 (--emit-whitelist) ----
+    if args.emit_whitelist:
+        emit_whitelist(stats_by_pm, args)
+
+
+def emit_whitelist(stats_by_pm: dict, args) -> None:
+    """(手法,ペア) ごとの成績から +EV だけを state/ev_whitelist.json に書き出す。
+
+    採用条件: n>=min_n かつ PF>=min_pf かつ EV>0。
+    pa は strategy_pa が pair×pattern で自己ゲートするため、ここでは除外
+    (ev_whitelist.is_pair_allowed が "pa" を素通しにする)。
+    """
+    import json
+    from datetime import datetime, timezone
+
+    out = ROOT / "state" / "ev_whitelist.json"
+    entries: dict[str, dict] = {}
+    for (pair, method), s in stats_by_pm.items():
+        if method == "pa":
+            continue
+        if s.trades >= args.min_n and s.profit_factor >= args.min_pf and s.expectancy_r > 0:
+            pf = round(s.profit_factor, 2) if s.profit_factor != float("inf") else 999.0
+            entries[f"{method}|{pair}"] = {
+                "n": s.trades,
+                "wr": round(s.win_rate, 1),
+                "pf": pf,
+                "ev": round(s.expectancy_r, 3),
+            }
+    payload = {
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "period": args.period,
+        "min_rr": args.min_rr,
+        "min_n": args.min_n,
+        "min_pf": args.min_pf,
+        "threshold": args.threshold,
+        "entries": entries,
+    }
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    print()
+    print(f"✅ EV ホワイトリスト {len(entries)} 件 → {out}")
+    by_method: dict[str, list[str]] = {}
+    for k in entries:
+        m, p = k.split("|", 1)
+        by_method.setdefault(m, []).append(p)
+    for m, ps in sorted(by_method.items()):
+        print(f"   {m:8s}: {', '.join(sorted(ps))}")
 
 
 if __name__ == "__main__":
