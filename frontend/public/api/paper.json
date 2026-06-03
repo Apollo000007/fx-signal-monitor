@@ -1,19 +1,19 @@
 {
-  "updated_at": "2026-06-03T02:20:12.113129+00:00",
+  "updated_at": "2026-06-03T02:25:16.219393+00:00",
   "open_count": 1,
   "open_positions": [
     {
-      "id": "ZAR/JPY-orz-1780453212",
-      "pair": "ZAR/JPY",
+      "id": "NZD/USD-orz-1780453516",
+      "pair": "NZD/USD",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-06-03T02:20:12.113129",
-      "entry_price": 9.82699966430664,
-      "stop_loss": 9.705550380706788,
-      "take_profit": 9.884299755096436,
-      "score": 80,
-      "last_check_time": "2026-06-03T02:20:12.113129"
+      "entry_time": "2026-06-03T02:25:16.219393",
+      "entry_price": 0.5936832427978516,
+      "stop_loss": 0.5892667653632163,
+      "take_profit": 0.5993666052818298,
+      "score": 85,
+      "last_check_time": "2026-06-03T02:25:16.219393"
     }
   ],
   "history_count": 0,
