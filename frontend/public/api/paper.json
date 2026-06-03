@@ -1,58 +1,58 @@
 {
-  "updated_at": "2026-06-03T14:35:12.173827+00:00",
+  "updated_at": "2026-06-03T14:40:28.674427+00:00",
   "open_count": 4,
   "open_positions": [
     {
-      "id": "AUD/USD-orz-1780497312",
+      "id": "USD/JPY-dtp-1780497628",
+      "pair": "USD/JPY",
+      "method": "dtp",
+      "direction": "long",
+      "entry_type": "dtp_long",
+      "entry_time": "2026-06-03T14:40:28.674427",
+      "entry_price": 159.9810028076172,
+      "stop_loss": 159.61322200012208,
+      "take_profit": 161.0843452301025,
+      "score": 100,
+      "last_check_time": "2026-06-03T14:40:28.674427"
+    },
+    {
+      "id": "AUD/USD-orz-1780497628",
       "pair": "AUD/USD",
       "method": "orz",
       "direction": "long",
       "entry_type": "range_reversal",
-      "entry_time": "2026-06-03T14:35:12.173827",
+      "entry_time": "2026-06-03T14:40:28.674427",
       "entry_price": 0.7147452235221863,
       "stop_loss": 0.7115722319568907,
       "take_profit": 0.7266821503639221,
       "score": 79,
-      "last_check_time": "2026-06-03T14:35:12.173827"
+      "last_check_time": "2026-06-03T14:40:28.674427"
     },
     {
-      "id": "GBP/USD-orz-1780497312",
+      "id": "GBP/USD-orz-1780497628",
       "pair": "GBP/USD",
       "method": "orz",
       "direction": "long",
       "entry_type": "range_reversal",
-      "entry_time": "2026-06-03T14:35:12.173827",
-      "entry_price": 1.3428586721420288,
+      "entry_time": "2026-06-03T14:40:28.674427",
+      "entry_price": 1.3429127931594849,
       "stop_loss": 1.3421400191783905,
       "take_profit": 1.3644134998321533,
       "score": 75,
-      "last_check_time": "2026-06-03T14:35:12.173827"
+      "last_check_time": "2026-06-03T14:40:28.674427"
     },
     {
-      "id": "USD/CHF-dtp-1780497312",
-      "pair": "USD/CHF",
-      "method": "dtp",
-      "direction": "long",
-      "entry_type": "dtp_long",
-      "entry_time": "2026-06-03T14:35:12.173827",
-      "entry_price": 0.7901999950408936,
-      "stop_loss": 0.7876015908122063,
-      "take_profit": 0.7979952077269554,
-      "score": 87,
-      "last_check_time": "2026-06-03T14:35:12.173827"
-    },
-    {
-      "id": "USD/CAD-dtp-1780497312",
+      "id": "USD/CAD-dtp-1780497628",
       "pair": "USD/CAD",
       "method": "dtp",
       "direction": "long",
       "entry_type": "dtp_long",
-      "entry_time": "2026-06-03T14:35:12.173827",
-      "entry_price": 1.3870500326156616,
+      "entry_time": "2026-06-03T14:40:28.674427",
+      "entry_price": 1.387179970741272,
       "stop_loss": 1.3829156935214997,
-      "take_profit": 1.3994530498981474,
+      "take_profit": 1.3999728024005889,
       "score": 100,
-      "last_check_time": "2026-06-03T14:35:12.173827"
+      "last_check_time": "2026-06-03T14:40:28.674427"
     }
   ],
   "history_count": 0,
