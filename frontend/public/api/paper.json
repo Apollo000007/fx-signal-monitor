@@ -1,71 +1,45 @@
 {
-  "updated_at": "2026-06-03T14:19:39.585189+00:00",
-  "open_count": 5,
+  "updated_at": "2026-06-03T14:24:50.661021+00:00",
+  "open_count": 3,
   "open_positions": [
     {
-      "id": "USD/CHF-orz-1780496379",
-      "pair": "USD/CHF",
-      "method": "orz",
-      "direction": "long",
-      "entry_type": "breakout",
-      "entry_time": "2026-06-03T14:19:39.585189",
-      "entry_price": 0.790340006351471,
-      "stop_loss": 0.7828211927413941,
-      "take_profit": 0.792570024728775,
-      "score": 89,
-      "last_check_time": "2026-06-03T14:19:39.585189"
-    },
-    {
-      "id": "USD/CHF-dtp-1780496379",
+      "id": "USD/CHF-dtp-1780496690",
       "pair": "USD/CHF",
       "method": "dtp",
       "direction": "long",
       "entry_type": "dtp_long",
-      "entry_time": "2026-06-03T14:19:39.585189",
-      "entry_price": 0.7903500199317932,
+      "entry_time": "2026-06-03T14:24:50.661021",
+      "entry_price": 0.7902899980545044,
       "stop_loss": 0.7876015908122063,
-      "take_profit": 0.7985953072905541,
+      "take_profit": 0.7983552197813988,
       "score": 87,
-      "last_check_time": "2026-06-03T14:19:39.585189"
+      "last_check_time": "2026-06-03T14:24:50.661021"
     },
     {
-      "id": "USD/CAD-dtp-1780496379",
+      "id": "USD/CAD-dtp-1780496690",
       "pair": "USD/CAD",
       "method": "dtp",
       "direction": "long",
       "entry_type": "dtp_long",
-      "entry_time": "2026-06-03T14:19:39.585189",
-      "entry_price": 1.3871099948883057,
+      "entry_time": "2026-06-03T14:24:50.661021",
+      "entry_price": 1.3871300220489502,
       "stop_loss": 1.3829156935214997,
-      "take_profit": 1.3996928989887236,
+      "take_profit": 1.3997730076313017,
       "score": 100,
-      "last_check_time": "2026-06-03T14:19:39.585189"
+      "last_check_time": "2026-06-03T14:24:50.661021"
     },
     {
-      "id": "ZAR/JPY-dtp-1780496379",
-      "pair": "ZAR/JPY",
-      "method": "dtp",
-      "direction": "long",
-      "entry_type": "dtp_long",
-      "entry_time": "2026-06-03T14:19:39.585189",
-      "entry_price": 9.800999641418457,
-      "stop_loss": 9.77621425151825,
-      "take_profit": 9.87535581111908,
-      "score": 100,
-      "last_check_time": "2026-06-03T14:19:39.585189"
-    },
-    {
-      "id": "EUR/GBP-dtp-1780496379",
+      "id": "EUR/GBP-dtp-1780496690",
       "pair": "EUR/GBP",
       "method": "dtp",
       "direction": "short",
       "entry_type": "dtp_short",
-      "entry_time": "2026-06-03T14:19:39.585189",
-      "entry_price": 0.8640400171279907,
+      "entry_time": "2026-06-03T14:24:50.661021",
+      "entry_price": 0.8640599846839905,
       "stop_loss": 0.8648640224337577,
-      "take_profit": 0.8615680012106898,
+      "take_profit": 0.8616478714346888,
       "score": 100,
-      "last_check_time": "2026-06-03T14:19:39.585189"
+      "last_check_time": "2026-06-03T14:24:50.661021"
     }
   ],
   "history_count": 0,
