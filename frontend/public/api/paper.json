@@ -1,97 +1,84 @@
 {
-  "updated_at": "2026-06-03T02:09:49.427332+00:00",
-  "open_count": 7,
+  "updated_at": "2026-06-03T02:15:04.438337+00:00",
+  "open_count": 6,
   "open_positions": [
     {
-      "id": "CHF/JPY-orz-1780452589",
+      "id": "CHF/JPY-orz-1780452904",
       "pair": "CHF/JPY",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-06-03T02:09:49.427332",
-      "entry_price": 202.95700073242188,
+      "entry_time": "2026-06-03T02:15:04.438337",
+      "entry_price": 202.95799255371094,
       "stop_loss": 202.13990817260742,
       "take_profit": 203.90897260393416,
       "score": 94,
-      "last_check_time": "2026-06-03T02:09:49.427332"
+      "last_check_time": "2026-06-03T02:15:04.438337"
     },
     {
-      "id": "NZD/USD-orz-1780452589",
+      "id": "NZD/USD-orz-1780452904",
       "pair": "NZD/USD",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-06-03T02:09:49.427332",
-      "entry_price": 0.59357750415802,
-      "stop_loss": 0.5892639528918266,
+      "entry_time": "2026-06-03T02:15:04.438337",
+      "entry_price": 0.5936479568481445,
+      "stop_loss": 0.5892660610556603,
       "take_profit": 0.5993666052818298,
       "score": 85,
-      "last_check_time": "2026-06-03T02:09:49.427332"
+      "last_check_time": "2026-06-03T02:15:04.438337"
     },
     {
-      "id": "ZAR/JPY-orz-1780452589",
+      "id": "ZAR/JPY-orz-1780452904",
       "pair": "ZAR/JPY",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-06-03T02:09:49.427332",
-      "entry_price": 9.826000213623047,
+      "entry_time": "2026-06-03T02:15:04.438337",
+      "entry_price": 9.82800006866455,
       "stop_loss": 9.705550380706788,
       "take_profit": 9.884299755096436,
       "score": 80,
-      "last_check_time": "2026-06-03T02:09:49.427332"
+      "last_check_time": "2026-06-03T02:15:04.438337"
     },
     {
-      "id": "EUR/USD-orz-1780452589",
+      "id": "EUR/USD-orz-1780452904",
       "pair": "EUR/USD",
       "method": "orz",
       "direction": "long",
       "entry_type": "range_reversal",
-      "entry_time": "2026-06-03T02:09:49.427332",
+      "entry_time": "2026-06-03T02:15:04.438337",
       "entry_price": 1.1634671688079834,
       "stop_loss": 1.1581780316299861,
       "take_profit": 1.1783436685800552,
       "score": 79,
-      "last_check_time": "2026-06-03T02:09:49.427332"
+      "last_check_time": "2026-06-03T02:15:04.438337"
     },
     {
-      "id": "USD/CHF-orz-1780452589",
+      "id": "USD/CHF-orz-1780452904",
       "pair": "USD/CHF",
       "method": "orz",
       "direction": "short",
       "entry_type": "range_reversal",
-      "entry_time": "2026-06-03T02:09:49.427332",
-      "entry_price": 0.7874900102615356,
+      "entry_time": "2026-06-03T02:15:04.438337",
+      "entry_price": 0.7874799966812134,
       "stop_loss": 0.7909496525092559,
       "take_profit": 0.7781858344872793,
       "score": 79,
-      "last_check_time": "2026-06-03T02:09:49.427332"
+      "last_check_time": "2026-06-03T02:15:04.438337"
     },
     {
-      "id": "GBP/USD-orz-1780452589",
+      "id": "GBP/USD-orz-1780452904",
       "pair": "GBP/USD",
       "method": "orz",
       "direction": "long",
       "entry_type": "pullback",
-      "entry_time": "2026-06-03T02:09:49.427332",
-      "entry_price": 1.3470189571380615,
+      "entry_time": "2026-06-03T02:15:04.438337",
+      "entry_price": 1.347127914428711,
       "stop_loss": 1.3382500286102295,
       "take_profit": 1.349196367793613,
       "score": 75,
-      "last_check_time": "2026-06-03T02:09:49.427332"
-    },
-    {
-      "id": "USD/CAD-orz-1780452589",
-      "pair": "USD/CAD",
-      "method": "orz",
-      "direction": "short",
-      "entry_type": "range_reversal",
-      "entry_time": "2026-06-03T02:09:49.427332",
-      "entry_price": 1.3837699890136719,
-      "stop_loss": 1.3844423684120177,
-      "take_profit": 1.3632063648917458,
-      "score": 75,
-      "last_check_time": "2026-06-03T02:09:49.427332"
+      "last_check_time": "2026-06-03T02:15:04.438337"
     }
   ],
   "history_count": 0,
