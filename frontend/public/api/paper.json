@@ -1,21 +1,7 @@
 {
-  "updated_at": "2026-06-03T17:22:05.175462+00:00",
-  "open_count": 1,
-  "open_positions": [
-    {
-      "id": "ZAR/JPY-pdhl-1780507325",
-      "pair": "ZAR/JPY",
-      "method": "pdhl",
-      "direction": "short",
-      "entry_type": "pdhl_short_retest",
-      "entry_time": "2026-06-03T17:22:05.175462",
-      "entry_price": 9.767999649047852,
-      "stop_loss": 9.80368305683136,
-      "take_profit": 9.732316241264343,
-      "score": 93,
-      "last_check_time": "2026-06-03T17:22:05.175462"
-    }
-  ],
+  "updated_at": "2026-06-03T17:27:20.486854+00:00",
+  "open_count": 0,
+  "open_positions": [],
   "history_count": 0,
   "recent_trades": [],
   "stats": {
