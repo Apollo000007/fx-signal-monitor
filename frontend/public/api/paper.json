@@ -1,19 +1,19 @@
 {
-  "updated_at": "2026-06-03T02:25:16.219393+00:00",
+  "updated_at": "2026-06-03T02:30:20.992536+00:00",
   "open_count": 1,
   "open_positions": [
     {
-      "id": "NZD/USD-orz-1780453516",
-      "pair": "NZD/USD",
+      "id": "EUR/GBP-orz-1780453820",
+      "pair": "EUR/GBP",
       "method": "orz",
       "direction": "long",
-      "entry_type": "pullback",
-      "entry_time": "2026-06-03T02:25:16.219393",
-      "entry_price": 0.5936832427978516,
-      "stop_loss": 0.5892667653632163,
-      "take_profit": 0.5993666052818298,
-      "score": 85,
-      "last_check_time": "2026-06-03T02:25:16.219393"
+      "entry_type": "range_reversal",
+      "entry_time": "2026-06-03T02:30:20.992536",
+      "entry_price": 0.8634300231933594,
+      "stop_loss": 0.862385300131405,
+      "take_profit": 0.8668621025587383,
+      "score": 75,
+      "last_check_time": "2026-06-03T02:30:20.992536"
     }
   ],
   "history_count": 0,
