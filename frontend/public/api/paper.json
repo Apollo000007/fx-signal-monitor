@@ -1,32 +1,32 @@
 {
-  "updated_at": "2026-06-03T20:25:28.847134+00:00",
+  "updated_at": "2026-06-03T20:30:43.387094+00:00",
   "open_count": 2,
   "open_positions": [
     {
-      "id": "AUD/USD-pdhl-1780518328",
+      "id": "AUD/USD-pdhl-1780518643",
       "pair": "AUD/USD",
       "method": "pdhl",
       "direction": "short",
       "entry_type": "pdhl_short_retest",
-      "entry_time": "2026-06-03T20:25:28.847134",
-      "entry_price": 0.7131141424179077,
+      "entry_time": "2026-06-03T20:30:43.387094",
+      "entry_price": 0.7130124568939209,
       "stop_loss": 0.7164430544078351,
-      "take_profit": 0.7097852304279804,
-      "score": 75,
-      "last_check_time": "2026-06-03T20:25:28.847134"
+      "take_profit": 0.7095818593800067,
+      "score": 80,
+      "last_check_time": "2026-06-03T20:30:43.387094"
     },
     {
-      "id": "EUR/JPY-dtp-1780518328",
-      "pair": "EUR/JPY",
-      "method": "dtp",
-      "direction": "long",
-      "entry_type": "dtp_long",
-      "entry_time": "2026-06-03T20:25:28.847134",
-      "entry_price": 185.67100524902344,
-      "stop_loss": 185.34747175598145,
-      "take_profit": 186.64160572814941,
-      "score": 100,
-      "last_check_time": "2026-06-03T20:25:28.847134"
+      "id": "NZD/USD-pdhl-1780518643",
+      "pair": "NZD/USD",
+      "method": "pdhl",
+      "direction": "short",
+      "entry_type": "pdhl_short_retest",
+      "entry_time": "2026-06-03T20:30:43.387094",
+      "entry_price": 0.5863039493560791,
+      "stop_loss": 0.5928772030174733,
+      "take_profit": 0.5797306956946849,
+      "score": 80,
+      "last_check_time": "2026-06-03T20:30:43.387094"
     }
   ],
   "history_count": 0,
