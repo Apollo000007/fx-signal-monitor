@@ -1,19 +1,45 @@
 {
-  "updated_at": "2026-06-03T23:32:39.975514+00:00",
-  "open_count": 1,
+  "updated_at": "2026-06-03T23:37:48.384431+00:00",
+  "open_count": 3,
   "open_positions": [
     {
-      "id": "EUR/GBP-orz-1780529559",
-      "pair": "EUR/GBP",
+      "id": "AUD/USD-orz-1780529868",
+      "pair": "AUD/USD",
       "method": "orz",
+      "direction": "long",
+      "entry_type": "range_reversal",
+      "entry_time": "2026-06-03T23:37:48.384431",
+      "entry_price": 0.7132158875465393,
+      "stop_loss": 0.7115722319568907,
+      "take_profit": 0.7266821503639221,
+      "score": 79,
+      "last_check_time": "2026-06-03T23:37:48.384431"
+    },
+    {
+      "id": "GBP/USD-orz-1780529868",
+      "pair": "GBP/USD",
+      "method": "orz",
+      "direction": "long",
+      "entry_type": "range_reversal",
+      "entry_time": "2026-06-03T23:37:48.384431",
+      "entry_price": 1.3423359394073486,
+      "stop_loss": 1.3421400191783905,
+      "take_profit": 1.3644134998321533,
+      "score": 75,
+      "last_check_time": "2026-06-03T23:37:48.384431"
+    },
+    {
+      "id": "AUD/JPY-pdhl-1780529868",
+      "pair": "AUD/JPY",
+      "method": "pdhl",
       "direction": "short",
-      "entry_type": "pullback",
-      "entry_time": "2026-06-03T23:32:39.975514",
-      "entry_price": 0.8646399974822998,
-      "stop_loss": 0.8667300095558167,
-      "take_profit": 0.8633197496334711,
-      "score": 92,
-      "last_check_time": "2026-06-03T23:32:39.975514"
+      "entry_type": "pdhl_short_retest",
+      "entry_time": "2026-06-03T23:37:48.384431",
+      "entry_price": 113.99400329589844,
+      "stop_loss": 114.34425601577759,
+      "take_profit": 113.64375057601929,
+      "score": 93,
+      "last_check_time": "2026-06-03T23:37:48.384431"
     }
   ],
   "history_count": 0,
