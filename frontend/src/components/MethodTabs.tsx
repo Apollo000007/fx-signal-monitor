@@ -65,8 +65,8 @@ const OLYMPUS_TABS: TabDef[] = [
   },
   {
     key: "mtf",
-    title: "Gaia · 全軸一致 🌍",
-    subtitle: "週/日/4H/1H 全軸トレンド一致 → 15Mパターン",
+    title: "Gaia · 日足4H一致 🌍",
+    subtitle: "日足+4H 同方向 → 15M S/Aパターン",
     icon: <Layers className="h-4 w-4" />,
     accent:
       "from-accent-gold/70 via-accent-green/40 to-accent-cyan/50 border-accent-gold/60 text-accent-gold",
@@ -121,7 +121,7 @@ const EVA_TABS: TabDef[] = [
   {
     key: "mtf",
     title: "UNIT-08 · MTF",
-    subtitle: "MULTI-TF FULL ALIGN",
+    subtitle: "D1+4H ALIGN → 15M PATTERN",
     icon: <Layers className="h-4 w-4" />,
     accent:
       "from-accent-gold/40 to-bg-card border-accent-gold/65 text-accent-gold",

@@ -1,18 +1,20 @@
-"""MTF — Multi-TimeFrame full-alignment 手法。
+"""MTF — Multi-TimeFrame trend-alignment 手法。
 
-設計思想 (ユーザー要望):
-  週足・日足・4時間足・1時間足が**全て同じトレンド方向**に揃ったときだけ、
-  15分足でその方向のチャート/ローソク足パターン(S/Aランク)が出たらエントリー。
+設計思想 (ユーザー要望・2026-06 更新):
+  **日足と4時間足が同じトレンド方向**に揃ったときだけ、15分足でその方向の
+  チャート/ローソク足パターン(S/Aランク)が出たらエントリー。
+  (当初は週/日/4H/1H 全4軸一致だったが、揃う機会が稀すぎたため日足+4Hに緩和。
+   週足・1Hは参考表示として残し、揃っていれば高確度ボーナスを加点する。)
 
-  = PA手法(D1+4H一致+15Mパターン)の上位版。整合する時間軸を4軸に強化した
-    順張り「全軸一致」高確度セットアップ。低頻度・高精度。
+  = 上位足トレンド順方向 + 15M S/Aパターンの順張りセットアップ。
 
 ルール (機械的):
   1. 各TF(W1/D1/4H/1H)を analyze_timeframe で判定 → direction(up/down/range)。
-     全4軸が up → long、全4軸が down → short。1つでも range/不一致なら見送り。
+     **必須: 日足 + 4H が同方向** (両方 up → long / 両方 down → short)。
+     週足・1H は参考 (一致なら +5 ずつボーナス、不一致でも見送りにはしない)。
   2. 15M(確定足)で patterns.detect → aligned 方向の S/A ランクパターンを採用。
   3. SL = パターン構造(ヒゲ先/ネック等)=1R、TP = 3R。api 側で最低2R床を保証。
-  4. is_alert = 4軸一致 + S/Aトリガー + スコア閾値 + SL/TP整合。
+  4. is_alert = 日足+4H一致 + S/Aトリガー + スコア閾値 + SL/TP整合。
 
 週足は日足 df を resample して内部生成する (新規fetch不要・backtest互換)。
 戻り値は strategy_pa と同じ dict 形式 (+ pattern/rank/pattern_name)。
@@ -109,39 +111,44 @@ def analyze_pair_mtf(
     price = _safe(df_eval["Close"].iloc[-1])
     result["price"] = price
 
-    # ---- 1) 4軸トレンド方向 ----
-    df_week = _to_weekly(df_long)
-    if df_week is None:
-        return _empty(pair, symbol, ["データ不足 (MTF 週足resample)"])
-
-    w_dir, _ = _tf_dir(df_week, min_bars=40)
+    # ---- 1) トレンド方向: 日足 + 4H 一致が必須 (週足/1H は参考) ----
+    df_week = _to_weekly(df_long)   # 参考表示用 (失敗しても続行)
+    w_dir, _ = _tf_dir(df_week, min_bars=40) if df_week is not None else ("none", None)
     d_dir, _ = _tf_dir(df_long, min_bars=120)
     m_dir, _ = _tf_dir(df_mid, min_bars=60)
     h_dir, _ = _tf_dir(df_h1, min_bars=60) if df_h1 is not None else ("none", None)
 
-    dirs = {"週足": w_dir, "日足": d_dir, "4H": m_dir, "1H": h_dir}
     label = {"long": "買い", "short": "売り", "none": "レンジ/不明"}
     result["reasons"].append(
-        "各軸: " + " / ".join(f"{k}={label[v]}" for k, v in dirs.items())
+        "各軸: " + " / ".join(
+            f"{k}={label[v]}" for k, v in
+            {"週足": w_dir, "日足": d_dir, "4H": m_dir, "1H": h_dir}.items()
+        )
     )
 
+    # 必須条件: 日足 + 4H が同方向
     aligned = None
-    if all(v == "long" for v in dirs.values()):
+    if d_dir == "long" and m_dir == "long":
         aligned = "long"
-    elif all(v == "short" for v in dirs.values()):
+    elif d_dir == "short" and m_dir == "short":
         aligned = "short"
 
     if aligned is None:
         result["entry_type"] = "wait"
-        result["reasons"].append("4軸トレンド不一致 — 見送り (全軸一致が条件)")
+        result["reasons"].append("日足と4Hのトレンド不一致 — 見送り (日足+4H一致が条件)")
         return result
 
     result["direction"] = aligned
     result["entry_type"] = f"mtf_{aligned}"
-    result["reasons"].append(
-        f"★週/日/4H/1H 全軸が{label[aligned]}トレンド一致 (+50)"
-    )
+    result["reasons"].append(f"★日足+4H が{label[aligned]}トレンド一致 (+50)")
     score = 50
+
+    # 参考: 週足/1H も同方向なら高確度ボーナス (条件ではない)
+    extra_axes = [k for k, v in {"週足": w_dir, "1H": h_dir}.items() if v == aligned]
+    if extra_axes:
+        bonus = 5 * len(extra_axes)
+        score += bonus
+        result["reasons"].append(f"＋{'/'.join(extra_axes)} も同方向 (+{bonus} 高確度)")
 
     # ---- 2) 15M S/A パターン (aligned 方向) ----
     matches = pat.detect(df_eval)
