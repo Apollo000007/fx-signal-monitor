@@ -65,7 +65,7 @@ TELEGRAM_CHAT_ID = None
 
 # 長期足: 大まかな方向性
 LONG_INTERVAL = "1d"
-LONG_PERIOD = "2y"
+LONG_PERIOD = "3y"      # MTF 手法の週足 resample に十分な履歴 (≈156週)
 LONG_RESAMPLE = None
 LONG_LABEL = "日足"
 

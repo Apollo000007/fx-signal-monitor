@@ -1,6 +1,6 @@
 "use client";
 
-import { Flame, Eye, Sun, TrendingUp, CandlestickChart } from "lucide-react";
+import { Flame, Eye, Sun, TrendingUp, CandlestickChart, Layers } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useSignalsStore } from "@/store/signals";
 import type { Method } from "@/lib/types";
@@ -63,6 +63,15 @@ const OLYMPUS_TABS: TabDef[] = [
       "from-accent-violet/70 via-accent-cyan/40 to-accent-gold/50 border-accent-violet/60 text-accent-violet",
     rank: "ultimate",
   },
+  {
+    key: "mtf",
+    title: "Gaia · 全軸一致 🌍",
+    subtitle: "週/日/4H/1H 全軸トレンド一致 → 15Mパターン",
+    icon: <Layers className="h-4 w-4" />,
+    accent:
+      "from-accent-gold/70 via-accent-green/40 to-accent-cyan/50 border-accent-gold/60 text-accent-gold",
+    rank: "ultimate",
+  },
 ];
 
 const EVA_TABS: TabDef[] = [
@@ -109,6 +118,15 @@ const EVA_TABS: TabDef[] = [
       "from-accent-violet/40 to-bg-card border-accent-violet/65 text-accent-violet",
     rank: "ultimate",
   },
+  {
+    key: "mtf",
+    title: "UNIT-08 · MTF",
+    subtitle: "MULTI-TF FULL ALIGN",
+    icon: <Layers className="h-4 w-4" />,
+    accent:
+      "from-accent-gold/40 to-bg-card border-accent-gold/65 text-accent-gold",
+    rank: "ultimate",
+  },
 ];
 
 export function MethodTabs() {
@@ -124,6 +142,7 @@ export function MethodTabs() {
     triple: 0,
     dtp: 0,
     pa: 0,
+    mtf: 0,
   };
   for (const r of records) {
     if (r.orz.is_alert) alertCounts.orz += 1;
@@ -133,6 +152,7 @@ export function MethodTabs() {
     if (r.triple?.is_alert) alertCounts.triple += 1;
     if (r.dtp?.is_alert) alertCounts.dtp += 1;
     if (r.pa?.is_alert) alertCounts.pa += 1;
+    if (r.mtf?.is_alert) alertCounts.mtf += 1;
   }
 
   return (

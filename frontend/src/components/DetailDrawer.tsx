@@ -249,7 +249,7 @@ export function DetailDrawer({ signal, threshold, live, onClose }: Props) {
                 <ScoreGauge score={signal.score} threshold={threshold} size="lg" showValue />
                 <div className="mt-3 flex items-center flex-wrap gap-2 text-[11px]">
                   <span className="text-text-faint">戦略タイプ:</span>
-                  {signal.method === "pa" && signal.pattern_name ? (
+                  {(signal.method === "pa" || signal.method === "mtf") && signal.pattern_name ? (
                     <span
                       className={cn(
                         "px-2 py-0.5 rounded-full border font-semibold",

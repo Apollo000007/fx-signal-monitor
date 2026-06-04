@@ -34,13 +34,14 @@ from strategy_pdhl import analyze_pair_pdhl
 from strategy_claude import analyze_pair_claude
 from strategy_dtp import analyze_pair_dtp
 from strategy_pa import analyze_pair_pa
+from strategy_mtf import analyze_pair_mtf
 import risk
 
 
 # UI/運用で使う手法のみ。claude/both は単独では使わないが、
 # triple の内部計算 (_get_signal_dict 内) では claude を参照するため
 # _get_signal_dict のロジック分岐自体は残してある。
-METHOD_NAMES = ("orz", "pdhl", "triple", "dtp", "pa")
+METHOD_NAMES = ("orz", "pdhl", "triple", "dtp", "pa", "mtf")
 
 
 def is_jpy_cross(pair: str) -> bool:
@@ -169,6 +170,16 @@ def _get_signal_dict(
         try:
             d = analyze_pair_pa(pair, symbol, df_long_sub, df_mid_sub, df_short_sub,
                                 alert_threshold=threshold)
+        except Exception:
+            return None
+        if d["direction"] == "none" or d.get("stop_loss") is None:
+            return None
+        return d
+
+    if method == "mtf":
+        try:
+            d = analyze_pair_mtf(pair, symbol, df_long_sub, df_mid_sub, df_short_sub,
+                                 df_h1=df_h1_sub, alert_threshold=threshold)
         except Exception:
             return None
         if d["direction"] == "none" or d.get("stop_loss") is None:

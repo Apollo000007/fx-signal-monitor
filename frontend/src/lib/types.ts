@@ -23,8 +23,9 @@ export type Regime = "trend_up" | "trend_down" | "range" | "unclear";
  *  - triple : ORZ + PDHL + Claude の 3 手法合意
  *  - dtp    : Daily Trend Pullback (日足トレンド押し目、エビデンスベース)
  *  - pa     : Price Action / ローソク足パターン (確定足+上位足+節目+次足確認)
+ *  - mtf    : Multi-TimeFrame 全軸一致 (週/日/4H/1H 同方向 + 15M S/Aパターン)
  */
-export type Method = "orz" | "pdhl" | "both" | "claude" | "triple" | "dtp" | "pa";
+export type Method = "orz" | "pdhl" | "both" | "claude" | "triple" | "dtp" | "pa" | "mtf";
 
 export interface TimeframeAnalysis {
   direction: string;
@@ -91,6 +92,7 @@ export interface PairRecord {
   triple: MethodSignal;
   dtp: MethodSignal;
   pa: MethodSignal;
+  mtf: MethodSignal;
 }
 
 /** UI から見る view-model: Pair レコード + 選択された手法を projection した形。 */

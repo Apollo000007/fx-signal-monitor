@@ -254,7 +254,7 @@ def write_calendar(now: datetime) -> None:
 # ---------- メイン ------------------------------------------------------------
 
 # +EV 集中: 通知は実証手法のみ (PDHL=1:1 / ORZ=不安定TP は UI 参考表示に降格)
-METHODS_TO_NOTIFY = ("triple", "dtp", "pa")
+METHODS_TO_NOTIFY = ("triple", "mtf", "dtp", "pa")
 
 # 相関・同時数キャップ (2週間デモの GBP/USD 3連敗・JPY系多重を防ぐ)
 MAX_ALERTS_PER_CYCLE = 4    # 1 サイクルで送る新規通知の上限

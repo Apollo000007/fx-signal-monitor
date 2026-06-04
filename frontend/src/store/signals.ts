@@ -144,6 +144,7 @@ export const useSignalsStore = create<SignalsState>((set, get) => ({
     triple: new Set<string>(),
     dtp: new Set<string>(),
     pa: new Set<string>(),
+    mtf: new Set<string>(),
   },
 
   fetchConfig: async () => {

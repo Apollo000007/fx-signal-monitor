@@ -172,7 +172,7 @@ export function SignalCard({ signal, pinned, onSelect, onTogglePin, threshold, l
       </div>
 
       <div className="relative flex items-center justify-between gap-2">
-        {signal.method === "pa" && signal.pattern_name ? (
+        {(signal.method === "pa" || signal.method === "mtf") && signal.pattern_name ? (
           <span
             className={cn(
               "text-[10px] font-semibold px-2 py-0.5 rounded-full border",

@@ -77,8 +77,8 @@ def _period_for(timeframe: str, period: str) -> str:
       1d  : 制限なし
     """
     if timeframe == "1d":
-        # 日足はウォームアップに 100 bars 以上必要 → 最低 6 ヶ月、安全のため 2 年
-        return "2y"
+        # 日足はウォームアップ + MTF 週足 resample 用に 3 年 (本番 config と一致)
+        return "3y"
     if timeframe == "15m":
         # 15M は 60 日 max。--period 引数で短くするのは可
         if period in ("7d", "14d", "30d", "1mo", "60d"):

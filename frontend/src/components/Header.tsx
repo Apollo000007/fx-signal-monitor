@@ -171,7 +171,7 @@ export function Header({
 
       {showShortcuts && (
         <div className={cn("mt-3 p-3 rounded-xl glass border border-border/60 text-[11px] font-mono grid grid-cols-2 md:grid-cols-4 gap-2", isEvaTheme && "eva-frame")}>
-          <ShortcutRow k="1 – 7" v="手法タブ切替 (7=PA)" />
+          <ShortcutRow k="1 – 8" v="手法タブ切替 (7=PA, 8=MTF)" />
           <ShortcutRow k="/" v="ペア検索フォーカス" />
           <ShortcutRow k="R" v="手動リフレッシュ" />
           <ShortcutRow k="Esc" v="詳細/ヘルプを閉じる" />

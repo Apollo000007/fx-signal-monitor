@@ -62,6 +62,8 @@ def is_pair_allowed(method: str, pair: str) -> tuple[bool, str]:
         return True, ""  # PA は pair×pattern で自己判定
     if method == "triple":
         return True, "TRIPLE 3手法合議 (常時許可・合議が EV ゲート)"
+    if method == "mtf":
+        return True, "MTF 全軸一致 (常時許可・4軸一致が EV ゲート)"
 
     wl = _load()
     entries = (wl or {}).get("entries", {})

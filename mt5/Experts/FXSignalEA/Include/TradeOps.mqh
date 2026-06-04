@@ -5,7 +5,7 @@
 //|  Magic Number 設計:                                               |
 //|     MagicBase + pair_index * 10 + method_index                   |
 //|       pair_index : 0〜14 (15 ペア)                                |
-//|       method_index : 0=orz 1=pdhl 2=both 3=claude 4=triple 5=dtp 6=pa |
+//|       method_index : 0=orz 1=pdhl 2=both 3=claude 4=triple 5=dtp 6=pa 7=mtf |
 //|     例: USDJPY (idx=0) × triple (idx=4) → MagicBase+4             |
 //|  これにより同 pair × method の重複オープンを防止できる。           |
 //+------------------------------------------------------------------+
@@ -26,13 +26,14 @@ int MethodIndex(const string method)
    if(method == "triple") return 4;
    if(method == "dtp")    return 5;
    if(method == "pa")     return 6;
+   if(method == "mtf")    return 7;
    return -1;
 }
 
 string MethodNameByIndex(const int i)
 {
-   string names[7] = {"orz", "pdhl", "both", "claude", "triple", "dtp", "pa"};
-   if(i >= 0 && i < 7) return names[i];
+   string names[8] = {"orz", "pdhl", "both", "claude", "triple", "dtp", "pa", "mtf"};
+   if(i >= 0 && i < 8) return names[i];
    return "";
 }
 

@@ -13,6 +13,7 @@ const METHOD_LABEL: Record<string, string> = {
   triple: "3 手法",
   dtp: "DTP 押し目",
   pa: "PA パターン",
+  mtf: "MTF 全軸一致",
 };
 
 export function PaperStats() {
