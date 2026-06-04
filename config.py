@@ -17,7 +17,7 @@ PAIRS = {
     "NZD/JPY": "NZDJPY=X",
     "CAD/JPY": "CADJPY=X",
     "CHF/JPY": "CHFJPY=X",
-    "ZAR/JPY": "ZARJPY=X",
+    # ZAR/JPY は除外 (スプレッド広・ボラ過大でトレード性が低い)
     # EUR cross
     "EUR/GBP": "EURGBP=X",
 }

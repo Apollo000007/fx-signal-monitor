@@ -48,7 +48,7 @@ input int     RefreshSec         = 60;      // API ポーリング間隔 (秒)
 input long    MagicBase          = 880000;  // この EA の建玉に振る magic 番号の基点
 
 input group "━━━ 2. 対象通貨ペア ━━━"
-input string  TradingPairs       = "USDJPY,EURUSD,GBPUSD,AUDUSD,NZDUSD,USDCAD,USDCHF,EURJPY,GBPJPY,AUDJPY,NZDJPY,CADJPY,CHFJPY,ZARJPY,EURGBP"; // カンマ区切り
+input string  TradingPairs       = "USDJPY,EURUSD,GBPUSD,AUDUSD,NZDUSD,USDCAD,USDCHF,EURJPY,GBPJPY,AUDJPY,NZDJPY,CADJPY,CHFJPY,EURGBP"; // カンマ区切り (ZARJPY除外)
 input bool    AutoMapSymbol      = true;    // ブローカーのサフィックスを自動付与 (USDJPY → USDJPY.m 等)
 
 input group "━━━ 3. 有効化する手法 ━━━"

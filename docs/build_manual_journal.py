@@ -78,7 +78,7 @@ PAIRS = [
     "USD/JPY", "EUR/USD", "GBP/USD", "AUD/USD", "NZD/USD",
     "USD/CAD", "USD/CHF",
     "EUR/JPY", "GBP/JPY", "AUD/JPY", "NZD/JPY",
-    "CAD/JPY", "CHF/JPY", "ZAR/JPY",
+    "CAD/JPY", "CHF/JPY",
     "EUR/GBP",
 ]
 DIRECTIONS = ["Long", "Short"]

@@ -40,8 +40,9 @@
 
 ```
 Majors      : USD/JPY, EUR/USD, GBP/USD, AUD/USD, NZD/USD, USD/CAD, USD/CHF
-JPY crosses : EUR/JPY, GBP/JPY, AUD/JPY, NZD/JPY, CAD/JPY, CHF/JPY, ZAR/JPY
+JPY crosses : EUR/JPY, GBP/JPY, AUD/JPY, NZD/JPY, CAD/JPY, CHF/JPY
 EUR cross   : EUR/GBP
+（ZAR/JPY はスプレッド広・ボラ過大のため監視対象から除外）
 ```
 合計 **15 ペア**。シンボルは yfinance 形式 (`EURUSD=X` 等)。
 
