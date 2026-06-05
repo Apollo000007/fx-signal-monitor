@@ -1,21 +1,7 @@
 {
-  "updated_at": "2026-06-05T01:19:06.297258+00:00",
-  "open_count": 1,
-  "open_positions": [
-    {
-      "id": "CAD/JPY-triple-1780622346",
-      "pair": "CAD/JPY",
-      "method": "triple",
-      "direction": "short",
-      "entry_type": "triple_confluence",
-      "entry_time": "2026-06-05T01:19:06.297258",
-      "entry_price": 114.96499633789062,
-      "stop_loss": 115.0402350283612,
-      "take_profit": 114.81451895694948,
-      "score": 92,
-      "last_check_time": "2026-06-05T01:19:06.297258"
-    }
-  ],
+  "updated_at": "2026-06-05T01:24:13.013600+00:00",
+  "open_count": 0,
+  "open_positions": [],
   "history_count": 0,
   "recent_trades": [],
   "stats": {
