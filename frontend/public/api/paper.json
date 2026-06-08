@@ -1,7 +1,21 @@
 {
-  "updated_at": "2026-06-08T07:31:58.148610+00:00",
-  "open_count": 0,
-  "open_positions": [],
+  "updated_at": "2026-06-08T07:37:13.815122+00:00",
+  "open_count": 1,
+  "open_positions": [
+    {
+      "id": "USD/CHF-dtp-1780904233",
+      "pair": "USD/CHF",
+      "method": "dtp",
+      "direction": "long",
+      "entry_type": "dtp_long",
+      "entry_time": "2026-06-08T07:37:13.815122",
+      "entry_price": 0.7972599864006042,
+      "stop_loss": 0.7952539620995521,
+      "take_profit": 0.8032780593037606,
+      "score": 87,
+      "last_check_time": "2026-06-08T07:37:13.815122"
+    }
+  ],
   "history_count": 0,
   "recent_trades": [],
   "stats": {
