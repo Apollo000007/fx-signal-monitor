@@ -1,21 +1,7 @@
 {
-  "updated_at": "2026-06-11T07:50:57.388980+00:00",
-  "open_count": 1,
-  "open_positions": [
-    {
-      "id": "USD/CHF-triple-1781164257",
-      "pair": "USD/CHF",
-      "method": "triple",
-      "direction": "long",
-      "entry_type": "triple_confluence",
-      "entry_time": "2026-06-11T07:50:57.388980",
-      "entry_price": 0.7991300225257874,
-      "stop_loss": 0.7984699830886022,
-      "take_profit": 0.8004501014001577,
-      "score": 87,
-      "last_check_time": "2026-06-11T07:50:57.388980"
-    }
-  ],
+  "updated_at": "2026-06-11T07:56:01.560914+00:00",
+  "open_count": 0,
+  "open_positions": [],
   "history_count": 0,
   "recent_trades": [],
   "stats": {
