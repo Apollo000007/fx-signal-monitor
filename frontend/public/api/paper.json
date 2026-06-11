@@ -1,7 +1,21 @@
 {
-  "updated_at": "2026-06-11T10:15:11.290669+00:00",
-  "open_count": 0,
-  "open_positions": [],
+  "updated_at": "2026-06-11T10:20:19.520749+00:00",
+  "open_count": 1,
+  "open_positions": [
+    {
+      "id": "NZD/USD-triple-1781173219",
+      "pair": "NZD/USD",
+      "method": "triple",
+      "direction": "short",
+      "entry_type": "triple_confluence",
+      "entry_time": "2026-06-11T10:20:19.520749",
+      "entry_price": 0.5781349539756775,
+      "stop_loss": 0.5785789398943431,
+      "take_profit": 0.5772469821383464,
+      "score": 95,
+      "last_check_time": "2026-06-11T10:20:19.520749"
+    }
+  ],
   "history_count": 0,
   "recent_trades": [],
   "stats": {
