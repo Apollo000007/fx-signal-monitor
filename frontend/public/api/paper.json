@@ -1,21 +1,7 @@
 {
-  "updated_at": "2026-06-11T03:28:55.347987+00:00",
-  "open_count": 1,
-  "open_positions": [
-    {
-      "id": "USD/JPY-mtf-1781148535",
-      "pair": "USD/JPY",
-      "method": "mtf",
-      "direction": "long",
-      "entry_type": "mtf_long",
-      "entry_time": "2026-06-11T03:28:55.347987",
-      "entry_price": 160.5240020751953,
-      "stop_loss": 160.34048307800293,
-      "take_profit": 161.07455906677245,
-      "score": 100,
-      "last_check_time": "2026-06-11T03:28:55.347987"
-    }
-  ],
+  "updated_at": "2026-06-11T03:33:58.810228+00:00",
+  "open_count": 0,
+  "open_positions": [],
   "history_count": 0,
   "recent_trades": [],
   "stats": {
