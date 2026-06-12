@@ -1,58 +1,19 @@
 {
-  "updated_at": "2026-06-12T16:39:55.099087+00:00",
-  "open_count": 4,
+  "updated_at": "2026-06-12T16:45:09.624579+00:00",
+  "open_count": 1,
   "open_positions": [
     {
-      "id": "USD/CAD-mtf-1781282395",
-      "pair": "USD/CAD",
-      "method": "mtf",
-      "direction": "long",
-      "entry_type": "mtf_long",
-      "entry_time": "2026-06-12T16:39:55.099087",
-      "entry_price": 1.397320032119751,
-      "stop_loss": 1.3950820856094361,
-      "take_profit": 1.4040338716506955,
-      "score": 100,
-      "last_check_time": "2026-06-12T16:39:55.099087"
-    },
-    {
-      "id": "NZD/USD-dtp-1781282395",
+      "id": "NZD/USD-dtp-1781282709",
       "pair": "NZD/USD",
       "method": "dtp",
       "direction": "short",
       "entry_type": "dtp_short",
-      "entry_time": "2026-06-12T16:39:55.099087",
-      "entry_price": 0.5833625197410583,
+      "entry_time": "2026-06-12T16:45:09.624579",
+      "entry_price": 0.5833965539932251,
       "stop_loss": 0.5843890086412429,
-      "take_profit": 0.5802830530405048,
+      "take_profit": 0.5804191900491718,
       "score": 100,
-      "last_check_time": "2026-06-12T16:39:55.099087"
-    },
-    {
-      "id": "USD/CHF-dtp-1781282395",
-      "pair": "USD/CHF",
-      "method": "dtp",
-      "direction": "long",
-      "entry_type": "dtp_long",
-      "entry_time": "2026-06-12T16:39:55.099087",
-      "entry_price": 0.796500027179718,
-      "stop_loss": 0.7949942266345024,
-      "take_profit": 0.801017428815365,
-      "score": 100,
-      "last_check_time": "2026-06-12T16:39:55.099087"
-    },
-    {
-      "id": "GBP/JPY-dtp-1781282395",
-      "pair": "GBP/JPY",
-      "method": "dtp",
-      "direction": "long",
-      "entry_type": "dtp_long",
-      "entry_time": "2026-06-12T16:39:55.099087",
-      "entry_price": 214.88999938964844,
-      "stop_loss": 214.47430636596678,
-      "take_profit": 216.1370784606934,
-      "score": 100,
-      "last_check_time": "2026-06-12T16:39:55.099087"
+      "last_check_time": "2026-06-12T16:45:09.624579"
     }
   ],
   "history_count": 0,
