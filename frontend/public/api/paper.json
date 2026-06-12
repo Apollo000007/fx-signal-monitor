@@ -1,19 +1,19 @@
 {
-  "updated_at": "2026-06-12T01:17:46.225149+00:00",
+  "updated_at": "2026-06-12T01:22:56.435554+00:00",
   "open_count": 1,
   "open_positions": [
     {
-      "id": "USD/CAD-mtf-1781227066",
+      "id": "USD/CAD-mtf-1781227376",
       "pair": "USD/CAD",
       "method": "mtf",
       "direction": "long",
       "entry_type": "mtf_long",
-      "entry_time": "2026-06-12T01:17:46.225149",
+      "entry_time": "2026-06-12T01:22:56.435554",
       "entry_price": 1.397819995880127,
       "stop_loss": 1.3960817323684693,
       "take_profit": 1.4030347864150998,
       "score": 100,
-      "last_check_time": "2026-06-12T01:17:46.225149"
+      "last_check_time": "2026-06-12T01:22:56.435554"
     }
   ],
   "history_count": 0,
