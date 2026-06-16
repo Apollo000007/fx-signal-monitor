@@ -1,19 +1,32 @@
 {
-  "updated_at": "2026-06-16T20:26:56.056613+00:00",
-  "open_count": 1,
+  "updated_at": "2026-06-16T20:32:09.352966+00:00",
+  "open_count": 2,
   "open_positions": [
     {
-      "id": "GBP/JPY-dtp-1781641616",
-      "pair": "GBP/JPY",
-      "method": "dtp",
+      "id": "USD/CAD-mtf-1781641929",
+      "pair": "USD/CAD",
+      "method": "mtf",
       "direction": "long",
-      "entry_type": "dtp_long",
-      "entry_time": "2026-06-16T20:26:56.056613",
-      "entry_price": 215.41799926757812,
-      "stop_loss": 215.17061558532714,
-      "take_profit": 216.16015031433108,
+      "entry_type": "mtf_long",
+      "entry_time": "2026-06-16T20:32:09.352966",
+      "entry_price": 1.3994499444961548,
+      "stop_loss": 1.397680455493927,
+      "take_profit": 1.404758411502838,
       "score": 100,
-      "last_check_time": "2026-06-16T20:26:56.056613"
+      "last_check_time": "2026-06-16T20:32:09.352966"
+    },
+    {
+      "id": "GBP/JPY-mtf-1781641929",
+      "pair": "GBP/JPY",
+      "method": "mtf",
+      "direction": "long",
+      "entry_type": "mtf_long",
+      "entry_time": "2026-06-16T20:32:09.352966",
+      "entry_price": 215.4219970703125,
+      "stop_loss": 215.14457861328125,
+      "take_profit": 216.25425244140624,
+      "score": 100,
+      "last_check_time": "2026-06-16T20:32:09.352966"
     }
   ],
   "history_count": 0,
