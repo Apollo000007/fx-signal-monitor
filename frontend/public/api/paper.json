@@ -1,19 +1,19 @@
 {
-  "updated_at": "2026-06-16T04:06:55.561252+00:00",
+  "updated_at": "2026-06-16T04:12:05.084558+00:00",
   "open_count": 1,
   "open_positions": [
     {
-      "id": "USD/CAD-triple-1781582815",
+      "id": "USD/CAD-triple-1781583125",
       "pair": "USD/CAD",
       "method": "triple",
       "direction": "long",
       "entry_type": "triple_confluence",
-      "entry_time": "2026-06-16T04:06:55.561252",
-      "entry_price": 1.4001599550247192,
-      "stop_loss": 1.399060330941928,
-      "take_profit": 1.4023592031903016,
+      "entry_time": "2026-06-16T04:12:05.084558",
+      "entry_price": 1.4002900123596191,
+      "stop_loss": 1.3991600154528403,
+      "take_profit": 1.4025500061731768,
       "score": 93,
-      "last_check_time": "2026-06-16T04:06:55.561252"
+      "last_check_time": "2026-06-16T04:12:05.084558"
     }
   ],
   "history_count": 0,
