@@ -1,7 +1,21 @@
 {
-  "updated_at": "2026-06-17T08:11:34.292499+00:00",
-  "open_count": 0,
-  "open_positions": [],
+  "updated_at": "2026-06-17T08:16:38.922159+00:00",
+  "open_count": 1,
+  "open_positions": [
+    {
+      "id": "NZD/USD-dtp-1781684198",
+      "pair": "NZD/USD",
+      "method": "dtp",
+      "direction": "short",
+      "entry_type": "dtp_short",
+      "entry_time": "2026-06-17T08:16:38.922159",
+      "entry_price": 0.5820383429527283,
+      "stop_loss": 0.584116223692894,
+      "take_profit": 0.5758047007322312,
+      "score": 100,
+      "last_check_time": "2026-06-17T08:16:38.922159"
+    }
+  ],
   "history_count": 0,
   "recent_trades": [],
   "stats": {
