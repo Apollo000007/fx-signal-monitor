@@ -1,34 +1,7 @@
 {
-  "updated_at": "2026-06-17T13:08:59.590250+00:00",
-  "open_count": 2,
-  "open_positions": [
-    {
-      "id": "GBP/JPY-dtp-1781701739",
-      "pair": "GBP/JPY",
-      "method": "dtp",
-      "direction": "long",
-      "entry_type": "dtp_long",
-      "entry_time": "2026-06-17T13:08:59.590250",
-      "entry_price": 214.97900390625,
-      "stop_loss": 214.56521878051757,
-      "take_profit": 216.2203592834473,
-      "score": 100,
-      "last_check_time": "2026-06-17T13:08:59.590250"
-    },
-    {
-      "id": "NZD/USD-dtp-1781701739",
-      "pair": "NZD/USD",
-      "method": "dtp",
-      "direction": "short",
-      "entry_type": "dtp_short",
-      "entry_time": "2026-06-17T13:08:59.590250",
-      "entry_price": 0.5816320776939392,
-      "stop_loss": 0.5827221088409423,
-      "take_profit": 0.5783619842529298,
-      "score": 100,
-      "last_check_time": "2026-06-17T13:08:59.590250"
-    }
-  ],
+  "updated_at": "2026-06-17T13:14:09.708403+00:00",
+  "open_count": 0,
+  "open_positions": [],
   "history_count": 0,
   "recent_trades": [],
   "stats": {
