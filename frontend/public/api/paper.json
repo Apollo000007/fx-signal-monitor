@@ -1,45 +1,32 @@
 {
-  "updated_at": "2026-06-18T15:26:30.309408+00:00",
-  "open_count": 3,
+  "updated_at": "2026-06-18T15:31:41.671562+00:00",
+  "open_count": 2,
   "open_positions": [
     {
-      "id": "USD/CAD-mtf-1781796390",
-      "pair": "USD/CAD",
-      "method": "mtf",
-      "direction": "long",
-      "entry_type": "mtf_long",
-      "entry_time": "2026-06-18T15:26:30.309408",
-      "entry_price": 1.4134399890899658,
-      "stop_loss": 1.4101691919326782,
-      "take_profit": 1.4232523805618287,
-      "score": 100,
-      "last_check_time": "2026-06-18T15:26:30.309408"
-    },
-    {
-      "id": "USD/JPY-mtf-1781796390",
+      "id": "USD/JPY-mtf-1781796701",
       "pair": "USD/JPY",
       "method": "mtf",
       "direction": "long",
       "entry_type": "mtf_long",
-      "entry_time": "2026-06-18T15:26:30.309408",
-      "entry_price": 160.88699340820312,
-      "stop_loss": 160.63236022949218,
-      "take_profit": 161.65089294433596,
+      "entry_time": "2026-06-18T15:31:41.671562",
+      "entry_price": 160.9739990234375,
+      "stop_loss": 160.63227322387695,
+      "take_profit": 161.99917642211915,
       "score": 100,
-      "last_check_time": "2026-06-18T15:26:30.309408"
+      "last_check_time": "2026-06-18T15:31:41.671562"
     },
     {
-      "id": "USD/CHF-dtp-1781796390",
-      "pair": "USD/CHF",
-      "method": "dtp",
+      "id": "USD/CAD-mtf-1781796701",
+      "pair": "USD/CAD",
+      "method": "mtf",
       "direction": "long",
-      "entry_type": "dtp_long",
-      "entry_time": "2026-06-18T15:26:30.309408",
-      "entry_price": 0.8032199740409851,
-      "stop_loss": 0.8017075130939484,
-      "take_profit": 0.8077573568820953,
-      "score": 75,
-      "last_check_time": "2026-06-18T15:26:30.309408"
+      "entry_type": "mtf_long",
+      "entry_time": "2026-06-18T15:31:41.671562",
+      "entry_price": 1.413349986076355,
+      "stop_loss": 1.4096693001747131,
+      "take_profit": 1.4243920437812805,
+      "score": 100,
+      "last_check_time": "2026-06-18T15:31:41.671562"
     }
   ],
   "history_count": 0,
