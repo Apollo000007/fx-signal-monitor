@@ -1,32 +1,58 @@
 {
-  "updated_at": "2026-06-18T11:00:37.674379+00:00",
-  "open_count": 2,
+  "updated_at": "2026-06-18T11:05:45.276649+00:00",
+  "open_count": 4,
   "open_positions": [
     {
-      "id": "USD/JPY-mtf-1781780437",
+      "id": "USD/JPY-mtf-1781780745",
       "pair": "USD/JPY",
       "method": "mtf",
       "direction": "long",
       "entry_type": "mtf_long",
-      "entry_time": "2026-06-18T11:00:37.674379",
+      "entry_time": "2026-06-18T11:05:45.276649",
       "entry_price": 160.91600036621094,
       "stop_loss": 160.30408033752443,
       "take_profit": 162.75176045227047,
       "score": 100,
-      "last_check_time": "2026-06-18T11:00:37.674379"
+      "last_check_time": "2026-06-18T11:05:45.276649"
     },
     {
-      "id": "USD/CAD-mtf-1781780437",
+      "id": "USD/CAD-mtf-1781780745",
       "pair": "USD/CAD",
       "method": "mtf",
       "direction": "long",
       "entry_type": "mtf_long",
-      "entry_time": "2026-06-18T11:00:37.674379",
+      "entry_time": "2026-06-18T11:05:45.276649",
       "entry_price": 1.4123599529266357,
       "stop_loss": 1.4105701223373412,
       "take_profit": 1.4177294446945192,
       "score": 100,
-      "last_check_time": "2026-06-18T11:00:37.674379"
+      "last_check_time": "2026-06-18T11:05:45.276649"
+    },
+    {
+      "id": "NZD/USD-dtp-1781780745",
+      "pair": "NZD/USD",
+      "method": "dtp",
+      "direction": "short",
+      "entry_type": "dtp_short",
+      "entry_time": "2026-06-18T11:05:45.276649",
+      "entry_price": 0.5761032104492188,
+      "stop_loss": 0.5803234866857528,
+      "take_profit": 0.5634423817396165,
+      "score": 75,
+      "last_check_time": "2026-06-18T11:05:45.276649"
+    },
+    {
+      "id": "USD/CHF-dtp-1781780745",
+      "pair": "USD/CHF",
+      "method": "dtp",
+      "direction": "long",
+      "entry_type": "dtp_long",
+      "entry_time": "2026-06-18T11:05:45.276649",
+      "entry_price": 0.8037800192832947,
+      "stop_loss": 0.7975316789746284,
+      "take_profit": 0.8225250402092935,
+      "score": 75,
+      "last_check_time": "2026-06-18T11:05:45.276649"
     }
   ],
   "history_count": 0,
