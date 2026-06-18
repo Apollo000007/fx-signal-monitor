@@ -1,45 +1,45 @@
 {
-  "updated_at": "2026-06-18T11:10:58.636458+00:00",
+  "updated_at": "2026-06-18T11:16:06.016164+00:00",
   "open_count": 3,
   "open_positions": [
     {
-      "id": "USD/JPY-mtf-1781781058",
+      "id": "USD/JPY-mtf-1781781366",
       "pair": "USD/JPY",
       "method": "mtf",
       "direction": "long",
       "entry_type": "mtf_long",
-      "entry_time": "2026-06-18T11:10:58.636458",
-      "entry_price": 160.91600036621094,
-      "stop_loss": 160.30408033752443,
-      "take_profit": 162.75176045227047,
+      "entry_time": "2026-06-18T11:16:06.016164",
+      "entry_price": 160.93299865722656,
+      "stop_loss": 160.3040633392334,
+      "take_profit": 162.81980461120602,
       "score": 100,
-      "last_check_time": "2026-06-18T11:10:58.636458"
+      "last_check_time": "2026-06-18T11:16:06.016164"
     },
     {
-      "id": "USD/CAD-mtf-1781781058",
+      "id": "USD/CAD-mtf-1781781366",
       "pair": "USD/CAD",
       "method": "mtf",
       "direction": "long",
       "entry_type": "mtf_long",
-      "entry_time": "2026-06-18T11:10:58.636458",
-      "entry_price": 1.4123599529266357,
-      "stop_loss": 1.4105701223373412,
-      "take_profit": 1.4177294446945192,
+      "entry_time": "2026-06-18T11:16:06.016164",
+      "entry_price": 1.4124900102615356,
+      "stop_loss": 1.4105700182914733,
+      "take_profit": 1.4182499861717226,
       "score": 100,
-      "last_check_time": "2026-06-18T11:10:58.636458"
+      "last_check_time": "2026-06-18T11:16:06.016164"
     },
     {
-      "id": "NZD/USD-dtp-1781781058",
+      "id": "NZD/USD-dtp-1781781366",
       "pair": "NZD/USD",
       "method": "dtp",
       "direction": "short",
       "entry_type": "dtp_short",
-      "entry_time": "2026-06-18T11:10:58.636458",
+      "entry_time": "2026-06-18T11:16:06.016164",
       "entry_price": 0.5761032104492188,
       "stop_loss": 0.5803234866857528,
       "take_profit": 0.5634423817396165,
       "score": 75,
-      "last_check_time": "2026-06-18T11:10:58.636458"
+      "last_check_time": "2026-06-18T11:16:06.016164"
     }
   ],
   "history_count": 0,
