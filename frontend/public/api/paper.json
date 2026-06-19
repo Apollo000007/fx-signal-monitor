@@ -1,45 +1,32 @@
 {
-  "updated_at": "2026-06-19T18:58:20.986301+00:00",
-  "open_count": 3,
+  "updated_at": "2026-06-19T19:03:31.081648+00:00",
+  "open_count": 2,
   "open_positions": [
     {
-      "id": "USD/CAD-mtf-1781895500",
+      "id": "EUR/USD-mtf-1781895811",
+      "pair": "EUR/USD",
+      "method": "mtf",
+      "direction": "short",
+      "entry_type": "mtf_short",
+      "entry_time": "2026-06-19T19:03:31.081648",
+      "entry_price": 1.1479737758636475,
+      "stop_loss": 1.149419536781311,
+      "take_profit": 1.143636493110657,
+      "score": 100,
+      "last_check_time": "2026-06-19T19:03:31.081648"
+    },
+    {
+      "id": "USD/CAD-mtf-1781895811",
       "pair": "USD/CAD",
       "method": "mtf",
       "direction": "long",
       "entry_type": "mtf_long",
-      "entry_time": "2026-06-19T18:58:20.986301",
-      "entry_price": 1.4170000553131104,
-      "stop_loss": 1.4154663888931274,
-      "take_profit": 1.4216010545730593,
+      "entry_time": "2026-06-19T19:03:31.081648",
+      "entry_price": 1.417389988899231,
+      "stop_loss": 1.4155660935401917,
+      "take_profit": 1.4228616749763487,
       "score": 100,
-      "last_check_time": "2026-06-19T18:58:20.986301"
-    },
-    {
-      "id": "NZD/USD-dtp-1781895500",
-      "pair": "NZD/USD",
-      "method": "dtp",
-      "direction": "short",
-      "entry_type": "dtp_short",
-      "entry_time": "2026-06-19T18:58:20.986301",
-      "entry_price": 0.574349582195282,
-      "stop_loss": 0.5746598578095435,
-      "take_profit": 0.5734187553524973,
-      "score": 87,
-      "last_check_time": "2026-06-19T18:58:20.986301"
-    },
-    {
-      "id": "USD/CHF-dtp-1781895500",
-      "pair": "USD/CHF",
-      "method": "dtp",
-      "direction": "long",
-      "entry_type": "dtp_long",
-      "entry_time": "2026-06-19T18:58:20.986301",
-      "entry_price": 0.8067499995231628,
-      "stop_loss": 0.8063428562879562,
-      "take_profit": 0.8079714292287827,
-      "score": 87,
-      "last_check_time": "2026-06-19T18:58:20.986301"
+      "last_check_time": "2026-06-19T19:03:31.081648"
     }
   ],
   "history_count": 0,
