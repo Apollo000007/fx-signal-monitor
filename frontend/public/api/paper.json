@@ -1,32 +1,58 @@
 {
-  "updated_at": "2026-06-19T13:15:25.592272+00:00",
-  "open_count": 2,
+  "updated_at": "2026-06-19T13:20:38.466010+00:00",
+  "open_count": 4,
   "open_positions": [
     {
-      "id": "USD/CAD-mtf-1781874925",
+      "id": "USD/CAD-mtf-1781875238",
       "pair": "USD/CAD",
       "method": "mtf",
       "direction": "long",
       "entry_type": "mtf_long",
-      "entry_time": "2026-06-19T13:15:25.592272",
+      "entry_time": "2026-06-19T13:20:38.466010",
       "entry_price": 1.4164700508117676,
       "stop_loss": 1.4119668281555176,
       "take_profit": 1.4299797187805177,
       "score": 100,
-      "last_check_time": "2026-06-19T13:15:25.592272"
+      "last_check_time": "2026-06-19T13:20:38.466010"
     },
     {
-      "id": "USD/CHF-mtf-1781874925",
+      "id": "EUR/USD-mtf-1781875238",
+      "pair": "EUR/USD",
+      "method": "mtf",
+      "direction": "short",
+      "entry_type": "mtf_short",
+      "entry_time": "2026-06-19T13:20:38.466010",
+      "entry_price": 1.1466574668884277,
+      "stop_loss": 1.148627649307251,
+      "take_profit": 1.1407469196319582,
+      "score": 100,
+      "last_check_time": "2026-06-19T13:20:38.466010"
+    },
+    {
+      "id": "USD/CHF-dtp-1781875238",
+      "pair": "USD/CHF",
+      "method": "dtp",
+      "direction": "long",
+      "entry_type": "dtp_long",
+      "entry_time": "2026-06-19T13:20:38.466010",
+      "entry_price": 0.8076599836349487,
+      "stop_loss": 0.8051839907169343,
+      "take_profit": 0.8150879623889922,
+      "score": 75,
+      "last_check_time": "2026-06-19T13:20:38.466010"
+    },
+    {
+      "id": "USD/CHF-mtf-1781875238",
       "pair": "USD/CHF",
       "method": "mtf",
       "direction": "long",
       "entry_type": "mtf_long",
-      "entry_time": "2026-06-19T13:15:25.592272",
+      "entry_time": "2026-06-19T13:20:38.466010",
       "entry_price": 0.8076099753379822,
       "stop_loss": 0.8053438927173614,
       "take_profit": 0.8144082231998445,
       "score": 100,
-      "last_check_time": "2026-06-19T13:15:25.592272"
+      "last_check_time": "2026-06-19T13:20:38.466010"
     }
   ],
   "history_count": 0,
