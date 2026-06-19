@@ -1,45 +1,32 @@
 {
-  "updated_at": "2026-06-19T16:55:33.791509+00:00",
-  "open_count": 3,
+  "updated_at": "2026-06-19T17:00:43.415142+00:00",
+  "open_count": 2,
   "open_positions": [
     {
-      "id": "USD/JPY-mtf-1781888133",
-      "pair": "USD/JPY",
-      "method": "mtf",
-      "direction": "long",
-      "entry_type": "mtf_long",
-      "entry_time": "2026-06-19T16:55:33.791509",
-      "entry_price": 161.33099365234375,
-      "stop_loss": 161.09367388916016,
-      "take_profit": 162.04295294189453,
-      "score": 100,
-      "last_check_time": "2026-06-19T16:55:33.791509"
-    },
-    {
-      "id": "USD/CAD-mtf-1781888133",
+      "id": "USD/CAD-mtf-1781888443",
       "pair": "USD/CAD",
       "method": "mtf",
       "direction": "long",
       "entry_type": "mtf_long",
-      "entry_time": "2026-06-19T16:55:33.791509",
-      "entry_price": 1.4176700115203857,
-      "stop_loss": 1.4119658681869507,
-      "take_profit": 1.434782441520691,
+      "entry_time": "2026-06-19T17:00:43.415142",
+      "entry_price": 1.4176100492477417,
+      "stop_loss": 1.4119659161567688,
+      "take_profit": 1.4345424485206604,
       "score": 100,
-      "last_check_time": "2026-06-19T16:55:33.791509"
+      "last_check_time": "2026-06-19T17:00:43.415142"
     },
     {
-      "id": "USD/CHF-dtp-1781888133",
+      "id": "USD/CHF-mtf-1781888443",
       "pair": "USD/CHF",
-      "method": "dtp",
+      "method": "mtf",
       "direction": "long",
-      "entry_type": "dtp_long",
-      "entry_time": "2026-06-19T16:55:33.791509",
-      "entry_price": 0.8075799942016602,
-      "stop_loss": 0.8063428562879562,
-      "take_profit": 0.811291407942772,
-      "score": 75,
-      "last_check_time": "2026-06-19T16:55:33.791509"
+      "entry_type": "mtf_long",
+      "entry_time": "2026-06-19T17:00:43.415142",
+      "entry_price": 0.8075100183486938,
+      "stop_loss": 0.806703971862793,
+      "take_profit": 0.8099281578063965,
+      "score": 100,
+      "last_check_time": "2026-06-19T17:00:43.415142"
     }
   ],
   "history_count": 0,
