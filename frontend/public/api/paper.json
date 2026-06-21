@@ -1,19 +1,19 @@
 {
-  "updated_at": "2026-06-21T19:58:01.826606+00:00",
+  "updated_at": "2026-06-21T20:03:08.012225+00:00",
   "open_count": 1,
   "open_positions": [
     {
-      "id": "USD/CHF-mtf-1782071881",
+      "id": "USD/CHF-mtf-1782072188",
       "pair": "USD/CHF",
       "method": "mtf",
       "direction": "long",
       "entry_type": "mtf_long",
-      "entry_time": "2026-06-21T19:58:01.826606",
+      "entry_time": "2026-06-21T20:03:08.012225",
       "entry_price": 0.8065000176429749,
       "stop_loss": 0.805394788980484,
       "take_profit": 0.8098157036304474,
       "score": 100,
-      "last_check_time": "2026-06-21T19:58:01.826606"
+      "last_check_time": "2026-06-21T20:03:08.012225"
     }
   ],
   "history_count": 0,
