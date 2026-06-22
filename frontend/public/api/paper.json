@@ -1,19 +1,32 @@
 {
-  "updated_at": "2026-06-22T07:09:58.218161+00:00",
-  "open_count": 1,
+  "updated_at": "2026-06-22T07:15:04.921128+00:00",
+  "open_count": 2,
   "open_positions": [
     {
-      "id": "USD/JPY-mtf-1782112198",
+      "id": "USD/JPY-mtf-1782112504",
       "pair": "USD/JPY",
       "method": "mtf",
       "direction": "long",
       "entry_type": "mtf_long",
-      "entry_time": "2026-06-22T07:09:58.218161",
+      "entry_time": "2026-06-22T07:15:04.921128",
       "entry_price": 161.6820068359375,
       "stop_loss": 161.4453126220703,
       "take_profit": 162.3920894775391,
       "score": 100,
-      "last_check_time": "2026-06-22T07:09:58.218161"
+      "last_check_time": "2026-06-22T07:15:04.921128"
+    },
+    {
+      "id": "NZD/USD-dtp-1782112504",
+      "pair": "NZD/USD",
+      "method": "dtp",
+      "direction": "short",
+      "entry_type": "dtp_short",
+      "entry_time": "2026-06-22T07:15:04.921128",
+      "entry_price": 0.5730330348014832,
+      "stop_loss": 0.5739349968433379,
+      "take_profit": 0.5703271486759188,
+      "score": 87,
+      "last_check_time": "2026-06-22T07:15:04.921128"
     }
   ],
   "history_count": 0,
