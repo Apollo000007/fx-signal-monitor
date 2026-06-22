@@ -1,58 +1,58 @@
 {
-  "updated_at": "2026-06-22T00:08:59.263113+00:00",
+  "updated_at": "2026-06-22T00:14:10.979788+00:00",
   "open_count": 4,
   "open_positions": [
     {
-      "id": "USD/JPY-mtf-1782086939",
+      "id": "USD/JPY-mtf-1782087250",
       "pair": "USD/JPY",
       "method": "mtf",
       "direction": "long",
       "entry_type": "mtf_long",
-      "entry_time": "2026-06-22T00:08:59.263113",
+      "entry_time": "2026-06-22T00:14:10.979788",
       "entry_price": 161.4340057373047,
       "stop_loss": 161.15531938171387,
       "take_profit": 162.27006480407715,
       "score": 100,
-      "last_check_time": "2026-06-22T00:08:59.263113"
+      "last_check_time": "2026-06-22T00:14:10.979788"
     },
     {
-      "id": "EUR/USD-mtf-1782086939",
+      "id": "EUR/USD-mtf-1782087250",
       "pair": "EUR/USD",
       "method": "mtf",
       "direction": "short",
       "entry_type": "mtf_short",
-      "entry_time": "2026-06-22T00:08:59.263113",
+      "entry_time": "2026-06-22T00:14:10.979788",
       "entry_price": 1.1465259790420532,
       "stop_loss": 1.1494183785438539,
       "take_profit": 1.1378487805366513,
       "score": 100,
-      "last_check_time": "2026-06-22T00:08:59.263113"
+      "last_check_time": "2026-06-22T00:14:10.979788"
     },
     {
-      "id": "USD/CAD-mtf-1782086939",
+      "id": "USD/CAD-mtf-1782087250",
       "pair": "USD/CAD",
       "method": "mtf",
       "direction": "long",
       "entry_type": "mtf_long",
-      "entry_time": "2026-06-22T00:08:59.263113",
+      "entry_time": "2026-06-22T00:14:10.979788",
       "entry_price": 1.4174799919128418,
       "stop_loss": 1.4156110230445862,
       "take_profit": 1.4230868985176086,
       "score": 100,
-      "last_check_time": "2026-06-22T00:08:59.263113"
+      "last_check_time": "2026-06-22T00:14:10.979788"
     },
     {
-      "id": "USD/CHF-mtf-1782086939",
+      "id": "USD/CHF-mtf-1782087250",
       "pair": "USD/CHF",
       "method": "mtf",
       "direction": "long",
       "entry_type": "mtf_long",
-      "entry_time": "2026-06-22T00:08:59.263113",
+      "entry_time": "2026-06-22T00:14:10.979788",
       "entry_price": 0.8080599904060364,
       "stop_loss": 0.8053935410022736,
       "take_profit": 0.8160593386173248,
       "score": 100,
-      "last_check_time": "2026-06-22T00:08:59.263113"
+      "last_check_time": "2026-06-22T00:14:10.979788"
     }
   ],
   "history_count": 0,
