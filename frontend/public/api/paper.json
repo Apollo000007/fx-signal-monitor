@@ -1,45 +1,45 @@
 {
-  "updated_at": "2026-06-22T07:40:45.176898+00:00",
+  "updated_at": "2026-06-22T07:45:53.480362+00:00",
   "open_count": 3,
   "open_positions": [
     {
-      "id": "NZD/USD-dtp-1782114045",
-      "pair": "NZD/USD",
-      "method": "dtp",
-      "direction": "short",
-      "entry_type": "dtp_short",
-      "entry_time": "2026-06-22T07:40:45.176898",
-      "entry_price": 0.5724426507949829,
-      "stop_loss": 0.5739349968433379,
-      "take_profit": 0.5679656126499179,
-      "score": 87,
-      "last_check_time": "2026-06-22T07:40:45.176898"
-    },
-    {
-      "id": "USD/JPY-mtf-1782114045",
+      "id": "USD/JPY-mtf-1782114353",
       "pair": "USD/JPY",
       "method": "mtf",
       "direction": "long",
       "entry_type": "mtf_long",
-      "entry_time": "2026-06-22T07:40:45.176898",
-      "entry_price": 161.73399353027344,
-      "stop_loss": 161.44526063537597,
-      "take_profit": 162.60019221496583,
+      "entry_time": "2026-06-22T07:45:53.480362",
+      "entry_price": 161.75799560546875,
+      "stop_loss": 161.4452366333008,
+      "take_profit": 162.69627252197262,
       "score": 100,
-      "last_check_time": "2026-06-22T07:40:45.176898"
+      "last_check_time": "2026-06-22T07:45:53.480362"
     },
     {
-      "id": "USD/CHF-mtf-1782114045",
+      "id": "EUR/USD-mtf-1782114353",
+      "pair": "EUR/USD",
+      "method": "mtf",
+      "direction": "short",
+      "entry_type": "mtf_short",
+      "entry_time": "2026-06-22T07:45:53.480362",
+      "entry_price": 1.144819736480713,
+      "stop_loss": 1.1475733226776124,
+      "take_profit": 1.1365589778900145,
+      "score": 100,
+      "last_check_time": "2026-06-22T07:45:53.480362"
+    },
+    {
+      "id": "USD/CHF-mtf-1782114353",
       "pair": "USD/CHF",
       "method": "mtf",
       "direction": "long",
       "entry_type": "mtf_long",
-      "entry_time": "2026-06-22T07:40:45.176898",
-      "entry_price": 0.8083099722862244,
-      "stop_loss": 0.8069433598041534,
-      "take_profit": 0.8124098097324371,
+      "entry_time": "2026-06-22T07:45:53.480362",
+      "entry_price": 0.808929979801178,
+      "stop_loss": 0.8063828781604767,
+      "take_profit": 0.8165712847232818,
       "score": 100,
-      "last_check_time": "2026-06-22T07:40:45.176898"
+      "last_check_time": "2026-06-22T07:45:53.480362"
     }
   ],
   "history_count": 0,
