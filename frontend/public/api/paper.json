@@ -1,32 +1,58 @@
 {
-  "updated_at": "2026-06-23T07:11:34.047287+00:00",
-  "open_count": 2,
+  "updated_at": "2026-06-23T07:16:40.551881+00:00",
+  "open_count": 4,
   "open_positions": [
     {
-      "id": "USD/CAD-mtf-1782198694",
+      "id": "USD/CHF-dtp-1782199000",
+      "pair": "USD/CHF",
+      "method": "dtp",
+      "direction": "long",
+      "entry_type": "dtp_long",
+      "entry_time": "2026-06-23T07:16:40.551881",
+      "entry_price": 0.8082699775695801,
+      "stop_loss": 0.8076215860247612,
+      "take_profit": 0.8102151522040367,
+      "score": 100,
+      "last_check_time": "2026-06-23T07:16:40.551881"
+    },
+    {
+      "id": "USD/JPY-mtf-1782199000",
+      "pair": "USD/JPY",
+      "method": "mtf",
+      "direction": "long",
+      "entry_type": "mtf_long",
+      "entry_time": "2026-06-23T07:16:40.551881",
+      "entry_price": 161.5760040283203,
+      "stop_loss": 161.14742973327637,
+      "take_profit": 162.86172691345215,
+      "score": 100,
+      "last_check_time": "2026-06-23T07:16:40.551881"
+    },
+    {
+      "id": "USD/CAD-mtf-1782199000",
       "pair": "USD/CAD",
       "method": "mtf",
       "direction": "long",
       "entry_type": "mtf_long",
-      "entry_time": "2026-06-23T07:11:34.047287",
-      "entry_price": 1.4178999662399292,
-      "stop_loss": 1.414265708255768,
-      "take_profit": 1.428802740192413,
+      "entry_time": "2026-06-23T07:16:40.551881",
+      "entry_price": 1.417580008506775,
+      "stop_loss": 1.4155659415245057,
+      "take_profit": 1.4236222094535826,
       "score": 100,
-      "last_check_time": "2026-06-23T07:11:34.047287"
+      "last_check_time": "2026-06-23T07:16:40.551881"
     },
     {
-      "id": "NZD/USD-mtf-1782198694",
+      "id": "NZD/USD-mtf-1782199000",
       "pair": "NZD/USD",
       "method": "mtf",
       "direction": "short",
       "entry_type": "mtf_short",
-      "entry_time": "2026-06-23T07:11:34.047287",
-      "entry_price": 0.5688282251358032,
-      "stop_loss": 0.5714268495559692,
-      "take_profit": 0.5610323518753052,
+      "entry_time": "2026-06-23T07:16:40.551881",
+      "entry_price": 0.5691195726394653,
+      "stop_loss": 0.5714270826339721,
+      "take_profit": 0.562197042655945,
       "score": 100,
-      "last_check_time": "2026-06-23T07:11:34.047287"
+      "last_check_time": "2026-06-23T07:16:40.551881"
     }
   ],
   "history_count": 0,
