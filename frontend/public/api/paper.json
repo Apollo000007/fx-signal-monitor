@@ -1,45 +1,45 @@
 {
-  "updated_at": "2026-06-23T14:15:28.691774+00:00",
+  "updated_at": "2026-06-23T14:20:36.112826+00:00",
   "open_count": 3,
   "open_positions": [
     {
-      "id": "NZD/USD-mtf-1782224128",
+      "id": "NZD/USD-mtf-1782224436",
       "pair": "NZD/USD",
       "method": "mtf",
       "direction": "short",
       "entry_type": "mtf_short",
-      "entry_time": "2026-06-23T14:15:28.691774",
-      "entry_price": 0.5678591728210449,
-      "stop_loss": 0.5701250241279602,
-      "take_profit": 0.5610616189002992,
+      "entry_time": "2026-06-23T14:20:36.112826",
+      "entry_price": 0.5679236650466919,
+      "stop_loss": 0.5701250757217408,
+      "take_profit": 0.5613194330215453,
       "score": 100,
-      "last_check_time": "2026-06-23T14:15:28.691774"
+      "last_check_time": "2026-06-23T14:20:36.112826"
     },
     {
-      "id": "USD/CAD-mtf-1782224128",
+      "id": "USD/CAD-mtf-1782224436",
       "pair": "USD/CAD",
       "method": "mtf",
       "direction": "long",
       "entry_type": "mtf_long",
-      "entry_time": "2026-06-23T14:15:28.691774",
+      "entry_time": "2026-06-23T14:20:36.112826",
       "entry_price": 1.4192899465560913,
       "stop_loss": 1.4151646264076232,
       "take_profit": 1.4316659070014957,
       "score": 100,
-      "last_check_time": "2026-06-23T14:15:28.691774"
+      "last_check_time": "2026-06-23T14:20:36.112826"
     },
     {
-      "id": "EUR/USD-mtf-1782224128",
+      "id": "EUR/USD-mtf-1782224436",
       "pair": "EUR/USD",
       "method": "mtf",
       "direction": "short",
       "entry_type": "mtf_short",
-      "entry_time": "2026-06-23T14:15:28.691774",
-      "entry_price": 1.139211654663086,
-      "stop_loss": 1.1450761699676513,
-      "take_profit": 1.12161810874939,
+      "entry_time": "2026-06-23T14:20:36.112826",
+      "entry_price": 1.1389521360397339,
+      "stop_loss": 1.1450759623527527,
+      "take_profit": 1.1205806571006776,
       "score": 100,
-      "last_check_time": "2026-06-23T14:15:28.691774"
+      "last_check_time": "2026-06-23T14:20:36.112826"
     }
   ],
   "history_count": 0,
