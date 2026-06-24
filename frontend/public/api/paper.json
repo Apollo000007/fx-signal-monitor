@@ -1,58 +1,19 @@
 {
-  "updated_at": "2026-06-24T02:43:24.448573+00:00",
-  "open_count": 4,
+  "updated_at": "2026-06-24T02:48:34.217439+00:00",
+  "open_count": 1,
   "open_positions": [
     {
-      "id": "USD/JPY-mtf-1782269004",
-      "pair": "USD/JPY",
-      "method": "mtf",
-      "direction": "long",
-      "entry_type": "mtf_long",
-      "entry_time": "2026-06-24T02:43:24.448573",
-      "entry_price": 161.55499267578125,
-      "stop_loss": 161.3654378051758,
-      "take_profit": 162.12365728759764,
-      "score": 100,
-      "last_check_time": "2026-06-24T02:43:24.448573"
-    },
-    {
-      "id": "NZD/USD-mtf-1782269004",
+      "id": "NZD/USD-mtf-1782269314",
       "pair": "NZD/USD",
       "method": "mtf",
       "direction": "short",
       "entry_type": "mtf_short",
-      "entry_time": "2026-06-24T02:43:24.448573",
-      "entry_price": 0.566379725933075,
-      "stop_loss": 0.567475129365921,
-      "take_profit": 0.5630935156345367,
+      "entry_time": "2026-06-24T02:48:34.217439",
+      "entry_price": 0.5659949779510498,
+      "stop_loss": 0.5686346087455749,
+      "take_profit": 0.5580760855674745,
       "score": 100,
-      "last_check_time": "2026-06-24T02:43:24.448573"
-    },
-    {
-      "id": "USD/CAD-mtf-1782269004",
-      "pair": "USD/CAD",
-      "method": "mtf",
-      "direction": "long",
-      "entry_type": "mtf_long",
-      "entry_time": "2026-06-24T02:43:24.448573",
-      "entry_price": 1.4207199811935425,
-      "stop_loss": 1.4191634308815002,
-      "take_profit": 1.4253896321296693,
-      "score": 100,
-      "last_check_time": "2026-06-24T02:43:24.448573"
-    },
-    {
-      "id": "USD/CHF-mtf-1782269004",
-      "pair": "USD/CHF",
-      "method": "mtf",
-      "direction": "long",
-      "entry_type": "mtf_long",
-      "entry_time": "2026-06-24T02:43:24.448573",
-      "entry_price": 0.8098400235176086,
-      "stop_loss": 0.808982104730606,
-      "take_profit": 0.8124137798786164,
-      "score": 100,
-      "last_check_time": "2026-06-24T02:43:24.448573"
+      "last_check_time": "2026-06-24T02:48:34.217439"
     }
   ],
   "history_count": 0,
