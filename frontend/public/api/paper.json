@@ -1,7 +1,21 @@
 {
-  "updated_at": "2026-06-24T16:39:21.134010+00:00",
-  "open_count": 0,
-  "open_positions": [],
+  "updated_at": "2026-06-24T16:44:28.135105+00:00",
+  "open_count": 1,
+  "open_positions": [
+    {
+      "id": "GBP/JPY-dtp-1782319468",
+      "pair": "GBP/JPY",
+      "method": "dtp",
+      "direction": "short",
+      "entry_type": "dtp_short",
+      "entry_time": "2026-06-24T16:44:28.135105",
+      "entry_price": 213.00100708007812,
+      "stop_loss": 213.25404136657713,
+      "take_profit": 212.24190422058112,
+      "score": 100,
+      "last_check_time": "2026-06-24T16:44:28.135105"
+    }
+  ],
   "history_count": 0,
   "recent_trades": [],
   "stats": {
