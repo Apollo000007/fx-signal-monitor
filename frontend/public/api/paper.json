@@ -1,45 +1,58 @@
 {
-  "updated_at": "2026-06-24T04:41:49.126254+00:00",
-  "open_count": 3,
+  "updated_at": "2026-06-24T04:46:52.386834+00:00",
+  "open_count": 4,
   "open_positions": [
     {
-      "id": "USD/CHF-mtf-1782276109",
+      "id": "USD/JPY-mtf-1782276412",
+      "pair": "USD/JPY",
+      "method": "mtf",
+      "direction": "long",
+      "entry_type": "mtf_long",
+      "entry_time": "2026-06-24T04:46:52.386834",
+      "entry_price": 161.55499267578125,
+      "stop_loss": 161.37244158935547,
+      "take_profit": 162.10264593505858,
+      "score": 100,
+      "last_check_time": "2026-06-24T04:46:52.386834"
+    },
+    {
+      "id": "USD/CHF-mtf-1782276412",
       "pair": "USD/CHF",
       "method": "mtf",
       "direction": "long",
       "entry_type": "mtf_long",
-      "entry_time": "2026-06-24T04:41:49.126254",
-      "entry_price": 0.8102999925613403,
-      "stop_loss": 0.8094317518234253,
-      "take_profit": 0.8129047147750854,
+      "entry_time": "2026-06-24T04:46:52.386834",
+      "entry_price": 0.8105300068855286,
+      "stop_loss": 0.8094315678119659,
+      "take_profit": 0.8138253241062166,
       "score": 100,
-      "last_check_time": "2026-06-24T04:41:49.126254"
+      "last_check_time": "2026-06-24T04:46:52.386834"
     },
     {
-      "id": "EUR/USD-mtf-1782276109",
+      "id": "EUR/USD-mtf-1782276412",
       "pair": "EUR/USD",
       "method": "mtf",
       "direction": "short",
       "entry_type": "mtf_short",
-      "entry_time": "2026-06-24T04:41:49.126254",
-      "entry_price": 1.1368803977966309,
-      "stop_loss": 1.1396022409439086,
-      "take_profit": 1.1287148683547976,
+      "entry_time": "2026-06-24T04:46:52.386834",
+      "entry_price": 1.1367511749267578,
+      "stop_loss": 1.1377897987365722,
+      "take_profit": 1.1336353034973148,
       "score": 100,
-      "last_check_time": "2026-06-24T04:41:49.126254"
+      "last_check_time": "2026-06-24T04:46:52.386834"
     },
     {
-      "id": "NZD/USD-mtf-1782276109",
+      "id": "NZD/USD-mtf-1782276412",
       "pair": "NZD/USD",
       "method": "mtf",
       "direction": "short",
       "entry_type": "mtf_short",
-      "entry_time": "2026-06-24T04:41:49.126254",
-      "entry_price": 0.565514862537384,
-      "stop_loss": 0.568634224653244,
-      "take_profit": 0.5561567761898042,
+      "entry_time": "2026-06-24T04:46:52.386834",
+      "entry_price": 0.5657068490982056,
+      "stop_loss": 0.5686343782424926,
+      "take_profit": 0.5569242616653444,
       "score": 100,
-      "last_check_time": "2026-06-24T04:41:49.126254"
+      "last_check_time": "2026-06-24T04:46:52.386834"
     }
   ],
   "history_count": 0,
