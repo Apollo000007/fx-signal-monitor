@@ -1,45 +1,32 @@
 {
-  "updated_at": "2026-06-24T20:56:46.071700+00:00",
-  "open_count": 3,
+  "updated_at": "2026-06-24T21:01:56.466335+00:00",
+  "open_count": 2,
   "open_positions": [
     {
-      "id": "USD/CAD-mtf-1782334606",
+      "id": "USD/CAD-mtf-1782334916",
       "pair": "USD/CAD",
       "method": "mtf",
       "direction": "long",
       "entry_type": "mtf_long",
-      "entry_time": "2026-06-24T20:56:46.071700",
-      "entry_price": 1.423050045967102,
-      "stop_loss": 1.421461590862274,
-      "take_profit": 1.427815411281586,
+      "entry_time": "2026-06-24T21:01:56.466335",
+      "entry_price": 1.4231799840927124,
+      "stop_loss": 1.4213614703178405,
+      "take_profit": 1.428635525417328,
       "score": 100,
-      "last_check_time": "2026-06-24T20:56:46.071700"
+      "last_check_time": "2026-06-24T21:01:56.466335"
     },
     {
-      "id": "AUD/JPY-dtp-1782334606",
-      "pair": "AUD/JPY",
-      "method": "dtp",
+      "id": "NZD/USD-mtf-1782334916",
+      "pair": "NZD/USD",
+      "method": "mtf",
       "direction": "short",
-      "entry_type": "dtp_short",
-      "entry_time": "2026-06-24T20:56:46.071700",
-      "entry_price": 111.63500213623047,
-      "stop_loss": 111.91408964157104,
-      "take_profit": 110.79773962020876,
-      "score": 87,
-      "last_check_time": "2026-06-24T20:56:46.071700"
-    },
-    {
-      "id": "GBP/JPY-dtp-1782334606",
-      "pair": "GBP/JPY",
-      "method": "dtp",
-      "direction": "short",
-      "entry_type": "dtp_short",
-      "entry_time": "2026-06-24T20:56:46.071700",
-      "entry_price": 213.0449981689453,
-      "stop_loss": 213.27206474304197,
-      "take_profit": 212.36379844665535,
+      "entry_type": "mtf_short",
+      "entry_time": "2026-06-24T21:01:56.466335",
+      "entry_price": 0.5651633143424988,
+      "stop_loss": 0.5657478378772736,
+      "take_profit": 0.5634097437381744,
       "score": 100,
-      "last_check_time": "2026-06-24T20:56:46.071700"
+      "last_check_time": "2026-06-24T21:01:56.466335"
     }
   ],
   "history_count": 0,
