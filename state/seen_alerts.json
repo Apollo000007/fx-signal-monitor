@@ -1,7 +1,6 @@
 {
   "USD/CAD:mtf:long": 1782299839.548179,
   "USD/CHF:dtp:long": 1782297074.565495,
-  "GBP/JPY:dtp:long": 1781697360.86161,
   "USD/JPY:mtf:long": 1782293682.157377,
   "NZD/USD:dtp:short": 1782290287.112666,
   "AUD/JPY:dtp:short": 1782295530.8124,
@@ -14,5 +13,5 @@
   "EUR/USD:triple:short": 1781844729.007633,
   "NZD/USD:mtf:short": 1782300449.223756,
   "EUR/JPY:triple:short": 1782269624.613531,
-  "GBP/JPY:dtp:short": 1782288106.994272
+  "GBP/JPY:dtp:short": 1782302296.737399
 }
