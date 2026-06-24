@@ -1,32 +1,58 @@
 {
-  "updated_at": "2026-06-24T19:03:17.779800+00:00",
-  "open_count": 2,
+  "updated_at": "2026-06-24T19:08:29.730651+00:00",
+  "open_count": 4,
   "open_positions": [
     {
-      "id": "NZD/USD-mtf-1782327797",
+      "id": "NZD/USD-mtf-1782328109",
       "pair": "NZD/USD",
       "method": "mtf",
       "direction": "short",
       "entry_type": "mtf_short",
-      "entry_time": "2026-06-24T19:03:17.779800",
+      "entry_time": "2026-06-24T19:08:29.730651",
       "entry_price": 0.5640794038772583,
       "stop_loss": 0.5647216406822204,
       "take_profit": 0.562152693462372,
       "score": 100,
-      "last_check_time": "2026-06-24T19:03:17.779800"
+      "last_check_time": "2026-06-24T19:08:29.730651"
     },
     {
-      "id": "USD/CAD-mtf-1782327797",
+      "id": "USD/CAD-mtf-1782328109",
       "pair": "USD/CAD",
       "method": "mtf",
       "direction": "long",
       "entry_type": "mtf_long",
-      "entry_time": "2026-06-24T19:03:17.779800",
+      "entry_time": "2026-06-24T19:08:29.730651",
       "entry_price": 1.4236899614334106,
       "stop_loss": 1.4220610592842102,
       "take_profit": 1.428576667881012,
       "score": 100,
-      "last_check_time": "2026-06-24T19:03:17.779800"
+      "last_check_time": "2026-06-24T19:08:29.730651"
+    },
+    {
+      "id": "USD/CHF-dtp-1782328109",
+      "pair": "USD/CHF",
+      "method": "dtp",
+      "direction": "long",
+      "entry_type": "dtp_long",
+      "entry_time": "2026-06-24T19:08:29.730651",
+      "entry_price": 0.8124600052833557,
+      "stop_loss": 0.8105086868405342,
+      "take_profit": 0.8183139606118202,
+      "score": 87,
+      "last_check_time": "2026-06-24T19:08:29.730651"
+    },
+    {
+      "id": "AUD/JPY-dtp-1782328109",
+      "pair": "AUD/JPY",
+      "method": "dtp",
+      "direction": "short",
+      "entry_type": "dtp_short",
+      "entry_time": "2026-06-24T19:08:29.730651",
+      "entry_price": 111.36900329589844,
+      "stop_loss": 111.78266861724852,
+      "take_profit": 110.1280073318482,
+      "score": 87,
+      "last_check_time": "2026-06-24T19:08:29.730651"
     }
   ],
   "history_count": 0,
