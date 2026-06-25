@@ -1,34 +1,7 @@
 {
-  "updated_at": "2026-06-25T09:21:24.795387+00:00",
-  "open_count": 2,
-  "open_positions": [
-    {
-      "id": "USD/CHF-dtp-1782379284",
-      "pair": "USD/CHF",
-      "method": "dtp",
-      "direction": "long",
-      "entry_type": "dtp_long",
-      "entry_time": "2026-06-25T09:21:24.795387",
-      "entry_price": 0.8112800121307373,
-      "stop_loss": 0.809379831969738,
-      "take_profit": 0.8169805526137354,
-      "score": 100,
-      "last_check_time": "2026-06-25T09:21:24.795387"
-    },
-    {
-      "id": "AUD/JPY-dtp-1782379284",
-      "pair": "AUD/JPY",
-      "method": "dtp",
-      "direction": "short",
-      "entry_type": "dtp_short",
-      "entry_time": "2026-06-25T09:21:24.795387",
-      "entry_price": 111.67900085449219,
-      "stop_loss": 111.85373876190184,
-      "take_profit": 111.15478713226324,
-      "score": 100,
-      "last_check_time": "2026-06-25T09:21:24.795387"
-    }
-  ],
+  "updated_at": "2026-06-25T09:26:30.844987+00:00",
+  "open_count": 0,
+  "open_positions": [],
   "history_count": 0,
   "recent_trades": [],
   "stats": {
