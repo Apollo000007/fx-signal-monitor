@@ -1,32 +1,32 @@
 {
-  "updated_at": "2026-06-25T01:39:19.997210+00:00",
+  "updated_at": "2026-06-25T01:44:24.569616+00:00",
   "open_count": 2,
   "open_positions": [
     {
-      "id": "USD/CHF-mtf-1782351559",
+      "id": "USD/CHF-mtf-1782351864",
       "pair": "USD/CHF",
       "method": "mtf",
       "direction": "long",
       "entry_type": "mtf_long",
-      "entry_time": "2026-06-25T01:39:19.997210",
+      "entry_time": "2026-06-25T01:44:24.569616",
       "entry_price": 0.8116099834442139,
       "stop_loss": 0.8105007264137268,
       "take_profit": 0.814937754535675,
       "score": 100,
-      "last_check_time": "2026-06-25T01:39:19.997210"
+      "last_check_time": "2026-06-25T01:44:24.569616"
     },
     {
-      "id": "USD/JPY-mtf-1782351559",
+      "id": "USD/JPY-mtf-1782351864",
       "pair": "USD/JPY",
       "method": "mtf",
       "direction": "long",
       "entry_type": "mtf_long",
-      "entry_time": "2026-06-25T01:39:19.997210",
+      "entry_time": "2026-06-25T01:44:24.569616",
       "entry_price": 161.66299438476562,
       "stop_loss": 161.38834005737306,
       "take_profit": 162.48695736694333,
       "score": 100,
-      "last_check_time": "2026-06-25T01:39:19.997210"
+      "last_check_time": "2026-06-25T01:44:24.569616"
     }
   ],
   "history_count": 0,
