@@ -1,45 +1,45 @@
 {
-  "updated_at": "2026-06-25T18:36:54.948466+00:00",
+  "updated_at": "2026-06-25T18:42:02.575434+00:00",
   "open_count": 3,
   "open_positions": [
     {
-      "id": "USD/CHF-dtp-1782412614",
+      "id": "USD/CHF-dtp-1782412922",
       "pair": "USD/CHF",
       "method": "dtp",
       "direction": "long",
       "entry_type": "dtp_long",
-      "entry_time": "2026-06-25T18:36:54.948466",
-      "entry_price": 0.809689998626709,
+      "entry_time": "2026-06-25T18:42:02.575434",
+      "entry_price": 0.8097800016403198,
       "stop_loss": 0.8081011022329331,
-      "take_profit": 0.8144566878080367,
+      "take_profit": 0.8148166998624801,
       "score": 100,
-      "last_check_time": "2026-06-25T18:36:54.948466"
+      "last_check_time": "2026-06-25T18:42:02.575434"
     },
     {
-      "id": "AUD/JPY-dtp-1782412614",
+      "id": "AUD/JPY-dtp-1782412922",
       "pair": "AUD/JPY",
       "method": "dtp",
       "direction": "short",
       "entry_type": "dtp_short",
-      "entry_time": "2026-06-25T18:36:54.948466",
-      "entry_price": 111.87000274658203,
+      "entry_time": "2026-06-25T18:42:02.575434",
+      "entry_price": 111.8550033569336,
       "stop_loss": 112.10799819946288,
-      "take_profit": 111.15601638793947,
+      "take_profit": 111.09601882934572,
       "score": 100,
-      "last_check_time": "2026-06-25T18:36:54.948466"
+      "last_check_time": "2026-06-25T18:42:02.575434"
     },
     {
-      "id": "GBP/JPY-dtp-1782412614",
+      "id": "GBP/JPY-dtp-1782412922",
       "pair": "GBP/JPY",
       "method": "dtp",
       "direction": "short",
       "entry_type": "dtp_short",
-      "entry_time": "2026-06-25T18:36:54.948466",
-      "entry_price": 213.56300354003906,
+      "entry_time": "2026-06-25T18:42:02.575434",
+      "entry_price": 213.5279998779297,
       "stop_loss": 213.93772302246091,
-      "take_profit": 212.4388450927735,
+      "take_profit": 212.298830444336,
       "score": 100,
-      "last_check_time": "2026-06-25T18:36:54.948466"
+      "last_check_time": "2026-06-25T18:42:02.575434"
     }
   ],
   "history_count": 0,
