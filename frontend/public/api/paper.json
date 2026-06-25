@@ -1,19 +1,19 @@
 {
-  "updated_at": "2026-06-25T22:22:52.684554+00:00",
+  "updated_at": "2026-06-25T22:28:02.519489+00:00",
   "open_count": 1,
   "open_positions": [
     {
-      "id": "EUR/USD-mtf-1782426172",
+      "id": "EUR/USD-mtf-1782426482",
       "pair": "EUR/USD",
       "method": "mtf",
       "direction": "short",
       "entry_type": "mtf_short",
-      "entry_time": "2026-06-25T22:22:52.684554",
+      "entry_time": "2026-06-25T22:28:02.519489",
       "entry_price": 1.1373976469039917,
       "stop_loss": 1.138825290966034,
       "take_profit": 1.133114714717865,
       "score": 100,
-      "last_check_time": "2026-06-25T22:22:52.684554"
+      "last_check_time": "2026-06-25T22:28:02.519489"
     }
   ],
   "history_count": 0,
