@@ -1,7 +1,34 @@
 {
-  "updated_at": "2026-06-26T08:17:21.932110+00:00",
-  "open_count": 0,
-  "open_positions": [],
+  "updated_at": "2026-06-26T08:22:27.260343+00:00",
+  "open_count": 2,
+  "open_positions": [
+    {
+      "id": "GBP/JPY-dtp-1782462147",
+      "pair": "GBP/JPY",
+      "method": "dtp",
+      "direction": "short",
+      "entry_type": "dtp_short",
+      "entry_time": "2026-06-26T08:22:27.260343",
+      "entry_price": 213.4239959716797,
+      "stop_loss": 213.74453686523435,
+      "take_profit": 212.4623732910157,
+      "score": 100,
+      "last_check_time": "2026-06-26T08:22:27.260343"
+    },
+    {
+      "id": "USD/CHF-dtp-1782462147",
+      "pair": "USD/CHF",
+      "method": "dtp",
+      "direction": "long",
+      "entry_type": "dtp_long",
+      "entry_time": "2026-06-26T08:22:27.260343",
+      "entry_price": 0.8081300258636475,
+      "stop_loss": 0.8076215860247612,
+      "take_profit": 0.8096553453803063,
+      "score": 100,
+      "last_check_time": "2026-06-26T08:22:27.260343"
+    }
+  ],
   "history_count": 0,
   "recent_trades": [],
   "stats": {
