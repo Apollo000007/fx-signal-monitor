@@ -1,21 +1,7 @@
 {
-  "updated_at": "2026-06-26T13:51:27.106814+00:00",
-  "open_count": 1,
-  "open_positions": [
-    {
-      "id": "AUD/JPY-dtp-1782481887",
-      "pair": "AUD/JPY",
-      "method": "dtp",
-      "direction": "short",
-      "entry_type": "dtp_short",
-      "entry_time": "2026-06-26T13:51:27.106814",
-      "entry_price": 111.62699890136719,
-      "stop_loss": 111.71760881042479,
-      "take_profit": 111.35516917419437,
-      "score": 100,
-      "last_check_time": "2026-06-26T13:51:27.106814"
-    }
-  ],
+  "updated_at": "2026-06-26T13:56:49.244715+00:00",
+  "open_count": 0,
+  "open_positions": [],
   "history_count": 0,
   "recent_trades": [],
   "stats": {
