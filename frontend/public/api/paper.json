@@ -1,45 +1,58 @@
 {
-  "updated_at": "2026-06-26T11:22:21.987888+00:00",
-  "open_count": 3,
+  "updated_at": "2026-06-26T11:27:23.967803+00:00",
+  "open_count": 4,
   "open_positions": [
     {
-      "id": "EUR/USD-mtf-1782472941",
-      "pair": "EUR/USD",
-      "method": "mtf",
+      "id": "NZD/USD-dtp-1782473243",
+      "pair": "NZD/USD",
+      "method": "dtp",
       "direction": "short",
-      "entry_type": "mtf_short",
-      "entry_time": "2026-06-26T11:22:21.987888",
-      "entry_price": 1.140380859375,
-      "stop_loss": 1.1418136318206786,
-      "take_profit": 1.136082542037964,
+      "entry_type": "dtp_short",
+      "entry_time": "2026-06-26T11:27:23.967803",
+      "entry_price": 0.5653550624847412,
+      "stop_loss": 0.5663686750531196,
+      "take_profit": 0.562314224779606,
       "score": 100,
-      "last_check_time": "2026-06-26T11:22:21.987888"
+      "last_check_time": "2026-06-26T11:27:23.967803"
     },
     {
-      "id": "NZD/USD-mtf-1782472941",
+      "id": "NZD/USD-mtf-1782473243",
       "pair": "NZD/USD",
       "method": "mtf",
       "direction": "short",
       "entry_type": "mtf_short",
-      "entry_time": "2026-06-26T11:22:21.987888",
+      "entry_time": "2026-06-26T11:27:23.967803",
       "entry_price": 0.5653230547904968,
       "stop_loss": 0.5660950921535491,
       "take_profit": 0.5630069427013399,
       "score": 100,
-      "last_check_time": "2026-06-26T11:22:21.987888"
+      "last_check_time": "2026-06-26T11:27:23.967803"
     },
     {
-      "id": "USD/CAD-mtf-1782472941",
+      "id": "EUR/USD-mtf-1782473243",
+      "pair": "EUR/USD",
+      "method": "mtf",
+      "direction": "short",
+      "entry_type": "mtf_short",
+      "entry_time": "2026-06-26T11:27:23.967803",
+      "entry_price": 1.140380859375,
+      "stop_loss": 1.1418136318206786,
+      "take_profit": 1.136082542037964,
+      "score": 100,
+      "last_check_time": "2026-06-26T11:27:23.967803"
+    },
+    {
+      "id": "USD/CAD-mtf-1782473243",
       "pair": "USD/CAD",
       "method": "mtf",
       "direction": "long",
       "entry_type": "mtf_long",
-      "entry_time": "2026-06-26T11:22:21.987888",
+      "entry_time": "2026-06-26T11:27:23.967803",
       "entry_price": 1.4183000326156616,
       "stop_loss": 1.4163653790473938,
       "take_profit": 1.4241039933204651,
       "score": 100,
-      "last_check_time": "2026-06-26T11:22:21.987888"
+      "last_check_time": "2026-06-26T11:27:23.967803"
     }
   ],
   "history_count": 0,
