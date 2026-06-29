@@ -1,19 +1,19 @@
 {
-  "updated_at": "2026-06-29T08:49:22.994796+00:00",
+  "updated_at": "2026-06-29T08:54:26.460367+00:00",
   "open_count": 1,
   "open_positions": [
     {
-      "id": "NZD/USD-mtf-1782722962",
+      "id": "NZD/USD-mtf-1782723266",
       "pair": "NZD/USD",
       "method": "mtf",
       "direction": "short",
       "entry_type": "mtf_short",
-      "entry_time": "2026-06-29T08:49:22.994796",
+      "entry_time": "2026-06-29T08:54:26.460367",
       "entry_price": 0.5652591586112976,
       "stop_loss": 0.5664471852779388,
       "take_profit": 0.561695078611374,
       "score": 100,
-      "last_check_time": "2026-06-29T08:49:22.994796"
+      "last_check_time": "2026-06-29T08:54:26.460367"
     }
   ],
   "history_count": 0,
