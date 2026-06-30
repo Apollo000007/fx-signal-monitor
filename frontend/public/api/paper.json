@@ -1,45 +1,45 @@
 {
-  "updated_at": "2026-06-30T20:33:14.611269+00:00",
+  "updated_at": "2026-06-30T20:38:20.684244+00:00",
   "open_count": 3,
   "open_positions": [
     {
-      "id": "USD/JPY-mtf-1782851594",
+      "id": "USD/JPY-mtf-1782851900",
       "pair": "USD/JPY",
       "method": "mtf",
       "direction": "long",
       "entry_type": "mtf_long",
-      "entry_time": "2026-06-30T20:33:14.611269",
+      "entry_time": "2026-06-30T20:38:20.684244",
       "entry_price": 162.572998046875,
       "stop_loss": 162.38143334960938,
       "take_profit": 163.14769213867186,
       "score": 100,
-      "last_check_time": "2026-06-30T20:33:14.611269"
+      "last_check_time": "2026-06-30T20:38:20.684244"
     },
     {
-      "id": "NZD/USD-dtp-1782851594",
+      "id": "NZD/USD-dtp-1782851900",
       "pair": "NZD/USD",
       "method": "dtp",
       "direction": "short",
       "entry_type": "dtp_short",
-      "entry_time": "2026-06-30T20:33:14.611269",
-      "entry_price": 0.5679559111595154,
+      "entry_time": "2026-06-30T20:38:20.684244",
+      "entry_price": 0.5679236650466919,
       "stop_loss": 0.5689116250276565,
-      "take_profit": 0.5650887695550921,
+      "take_profit": 0.5649597851037982,
       "score": 100,
-      "last_check_time": "2026-06-30T20:33:14.611269"
+      "last_check_time": "2026-06-30T20:38:20.684244"
     },
     {
-      "id": "USD/CHF-dtp-1782851594",
+      "id": "USD/CHF-dtp-1782851900",
       "pair": "USD/CHF",
       "method": "dtp",
       "direction": "long",
       "entry_type": "dtp_long",
-      "entry_time": "2026-06-30T20:33:14.611269",
-      "entry_price": 0.8081099987030029,
+      "entry_time": "2026-06-30T20:38:20.684244",
+      "entry_price": 0.8081200122833252,
       "stop_loss": 0.8067424630522728,
-      "take_profit": 0.8122126056551933,
+      "take_profit": 0.8122526599764823,
       "score": 100,
-      "last_check_time": "2026-06-30T20:33:14.611269"
+      "last_check_time": "2026-06-30T20:38:20.684244"
     }
   ],
   "history_count": 0,
