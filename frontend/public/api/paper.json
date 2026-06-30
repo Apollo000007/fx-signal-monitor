@@ -1,45 +1,19 @@
 {
-  "updated_at": "2026-06-30T16:57:00.162358+00:00",
-  "open_count": 3,
+  "updated_at": "2026-06-30T17:02:18.879065+00:00",
+  "open_count": 1,
   "open_positions": [
     {
-      "id": "USD/JPY-mtf-1782838620",
+      "id": "USD/JPY-mtf-1782838938",
       "pair": "USD/JPY",
       "method": "mtf",
       "direction": "long",
       "entry_type": "mtf_long",
-      "entry_time": "2026-06-30T16:57:00.162358",
-      "entry_price": 162.61599731445312,
-      "stop_loss": 161.84937741088868,
-      "take_profit": 164.91585702514647,
+      "entry_time": "2026-06-30T17:02:18.879065",
+      "entry_price": 162.6479949951172,
+      "stop_loss": 162.432353225708,
+      "take_profit": 163.29492030334475,
       "score": 100,
-      "last_check_time": "2026-06-30T16:57:00.162358"
-    },
-    {
-      "id": "NZD/USD-dtp-1782838620",
-      "pair": "NZD/USD",
-      "method": "dtp",
-      "direction": "short",
-      "entry_type": "dtp_short",
-      "entry_time": "2026-06-30T16:57:00.162358",
-      "entry_price": 0.5674402713775635,
-      "stop_loss": 0.5695914394855499,
-      "take_profit": 0.5609867670536042,
-      "score": 100,
-      "last_check_time": "2026-06-30T16:57:00.162358"
-    },
-    {
-      "id": "USD/CHF-dtp-1782838620",
-      "pair": "USD/CHF",
-      "method": "dtp",
-      "direction": "long",
-      "entry_type": "dtp_long",
-      "entry_time": "2026-06-30T16:57:00.162358",
-      "entry_price": 0.8086299896240234,
-      "stop_loss": 0.8054537297487259,
-      "take_profit": 0.8181587692499162,
-      "score": 100,
-      "last_check_time": "2026-06-30T16:57:00.162358"
+      "last_check_time": "2026-06-30T17:02:18.879065"
     }
   ],
   "history_count": 0,
