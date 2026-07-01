@@ -1,58 +1,32 @@
 {
-  "updated_at": "2026-07-01T18:02:18.719717+00:00",
-  "open_count": 4,
+  "updated_at": "2026-07-01T18:07:38.028382+00:00",
+  "open_count": 2,
   "open_positions": [
     {
-      "id": "USD/JPY-mtf-1782928938",
+      "id": "USD/JPY-mtf-1782929258",
       "pair": "USD/JPY",
       "method": "mtf",
       "direction": "long",
       "entry_type": "mtf_long",
-      "entry_time": "2026-07-01T18:02:18.719717",
+      "entry_time": "2026-07-01T18:07:38.028382",
       "entry_price": 162.5290069580078,
       "stop_loss": 162.18846891784668,
       "take_profit": 163.55062107849122,
       "score": 100,
-      "last_check_time": "2026-07-01T18:02:18.719717"
+      "last_check_time": "2026-07-01T18:07:38.028382"
     },
     {
-      "id": "USD/CHF-dtp-1782928938",
-      "pair": "USD/CHF",
-      "method": "dtp",
-      "direction": "long",
-      "entry_type": "dtp_long",
-      "entry_time": "2026-07-01T18:02:18.719717",
-      "entry_price": 0.8087700009346008,
-      "stop_loss": 0.8069622437953949,
-      "take_profit": 0.8141932723522185,
-      "score": 100,
-      "last_check_time": "2026-07-01T18:02:18.719717"
-    },
-    {
-      "id": "EUR/GBP-mtf-1782928938",
+      "id": "EUR/GBP-mtf-1782929258",
       "pair": "EUR/GBP",
       "method": "mtf",
       "direction": "short",
       "entry_type": "mtf_short",
-      "entry_time": "2026-07-01T18:02:18.719717",
+      "entry_time": "2026-07-01T18:07:38.028382",
       "entry_price": 0.8571000099182129,
       "stop_loss": 0.861085701084137,
       "take_profit": 0.8451429364204407,
       "score": 100,
-      "last_check_time": "2026-07-01T18:02:18.719717"
-    },
-    {
-      "id": "GBP/JPY-dtp-1782928938",
-      "pair": "GBP/JPY",
-      "method": "dtp",
-      "direction": "long",
-      "entry_type": "dtp_long",
-      "entry_time": "2026-07-01T18:02:18.719717",
-      "entry_price": 215.8040008544922,
-      "stop_loss": 215.27350941467284,
-      "take_profit": 217.39547517395022,
-      "score": 87,
-      "last_check_time": "2026-07-01T18:02:18.719717"
+      "last_check_time": "2026-07-01T18:07:38.028382"
     }
   ],
   "history_count": 0,
