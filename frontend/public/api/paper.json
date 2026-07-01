@@ -1,32 +1,32 @@
 {
-  "updated_at": "2026-07-01T23:15:26.578846+00:00",
+  "updated_at": "2026-07-01T23:20:33.919317+00:00",
   "open_count": 2,
   "open_positions": [
     {
-      "id": "USD/JPY-mtf-1782947726",
+      "id": "USD/JPY-mtf-1782948033",
       "pair": "USD/JPY",
       "method": "mtf",
       "direction": "long",
       "entry_type": "mtf_long",
-      "entry_time": "2026-07-01T23:15:26.578846",
+      "entry_time": "2026-07-01T23:20:33.919317",
       "entry_price": 162.55499267578125,
       "stop_loss": 162.3604400024414,
       "take_profit": 163.13865069580078,
       "score": 100,
-      "last_check_time": "2026-07-01T23:15:26.578846"
+      "last_check_time": "2026-07-01T23:20:33.919317"
     },
     {
-      "id": "EUR/GBP-mtf-1782947726",
+      "id": "EUR/GBP-mtf-1782948033",
       "pair": "EUR/GBP",
       "method": "mtf",
       "direction": "short",
       "entry_type": "mtf_short",
-      "entry_time": "2026-07-01T23:15:26.578846",
+      "entry_time": "2026-07-01T23:20:33.919317",
       "entry_price": 0.8568099737167358,
       "stop_loss": 0.8575854247093201,
       "take_profit": 0.8544836207389831,
       "score": 100,
-      "last_check_time": "2026-07-01T23:15:26.578846"
+      "last_check_time": "2026-07-01T23:20:33.919317"
     }
   ],
   "history_count": 0,
