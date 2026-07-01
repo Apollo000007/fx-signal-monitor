@@ -1,45 +1,45 @@
 {
-  "updated_at": "2026-07-01T17:01:02.620132+00:00",
+  "updated_at": "2026-07-01T17:06:14.524754+00:00",
   "open_count": 3,
   "open_positions": [
     {
-      "id": "USD/JPY-mtf-1782925262",
+      "id": "USD/JPY-mtf-1782925574",
       "pair": "USD/JPY",
       "method": "mtf",
       "direction": "long",
       "entry_type": "mtf_long",
-      "entry_time": "2026-07-01T17:01:02.620132",
+      "entry_time": "2026-07-01T17:06:14.524754",
       "entry_price": 162.4510040283203,
       "stop_loss": 162.24755265808105,
       "take_profit": 163.0613581390381,
       "score": 100,
-      "last_check_time": "2026-07-01T17:01:02.620132"
+      "last_check_time": "2026-07-01T17:06:14.524754"
     },
     {
-      "id": "EUR/GBP-mtf-1782925262",
+      "id": "EUR/GBP-mtf-1782925574",
       "pair": "EUR/GBP",
       "method": "mtf",
       "direction": "short",
       "entry_type": "mtf_short",
-      "entry_time": "2026-07-01T17:01:02.620132",
+      "entry_time": "2026-07-01T17:06:14.524754",
       "entry_price": 0.85698002576828,
       "stop_loss": 0.861085605096817,
       "take_profit": 0.8446632877826692,
       "score": 100,
-      "last_check_time": "2026-07-01T17:01:02.620132"
+      "last_check_time": "2026-07-01T17:06:14.524754"
     },
     {
-      "id": "NZD/USD-dtp-1782925262",
-      "pair": "NZD/USD",
+      "id": "GBP/JPY-dtp-1782925574",
+      "pair": "GBP/JPY",
       "method": "dtp",
-      "direction": "short",
-      "entry_type": "dtp_short",
-      "entry_time": "2026-07-01T17:01:02.620132",
-      "entry_price": 0.5679236650466919,
-      "stop_loss": 0.5688792870044708,
-      "take_profit": 0.5650567991733553,
-      "score": 100,
-      "last_check_time": "2026-07-01T17:01:02.620132"
+      "direction": "long",
+      "entry_type": "dtp_long",
+      "entry_time": "2026-07-01T17:06:14.524754",
+      "entry_price": 215.7830047607422,
+      "stop_loss": 215.27350941467284,
+      "take_profit": 217.31149079895022,
+      "score": 87,
+      "last_check_time": "2026-07-01T17:06:14.524754"
     }
   ],
   "history_count": 0,
