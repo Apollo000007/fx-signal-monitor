@@ -1,21 +1,7 @@
 {
-  "updated_at": "2026-07-02T06:50:27.582361+00:00",
-  "open_count": 1,
-  "open_positions": [
-    {
-      "id": "EUR/GBP-triple-1782975027",
-      "pair": "EUR/GBP",
-      "method": "triple",
-      "direction": "short",
-      "entry_type": "triple_confluence",
-      "entry_time": "2026-07-02T06:50:27.582361",
-      "entry_price": 0.8558400273323059,
-      "stop_loss": 0.856206525046808,
-      "take_profit": 0.8549868689394343,
-      "score": 99,
-      "last_check_time": "2026-07-02T06:50:27.582361"
-    }
-  ],
+  "updated_at": "2026-07-02T06:55:39.878202+00:00",
+  "open_count": 0,
+  "open_positions": [],
   "history_count": 0,
   "recent_trades": [],
   "stats": {
