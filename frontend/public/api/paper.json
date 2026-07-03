@@ -1,19 +1,19 @@
 {
-  "updated_at": "2026-07-03T01:05:23.476913+00:00",
+  "updated_at": "2026-07-03T01:10:31.302007+00:00",
   "open_count": 1,
   "open_positions": [
     {
-      "id": "EUR/GBP-mtf-1783040723",
+      "id": "EUR/GBP-mtf-1783041031",
       "pair": "EUR/GBP",
       "method": "mtf",
       "direction": "short",
       "entry_type": "mtf_short",
-      "entry_time": "2026-07-03T01:05:23.476913",
+      "entry_time": "2026-07-03T01:10:31.302007",
       "entry_price": 0.8563299775123596,
       "stop_loss": 0.8571850935459137,
       "take_profit": 0.8537646294116975,
       "score": 100,
-      "last_check_time": "2026-07-03T01:05:23.476913"
+      "last_check_time": "2026-07-03T01:10:31.302007"
     }
   ],
   "history_count": 0,
