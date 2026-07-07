@@ -52,7 +52,8 @@ jobs:
         run: |
           git config user.name  "fx-bot"
           git config user.email "fx-bot@users.noreply.github.com"
-          git add frontend/public/api state/seen_alerts.json || true
+          # paper_positions/history も永続化 (無いとペーパートレードが毎回リセットされ検証データが消える)
+          git add frontend/public/api state/seen_alerts.json state/paper_positions.json state/paper_history.json || true
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else
