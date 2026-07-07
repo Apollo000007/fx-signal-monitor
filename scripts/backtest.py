@@ -142,6 +142,9 @@ def main():
     stats_by_pm = {}
     aggregate_trades_by_method = {m: [] for m in methods}
 
+    # CS (通貨強弱) 用: 全ペアの日足コンテキスト {pair_label: df}
+    ctx_long = {p: long_data.get(s) for p, s in pairs}
+
     for pair, symbol in pairs:
         df_long = long_data.get(symbol)
         df_mid = mid_data.get(symbol)
@@ -166,6 +169,7 @@ def main():
                 verbose=args.verbose,
                 tp_rr=args.tp_rr,
                 min_rr=args.min_rr,
+                ctx_long=ctx_long,
             )
             results.append(res)
             stats = compute_stats(res.trades)

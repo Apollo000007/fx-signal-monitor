@@ -57,7 +57,8 @@ input bool    UsePDHL            = false;
 input bool    UseTriple          = true;    // デフォルトは triple のみ (backtest 60d で唯一の +EV)
 input bool    UseDTP             = false;   // Daily Trend Pullback (検証してから有効化推奨)
 input bool    UsePA              = false;   // Price Action ローソク足パターン (EVホワイトリスト準拠)
-input bool    UseMTF             = false;   // 週/日/4H/1H 全軸トレンド一致 + 15M S/Aパターン
+input bool    UseMTF             = false;   // 日足+4H トレンド一致 + 15M S/Aパターン
+input bool    UseCS              = false;   // 通貨強弱 (最強×最弱 + トレンド一致、ドルストレート限定)
 // 注: claude / both 手法は廃止。triple の内部計算では claude を使うが
 //     単独の発注対象からは除外 (magic index は互換維持のため据え置き)
 
@@ -87,8 +88,8 @@ string g_pairs_yfinance[];  // "USD/JPY" 形式
 string g_pairs_mt5[];       // ブローカー固有名 (USDJPY, USDJPY.m 等)
 long g_magic_min = 0, g_magic_max = 0;
 
-bool g_use_methods[8];      // {orz, pdhl, both, claude, triple, dtp, pa, mtf}
-string g_method_names[8] = {"orz", "pdhl", "both", "claude", "triple", "dtp", "pa", "mtf"};
+bool g_use_methods[9];      // {orz, pdhl, both, claude, triple, dtp, pa, mtf, cs}
+string g_method_names[9] = {"orz", "pdhl", "both", "claude", "triple", "dtp", "pa", "mtf", "cs"};
 
 //+------------------------------------------------------------------+
 int OnInit()
@@ -100,7 +101,7 @@ int OnInit()
       return INIT_PARAMETERS_INCORRECT;
    }
    g_magic_min = MagicBase;
-   g_magic_max = MagicBase + 14 * 10 + 7;  // 最大 pair_idx=14, method_idx=7 (mtf)
+   g_magic_max = MagicBase + 14 * 10 + 8;  // 最大 pair_idx=14, method_idx=8 (cs)
 
    //--- ペア配列を構築
    ParseTradingPairs();
@@ -119,8 +120,9 @@ int OnInit()
    g_use_methods[5] = UseDTP;
    g_use_methods[6] = UsePA;
    g_use_methods[7] = UseMTF;
+   g_use_methods[8] = UseCS;
    bool any = false;
-   for(int i = 0; i < 8; i++) if(g_use_methods[i]) { any = true; break; }
+   for(int i = 0; i < 9; i++) if(g_use_methods[i]) { any = true; break; }
    if(!any)
    {
       Print("[FXSignalEA] 少なくとも 1 つの手法を有効化してください");
@@ -128,7 +130,7 @@ int OnInit()
    }
 
    //--- 初期メッセージ
-   PrintFormat("[FXSignalEA] init: %d pairs, methods=%s%s%s%s%s%s, risk=%.2f%%, dryrun=%s, trading=%s",
+   PrintFormat("[FXSignalEA] init: %d pairs, methods=%s%s%s%s%s%s%s, risk=%.2f%%, dryrun=%s, trading=%s",
                g_pairs_count,
                UseORZ ? "ORZ " : "",
                UsePDHL ? "PDHL " : "",
@@ -136,6 +138,7 @@ int OnInit()
                UseDTP ? "DTP " : "",
                UsePA ? "PA " : "",
                UseMTF ? "MTF " : "",
+               UseCS ? "CS " : "",
                AccountRiskPercent,
                DryRun ? "ON" : "OFF",
                EnableTrading ? "ON" : "OFF");
@@ -306,7 +309,7 @@ void EvaluatePair(const int pair_index, int current_positions_unused)
    }
 
    //--- 各 method を評価
-   for(int mi = 0; mi < 8; mi++)
+   for(int mi = 0; mi < 9; mi++)
    {
       if(!g_use_methods[mi]) continue;
       string method = g_method_names[mi];

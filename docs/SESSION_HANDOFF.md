@@ -131,6 +131,18 @@ Vercel 自動デプロイ済み。push 前は必ず `git pull --rebase origin ma
   採用)」へ統一。`scripts/build_static.py::_mm_levels`/`_format_alert` も同様。
   strategy/api のシグナル本体は当初未変更だったが、上記ルール2の許可により
   TRIPLE 含め本体側も2R/3Rへ寄せてよい (未実施なら次タスク候補)。
+- **【2026-07-07】CS(通貨強弱)手法 + 残高ベース推奨ロット**: R2分析の勝ち筋
+  「USD順張りドルストレート(14勝4敗+909)」をコード化。`strategy_cs.py` =
+  8通貨強弱ランキング(日足20d/5dモメンタム) → 最強×最弱ペア → 日足+4H一致 →
+  15M S/Aパターン。backtest 60d で USD/CAD PF8.2・クロス円全滅の二極化を確認
+  → `ev_whitelist._CS_DEFAULT_PAIRS` のドルストレート床(5ペア、GBP/USD・
+  AUD/USD除外)で運用。backtest engine に `ctx_long`(全ペア日足)を追加。
+  推奨ロット: `ACCOUNT_BALANCE_JPY`/`RISK_PERCENT`(Repository Variables) を
+  設定するとアラートに残高×1%の具体ロットを表示 — 「資金10倍ならロット10倍」
+  を比率固定で安全に実現。10倍ロット固定ジャンプは禁止のまま。
+  ペーパートレード履歴が Actions でコミットされず毎回消えていたバグも修正
+  (workflow git add に state/paper_*.json 追加)。UIタブ「Heracles · 通貨強弱」
+  (ショートカット9)。
 - **【2026-07-03】R2 ポストモーテム → 重ね玉ガード**: 6週間デモは 0.10ロット期
   32件 +685 (WR62.5%) と**システムは機能**。しかし 1.00ロット(10倍) 3本が全て
   「USDロング」の重ね玉で -4,999 → 口座破壊。対策:

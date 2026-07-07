@@ -35,13 +35,14 @@ from strategy_claude import analyze_pair_claude
 from strategy_dtp import analyze_pair_dtp
 from strategy_pa import analyze_pair_pa
 from strategy_mtf import analyze_pair_mtf
+from strategy_cs import analyze_pair_cs
 import risk
 
 
 # UI/運用で使う手法のみ。claude/both は単独では使わないが、
 # triple の内部計算 (_get_signal_dict 内) では claude を参照するため
 # _get_signal_dict のロジック分岐自体は残してある。
-METHOD_NAMES = ("orz", "pdhl", "triple", "dtp", "pa", "mtf")
+METHOD_NAMES = ("orz", "pdhl", "triple", "dtp", "pa", "mtf", "cs")
 
 
 def is_jpy_cross(pair: str) -> bool:
@@ -109,6 +110,7 @@ def _get_signal_dict(
     df_h1_sub: Optional[pd.DataFrame],
     df_short_sub: pd.DataFrame,
     threshold: int,
+    ctx_daily_sub: Optional[dict] = None,
 ) -> Optional[dict]:
     """指定手法のシグナルを dict 形式で返す。
 
@@ -180,6 +182,16 @@ def _get_signal_dict(
         try:
             d = analyze_pair_mtf(pair, symbol, df_long_sub, df_mid_sub, df_short_sub,
                                  df_h1=df_h1_sub, alert_threshold=threshold)
+        except Exception:
+            return None
+        if d["direction"] == "none" or d.get("stop_loss") is None:
+            return None
+        return d
+
+    if method == "cs":
+        try:
+            d = analyze_pair_cs(pair, symbol, df_long_sub, df_mid_sub, df_short_sub,
+                                ctx_daily=ctx_daily_sub, alert_threshold=threshold)
         except Exception:
             return None
         if d["direction"] == "none" or d.get("stop_loss") is None:
@@ -272,6 +284,7 @@ def run_backtest(
     verbose: bool = False,
     tp_rr: Optional[float] = None,
     min_rr: Optional[float] = 2.0,
+    ctx_long: Optional[dict] = None,
 ) -> BacktestResult:
     """1 ペア × 1 手法のバックテスト。
 
@@ -336,10 +349,17 @@ def run_backtest(
             if len(df_long_sub) < 100 or len(df_mid_sub) < 100:
                 continue
 
+            # CS (通貨強弱) は全ペアの日足コンテキストを時点 ts でスライスして渡す
+            ctx_daily_sub = None
+            if method == "cs" and ctx_long:
+                ctx_daily_sub = {p: d.loc[:ts] for p, d in ctx_long.items()
+                                 if d is not None and not d.empty}
+
             sig = _get_signal_dict(
                 method, pair, symbol,
                 df_long_sub, df_mid_sub, df_h1_sub, df_short_sub,
                 threshold,
+                ctx_daily_sub=ctx_daily_sub,
             )
 
             if sig and sig.get("is_alert") and sig.get("stop_loss") and sig.get("take_profit"):

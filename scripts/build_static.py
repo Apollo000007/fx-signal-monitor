@@ -105,7 +105,37 @@ def _mm_levels(sub: dict):
     return {"tp3": tp3, "primary": primary, "rr": rr}
 
 
-def _format_alert(pair: str, method: str, sub: dict) -> str:
+def _recommended_lot(pair: str, entry, sl, prices: dict) -> Optional[tuple[float, float]]:
+    """口座残高×RISK_PERCENT% のリスクで許容できるロット数 (standard lot)。
+
+    Returns: (lot, risk_jpy) / 計算不能なら None。
+    pip 価値の JPY 換算はレコード群の現在価格 (X/JPY, USD/JPY) を使う。
+    残高が10倍になれば推奨ロットも自動で10倍 = 「比率固定」の実装。
+    """
+    balance = getattr(config, "ACCOUNT_BALANCE_JPY", None)
+    risk_pct = getattr(config, "RISK_PERCENT", 1.0)
+    if not balance or entry is None or sl is None or "/" not in pair:
+        return None
+    quote = pair.split("/", 1)[1]
+    pip = 0.01 if quote == "JPY" else 0.0001
+    sl_pips = abs(float(entry) - float(sl)) / pip
+    if sl_pips <= 0:
+        return None
+    # 1.0 standard lot (100,000通貨) の 1pip 価値 (quote 通貨建て)
+    pip_value_quote = 100_000 * pip  # JPYクオート: 1000円 / その他: 10 quote
+    if quote == "JPY":
+        pip_value_jpy = pip_value_quote
+    else:
+        conv = prices.get(f"{quote}/JPY")  # USD/JPY, CHF/JPY, CAD/JPY, GBP/JPY...
+        if not conv:
+            return None
+        pip_value_jpy = pip_value_quote * float(conv)
+    risk_jpy = float(balance) * float(risk_pct) / 100.0
+    lot = risk_jpy / (sl_pips * pip_value_jpy)
+    return round(lot, 2), risk_jpy
+
+
+def _format_alert(pair: str, method: str, sub: dict, prices: Optional[dict] = None) -> str:
     arrow = "↑ LONG" if sub["direction"] == "long" else "↓ SHORT"
     lines = [
         f"[FX] {pair} {arrow}  ({method.upper()})",
@@ -133,8 +163,14 @@ def _format_alert(pair: str, method: str, sub: dict) -> str:
     if sub.get("warnings"):
         for w in sub["warnings"][:2]:
             lines.append(f"⚠ {w}")
+    # 残高設定があれば「比率固定」の推奨ロットを具体値で表示
+    rec = _recommended_lot(pair, sub.get("price"), sub.get("stop_loss"), prices or {})
+    if rec is not None:
+        lot, risk_jpy = rec
+        lines.append(f"💰 推奨ロット: {lot:.2f} lot "
+                     f"(リスク {risk_jpy:,.0f}円 = 残高×{getattr(config, 'RISK_PERCENT', 1.0):.1f}%)")
     # 【R2 教訓】口座を壊すのはロットと重ね玉。毎回念押しする。
-    lines.append("🛡 ロット固定 (口座リスク1%以内)・倍ロット/リベンジ増し玉 禁止")
+    lines.append("🛡 ロットは比率固定 (残高×1%リスク)・倍ロット/リベンジ増し玉 禁止")
     return "\n".join(lines)
 
 
@@ -259,7 +295,7 @@ def write_calendar(now: datetime) -> None:
 # ---------- メイン ------------------------------------------------------------
 
 # +EV 集中: 通知は実証手法のみ (PDHL=1:1 / ORZ=不安定TP は UI 参考表示に降格)
-METHODS_TO_NOTIFY = ("triple", "mtf", "dtp", "pa")
+METHODS_TO_NOTIFY = ("triple", "cs", "mtf", "dtp", "pa")
 
 # 相関・同時数キャップ (2週間デモの GBP/USD 3連敗・JPY系多重を防ぐ)
 MAX_ALERTS_PER_CYCLE = 4    # 1 サイクルで送る新規通知の上限
@@ -397,8 +433,10 @@ def main() -> int:
     save_seen(seen)
 
     print(f"[build_static] {len(new_alerts)} new alerts")
+    # 推奨ロット計算用: 現在価格マップ (quote→JPY 換算に使用)
+    prices = {r.get("pair"): r.get("price") for r in records if r.get("price")}
     for pair, method, sub in new_alerts:
-        msg = _format_alert(pair, method, sub)
+        msg = _format_alert(pair, method, sub, prices)
         print("---")
         print(msg)
         send_notifications(msg)

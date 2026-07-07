@@ -46,6 +46,10 @@ jobs:
           TELEGRAM_BOT_TOKEN:  ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID:    ${{ secrets.TELEGRAM_CHAT_ID }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          # 口座残高 (JPY) を Repository Variables に設定すると、アラートに
+          # 「残高×RISK_PERCENT% リスク」の推奨ロットが表示される
+          ACCOUNT_BALANCE_JPY: ${{ vars.ACCOUNT_BALANCE_JPY || '' }}
+          RISK_PERCENT:        ${{ vars.RISK_PERCENT || '1.0' }}
         run: python scripts/build_static.py
 
       - name: Commit updated JSON

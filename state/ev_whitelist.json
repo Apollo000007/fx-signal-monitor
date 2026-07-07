@@ -1,11 +1,12 @@
 {
-  "generated_at": "2026-07-07T02:51:26.706767+00:00",
+  "generated_at": "2026-07-07T08:38:33.352681+00:00",
   "period": "60d",
   "min_rr": 2.0,
   "min_n": 20,
   "min_pf": 1.1,
   "threshold": 75,
   "measured_methods": [
+    "cs",
     "mtf"
   ],
   "entries": {

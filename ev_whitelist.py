@@ -24,6 +24,11 @@ WHITELIST_FILE = ROOT / "state" / "ev_whitelist.json"
 
 # ブートストラップ既定 (ホワイトリスト未生成時)
 _DTP_DEFAULT_PAIRS = {"AUD/JPY", "NZD/USD", "USD/CHF", "GBP/JPY"}
+# CS (通貨強弱) のドルストレート床: Live 14勝4敗+909 と backtest の
+# USD/CAD PF8.2・USD/CHF +3.3R・NZD/USD PF1.9 が収束した実証サブセット。
+# クロス円は backtest 全滅 (-22.6R)、GBP/USD は Live 0勝3敗、AUD/USD は
+# backtest -EV のため床から除外。
+_CS_DEFAULT_PAIRS = {"USD/CAD", "USD/CHF", "NZD/USD", "EUR/USD", "USD/JPY"}
 _OPEN_DEFAULT = {"triple"}        # 既定で全ペア許可
 _CLOSED_DEFAULT = {"pdhl", "orz", "both", "claude"}  # 既定で全ペア不許可 (降格)
 
@@ -62,9 +67,21 @@ def is_pair_allowed(method: str, pair: str) -> tuple[bool, str]:
         return True, ""  # PA は pair×pattern で自己判定
     if method == "triple":
         return True, "TRIPLE 3手法合議 (常時許可・合議が EV ゲート)"
+    if method == "cs":
+        # 通貨強弱: whitelist 実証ペア ∪ ドルストレート床。
+        # クロス円は backtest 全滅のため床に含めない (whitelist 実証で個別解禁)。
+        wl_c = _load()
+        entries_c = (wl_c or {}).get("entries", {}) or {}
+        if f"cs|{pair}" in entries_c:
+            e = entries_c[f"cs|{pair}"]
+            return True, (f"CS EV実証済 ({pair}: n={e.get('n')} "
+                          f"WR{e.get('wr')}% PF{e.get('pf')} EV{e.get('ev')}R)")
+        if pair in _CS_DEFAULT_PAIRS:
+            return True, f"CS ドルストレート床 {pair} (Live14勝4敗+backtest収束)"
+        return False, f"CS 非対象ペア {pair} — アラート保留 (ドルストレート限定)"
+
     if method == "mtf":
-        # D1+4H 緩和後は発火が増えたため、バックテスト計測済みなら
-        # +EV 実証ペアのみ許可。未計測 (whitelist に mtf の記録なし) の間は暫定許可。
+        # バックテスト計測済みなら +EV 実証ペアのみ許可。未計測の間は暫定許可。
         wl_m = _load()
         measured = set((wl_m or {}).get("measured_methods", []) or [])
         if "mtf" not in measured:

@@ -28,6 +28,15 @@ ALERT_THRESHOLD = 75
 # 自動更新間隔（秒）
 REFRESH_SECONDS = 300
 
+# --- 資金管理 (推奨ロット計算) ---
+# 口座残高 (JPY)。設定すると Telegram アラートに「1トレード=残高×RISK_PERCENT%
+# のリスク」で計算した推奨ロットが表示される。残高が10倍になれば推奨ロットも
+# 自動で10倍になる (=倍率でなく比率固定)。env ACCOUNT_BALANCE_JPY で上書き可。
+import os as _os
+ACCOUNT_BALANCE_JPY = float(_os.environ.get("ACCOUNT_BALANCE_JPY", 0) or 0) or None
+# 1 トレードあたりのリスク% (推奨 0.5〜1.0)
+RISK_PERCENT = float(_os.environ.get("RISK_PERCENT", 1.0) or 1.0)
+
 # --- 通知設定 ---
 
 # 音アラート（Windows winsound.Beep）

@@ -1,6 +1,6 @@
 "use client";
 
-import { Flame, Eye, Sun, TrendingUp, CandlestickChart, Layers } from "lucide-react";
+import { Flame, Eye, Sun, TrendingUp, CandlestickChart, Layers, Scale } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useSignalsStore } from "@/store/signals";
 import type { Method } from "@/lib/types";
@@ -72,6 +72,15 @@ const OLYMPUS_TABS: TabDef[] = [
       "from-accent-gold/70 via-accent-green/40 to-accent-cyan/50 border-accent-gold/60 text-accent-gold",
     rank: "ultimate",
   },
+  {
+    key: "cs",
+    title: "Heracles · 通貨強弱 💪",
+    subtitle: "最強通貨×最弱通貨 + トレンド一致 + 15Mパターン",
+    icon: <Scale className="h-4 w-4" />,
+    accent:
+      "from-accent-cyan/70 via-accent-gold/40 to-accent-green/50 border-accent-cyan/60 text-accent-cyan",
+    rank: "ultimate",
+  },
 ];
 
 const EVA_TABS: TabDef[] = [
@@ -127,6 +136,15 @@ const EVA_TABS: TabDef[] = [
       "from-accent-gold/40 to-bg-card border-accent-gold/65 text-accent-gold",
     rank: "ultimate",
   },
+  {
+    key: "cs",
+    title: "UNIT-09 · CS",
+    subtitle: "CURRENCY STRENGTH",
+    icon: <Scale className="h-4 w-4" />,
+    accent:
+      "from-accent-cyan/40 to-bg-card border-accent-cyan/65 text-accent-cyan",
+    rank: "ultimate",
+  },
 ];
 
 export function MethodTabs() {
@@ -143,6 +161,7 @@ export function MethodTabs() {
     dtp: 0,
     pa: 0,
     mtf: 0,
+    cs: 0,
   };
   for (const r of records) {
     if (r.orz.is_alert) alertCounts.orz += 1;
@@ -153,6 +172,7 @@ export function MethodTabs() {
     if (r.dtp?.is_alert) alertCounts.dtp += 1;
     if (r.pa?.is_alert) alertCounts.pa += 1;
     if (r.mtf?.is_alert) alertCounts.mtf += 1;
+    if (r.cs?.is_alert) alertCounts.cs += 1;
   }
 
   return (

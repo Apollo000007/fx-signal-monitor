@@ -30,6 +30,7 @@ from strategy_claude import analyze_pair_claude
 from strategy_dtp import analyze_pair_dtp
 from strategy_pa import analyze_pair_pa
 from strategy_mtf import analyze_pair_mtf
+from strategy_cs import analyze_pair_cs
 from strategy_pdhl import analyze_pair_pdhl
 import risk
 import ev_whitelist
@@ -181,6 +182,11 @@ def _pa_to_method_dict(p: dict) -> dict:
         "rank": p.get("rank"),
         "pattern_name": p.get("pattern_name"),
     }
+
+
+def _cs_to_method_dict(p: dict) -> dict:
+    """strategy_cs の戻り値 → method sub-dict (Signal.cs)。shape は mtf/pa と同一。"""
+    return _mtf_to_method_dict(p)
 
 
 def _mtf_to_method_dict(p: dict) -> dict:
@@ -412,7 +418,7 @@ def _build_triple_method(orz: dict, pdhl: dict, claude: dict, ht_dict: dict | No
     }
 
 
-def _signal_to_dict(sig, pdhl_dict: dict, claude_dict: dict, dtp_dict: dict, pa_dict: dict, mtf_dict: dict, ht_analysis=None) -> dict:
+def _signal_to_dict(sig, pdhl_dict: dict, claude_dict: dict, dtp_dict: dict, pa_dict: dict, mtf_dict: dict, cs_dict: dict, ht_analysis=None) -> dict:
     """Pair 全体のレコードを組み立て。各手法分の sub-dict を持つ。"""
     orz = _orz_to_method_dict(sig)
     pdhl = _pdhl_to_method_dict(pdhl_dict)
@@ -420,6 +426,7 @@ def _signal_to_dict(sig, pdhl_dict: dict, claude_dict: dict, dtp_dict: dict, pa_
     dtp = _dtp_to_method_dict(dtp_dict)
     pa = _pa_to_method_dict(pa_dict)
     mtf = _mtf_to_method_dict(mtf_dict)
+    cs = _cs_to_method_dict(cs_dict)
     ht_dict = _tf_to_dict(ht_analysis)
     both = _build_both_method(orz, pdhl, ht_dict)
     triple = _build_triple_method(orz, pdhl, claude, ht_dict)
@@ -428,7 +435,7 @@ def _signal_to_dict(sig, pdhl_dict: dict, claude_dict: dict, dtp_dict: dict, pa_
     # strategy/合議のロジックは不変。TP の床と is_alert のみを統一的に補正する。
     pair = sig.pair
     for method_name, m in (("orz", orz), ("pdhl", pdhl), ("claude", claude),
-                           ("dtp", dtp), ("pa", pa), ("mtf", mtf),
+                           ("dtp", dtp), ("pa", pa), ("mtf", mtf), ("cs", cs),
                            ("both", both), ("triple", triple)):
         # 1) TP に最低2Rの床 (1:1 を廃止)
         new_tp = risk.min_rr_tp(m.get("price"), m.get("stop_loss"),
@@ -463,6 +470,7 @@ def _signal_to_dict(sig, pdhl_dict: dict, claude_dict: dict, dtp_dict: dict, pa_
         "dtp": dtp,
         "pa": pa,
         "mtf": mtf,
+        "cs": cs,
         "both": both,
         "triple": triple,
     }
@@ -478,6 +486,9 @@ def _compute_signals():
         config.SHORT_INTERVAL, config.SHORT_PERIOD, config.SHORT_RESAMPLE,
         config.H1_INTERVAL, config.H1_PERIOD, config.H1_RESAMPLE,
     )
+
+    # CS (通貨強弱) 用: 全ペアの日足コンテキスト
+    ctx_daily = {label: long_d.get(symbol) for label, symbol in pairs_items}
 
     # SMT 用の短期リターンコンテキスト (全ペア)
     pair_ctx: dict = {}
@@ -602,6 +613,26 @@ def _compute_signals():
                 "warnings": [], "has_trigger": False, "is_alert": False,
                 "pattern": None, "rank": None, "pattern_name": None,
             }
+        try:
+            cs = analyze_pair_cs(
+                label, symbol,
+                long_d.get(symbol),
+                mid_d.get(symbol),
+                short_d.get(symbol),
+                ctx_daily=ctx_daily,
+                alert_threshold=config.ALERT_THRESHOLD,
+            )
+        except Exception as e:
+            print(f"[api] analyze_pair_cs({label}) error: {e}")
+            cs = {
+                "pair": label, "symbol": symbol,
+                "direction": "none", "entry_type": "none",
+                "score": 0, "price": 0.0,
+                "stop_loss": None, "take_profit": None,
+                "reasons": [f"CS分析エラー: {e}"],
+                "warnings": [], "has_trigger": False, "is_alert": False,
+                "pattern": None, "rank": None, "pattern_name": None,
+            }
         # 1H 分析 (合意判定の補助)
         ht_analysis = None
         df_h1 = h1_d.get(symbol)
@@ -610,7 +641,7 @@ def _compute_signals():
                 ht_analysis = analyze_timeframe(df_h1)
             except Exception as e:
                 print(f"[api] analyze_timeframe(h1, {label}) error: {e}")
-        results.append(_signal_to_dict(sig, pdhl, claude, dtp, pa, mtf, ht_analysis))
+        results.append(_signal_to_dict(sig, pdhl, claude, dtp, pa, mtf, cs, ht_analysis))
     # キャッシュにTF生データも保存しておく（チャート用）
     now_ts = datetime.now(timezone.utc)
     for _, symbol in pairs_items:

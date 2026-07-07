@@ -24,8 +24,9 @@ export type Regime = "trend_up" | "trend_down" | "range" | "unclear";
  *  - dtp    : Daily Trend Pullback (日足トレンド押し目、エビデンスベース)
  *  - pa     : Price Action / ローソク足パターン (確定足+上位足+節目+次足確認)
  *  - mtf    : Multi-TimeFrame 全軸一致 (週/日/4H/1H 同方向 + 15M S/Aパターン)
+ *  - cs     : Currency Strength 通貨強弱 (最強通貨×最弱通貨 + トレンド一致 + 15Mパターン)
  */
-export type Method = "orz" | "pdhl" | "both" | "claude" | "triple" | "dtp" | "pa" | "mtf";
+export type Method = "orz" | "pdhl" | "both" | "claude" | "triple" | "dtp" | "pa" | "mtf" | "cs";
 
 export interface TimeframeAnalysis {
   direction: string;
@@ -93,6 +94,7 @@ export interface PairRecord {
   dtp: MethodSignal;
   pa: MethodSignal;
   mtf: MethodSignal;
+  cs: MethodSignal;
 }
 
 /** UI から見る view-model: Pair レコード + 選択された手法を projection した形。 */
