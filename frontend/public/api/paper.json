@@ -1,19 +1,19 @@
 {
-  "updated_at": "2026-07-07T01:45:56.812336+00:00",
+  "updated_at": "2026-07-07T01:51:00.623243+00:00",
   "open_count": 1,
   "open_positions": [
     {
-      "id": "GBP/JPY-mtf-1783388756",
+      "id": "GBP/JPY-mtf-1783389060",
       "pair": "GBP/JPY",
       "method": "mtf",
       "direction": "long",
       "entry_type": "mtf_long",
-      "entry_time": "2026-07-07T01:45:56.812336",
+      "entry_time": "2026-07-07T01:51:00.623243",
       "entry_price": 216.89199829101562,
       "stop_loss": 216.42510629272462,
       "take_profit": 218.29267428588864,
       "score": 100,
-      "last_check_time": "2026-07-07T01:45:56.812336"
+      "last_check_time": "2026-07-07T01:51:00.623243"
     }
   ],
   "history_count": 0,
