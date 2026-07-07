@@ -63,7 +63,18 @@ def is_pair_allowed(method: str, pair: str) -> tuple[bool, str]:
     if method == "triple":
         return True, "TRIPLE 3手法合議 (常時許可・合議が EV ゲート)"
     if method == "mtf":
-        return True, "MTF 全軸一致 (常時許可・4軸一致が EV ゲート)"
+        # D1+4H 緩和後は発火が増えたため、バックテスト計測済みなら
+        # +EV 実証ペアのみ許可。未計測 (whitelist に mtf の記録なし) の間は暫定許可。
+        wl_m = _load()
+        measured = set((wl_m or {}).get("measured_methods", []) or [])
+        if "mtf" not in measured:
+            return True, "MTF 暫定許可 (EV未計測)"
+        entries_m = (wl_m or {}).get("entries", {}) or {}
+        if f"mtf|{pair}" in entries_m:
+            e = entries_m[f"mtf|{pair}"]
+            return True, (f"MTF EV実証済 ({pair}: n={e.get('n')} "
+                          f"WR{e.get('wr')}% PF{e.get('pf')} EV{e.get('ev')}R)")
+        return False, f"MTF {pair} は +EV 未実証 — アラート保留"
 
     wl = _load()
     entries = (wl or {}).get("entries", {})

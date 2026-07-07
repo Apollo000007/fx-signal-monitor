@@ -131,6 +131,16 @@ Vercel 自動デプロイ済み。push 前は必ず `git pull --rebase origin ma
   採用)」へ統一。`scripts/build_static.py::_mm_levels`/`_format_alert` も同様。
   strategy/api のシグナル本体は当初未変更だったが、上記ルール2の許可により
   TRIPLE 含め本体側も2R/3Rへ寄せてよい (未実施なら次タスク候補)。
+- **【2026-07-03】R2 ポストモーテム → 重ね玉ガード**: 6週間デモは 0.10ロット期
+  32件 +685 (WR62.5%) と**システムは機能**。しかし 1.00ロット(10倍) 3本が全て
+  「USDロング」の重ね玉で -4,999 → 口座破壊。対策:
+  (1) アラートに通貨×方向24hキャップ (最大2件・3件目抑制・2件目⚠警告) と
+  ペア×方向12hクールダウン (`build_static.detect_new_alerts`)。
+  (2) EA に `MaxSameCcyExposure=1` (`TradeOps.CountSameCcyExposure`)。
+  (3) 緩和版MTF (GBPJPY 2連敗の発生源) に EVゲート: `--emit-whitelist` を手法別
+  マージ+`measured_methods` 記録に改修し、mtf 計測後は +EV ペアのみ許可。
+  (4) MTF は A ランクパターンに重要節目必須 (S は単体可)。
+  (5) アラート文面にロット規律を毎回明記。詳細 `docs/POSTMORTEM_R2.md`。
 - **【2026-06-03】2週間デモ ポストモーテム → +EV化リファクタ**: 実トレード14件が
   RR≈1:1 / 勝率50% で実質トントンだった反省から:
   (1) **TP最低2R床** `risk.min_rr_tp` を `api._signal_to_dict` に適用し signals.json/

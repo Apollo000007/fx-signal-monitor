@@ -26,6 +26,7 @@ from typing import Optional
 import pandas as pd
 
 from strategy import analyze_timeframe
+from strategy_pa import _key_levels, _near_level  # 重要節目チェック (PA と同基準)
 import patterns as pat
 
 # ランク別の基礎点 (S/A のみ採用)
@@ -151,12 +152,26 @@ def analyze_pair_mtf(
         result["reasons"].append(f"＋{'/'.join(extra_axes)} も同方向 (+{bonus} 高確度)")
 
     # ---- 2) 15M S/A パターン (aligned 方向) ----
+    # 重要節目チェック (PDH/PDL・スイングS/R・SMA・キリ番)。
+    # S ランクは単体で許可、A ランクは節目に重なる時のみ (質の底上げ)。
+    levels = _key_levels(df_long, df_eval, symbol)
+    tol = 0.0010 if "JPY" in symbol.upper() else 0.0008
+    level_hit = _near_level(price, levels, tol)
+    at_level = level_hit is not None
+
     matches = pat.detect(df_eval)
-    cands = [m for m in matches
-             if m.get("sig") == aligned and pat.rank_of(m.get("key", "")) in ("S", "A")]
+    cands = []
+    for m in matches:
+        if m.get("sig") != aligned:
+            continue
+        rk = pat.rank_of(m.get("key", ""))
+        if rk == "S" or (rk == "A" and at_level):
+            cands.append(m)
     if not cands:
-        result["reasons"].append("15Mに方向一致のS/Aパターンなし — トリガー待ち")
-        # 4軸は揃っているがトリガー未発火 → スコアは閾値未満にキャップ
+        result["reasons"].append(
+            "15Mに方向一致のトリガーなし (Sランク、またはAランク+重要節目が条件) — 待ち"
+        )
+        # 上位足は揃っているがトリガー未発火 → スコアは閾値未満にキャップ
         result["score"] = min(score, alert_threshold - 5)
         return result
 
@@ -175,6 +190,11 @@ def analyze_pair_mtf(
     result["reasons"].append(
         f"★15M【{rank}】{meta.get('name', key)} ({meta.get('en','')}) — {meta.get('m','')}"
     )
+    if at_level:
+        score += 8
+        result["reasons"].append(
+            f"→ 重要節目に重なる: {level_hit[0]} {level_hit[1]:.5f} (+8)"
+        )
     if meta.get("fk"):
         result["warnings"].append(f"ダマシ注意: {meta['fk']}")
 

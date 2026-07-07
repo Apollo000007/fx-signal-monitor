@@ -130,6 +130,11 @@ def _format_alert(pair: str, method: str, sub: dict) -> str:
         lines.append("根拠:")
         for r in sub["reasons"][:4]:
             lines.append(f"  ・{r}")
+    if sub.get("warnings"):
+        for w in sub["warnings"][:2]:
+            lines.append(f"⚠ {w}")
+    # 【R2 教訓】口座を壊すのはロットと重ね玉。毎回念押しする。
+    lines.append("🛡 ロット固定 (口座リスク1%以内)・倍ロット/リベンジ増し玉 禁止")
     return "\n".join(lines)
 
 
@@ -260,9 +265,42 @@ METHODS_TO_NOTIFY = ("triple", "mtf", "dtp", "pa")
 MAX_ALERTS_PER_CYCLE = 4    # 1 サイクルで送る新規通知の上限
 MAX_PER_CURRENCY = 1        # 同一通貨を含むペアは 1 サイクル最大 N 件
 
+# 【R2 ポストモーテム】USDロング×3×10倍ロットで口座が壊れた再発防止:
+#   - 同一通貨・同方向のアラートは 24h で最大 2 件 (3件目は抑制)。2件目には⚠警告。
+#   - 同一ペア・同方向は手法をまたいでも 12h クールダウン (再エントリー誘導を抑制)。
+CCY_DIR_WINDOW_SEC = 24 * 3600
+CCY_DIR_MAX = 2
+PAIRDIR_COOLDOWN_SEC = 12 * 3600
+
 
 def _currencies(pair: str) -> tuple[str, ...]:
     return tuple(c.strip().upper() for c in pair.split("/") if c.strip())
+
+
+def _ccy_dir_exposure(pair: str, direction: str) -> tuple[tuple[str, str], ...]:
+    """ペア+方向 → 通貨ごとの実効方向。例: EUR/USD short = (EUR,short),(USD,long)。"""
+    ccys = _currencies(pair)
+    if len(ccys) != 2:
+        return ()
+    a, b = ccys
+    if direction == "long":
+        return ((a, "long"), (b, "short"))
+    return ((a, "short"), (b, "long"))
+
+
+def _recent_ccy_dir_counts(seen: dict, now_ts: float) -> dict:
+    """seen のアラート履歴 ({pair}:{method}:{direction} → ts) から
+    直近24hの通貨×方向の件数を集計。pd: プレフィックスの補助キーは除外。"""
+    counts: dict = {}
+    for k, ts in seen.items():
+        if (now_ts - ts) > CCY_DIR_WINDOW_SEC:
+            continue
+        parts = k.split(":")
+        if len(parts) != 3 or parts[0] == "pd" or parts[2] not in ("long", "short"):
+            continue
+        for cd in _ccy_dir_exposure(parts[0], parts[2]):
+            counts[cd] = counts.get(cd, 0) + 1
+    return counts
 
 
 def detect_new_alerts(records: list[dict], seen: dict[str, float], now_ts: float):
@@ -287,6 +325,9 @@ def detect_new_alerts(records: list[dict], seen: dict[str, float], now_ts: float
             key = f"{pair}:{method}:{sub['direction']}"
             if (now_ts - seen.get(key, 0.0)) < REBROADCAST_SEC:
                 continue
+            # 同一ペア・同方向は手法をまたいでも 12h クールダウン
+            if (now_ts - seen.get(f"pd:{pair}:{sub['direction']}", 0.0)) < PAIRDIR_COOLDOWN_SEC:
+                continue
             candidates.append((pair, method, sub, prio))
             break  # このペアは最上位メソッドだけ
 
@@ -294,15 +335,33 @@ def detect_new_alerts(records: list[dict], seen: dict[str, float], now_ts: float
     candidates.sort(key=lambda c: (c[3], -int(c[2].get("score", 0))))
     new_alerts: list[tuple[str, str, dict]] = []
     ccy_count: dict[str, int] = {}
+    ccy_dir_recent = _recent_ccy_dir_counts(seen, now_ts)  # 直近24hの通貨×方向
     for pair, method, sub, _prio in candidates:
         if len(new_alerts) >= MAX_ALERTS_PER_CYCLE:
             break
         ccys = _currencies(pair)
         if any(ccy_count.get(c, 0) >= MAX_PER_CURRENCY for c in ccys):
-            continue  # 同一通貨の重ね打ちを抑制
+            continue  # 同一通貨の重ね打ちを抑制 (サイクル内)
+        # 24h 通貨×方向キャップ: 同じ通貨の同方向ベットが既に CCY_DIR_MAX 件 → 抑制
+        exposure = _ccy_dir_exposure(pair, sub["direction"])
+        blocked = [cd for cd in exposure if ccy_dir_recent.get(cd, 0) >= CCY_DIR_MAX]
+        if blocked:
+            print(f"[alerts] 抑制: {pair} {sub['direction']} — "
+                  f"{'/'.join(c for c, _ in blocked)} 同方向が24hに{CCY_DIR_MAX}件到達 (重ね玉防止)")
+            continue
+        # 2件目には警告を添える (1件既にある通貨方向)
+        warned = [c for c, d in exposure if ccy_dir_recent.get((c, d), 0) >= 1]
+        if warned:
+            sub.setdefault("warnings", []).append(
+                f"⚠ {'/'.join(warned)} の同方向ベットが直近24hに既に存在 — "
+                f"合計リスクを口座1%以内に (重ね玉注意)"
+            )
         for c in ccys:
             ccy_count[c] = ccy_count.get(c, 0) + 1
+        for cd in exposure:
+            ccy_dir_recent[cd] = ccy_dir_recent.get(cd, 0) + 1
         seen[f"{pair}:{method}:{sub['direction']}"] = now_ts
+        seen[f"pd:{pair}:{sub['direction']}"] = now_ts
         new_alerts.append((pair, method, sub))
     return new_alerts
 

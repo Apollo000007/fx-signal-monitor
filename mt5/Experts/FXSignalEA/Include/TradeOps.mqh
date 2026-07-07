@@ -76,6 +76,41 @@ int CountOpenPositionsByMagicBase(const long base_magic, const long base_magic_m
 }
 
 //+------------------------------------------------------------------+
+//| 同一通貨・同方向のエクスポージャ数 (この EA の建玉限定)             |
+//|   例: EURUSD sell = USD買い。既に USDCHF buy (=USD買い) があれば 1 |
+//|   【R2教訓】USDロング×3 の重ね玉で口座が壊れた再発防止。            |
+//|   base/quote: 新規候補の通貨 ("USD","JPY" 等 3 文字)               |
+//|   is_long   : 新規候補が買い (base買い/quote売り) か               |
+//+------------------------------------------------------------------+
+int CountSameCcyExposure(const string base, const string quote, const bool is_long,
+                         const long magic_min, const long magic_max)
+{
+   int cnt = 0;
+   int total = PositionsTotal();
+   for(int i = 0; i < total; i++)
+   {
+      if(!g_pos.SelectByIndex(i)) continue;
+      long m = g_pos.Magic();
+      if(m < magic_min || m > magic_max) continue;
+      string sym = g_pos.Symbol();               // 例: "USDCHFmicro"
+      if(StringLen(sym) < 6) continue;
+      string pb = StringSubstr(sym, 0, 3);       // ポジションの base
+      string pq = StringSubstr(sym, 3, 3);       // ポジションの quote
+      bool pos_long = (g_pos.PositionType() == POSITION_TYPE_BUY);
+      // 既存ポジションの通貨方向: base は買いなら+1、quote は逆
+      int pb_e = pos_long ? 1 : -1;
+      int pq_e = pos_long ? -1 : 1;
+      // 新規候補の通貨方向
+      int nb_e = is_long ? 1 : -1;
+      int nq_e = is_long ? -1 : 1;
+      if((pb == base  && pb_e == nb_e) || (pb == quote && pb_e == nq_e) ||
+         (pq == base  && pq_e == nb_e) || (pq == quote && pq_e == nq_e))
+         cnt++;
+   }
+   return cnt;
+}
+
+//+------------------------------------------------------------------+
 //| 価格を symbol の digits に丸める                                  |
 //+------------------------------------------------------------------+
 double NormalizeForSymbol(const string symbol, const double price)

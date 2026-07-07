@@ -53,7 +53,12 @@ MT5 EA へ配信する。GitHub Actions cron (5分) → `signals.json` → Verce
   (生成: `scripts/backtest.py --emit-whitelist --min-rr 2`)。EUR/USD等のDTPは出ない。
 - **通知は triple/dtp/pa に集中**。PDHL/ORZ は UI「参考」表示 (降格)。
 - **相関キャップ**: 1サイクル最大4件・同一通貨最大1件 (`detect_new_alerts`)。
-- 詳細: [`docs/POSTMORTEM_2W.md`](docs/POSTMORTEM_2W.md)。
+- **重ね玉ガード (R2)**: 同一通貨・同方向アラートは24hに最大2件 (3件目抑制)。
+  同一ペア・同方向は12hクールダウン。EA は `MaxSameCcyExposure=1`。
+- **MTF は計測後 EVゲート**: whitelist の `measured_methods` に mtf が入ったら
+  +EV実証ペアのみ alert (未計測の間は暫定許可)。
+- 詳細: [`docs/POSTMORTEM_2W.md`](docs/POSTMORTEM_2W.md) (R1) /
+  [`docs/POSTMORTEM_R2.md`](docs/POSTMORTEM_R2.md) (R2)。
 
 ---
 
@@ -161,7 +166,8 @@ backtest 例: `python3 scripts/backtest.py --days 60 --tp-rr 3`。
 | [`backtest/FINDINGS.md`](backtest/FINDINGS.md) | バックテスト数値・TP 比較 |
 | [`docs/PA_METHOD.md`](docs/PA_METHOD.md) | PA(ローソク足パターン)手法の設計・運用・EV白 |
 | [`backtest/PA_FINDINGS.md`](backtest/PA_FINDINGS.md) | PA パターン別バックテスト結果 |
-| [`docs/POSTMORTEM_2W.md`](docs/POSTMORTEM_2W.md) | 2週間デモ分析＋RR2/EVゲート/相関キャップ改善 |
+| [`docs/POSTMORTEM_2W.md`](docs/POSTMORTEM_2W.md) | R1: 2週間デモ分析＋RR2/EVゲート/相関キャップ改善 |
+| [`docs/POSTMORTEM_R2.md`](docs/POSTMORTEM_R2.md) | R2: 6週間デモ分析 (0.10期+685/WR62.5% vs 10倍ロット3本-4,999)＋重ね玉ガード |
 | [`docs/candlestick_patterns_reference.html`](docs/candlestick_patterns_reference.html) | PA の出典 (パターン集 原典) |
 | [`docs/TRADE_JOURNAL_GUIDE.md`](docs/TRADE_JOURNAL_GUIDE.md) | 混合ジャーナル使い方 |
 | [`docs/MANUAL_JOURNAL_GUIDE.md`](docs/MANUAL_JOURNAL_GUIDE.md) | 手法別手動ジャーナル使い方 |

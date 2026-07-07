@@ -218,14 +218,33 @@ def emit_whitelist(stats_by_pm: dict, args) -> None:
     """(手法,ペア) ごとの成績から +EV だけを state/ev_whitelist.json に書き出す。
 
     採用条件: n>=min_n かつ PF>=min_pf かつ EV>0。
-    pa は strategy_pa が pair×pattern で自己ゲートするため、ここでは除外
-    (ev_whitelist.is_pair_allowed が "pa" を素通しにする)。
+    pa は strategy_pa が pair×pattern で自己ゲートするため、ここでは除外。
+
+    マージ動作: 今回の run に含まれない手法の既存エントリは保持する
+    (例: --method mtf の単独 run が dtp のエントリを消さない)。
+    measured_methods に「一度でも計測済みの手法」を記録し、ev_whitelist 側の
+    ブートストラップ判定 (未計測なら暫定許可) に使う。
     """
     import json
     from datetime import datetime, timezone
 
     out = ROOT / "state" / "ev_whitelist.json"
-    entries: dict[str, dict] = {}
+
+    # 既存ファイルを読み込み (無ければ空)
+    try:
+        old = json.loads(out.read_text(encoding="utf-8"))
+    except Exception:
+        old = {}
+    old_entries: dict = old.get("entries", {}) or {}
+    old_measured = set(old.get("measured_methods", []) or [])
+
+    run_methods = {m for (_, m) in stats_by_pm.keys() if m != "pa"}
+
+    # 今回 run した手法の既存エントリは全消しして再構築、他手法は保持
+    entries: dict[str, dict] = {
+        k: v for k, v in old_entries.items()
+        if k.split("|", 1)[0] not in run_methods
+    }
     for (pair, method), s in stats_by_pm.items():
         if method == "pa":
             continue
@@ -237,6 +256,7 @@ def emit_whitelist(stats_by_pm: dict, args) -> None:
                 "pf": pf,
                 "ev": round(s.expectancy_r, 3),
             }
+    measured = sorted(old_measured | run_methods)
     payload = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "period": args.period,
@@ -244,6 +264,7 @@ def emit_whitelist(stats_by_pm: dict, args) -> None:
         "min_n": args.min_n,
         "min_pf": args.min_pf,
         "threshold": args.threshold,
+        "measured_methods": measured,
         "entries": entries,
     }
     out.parent.mkdir(parents=True, exist_ok=True)
